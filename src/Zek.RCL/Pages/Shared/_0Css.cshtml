@@ -1,0 +1,13 @@
+﻿@model IndexPageModel
+@*<environment include="Development">
+        <link rel="stylesheet" href="~/assets/bootstrap/dist/css/bootstrap.css" />
+        <script defer src="~/assets/fontawesome/js/all.js"></script>
+        <link rel="stylesheet" href="~/assets/bootstrap-datepicker/css/bootstrap-datepicker3.css" />
+    </environment>
+    <environment exclude="Development">*@
+<link rel="stylesheet" href="~/assets/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+<script defer src="~/assets/fontawesome/js/all.min.js" asp-append-version="true"></script>
+<link rel="stylesheet" href="~/assets/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" asp-append-version="true" />
+@*</environment>*@
+
+<link rel="stylesheet" asp-href-include="~/styles*.css" asp-append-version="true" />

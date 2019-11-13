@@ -1,0 +1,16 @@
+﻿@*<environment include="Development">
+        <script asp-src-include="~/assets/jquery/dist/jquery*.slim.js"></script>
+        <script src="~/assets/popper/dist/popper.js"></script>
+        <script src="~/assets/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    </environment>
+    <environment exclude="Development">*@
+<script asp-src-include="~/assets/jquery/dist/jquery*.slim.min.js" asp-append-version="true"></script>
+<script src="~/assets/bootstrap/dist/js/bootstrap.bundle.min.js" asp-append-version="true"></script>
+<script src="~/assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js" asp-append-version="true"></script>
+@*</environment>*@
+
+<script type="text/javascript" asp-src-include="~/runtime*.js" asp-append-version="true"></script>
+<script type="text/javascript" asp-src-include="~/polyfills*.js" asp-append-version="true"></script>
+<script type="text/javascript" asp-src-include="~/scripts*.js" asp-append-version="true"></script>
+<script type="text/javascript" asp-src-include="~/main*.js" asp-append-version="true"></script>
