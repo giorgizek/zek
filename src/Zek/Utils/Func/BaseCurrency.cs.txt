@@ -1,5 +1,4 @@
-﻿// ReSharper disable once CheckNamespace
-namespace Zek.Utils
+﻿namespace Zek.Utils
 {
     public partial class Func
     {
