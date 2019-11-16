@@ -29,7 +29,7 @@ namespace Zek.Utils
         /// </summary>
         /// <param name="password">The password supplied for validation</param>
         /// <returns>Error list</returns>
-        Task<IdentityResult> ValidateAsync(string password);
+        List<PasswordValidatorStatus> Validate(string password);
     }
 
     public class PasswordValidator : IPasswordValidator
