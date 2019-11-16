@@ -116,13 +116,11 @@ namespace Zek.Utils
         /// <returns></returns>
         public static bool IsValidUserName(string userName, int minLength = 3, int maxLength = 256, string allowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+")
         {
-            if (string.IsNullOrWhiteSpace(userName) || userName.Length < minLength || userName.Length > maxLength)
+            if (userName == null || userName.Length < minLength || userName.Length > maxLength)
                 return false;
 
             if (!string.IsNullOrEmpty(allowedUserNameCharacters) && userName.Any(c => !allowedUserNameCharacters.Contains(c)))
                 return false;
-
-            //return Regex.IsMatch(userName, "^[a-z][a-z|0-9|]*([_][a-z|0-9]+)*([.][a-z|0-9]+([_][a-z|0-9]+)*)?$", RegexOptions.IgnoreCase);
 
             return true;
         }
@@ -232,30 +230,7 @@ namespace Zek.Utils
         #endregion
 
 
-        /*
-  
-          /// <summary>
-          /// Check if string is email (ex: example@domain.com)
-          /// </summary>
-          /// <param name="email">ელ. ფოსტის მისამართი.</param>
-          /// <returns>აბრუნებს თუ სწორია trues, სხვა შემთხვევაში false.</returns>
-          public static bool IsValidEmail(string email)
-          {
-              var regex = new Regex(@"^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$", RegexOptions.Compiled | RegexOptions.ExplicitCapture | RegexOptions.IgnoreCase);
-              return (email != null) && (regex.Match(email).Length > 0);
-          }
-  
-          /// <summary>
-          /// ტელეფონის ნომრის ვალიდაცია
-          /// </summary>
-          /// <param name="email">ტელეფონის ნომერი.</param>
-          /// <returns>აბრუნებს თუ სწორია trues, სხვა შემთხვევაში false.</returns>
-          public static bool IsValidPhone(string email)
-          {
-              var regex = new Regex(@"^(\+\s?)?((?<!\+.*)\(\+?\d+([\s\-\.]?\d+)?\)|\d+)([\s\-\.]?(\(\d+([\s\-\.]?\d+)?\)|\d+))*(\s?(x|ext\.?)\s?\d+)?$", RegexOptions.Compiled | RegexOptions.ExplicitCapture | RegexOptions.IgnoreCase);
-              return (email != null) && (regex.Match(email).Length > 0);
-          }*/
-
+      
 
 
         /*
