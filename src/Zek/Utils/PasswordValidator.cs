@@ -25,7 +25,7 @@ namespace Zek.Utils
     public interface IPasswordValidator
     {
         /// <summary>
-        /// Validates a password\.
+        /// Validates a password.
         /// </summary>
         /// <param name="password">The password supplied for validation</param>
         /// <returns>Error list</returns>
