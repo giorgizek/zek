@@ -91,7 +91,8 @@ namespace Zek.Model.Identity
         /// <remarks>
         /// A value in the past means the user is not locked out.
         /// </remarks>
-        public virtual DateTimeOffset? LockoutEnd { get; set; }
+        //public virtual DateTimeOffset? LockoutEnd { get; set; }
+        public virtual DateTime? LockoutEnd { get; set; }
 
         /// <summary>
         /// Gets or sets a flag indicating if the user could be locked out.
@@ -139,6 +140,7 @@ namespace Zek.Model.Identity
             Property(u => u.NormalizedUserName).HasMaxLength(256);
             Property(u => u.Email).HasMaxLength(256);
             Property(u => u.NormalizedEmail).HasMaxLength(256);
+            Property(u => u.LockoutEnd).HasColumnTypeDateTime();
 
             Property(t => t.CreateDate).HasColumnTypeDateTime();
             Property(t => t.ModifiedDate).HasColumnTypeDateTime();

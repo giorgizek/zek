@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection.PortableExecutable;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using Novell.Directory.Ldap;
 using Zek.Extensions;
@@ -17,6 +18,7 @@ namespace Zek.Test
 {
     class Program
     {
+        
         static void Main(string[] args)
         {
             //GetConnection();
@@ -25,7 +27,6 @@ namespace Zek.Test
 
             var adminRoles = new[] { "Admin2222222222222222222", "Accountant222" };
             //var canEdit = roles.Any(x => adminRoles.Contains(x, StringComparer.OrdinalIgnoreCase));
-
 
             var sw = new Stopwatch();
             sw.Start();
