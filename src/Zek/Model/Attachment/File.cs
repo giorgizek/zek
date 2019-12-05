@@ -19,7 +19,7 @@ namespace Zek.Model.Attachment
 
     //    public TUser Modifier { get; set; }
     //}
-    //public class AttachmentMap<TAttachment, TUser> : AttachmentPocoMap<TAttachment>
+    //public class AttachmentMap<TAttachment, TUser> : FilePocoMap<TAttachment>
     //    where TAttachment : Attachment<TUser>
     //    where TUser : User
     //{
@@ -31,7 +31,7 @@ namespace Zek.Model.Attachment
     //}
 
 
-    public class AttachmentPoco : PocoModel
+    public class FilePoco : PocoModel
     {
         public int ApplicationId { get; set; }
         /// <summary>
@@ -39,7 +39,10 @@ namespace Zek.Model.Attachment
         /// </summary>
         public int AreaId { get; set; }
 
-        public int? TypeId { get; set; }//for combobox values (like: passport, contract, signature, photo, avator, icon);
+        /// <summary>
+        /// For dropdown values (like: passport, contract, signature, photo, avator, icon);
+        /// </summary>
+        public int? TypeId { get; set; }
         public string Path { get; set; }
         public string FileName { get; set; }
         //public string FileType { get; set; }
@@ -50,19 +53,19 @@ namespace Zek.Model.Attachment
 
     }
 
-    public class AttachmentPocoMap : AttachmentPocoMap<AttachmentPoco>
+    public class FilePocoMap : FilePocoMap<FilePoco>
     {
-        public AttachmentPocoMap(ModelBuilder builder) : base(builder)
+        public FilePocoMap(ModelBuilder builder) : base(builder)
         {
         }
     }
 
-    public class AttachmentPocoMap<TAttachment> : PocoModelMap<TAttachment>
-        where TAttachment : AttachmentPoco
+    public class FilePocoMap<TAttachment> : PocoModelMap<TAttachment>
+        where TAttachment : FilePoco
     {
-        public AttachmentPocoMap(ModelBuilder builder) : base(builder)
+        public FilePocoMap(ModelBuilder builder) : base(builder)
         {
-            ToTable("Attachments", "Attachment");
+            ToTable("Files", "Attachment");
 
             HasIndex(t => new { t.ApplicationId, t.AreaId });
             HasIndex(t => t.CheckSum);
