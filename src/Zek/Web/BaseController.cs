@@ -22,7 +22,7 @@ namespace Zek.Web
         private string[] _roles;
         public string[] Roles
         {
-            get => _roles ?? (_roles = User.GetRoles().ToArray());
+            get => _roles ??= User.GetRoles().ToArray();
             set => _roles = value;
         }
     }

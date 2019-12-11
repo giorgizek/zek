@@ -18,10 +18,18 @@ namespace Zek.Test
 {
     class Program
     {
-        
+
         static void Main(string[] args)
         {
             //GetConnection();
+
+            int? z = null;
+
+            var x = (ISO4217.ISO4217?)z;
+
+            var s = x.ToString();
+
+            Console.WriteLine(s);
 
             var roles = new[] { "Admin", "Accountant", "Accountant1", "Accountant2" };
 
