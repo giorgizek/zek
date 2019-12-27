@@ -13,7 +13,6 @@ namespace Zek.Model.Identity
     {
         public User()
         {
-            ConcurrencyStamp = Guid.NewGuid().ToString();
             SecurityStamp = Guid.NewGuid().ToString();
         }
         public User(string userName) : this()
@@ -66,7 +65,7 @@ namespace Zek.Model.Identity
         /// <summary>
         /// A random value that must change whenever a user is persisted to the store
         /// </summary>
-        public virtual string ConcurrencyStamp { get; set; }// = Guid.NewGuid().ToString();
+        public virtual string ConcurrencyStamp { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
         /// Gets or sets a telephone number for the user.
@@ -135,7 +134,7 @@ namespace Zek.Model.Identity
             ToTable("Users", "Identity");
 
             Property(t => t.Id).ValueGeneratedOnAdd();
-            Property(u => u.ConcurrencyStamp).IsConcurrencyToken();
+            Property(u => u.ConcurrencyStamp).HasMaxLength(50).IsConcurrencyToken();
             Property(u => u.UserName).HasMaxLength(256);
             Property(u => u.NormalizedUserName).HasMaxLength(256);
             Property(u => u.Email).HasMaxLength(256);

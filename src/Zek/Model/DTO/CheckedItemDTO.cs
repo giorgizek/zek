@@ -4,9 +4,9 @@
     {
     }
 
-    public class CheckedItemDTO<TId>
+    public class CheckedItemDTO<TValue>
     {
-        public TId Id { get; set; }
+        public TValue Value { get; set; }
         public string Name { get; set; }
         public bool Checked { get; set; }
     }
