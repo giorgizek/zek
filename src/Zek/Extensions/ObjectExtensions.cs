@@ -13,18 +13,18 @@
             return Equals(value, default(T));
         }
 
-/*
+
         /// <summary>
-        /// ადარებს ორ მნიშვნელობას ერთმანეთს.
+        /// Checks if value1 is equals to value2
         /// </summary>
         /// <param name="val1"></param>
         /// <param name="val2"></param>
-        /// <returns>გვიბრუნებს true-ს, როცა გადმოცემული პარამეტრები ერთმანეთის ტოლია.</returns>
+        /// <returns></returns>
         public static bool Compare(this object val1, object val2)
         {
             if (val1 != null && val2 != null && val1.Equals(val2)) return true;
             if (val1 == val2) return true;
             return false;
-        }*/
+        }
     }
 }
