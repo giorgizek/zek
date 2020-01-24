@@ -24,7 +24,7 @@ namespace Zek.Data.Repository
             Context.SaveChanges();
         }
 
-        public Task<int> SaveAsync(CancellationToken cancellationToken = default(CancellationToken))
+        public Task<int> SaveAsync(CancellationToken cancellationToken = default)
         {
             return Context.SaveChangesAsync(cancellationToken);
         }
