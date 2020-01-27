@@ -120,7 +120,15 @@ namespace Zek.Model.Identity
 
     public class UserMap : UserMap<User, int>
     {
-        public UserMap(ModelBuilder builder) : base(builder)
+        public UserMap(ModelBuilder builder, bool unique = true) : base(builder, unique)
+        {
+        }
+    }
+
+    public class UserMap<TEntity> : UserMap<TEntity, int>
+        where TEntity : User
+    {
+        public UserMap(ModelBuilder builder, bool unique = true) : base(builder, unique)
         {
         }
     }
@@ -129,7 +137,7 @@ namespace Zek.Model.Identity
         where TEntity : User<TKey>
         where TKey : IEquatable<TKey>
     {
-        public UserMap(ModelBuilder builder) : base(builder)
+        public UserMap(ModelBuilder builder, bool unique = true) : base(builder)
         {
             ToTable("Users", "Identity");
 
@@ -145,8 +153,10 @@ namespace Zek.Model.Identity
             Property(t => t.ModifiedDate).HasColumnTypeDateTime();
 
             HasKey(u => u.Id);
-            HasIndex(u => u.NormalizedUserName).IsUnique();
-            HasIndex(u => u.NormalizedEmail);
+            if (unique)
+                HasIndex(u => u.NormalizedUserName).IsUnique();
+            if (unique)
+                HasIndex(u => u.NormalizedEmail).IsUnique();
             HasIndex(t => t.CreatorId);
             HasIndex(t => t.ModifierId);
         }

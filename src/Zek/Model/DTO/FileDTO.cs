@@ -14,7 +14,6 @@ namespace Zek.Model.DTO
     {
         public string Path { get; set; }
         public int? MimeTypeId { get; set; }
-
         public CompressionType? CompressionTypeId { get; set; }
 
     }
