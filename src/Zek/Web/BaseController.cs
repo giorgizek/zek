@@ -42,8 +42,9 @@ namespace Zek.Web
                 : (IActionResult)NotFound();
         }
 
+
         [NonAction]
-        public virtual IActionResult Auto<T>(ModelStateResult<T> modelStateResult)
+        public virtual IActionResult Auto(ModelStateResult modelStateResult)
         {
             switch (modelStateResult.StatusCode)
             {
@@ -57,9 +58,36 @@ namespace Zek.Web
                     return new NotFoundObjectResult(modelStateResult);
 
                 case Model.StatusCode.InternalServerError:
-                    return new ObjectResult(modelStateResult) { StatusCode = modelStateResult.StatusCode.ToInt32() };
+                    return new ObjectResult(modelStateResult)
+                    {
+                        StatusCode = modelStateResult.StatusCode.ToInt32()
+                    };
 
-                //case StatusCode.OK:
+                default:
+                    return new OkResult();
+            }
+        }
+
+        [NonAction]
+        public virtual IActionResult Auto<T>(ModelStateResult<T> modelStateResult)
+        {
+            switch (modelStateResult.StatusCode)
+            {
+                case Model.StatusCode.BadRequest:
+                    return new BadRequestObjectResult(modelStateResult.Errors);
+
+                case Model.StatusCode.Forbidden:
+                    return new ForbidResult();
+
+                case Model.StatusCode.NotFound:
+                    return new NotFoundObjectResult(modelStateResult.Errors);
+
+                case Model.StatusCode.InternalServerError:
+                    return new ObjectResult(modelStateResult.Errors)
+                    {
+                        StatusCode = modelStateResult.StatusCode.ToInt32()
+                    };
+
                 default:
                     return new OkObjectResult(modelStateResult.Value);
             }
