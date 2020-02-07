@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System;
 
 namespace Zek.Model.Identity
@@ -91,7 +90,7 @@ namespace Zek.Model.Identity
             builder.Entity<TUserRole>(b =>
             {
                 b.HasKey(r => new { r.UserId, r.RoleId });
-                b.ToTable("UserRoles", "Identity");
+                b.ToTable("UserRoles", nameof(Schema.Identity));
             });
         }
     }

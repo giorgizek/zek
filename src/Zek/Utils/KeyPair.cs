@@ -3,7 +3,7 @@
 namespace Zek.Utils
 {
     /// <summary>
-    /// Equals ამოწმებს მხოლოდ Key-ს მნიშვნელობით
+    /// Equals checked only Key property
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
@@ -43,8 +43,7 @@ namespace Zek.Utils
         }
         public override bool Equals(object obj)
         {
-            var pair = obj as KeyPair<TKey, TValue>;
-            return pair != null && Equals(Key, pair.Key);
+            return obj is KeyPair<TKey, TValue> pair && Equals(Key, pair.Key);
         }
         public override int GetHashCode()
         {

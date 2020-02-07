@@ -16,7 +16,7 @@ namespace Zek.Model.Identity
     {
         public LoginLogMap(ModelBuilder builder) : base(builder)
         {
-            ToTable("LoginLogs", "Identity");
+            ToTable("LoginLogs", nameof(Schema.Identity));
             HasKey(x => x.Id);
 
             Property(x => x.Ip).HasMaxLength(46).IsRequired();
@@ -37,7 +37,7 @@ namespace Zek.Model.Identity
     {
         public UserLoginLogMap(ModelBuilder builder) : base(builder)
         {
-            ToTable("UserLoginLogs", "Identity");
+            ToTable("UserLoginLogs", nameof(Schema.Identity));
             HasIndex(x => x.Id);
 
             Property(u => u.NormalizedUserName).HasMaxLength(256);

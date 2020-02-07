@@ -1,10 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
-using Microsoft.AspNetCore.Identity;
 using Zek.Data.Entity;
 
 namespace Zek.Model.Identity
 {
+    public class Schema
+    {
+        public bool Identity { get; set; }
+    }
+
     public class User : User<int>
     {
     }
@@ -139,7 +143,7 @@ namespace Zek.Model.Identity
     {
         public UserMap(ModelBuilder builder, bool unique = true) : base(builder)
         {
-            ToTable("Users", "Identity");
+            ToTable("Users", nameof(Schema.Identity));
 
             Property(t => t.Id).ValueGeneratedOnAdd();
             Property(u => u.ConcurrencyStamp).HasMaxLength(50).IsConcurrencyToken();

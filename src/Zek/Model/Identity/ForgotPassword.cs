@@ -13,7 +13,7 @@ namespace Zek.Model.Identity
     {
         public ForgotPasswordMap(ModelBuilder builder) : base(builder)
         {
-            ToTable("ForgotPasswords", "Identity");
+            ToTable("ForgotPasswords", nameof(Schema.Identity));
             HasKey(x => x.UserId);
 
             Property(x => x.UserId).ValueGeneratedNever();

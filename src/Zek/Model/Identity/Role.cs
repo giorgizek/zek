@@ -84,7 +84,7 @@ namespace Zek.Model.Identity
     {
         public RoleMap(ModelBuilder builder, bool indexNormalizedName = true) : base(builder)
         {
-            ToTable("Roles", "Identity");
+            ToTable("Roles", nameof(Schema.Identity));
             
             Property(t => t.Id).ValueGeneratedOnAdd();
             Property(r => r.ConcurrencyStamp).IsConcurrencyToken();
