@@ -1,7 +1,13 @@
 ﻿namespace Zek.Model.DTO
 {
+    /// <summary>
+    /// Filter DTO
+    /// </summary>
     public class FilterDTO
     {
+        /// <summary>
+        /// Constructor FilterDTO
+        /// </summary>
         public FilterDTO()
         {
             Page = 1;
@@ -10,7 +16,9 @@
 
 
         private int _page;
-
+        /// <summary>
+        /// Page number
+        /// </summary>
         public int Page
         {
             get => _page;
@@ -23,7 +31,9 @@
         }
 
         private int _pageSize;
-
+        /// <summary>
+        /// Page size
+        /// </summary>
         public int PageSize
         {
             get => _pageSize;
@@ -38,18 +48,19 @@
             }
         }
 
-
+        /// <summary>
+        /// Sort column name
+        /// </summary>
         public string Sort { get; set; }
+
+        /// <summary>
+        /// Asc = null or true, Desc = false
+        /// </summary>
         public bool? Asc { get; set; }
-            
-        //public int PageCount => PagedList?.PageCount ?? 0;
 
-        //public int FirstItemOnPage => PagedList?.FirstItemOnPage ?? 0;
-
-        //public int LastItemOnPage => PagedList?.LastItemOnPage ?? 0;
-
-        //public int ItemsCount => PagedList?.TotalItemCount ?? 0;
-
+        /// <summary>
+        /// Max page size
+        /// </summary>
         protected virtual int MaxPageSize => 10000;
     }
 }

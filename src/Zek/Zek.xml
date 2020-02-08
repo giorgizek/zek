@@ -1,0 +1,3262 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Zek</name>
+    </assembly>
+    <members>
+        <member name="M:Zek.Data.DbHelper.DataReaderMapToList``1(System.Data.IDataReader)">
+            <summary>
+            Converts Datareader rows into List of T
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="dr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Data.DbHelper.DataReaderMapToDictionary``2(System.Data.IDataReader)">
+            <summary>
+            Converts Datareader rows into Dictionary
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <param name="dr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Data.Repository.IDbContext.SaveChangesAsync(System.Threading.CancellationToken)">
+            <summary>
+            A task that represents the asynchronous save operation. The task result contains the number of state entries written to the database.
+            </summary>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Extensions.Collections.DictionaryExtensions.RemoveWhere``2(System.Collections.Generic.Dictionary{``0,``1},Zek.Extensions.Collections.DictionaryExtensions.Predicate{``0,``1})">
+            <summary>
+            Remove an item from the collection with predicate
+            </summary>
+            <param name="dictionary"></param>
+            <param name="predicate"></param>
+            <typeparam name="TKey"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:Zek.Extensions.Collections.IEnumerableExtensions.DistinctBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Collections.Generic.IEqualityComparer{``1})">
+            <summary>
+            Returns all distinct elements of the given source, where "distinctness"
+            is determined via a projection and the specified comparer for the projected type.
+            </summary>
+            <remarks>
+            This operator uses deferred execution and streams the results, although
+            a set of already-seen keys is retained. If a key is seen multiple times,
+            only the first element with that key is returned.
+            </remarks>
+            <typeparam name="TSource">Type of the source sequence</typeparam>
+            <typeparam name="TKey">Type of the projected element</typeparam>
+            <param name="source">Source sequence</param>
+            <param name="keySelector">Projection for determining "distinctness"</param>
+            <param name="comparer">The equality comparer to use to determine whether or not keys are equal.
+            If null, the default equality comparer for <c>TSource</c> is used.</param>
+            <returns>A sequence consisting of distinct elements from the source sequence,
+            comparing them by the specified key projection.</returns>
+        </member>
+        <member name="M:Zek.Extensions.Collections.IEnumerableExtensions.Any(System.Collections.Generic.IEnumerable{System.String},System.String[])">
+            <summary>
+            Check if any element match on both arrays
+            </summary>
+            <param name="array1"></param>
+            <param name="array2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Extensions.Collections.IEnumerableExtensions.Any(System.Collections.Generic.IEnumerable{System.String},System.String[],System.StringComparer)">
+            <summary>
+            Check if any element match on both arrays
+            </summary>
+            <param name="array1"></param>
+            <param name="array2"></param>
+            <param name="comparer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Extensions.Collections.IListExtensions.RemoveRange``1(System.Collections.Generic.IList{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Removes the range.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="items">The items.</param>
+            <param name="collection">The collection.</param>
+        </member>
+        <member name="M:Zek.Extensions.DateTimeExtensions.SubtractMonth(System.DateTime,System.DateTime,System.Boolean)">
+            <summary>
+            აბრუნებს თარიღებს შორის თვეების რაოდენობას
+            </summary>
+            <param name="date1"></param>
+            <param name="date2"></param>
+            <param name="round">(დამრგვალებულს: თუ დღეების რაოდენობა 28 ან მეტია მაშინ 1 თვეს კიდე ამატებს).</param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Extensions.DateTimeExtensions.GetAge(System.DateTime,System.Nullable{System.DateTime})">
+            <summary>
+            აბრუნებს ასაკს.
+            </summary>
+            <param name="birthDate">დაბადების თარიღი.</param>
+            <param name="now">მიმდინარე თარიღი.</param>
+            <returns>ასაკი.</returns>
+        </member>
+        <member name="M:Zek.Extensions.DateTimeExtensions.CombineTime(System.DateTime,System.DateTime)">
+            <summary>
+            უცვლის დროს (საათი, წუთი, წამი).
+            </summary>
+            <param name="date">თარიღი, რომელზეც გვინდა დროის შეცვლა.</param>
+            <param name="time">თარიღი, რომლიდანაც ამოვიღებთ მხოლოდ დროს.</param>
+            <returns>აბრუნებს შეცვლილ თარიღს.</returns>
+        </member>
+        <member name="M:Zek.Extensions.DateTimeExtensions.CombineTime(System.DateTime,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            უცვლის დროს (საათი, წუთი, წამი).
+            </summary>
+            <param name="date">თარიღი, რომელზეც გვინდა დროის შეცვლა.</param>
+            <param name="hours">საათი.</param>
+            <param name="minutes">წუთი.</param>
+            <param name="seconds">წამი.</param>
+            <returns>აბრუნებს შეცვლილ თარიღს.</returns>
+        </member>
+        <member name="M:Zek.Extensions.DateTimeExtensions.IsWeekEnd(System.DateTime)">
+            <summary>
+            ამოწმებს მოცემული თარიღი არის თუ არა შაბათი/კვირა.
+            </summary>
+            <param name="date"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Extensions.DateTimeExtensions.AddBusinessDays(System.DateTime,System.Int32)">
+            <summary>
+            ამატებს სამუშაო დღეებს.
+            </summary>
+            <param name="date">ათვლის თარიღი.</param>
+            <param name="businessDays">სამუშაო დღეების რაოდენობა.</param>
+            <returns>აბრუნებს სამუშაო დღის თარიღს.</returns>
+        </member>
+        <member name="M:Zek.Extensions.DateTimeExtensions.AddDaysUntilMonday(System.DateTime,System.Int32)">
+            <summary>
+            ამატებს დღეებს და თუ მოუწია შაბათი ან კვირა მაშინ ორშაბათამდე გადის.
+            </summary>
+            <param name="date">ათვლის თარიღი.</param>
+            <param name="days">დღეების რაოდენობა.</param>
+            <returns>აბრუნებს დამატებულ დღეებს ბოლო შაბათ-კვირის გადახტომით.</returns>
+        </member>
+        <member name="M:Zek.Extensions.DateTimeExtensions.GetBusinessDays(System.DateTime,System.DateTime)">
+            <summary>
+            აბრუნებს სამუშაო დღეების რაოდენობას შუალედში.
+            </summary>
+            <param name="from"></param>
+            <param name="to"></param>
+            <returns>აბრუნებს სამუშაო დღეების რაოდენობას.</returns>
+        </member>
+        <member name="M:Zek.Extensions.DateTimeExtensions.GetWeekEndDays(System.DateTime,System.DateTime)">
+            <summary>
+            აბრუნებს დასვენების დღეების რაოდენობას შუალედში.
+            </summary>
+            <param name="from"></param>
+            <param name="to"></param>
+            <returns>აბრუნებს დასვენების დღეების რაოდენობას.</returns>
+        </member>
+        <member name="M:Zek.Extensions.DateTimeExtensions.GetBusinessDates(System.DateTime,System.DateTime)">
+            <summary>
+            აბრუნებს სამუშაო დღეების მასივს მოცემულ შუალედში.
+            </summary>
+            <param name="from"></param>
+            <param name="to"></param>
+            <returns>აბრუნებს სამუშაო დღეების მასივს.</returns>
+        </member>
+        <member name="M:Zek.Extensions.DateTimeExtensions.GetWeekEndDates(System.DateTime,System.DateTime)">
+            <summary>
+            აბრუნებს დასვენების დღეების მასივს მოცემულ შუალედში.
+            </summary>
+            <param name="from"></param>
+            <param name="to"></param>
+            <returns>აბრუნებს დასვენების დღეების მასივს.</returns>
+        </member>
+        <member name="M:Zek.Extensions.DecimalExtensions.LessThan(System.Decimal,System.Decimal,System.Int32)">
+            <summary>
+            Determines if the decimal value is less than or equal to the decimal parameter according to the defined precision.
+            </summary>
+            <param name="value1">The value1.</param>
+            <param name="value2">The value2.</param>
+            <param name="precision">The precision.  The number of digits after the decimal that will be considered when comparing.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Extensions.DecimalExtensions.LessThanOrEqual(System.Decimal,System.Decimal,System.Int32)">
+            <summary>
+            Determines if the decimal value is less than or equal to the decimal parameter according to the defined precision.
+            </summary>
+            <param name="value1">The value1.</param>
+            <param name="value2">The value2.</param>
+            <param name="precision">The precision.  The number of digits after the decimal that will be considered when comparing.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Extensions.DecimalExtensions.GreaterThan(System.Decimal,System.Decimal,System.Int32)">
+            <summary>
+            Determines if the decimal value is greater than (>) the decimal parameter according to the defined precision.
+            </summary>
+            <param name="value1">The value1.</param>
+            <param name="value2">The value2.</param>
+            <param name="precision">The precision.  The number of digits after the decimal that will be considered when comparing.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Extensions.DecimalExtensions.GreaterThanOrEqual(System.Decimal,System.Decimal,System.Int32)">
+            <summary>
+            Determines if the decimal value is greater than or equal to (>=) the decimal parameter according to the defined precision.
+            </summary>
+            <param name="value1">The value1.</param>
+            <param name="value2">The value2.</param>
+            <param name="precision">The precision.  The number of digits after the decimal that will be considered when comparing.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Extensions.DecimalExtensions.AlmostEquals(System.Decimal,System.Decimal,System.Int32)">
+            <summary>
+            Determines if the decimal value is equal to (==) the decimal parameter according to the defined precision.
+            </summary>
+            <param name="value1">The value1.</param>
+            <param name="value2">The value2.</param>
+            <param name="precision">The precision.  The number of digits after the decimal that will be considered when comparing.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Zek.Extensions.Net.HttpClientExtensions">
+            <summary>
+            Extension methods that aid in making formatted requests using <see cref="T:System.Net.Http.HttpClient"/>.
+            </summary>
+        </member>
+        <member name="M:Zek.Extensions.Net.HttpClientExtensions.PostAsJsonAsync``1(System.Net.Http.HttpClient,System.String,``0)">
+            <summary>
+            Sends a POST request as an asynchronous operation to the specified Uri with the given <paramref name="value"/> serialized
+            as JSON.
+            </summary>
+            <remarks>
+            This method uses the default instance of <see cref="!:JsonMediaTypeFormatter"/>.
+            </remarks>
+            <typeparam name="T">The type of <paramref name="value"/>.</typeparam>
+            <param name="client">The client used to make the request.</param>
+            <param name="requestUri">The Uri the request is sent to.</param>
+            <param name="value">The value that will be placed in the request's entity body.</param>
+            <returns>A task object representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Zek.Extensions.Net.HttpClientExtensions.PostAsJsonAsync``1(System.Net.Http.HttpClient,System.String,``0,System.Threading.CancellationToken)">
+            <summary>
+            Sends a POST request as an asynchronous operation to the specified Uri with the given <paramref name="value"/> serialized
+            as JSON.
+            </summary>
+            <remarks>
+            This method uses the default instance of <see cref="!:JsonMediaTypeFormatter"/>.
+            </remarks>
+            <typeparam name="T">The type of <paramref name="value"/>.</typeparam>
+            <param name="client">The client used to make the request.</param>
+            <param name="requestUri">The Uri the request is sent to.</param>
+            <param name="value">The value that will be placed in the request's entity body.</param>
+            <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+            <returns>A task object representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Zek.Extensions.Net.HttpClientExtensions.PostAsJsonAsync``1(System.Net.Http.HttpClient,System.Uri,``0)">
+            <summary>
+            Sends a POST request as an asynchronous operation to the specified Uri with the given <paramref name="value"/> serialized
+            as JSON.
+            </summary>
+            <remarks>
+            This method uses the default instance of <see cref="!:JsonMediaTypeFormatter"/>.
+            </remarks>
+            <typeparam name="T">The type of <paramref name="value"/>.</typeparam>
+            <param name="client">The client used to make the request.</param>
+            <param name="requestUri">The Uri the request is sent to.</param>
+            <param name="value">The value that will be placed in the request's entity body.</param>
+            <returns>A task object representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Zek.Extensions.Net.HttpClientExtensions.PostAsJsonAsync``1(System.Net.Http.HttpClient,System.Uri,``0,System.Threading.CancellationToken)">
+            <summary>
+            Sends a POST request as an asynchronous operation to the specified Uri with the given <paramref name="value"/> serialized
+            as JSON.
+            </summary>
+            <remarks>
+            This method uses the default instance of <see cref="!:JsonMediaTypeFormatter"/>.
+            </remarks>
+            <typeparam name="T">The type of <paramref name="value"/>.</typeparam>
+            <param name="client">The client used to make the request.</param>
+            <param name="requestUri">The Uri the request is sent to.</param>
+            <param name="value">The value that will be placed in the request's entity body.</param>
+            <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+            <returns>A task object representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Zek.Extensions.Net.HttpContentExtensions.ReadAsAsync``1(System.Net.Http.HttpContent)">
+            <summary>
+            Returns a <see cref="T:System.Threading.Tasks.Task"/> that will yield an object of the specified
+            from the <paramref name="content"/> instance.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <remarks>This override use the built-in collection of formatters.</remarks>
+            <param name="content">The <see cref="T:System.Net.Http.HttpContent"/> instance from which to read.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> that will yield an object instance of the specified type.</returns>
+        </member>
+        <member name="M:Zek.Extensions.ObjectExtensions.IsDefault``1(``0)">
+            <summary>
+            Checks to see if the object has null default value for basic types
+            </summary>
+            <typeparam name="T">Type of object being passed</typeparam>
+            <param name="value">Object whose value needs to be checked</param>
+            <returns>true if the value is null default. Otherwise returns false</returns>
+        </member>
+        <member name="M:Zek.Extensions.ObjectExtensions.IsEquals(System.Object,System.Object)">
+            <summary>
+            Checks if value1 is equals to value2
+            </summary>
+            <param name="val1"></param>
+            <param name="val2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Extensions.Security.Claims.ClaimsPrincipalExtensions.GetUserId(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            Returns the User ID claim value if present otherwise returns null.
+            </summary>
+            <param name="principal">The <see cref="T:System.Security.Claims.ClaimsPrincipal"/> instance.</param>
+            <returns>The User ID claim value, or null if the claim is not present.</returns>
+            <remarks>The User ID claim is identified by <see cref="F:Zek.Security.Claims.CustomClaimTypes.UserId"/>.</remarks>
+        </member>
+        <member name="M:Zek.Extensions.Security.Claims.ClaimsPrincipalExtensions.GetUserName(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            Returns the Name claim value if present otherwise returns null.
+            </summary>
+            <param name="principal">The <see cref="T:System.Security.Claims.ClaimsPrincipal"/> instance.</param>
+            <returns>The Name claim value, or null if the claim is not present.</returns>
+            <remarks>The Name claim is identified by <see cref="F:Zek.Security.Claims.CustomClaimTypes.UserName"/>.</remarks>
+        </member>
+        <member name="M:Zek.Extensions.Security.Claims.ClaimsPrincipalExtensions.GetEmail(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            Returns the Email claim value if present otherwise returns null.
+            </summary>
+            <param name="principal">The <see cref="T:System.Security.Claims.ClaimsPrincipal"/> instance.</param>
+            <returns>The Email claim value, or null if the claim is not present.</returns>
+            <remarks>The Email claim is identified by <see cref="F:Zek.Security.Claims.CustomClaimTypes.Email"/>.</remarks>
+        </member>
+        <member name="M:Zek.Extensions.Security.Claims.ClaimsPrincipalExtensions.IsSignedIn(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            Returns true if the principal has an identity with the application cookie identity
+            </summary>
+            <param name="principal">The <see cref="T:System.Security.Claims.ClaimsPrincipal"/> instance.</param>
+            <returns>True if the user is logged in with identity.</returns>
+        </member>
+        <member name="M:Zek.Extensions.Security.Claims.ClaimsPrincipalExtensions.GetRoles(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+                Get the the collection of all roles for a <see cref="T:System.Security.Claims.ClaimsPrincipal"/>.
+            </summary>
+            <param name="principal">The <see cref="T:System.Security.Claims.ClaimsPrincipal"/> instance.</param>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="principal" /> is <c>null</c>.</exception>
+            <returns>A collection that including all the roles for the <paramref name="principal" />. If the user has no roles, this method will return a empty collection.</returns>
+        </member>
+        <member name="M:Zek.Extensions.Sql.SqlExtensions.ToDbValue(System.Object)">
+            <summary>
+            აკონვერტირებს მნიშვნელობას პარამეტრისთვის გადასაცემ მნიშვნელობად.
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Extensions.Sql.SqlExtensions.ToSqlValue(System.Object)">
+            <summary>
+            აფორმატირებს მნიშვნელობას String-ში, ისე რომ Sql-თან არ შეიქმნას პრობლემა.
+            </summary>
+            <param name="value">მნიშვნელობა, რომლის დაფორმატირებაც გვინდა.</param>
+            <returns>დაფორმატირებული String.</returns>
+        </member>
+        <member name="M:Zek.Extensions.Sql.SqlExtensions.ToEntitySqlValue(System.Object)">
+            <summary>
+            აფორმატირებს მნიშვნელობას String-ში, ისე რომ Sql-თან არ შეიქმნას პრობლემა.
+            </summary>
+            <param name="value">მნიშვნელობა, რომლის დაფორმატირებაც გვინდა.</param>
+            <returns>დაფორმატირებული String.</returns>
+        </member>
+        <member name="M:Zek.Extensions.StopwatchExtensions.GetEta(System.Diagnostics.Stopwatch,System.Int32,System.Int32)">
+            <summary>
+            ითვლის სავარაუდო დროს რაიმე პროცესის დასრულების
+            </summary>
+            <param name="stopwatch"></param>
+            <param name="total"></param>
+            <param name="processed"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Extensions.StopwatchExtensions.GetEta(System.Diagnostics.Stopwatch,System.Int64,System.Int64)">
+            <summary>
+            ითვლის სავარაუდო დროს რაიმე პროცესის დასრულების
+            </summary>
+            <param name="stopwatch"></param>
+            <param name="total"></param>
+            <param name="processed"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Extensions.StringExtensions.IfNullEmpty(System.String)">
+            <summary>
+            იღებს String-ს ტექსტიდან. თუ ტექსტი == null მაშინ აბრუნებს ""
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Extensions.StringExtensions.IfEmptyNull(System.String)">
+            <summary>
+            იღებს String-ს ტექსტიდან. თუ ტექსტი == null ან "" მაშინ აბრუნებს null
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Extensions.StringExtensions.IfWhiteSpaceNull(System.String)">
+            <summary>
+            იღებს String-ს ტექსტიდან. თუ ტექსტი == null ან "" მაშინ აბრუნებს null
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Extensions.StringExtensions.ToDigitOnly(System.String)">
+            <summary>
+            Ensures that a string only contains numeric values
+            </summary>
+            <param name="str">Input string</param>
+            <returns>Input string with only numeric values, empty string if str is null/empty</returns>
+        </member>
+        <member name="M:Zek.Extensions.StringExtensions.SafeSubstring(System.String,System.Int32,System.Nullable{System.Int32})">
+            <summary>
+            იღებს ტექსტიდან ნაწილს.
+            </summary>
+            <param name="str">ტექსტი.</param>
+            <param name="startIndex">დაწყების ინდექსი.</param>
+            <param name="length">სიმბოლოების ზომა.</param>
+            <returns>აბრუნებს ამოჭრილ ტექსტს</returns>
+        </member>
+        <member name="M:Zek.Extensions.StringExtensions.Left(System.String,System.Int32)">
+            <summary>
+            Returns a string containing a specified number of characters from the left side of a string.
+            </summary>
+            <param name="str">Required. String expression from which the leftmost characters are returned</param>
+            <param name="length">Required. Integer expression. Numeric expression indicating how many characters to return. If 0, a zero-length string ("") is returned. If greater than or equal to the number of characters in str, the entire string is returned.</param>
+            <returns>Returns a string containing a specified number of characters from the left side of a string.</returns>
+        </member>
+        <member name="M:Zek.Extensions.StringExtensions.Right(System.String,System.Int32)">
+            <summary>
+            Returns a string containing a specified number of characters from the right side of a string.
+            </summary>
+            <param name="str">Required. String expression from which the rightmost characters are returned.</param>
+            <param name="length">Required. Integer. Numeric expression indicating how many characters to return. If 0, a zero-length string ("") is returned. If greater than or equal to the number of characters in str, the entire string is returned.</param>
+            <returns>Returns a string containing a specified number of characters from the right side of a string.</returns>
+        </member>
+        <member name="M:Zek.Extensions.StringExtensions.DefaultText(System.String,System.String)">
+            <summary>
+            If string not has text returns default text.
+            </summary>
+            <param name="str"></param>
+            <param name="defaultText"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Extensions.StringExtensions.ToBoolean(System.String)">
+            <summary>
+            იღებს Bool-ს ტექსტიდან
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Extensions.StringExtensions.ToByte(System.String,System.Byte)">
+            <summary>
+            იღებს Byte-ს ტექსტიდან
+            </summary>
+            <param name="str"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Extensions.StringExtensions.ToInt16(System.String,System.Int16)">
+            <summary>
+            იღებს Int16-ს ტექსტიდან
+            </summary>
+            <param name="str"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Extensions.StringExtensions.ToInt32(System.String,System.Int32)">
+            <summary>
+            იღებს Int32-ს ტექსტიდან
+            </summary>
+            <param name="str"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Extensions.StringExtensions.ToInt64(System.String,System.Int64)">
+            <summary>
+            იღებს Int64-ს ტექსტიდან
+            </summary>
+            <param name="str"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Extensions.StringExtensions.ToDecimal(System.String,System.Decimal)">
+            <summary>
+            იღებს ToDecimal-ს ტექსტიდან
+            </summary>
+            <param name="str"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Extensions.StringExtensions.ToDouble(System.String,System.Double)">
+            <summary>
+            იღებს Double-ს ტექსტიდან
+            </summary>
+            <param name="str"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Extensions.StringExtensions.ToGuid(System.String,System.Guid)">
+            <summary>
+            Gets GUID value from string
+            </summary>
+            <param name="str"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Extensions.StringExtensions.ToDateTime(System.String,System.Nullable{System.DateTime})">
+            <summary>
+             Gets DateTime value from string
+            </summary>
+            <param name="str"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Extensions.StringExtensions.SplitPascalCase(System.String)">
+            <summary>
+            Splits pascal case, so "FooBar" would become "Foo Bar"
+            </summary>
+        </member>
+        <member name="M:Zek.Extensions.TypeExtensions.IsPrimitive(System.Type)">
+            <summary>
+             Boolean, Byte, SByte, Int16, UInt16, Int32, UInt32, Int64, UInt64, IntPtr, UIntPtr, Char, Double, Single, Decimal, String, DateTime and Guid.
+            </summary>
+            <param name="type"></param>
+            <returns>Return true if type is primitive. Otherwise false</returns>
+        </member>
+        <member name="T:Zek.ISO3166.ISO3166">
+            <summary>
+            Country codes ISO 3166 <see href="https://en.wikipedia.org/wiki/ISO_3166-1" />
+            </summary>
+        </member>
+        <member name="M:Zek.ISO3166.ISO3166.FromAlpha2(System.String)">
+            <summary>
+            Obtain ISO3166-1 Country based on its alpha2 code.
+            </summary>
+            <param name="alpha2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.ISO3166.ISO3166.FromAlpha3(System.String)">
+            <summary>
+            Obtain ISO3166-1 Country based on its alpha3 code.
+            </summary>
+            <param name="alpha3"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.ISO3166.ISO3166.FromNumericCode(System.Int32)">
+            <summary>
+            Obtain ISO3166-1 Country based on its alpha3 code.
+            </summary>
+            <param name="numericCode"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Zek.ISO3166.ISO3166.Countries">
+            <summary>
+            This collection built from Wikipedia entry on ISO3166-1 on 9th Feb 2016
+            </summary>
+        </member>
+        <member name="T:Zek.ISO3166.ISO3166Country">
+            <summary>
+            Representation of an ISO3166-1 Country
+            </summary>
+        </member>
+        <member name="T:Zek.ISO4217.ISO4217">
+            <summary>
+            Currency codes ISO 4217 <see href="http://en.wikipedia.org/wiki/ISO_4217" />
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.AED">
+            <summary>
+            United Arab Emirates dirham
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.AFN">
+            <summary>
+            Afghan afghani
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.ALL">
+            <summary>
+            Albanian lek
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.AMD">
+            <summary>
+            Armenian dram
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.ANG">
+            <summary>
+            Netherlands Antillean guilder
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.AOA">
+            <summary>
+            Angolan kwanza
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.ARS">
+            <summary>
+            Argentine peso
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.AUD">
+            <summary>
+            Australian dollar
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.AWG">
+            <summary>
+            Aruban florin
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.AZN">
+            <summary>
+            Azerbaijani manat
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.BAM">
+            <summary>
+            Bosnia and Herzegovina convertible mark
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.BBD">
+            <summary>
+            Barbados dollar
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.BDT">
+            <summary>
+            Bangladeshi taka
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.BGN">
+            <summary>
+            Bulgarian lev
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.BHD">
+            <summary>
+            Bahraini dinar
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.BIF">
+            <summary>
+            Burundian franc
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.BMD">
+            <summary>
+            Bermudian dollar
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.BND">
+            <summary>
+            Brunei dollar
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.BOB">
+            <summary>
+            Boliviano
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.BOV">
+            <summary>
+            Bolivian Mvdol (funds code)
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.BRL">
+            <summary>
+            Brazilian real
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.BSD">
+            <summary>
+            Bahamian dollar
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.BTN">
+            <summary>
+            Bhutanese ngultrum
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.BWP">
+            <summary>
+            Botswana pula
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.BYR">
+            <summary>
+            Belarusian ruble
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.BZD">
+            <summary>
+            Belize dollar
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.CAD">
+            <summary>
+            Canadian dollar
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.CDF">
+            <summary>
+            Congolese franc
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.CHE">
+            <summary>
+            WIR Euro (complementary currency)
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.CHF">
+            <summary>
+            Swiss franc
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.CHW">
+            <summary>
+            WIR Franc (complementary currency)
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.CLF">
+            <summary>
+            Unidad de Fomento (funds code)
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.CLP">
+            <summary>
+            Chilean peso
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.CNY">
+            <summary>
+            Chinese yuan
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.COP">
+            <summary>
+            Colombian peso
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.COU">
+            <summary>
+            Unidad de Valor Real (UVR) (funds code)[7]
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.CRC">
+            <summary>
+            Costa Rican colon
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.CUC">
+            <summary>
+            Cuban convertible peso
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.CUP">
+            <summary>
+            Cuban peso
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.CVE">
+            <summary>
+            Cape Verde escudo
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.CZK">
+            <summary>
+            Czech koruna
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.DJF">
+            <summary>
+            Djiboutian franc
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.DKK">
+            <summary>
+            Danish krone
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.DOP">
+            <summary>
+            Dominican peso
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.DZD">
+            <summary>
+            Algerian dinar
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.EGP">
+            <summary>
+            Egyptian pound
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.ERN">
+            <summary>
+            Eritrean nakfa
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.ETB">
+            <summary>
+            Ethiopian birr
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.EUR">
+            <summary>
+            Euro
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.FJD">
+            <summary>
+            Fiji dollar
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.FKP">
+            <summary>
+            Falkland Islands pound
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.GBP">
+            <summary>
+            Pound sterling
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.GEL">
+            <summary>
+            Georgian lari
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.GHS">
+            <summary>
+            Ghanaian cedi
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.GIP">
+            <summary>
+            Gibraltar pound
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.GMD">
+            <summary>
+            Gambian dalasi
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.GNF">
+            <summary>
+            Guinean franc
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.GTQ">
+            <summary>
+            Guatemalan quetzal
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.GYD">
+            <summary>
+            Guyanese dollar
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.HKD">
+            <summary>
+            Hong Kong dollar
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.HNL">
+            <summary>
+            Honduran lempira
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.HRK">
+            <summary>
+            Croatian kuna
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.HTG">
+            <summary>
+            Haitian gourde
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.HUF">
+            <summary>
+            Hungarian forint
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.IDR">
+            <summary>
+            Indonesian rupiah
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.ILS">
+            <summary>
+            Israeli new shekel
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.INR">
+            <summary>
+            Indian rupee
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.IQD">
+            <summary>
+            Iraqi dinar
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.IRR">
+            <summary>
+            Iranian rial
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.ISK">
+            <summary>
+            Icelandic króna
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.JMD">
+            <summary>
+            Jamaican dollar
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.JOD">
+            <summary>
+            Jordanian dinar
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.JPY">
+            <summary>
+            Japanese yen
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.KES">
+            <summary>
+            Kenyan shilling
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.KGS">
+            <summary>
+            Kyrgyzstani som
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.KHR">
+            <summary>
+            Cambodian riel
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.KMF">
+            <summary>
+            Comoro franc
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.KPW">
+            <summary>
+            North Korean won
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.KRW">
+            <summary>
+            South Korean won
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.KWD">
+            <summary>
+            Kuwaiti dinar
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.KYD">
+            <summary>
+            Cayman Islands dollar
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.KZT">
+            <summary>
+            Kazakhstani tenge
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.LAK">
+            <summary>
+            Lao kip
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.LBP">
+            <summary>
+            Lebanese pound
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.LKR">
+            <summary>
+            Sri Lankan rupee
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.LRD">
+            <summary>
+            Liberian dollar
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.LSL">
+            <summary>
+            Lesotho loti
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.LYD">
+            <summary>
+            Libyan dinar
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.MAD">
+            <summary>
+            Moroccan dirham
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.MDL">
+            <summary>
+            Moldovan leu
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.MGA">
+            <summary>
+            Malagasy ariary
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.MKD">
+            <summary>
+            Macedonian denar
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.MMK">
+            <summary>
+            Myanmar kyat
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.MNT">
+            <summary>
+            Mongolian tugrik
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.MOP">
+            <summary>
+            Macanese pataca
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.MRO">
+            <summary>
+            Mauritanian ouguiya
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.MUR">
+            <summary>
+            Mauritian rupee
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.MVR">
+            <summary>
+            Maldivian rufiyaa
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.MWK">
+            <summary>
+            Malawian kwacha
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.MXN">
+            <summary>
+            Mexican peso
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.MXV">
+            <summary>
+            Mexican Unidad de Inversion (UDI) (funds code)
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.MYR">
+            <summary>
+            Malaysian ringgit
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.MZN">
+            <summary>
+            Mozambican metical
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.NAD">
+            <summary>
+            Namibian dollar
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.NGN">
+            <summary>
+            Nigerian naira
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.NIO">
+            <summary>
+            Nicaraguan córdoba
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.NOK">
+            <summary>
+            Norwegian krone
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.NPR">
+            <summary>
+            Nepalese rupee
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.NZD">
+            <summary>
+            New Zealand dollar
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.OMR">
+            <summary>
+            Omani rial
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.PAB">
+            <summary>
+            Panamanian balboa
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.PEN">
+            <summary>
+            Peruvian nuevo sol
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.PGK">
+            <summary>
+            Papua New Guinean kina
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.PHP">
+            <summary>
+            Philippine peso
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.PKR">
+            <summary>
+            Pakistani rupee
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.PLN">
+            <summary>
+            Polish złoty
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.PYG">
+            <summary>
+            Paraguayan guaraní
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.QAR">
+            <summary>
+            Qatari riyal
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.RON">
+            <summary>
+            Romanian new leu
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.RSD">
+            <summary>
+            Serbian dinar
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.RUB">
+            <summary>
+            Russian ruble
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.RWF">
+            <summary>
+            Rwandan franc
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.SAR">
+            <summary>
+            Saudi riyal
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.SBD">
+            <summary>
+            Solomon Islands dollar
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.SCR">
+            <summary>
+            Seychelles rupee
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.SDG">
+            <summary>
+            Sudanese pound
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.SEK">
+            <summary>
+            Swedish krona/kronor
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.SGD">
+            <summary>
+            Singapore dollar
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.SHP">
+            <summary>
+            Saint Helena pound
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.SLL">
+            <summary>
+            Sierra Leonean leone
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.SOS">
+            <summary>
+            Somali shilling
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.SRD">
+            <summary>
+            Surinamese dollar
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.SSP">
+            <summary>
+            South Sudanese pound
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.STD">
+            <summary>
+            São Tomé and Príncipe dobra
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.SYP">
+            <summary>
+            Syrian pound
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.SZL">
+            <summary>
+            Swazi lilangeni
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.THB">
+            <summary>
+            Thai baht
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.TJS">
+            <summary>
+            Tajikistani somoni
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.TMT">
+            <summary>
+            Turkmenistani manat
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.TND">
+            <summary>
+            Tunisian dinar
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.TOP">
+            <summary>
+            Tongan paʻanga
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.TRY">
+            <summary>
+            Turkish lira
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.TTD">
+            <summary>
+            Trinidad and Tobago dollar
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.TWD">
+            <summary>
+            New Taiwan dollar
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.TZS">
+            <summary>
+            Tanzanian shilling
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.UAH">
+            <summary>
+            Ukrainian hryvnia
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.UGX">
+            <summary>
+            Ugandan shilling
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.USD">
+            <summary>
+            United States dollar
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.USN">
+            <summary>
+            United States dollar (next day) (funds code)
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.USS">
+            <summary>
+            United States dollar (same day) (funds code)[10]
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.UYI">
+            <summary>
+            Uruguay Peso en Unidades Indexadas (URUIURUI) (funds code)
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.UYU">
+            <summary>
+            Uruguayan peso
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.UZS">
+            <summary>
+            Uzbekistan som
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.VEF">
+            <summary>
+            Venezuelan bolívar
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.VND">
+            <summary>
+            Vietnamese dong
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.VUV">
+            <summary>
+            Vanuatu vatu
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.WST">
+            <summary>
+            Samoan tala
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.XAF">
+            <summary>
+            CFA franc BEAC
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.XAG">
+            <summary>
+            Silver (one troy ounce)
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.XAU">
+            <summary>
+            Gold (one troy ounce)
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.XBA">
+            <summary>
+            European Composite Unit (EURCO) (bond market unit)
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.XBB">
+            <summary>
+            European Monetary Unit (E.M.U.-6) (bond market unit)
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.XBC">
+            <summary>
+            European Unit of Account 9 (E.U.A.-9) (bond market unit)
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.XBD">
+            <summary>
+            European Unit of Account 17 (E.U.A.-17) (bond market unit)
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.XCD">
+            <summary>
+            East Caribbean dollar
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.XDR">
+            <summary>
+            Special drawing rights
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.XOF">
+            <summary>
+            CFA franc BCEAO
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.XPD">
+            <summary>
+            Palladium (one troy ounce)
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.XPF">
+            <summary>
+            CFP franc (franc Pacifique)
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.XPT">
+            <summary>
+            Platinum (one troy ounce)
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.XSU">
+            <summary>
+            SUCRE
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.XTS">
+            <summary>
+            Code reserved for testing purposes
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.XUA">
+            <summary>
+            ADB Unit of Account
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.XXX">
+            <summary>
+            No currency
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.YER">
+            <summary>
+            Yemeni rial
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.ZAR">
+            <summary>
+            South African rand
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.ZMW">
+            <summary>
+            Zambian kwacha
+            </summary>
+        </member>
+        <member name="F:Zek.ISO4217.ISO4217.ZWL">
+            <summary>
+            Zimbabwean dollar
+            </summary>
+        </member>
+        <member name="T:Zek.Linq.ExpressionCombiner">
+            <summary>
+            Combines LINQ expressions using logic operators And and Or.
+            </summary>
+        </member>
+        <member name="P:Zek.Model.Attachment.FilePoco.AreaId">
+            <summary>
+            Area used to categorize (e.g: Loan, Person, Claim...)
+            </summary>
+        </member>
+        <member name="P:Zek.Model.Attachment.FilePoco.TypeId">
+            <summary>
+            For dropdown values (like: passport, contract, signature, photo, avator, icon);
+            </summary>
+        </member>
+        <member name="T:Zek.Model.Dictionary.Gender">
+            <summary>
+            Gender
+            </summary>
+        </member>
+        <member name="F:Zek.Model.Dictionary.Gender.Male">
+            <summary>
+            Male
+            </summary>
+        </member>
+        <member name="F:Zek.Model.Dictionary.Gender.Female">
+            <summary>
+            Female
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.ActionDTO`1.Action">
+            <summary>
+            Action name
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.AddressDTO.CountryId">
+            <summary>
+            Country ID (<see cref="!:https://en.wikipedia.org/wiki/ISO_3166-1">ISO 3166</see>)
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.AreaDTO.ApplicationId">
+            <summary>
+            Application ID / პროგრამის იდენთიფიკატორი
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.AreaDTO.Area">
+            <summary>
+            Area name / არეას დასახელება (მაგ Account, Attachment, Faq, Chat....)
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.AreaDTO.AreaId">
+            <summary>
+            Area ID / არეას იდენთიფიკატორი (მაგ AccountId, AttachmentId, FaqId, ChatId...)
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.BaseActionDTO`1.Id">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.BaseActionDTO`1.Controller">
+            <summary>
+            Controller name
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.BaseResponseDTO.Error">
+            <summary>
+            In case of an error, the returned string of symbols begins with ‘error:‘
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.BaseResponseDTO.Response">
+            <summary>
+            Response from web request.
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.CloseDayDTO.ResultCode">
+            <summary>
+            transaction result code returned from Card Suite Processing RTPS (3 digits)
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.CloseDayDTO.Fld075">
+            <summary>
+            the number of credit reversals (up to 10 digits), shown only if result_code begins with 5
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.CloseDayDTO.Fld076">
+            <summary>
+            the number of debit transactions (up to 10 digits), shown only if result_code begins with 5
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.CloseDayDTO.Fld087">
+            <summary>
+            total amount of credit reversals (up to 16 digits), shown only if result_code begins with 5
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.CloseDayDTO.Fld088">
+            <summary>
+            total amount of debit transactions (up to 16 digits), shown only if result_code begins with 5
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.CreditDTO.ResultCode">
+            <summary>
+            transaction result code returned from Card Suite Processing RTPS (3 digits)
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.CreditDTO.RefundTransactionId">
+            <summary>
+            refund transaction identifier – applicable for obtaining refund payment details or to request refund payment reversal.
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.CreditDTO.Error">
+            <summary>
+            In case of an error, the returned string of symbols begins with ‘error:‘
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.CreditDTO.Warning">
+            <summary>
+            In case of a warning, the returned string of symbols begins with ‘warning:’ (reserved for future use).
+            </summary>
+        </member>
+        <member name="T:Zek.Model.DTO.Ecomm.EcommResultPaymentServer">
+            <summary>
+            transaction result, Payment Server interpretation (shown only if configured to return ECOMM2 specific details – see ecomm.server.version parameter in 2.2.3 chapter)
+            </summary>
+        </member>
+        <member name="F:Zek.Model.DTO.Ecomm.EcommResultPaymentServer.Finished">
+            <summary>
+            successfully completed payment
+            </summary>
+        </member>
+        <member name="F:Zek.Model.DTO.Ecomm.EcommResultPaymentServer.Cancelled">
+            <summary>
+            cancelled payment
+            </summary>
+        </member>
+        <member name="F:Zek.Model.DTO.Ecomm.EcommResultPaymentServer.Returned">
+            <summary>
+            returned payment
+            </summary>
+        </member>
+        <member name="F:Zek.Model.DTO.Ecomm.EcommResultPaymentServer.Active">
+            <summary>
+            registered and not yet completed payment
+            </summary>
+        </member>
+        <member name="F:Zek.Model.DTO.Ecomm.EcommSecure3D.Authenticated">
+            <summary>
+             successful 3D Secure authorization
+            </summary>
+        </member>
+        <member name="F:Zek.Model.DTO.Ecomm.EcommSecure3D.Declined">
+            <summary>
+            failed 3D Secure authorization
+            </summary>
+        </member>
+        <member name="F:Zek.Model.DTO.Ecomm.EcommSecure3D.Notparticipated">
+            <summary>
+            cardholder is not a member of 3D Secure scheme
+            </summary>
+        </member>
+        <member name="F:Zek.Model.DTO.Ecomm.EcommSecure3D.NoRange">
+            <summary>
+            card is not in 3D secure card range defined by issuer
+            </summary>
+        </member>
+        <member name="F:Zek.Model.DTO.Ecomm.EcommSecure3D.Attempted">
+            <summary>
+            cardholder 3D secure authorization using attempts ACS server
+            </summary>
+        </member>
+        <member name="F:Zek.Model.DTO.Ecomm.EcommSecure3D.Unavailable">
+            <summary>
+            cardholder 3D secure authorization is unavailable
+            </summary>
+        </member>
+        <member name="F:Zek.Model.DTO.Ecomm.EcommSecure3D.Error">
+            <summary>
+            error message received from ACS server
+            </summary>
+        </member>
+        <member name="F:Zek.Model.DTO.Ecomm.EcommSecure3D.Syserror">
+            <summary>
+            3D secure authorization ended with system error
+            </summary>
+        </member>
+        <member name="F:Zek.Model.DTO.Ecomm.EcommSecure3D.Unknownscheme">
+            <summary>
+            3D secure authorization was attempted by wrong card scheme (Dinners club, American Express)
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.ExecuteDmsTransactionDTO.CardNumber">
+            <summary>
+            masked card number
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.ExecuteRegularPaymentDTO.TransactionId">
+            <summary>
+            transaction identifier (28 characters in base64 encoding)
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.ExecuteTransactionDTO.ResultText">
+            <summary>
+            transaction results: OK – successful transaction, FAILED – failed transaction
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.ExecuteTransactionDTO.ResultCode">
+            <summary>
+            transaction result code returned from Card Suite Processing RTPS (3 digits)
+            108 – Merchant communication with cardholder has to be done;
+            114 – It is possible to try to execute the transaction next time;
+            180 – Cardholder ended cooperation.Regular payment has been deleted;
+            2xx – Regular payment has been deleted.
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.ExecuteTransactionDTO.Rrn">
+            <summary>
+            retrieval reference number returned from Card Suite Processing RTPS (12 characters)
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.ExecuteTransactionDTO.ApprovalCode">
+            <summary>
+            approval code returned from Card Suite Processing RTPS (max 6 characters) 
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.GetTransactionResultResponseDTO.ResultText">
+            <summary>
+            transaction results: OK – successful transaction, FAILED – failed transaction
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.GetTransactionResultResponseDTO.ResultCode">
+            <summary>
+            transaction result code returned from Card Suite Processing RTPS (3 digits)
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.GetTransactionResultResponseDTO.ResultPaymentServerText">
+            <summary>
+            transaction result, Payment Server interpretation (shown only if configured to return ECOMM2 specific details – see ecomm.server.version parameter in 2.2.3 chapter):
+            FINISHED – successfully completed payment,
+            CANCELLED – cancelled payment,
+            RETURNED – returned payment,
+            ACTIVE – registered and not yet completed payment.
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.GetTransactionResultResponseDTO.Secure3DText">
+            <summary>
+            3D Secure status:
+            AUTHENTICATED – successful 3D Secure authorization
+            DECLINED – failed 3D Secure authorization
+            NOTPARTICIPATED – cardholder is not a member of 3D Secure scheme
+            NO_RANGE – card is not in 3D secure card range defined by issuer
+            ATTEMPTED – cardholder 3D secure authorization using attempts ACS server
+            UNAVAILABLE – cardholder 3D secure authorization is unavailable
+            ERROR – error message received from ACS server
+            SYSERROR – 3D secure authorization ended with system error
+            UNKNOWNSCHEME – 3D secure authorization was attempted by wrong card scheme (Dinners club, American Express)
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.GetTransactionResultResponseDTO.Rrn">
+            <summary>
+            retrieval reference number returned from Card Suite Processing RTPS (12 characters)
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.GetTransactionResultResponseDTO.ApprovalCode">
+            <summary>
+            approval code returned from Card Suite Processing RTPS (max 6 characters) 
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.GetTransactionResultResponseDTO.CardNumber">
+            <summary>
+            masked card number
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.GetTransactionResultResponseDTO.Aav">
+            <summary>
+            the results of the verification of hash value in AAV merchant name (only if failed):
+            FAILED – hash value fails to match
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.GetTransactionResultResponseDTO.RegularPaymentId">
+            <summary>
+            Reoccurring payment (if available) identification in Payment Server.
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.GetTransactionResultResponseDTO.RegularPaymentExpiryText">
+            <summary>
+            Reoccurring payment (if available) expiry date in Payment Server in form of YYMM
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.GetTransactionResultResponseDTO.MerchantTransactionId">
+            <summary>
+            Merchant Transaction Identifier (if available) for Payment – shown if it was sent as additional parameter with name “mrch_transaction_id” on Payment registration.
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.RefundResponseDTO.ResultText">
+            <summary>
+            transaction results: OK – successful transaction, FAILED – failed transaction
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.RefundResponseDTO.ResultCode">
+            <summary>
+            transaction result code returned from Card Suite Processing RTPS (3 digits)
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.RefundResponseDTO.RefundTransactionId">
+            <summary>
+            refund transaction identifier – applicable for obtaining refund payment details or to request refund payment reversal.
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.RefundResponseDTO.Warning">
+            <summary>
+            reserved for future use.
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.RegisterRegularPaymentDTO.RegularPaymentId">
+            <summary>
+            RECC_PMNT_ID: rec_pmnt_id, if specified, othervise TRANSACTION_ID
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.RegisterRegularPaymentDTO.TransactionId">
+            <summary>
+            transaction identifier (28 characters in base64 encoding)
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.RegisterRegularPaymentDTO.RegularPaymentExpiry">
+            <summary>
+            min (card expiry date, expiry parameters).
+            </summary>
+        </member>
+        <member name="F:Zek.Model.DTO.Ecomm.EcommResult.Ok">
+            <summary>
+            successfully completed transaction
+            </summary>
+        </member>
+        <member name="F:Zek.Model.DTO.Ecomm.EcommResult.Failed">
+            <summary>
+            transaction has failed
+            </summary>
+        </member>
+        <member name="F:Zek.Model.DTO.Ecomm.EcommResult.Created">
+            <summary>
+            transaction just registered in the system
+            </summary>
+        </member>
+        <member name="F:Zek.Model.DTO.Ecomm.EcommResult.Pending">
+            <summary>
+            transaction is not accomplished yet
+            </summary>
+        </member>
+        <member name="F:Zek.Model.DTO.Ecomm.EcommResult.Declined">
+            <summary>
+            transaction declined by ECOMM, because ECI is in blocked ECI list (ECOMM server side configuration)
+            </summary>
+        </member>
+        <member name="F:Zek.Model.DTO.Ecomm.EcommResult.Reversed">
+            <summary>
+            transaction is reversed
+            </summary>
+        </member>
+        <member name="F:Zek.Model.DTO.Ecomm.EcommResult.AutoReversed">
+            <summary>
+            transaction is reversed by autoreversal
+            </summary>
+        </member>
+        <member name="F:Zek.Model.DTO.Ecomm.EcommResult.Timeout">
+            <summary>
+            transaction was timed out
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.TransactionId">
+            <summary>
+            transaction identifier (28 characters in base64 encoding)
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.Error">
+            <summary>
+            In case of an error, the returned string of symbols begins with ‘error:‘
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.Warning">
+            <summary>
+            In case of a warning, the returned string of symbols begins with ‘warning:’ (reserved for future use).
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.ResultText">
+            <summary>
+            transaction results: OK – successful transaction, FAILED – failed transaction
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.ResultCode">
+            <summary>
+            transaction result code returned from Card Suite Processing RTPS (3 digits)
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.ResultPaymentServerText">
+            <summary>
+            transaction result, Payment Server interpretation (shown only if configured to return ECOMM2 specific details – see ecomm.server.version parameter in 2.2.3 chapter):
+            FINISHED – successfully completed payment,
+            CANCELLED – cancelled payment,
+            RETURNED – returned payment,
+            ACTIVE – registered and not yet completed payment.
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.Secure3DText">
+            <summary>
+            3D Secure status:
+            AUTHENTICATED – successful 3D Secure authorization
+            DECLINED – failed 3D Secure authorization
+            NOTPARTICIPATED – cardholder is not a member of 3D Secure scheme
+            NO_RANGE – card is not in 3D secure card range defined by issuer
+            ATTEMPTED – cardholder 3D secure authorization using attempts ACS server
+            UNAVAILABLE – cardholder 3D secure authorization is unavailable
+            ERROR – error message received from ACS server
+            SYSERROR – 3D secure authorization ended with system error
+            UNKNOWNSCHEME – 3D secure authorization was attempted by wrong card scheme (Dinners club, American Express)
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.RegularPaymentId">
+            <summary>
+            Reoccurring payment (if available) identification in Payment Server.
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.RegularPaymentExpiry">
+            <summary>
+            Reoccurring payment (if available) expiry date in Payment Server in form of YYMM
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.MerchantTransactionId">
+            <summary>
+            Merchant Transaction Identifier (if available) for Payment – shown if it was sent as additional parameter with name “mrch_transaction_id” on Payment registration.
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.Aav">
+            <summary>
+            the results of the verification of hash value in AAV merchant name (only if failed):
+            FAILED – hash value fails to match
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.Rrn">
+            <summary>
+            retrieval reference number returned from Card Suite Processing RTPS (12 characters)
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.ApprovalCode">
+            <summary>
+            approval code returned from Card Suite Processing RTPS (max 6 characters) 
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.CardNumber">
+            <summary>
+            masked card number
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.RefundTransactionId">
+            <summary>
+            refund transaction identifier – applicable for obtaining refund payment details or to request refund payment reversal.
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.Fld075">
+            <summary>
+            the number of credit reversals (up to 10 digits), shown only if result_code begins with 5
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.Fld076">
+            <summary>
+            the number of debit transactions (up to 10 digits), shown only if result_code begins with 5
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.Fld087">
+            <summary>
+            total amount of credit reversals (up to 16 digits), shown only if result_code begins with 5
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.Fld088">
+            <summary>
+            total amount of debit transactions (up to 16 digits), shown only if result_code begins with 5
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.ReverseResponseDTO.ResultText">
+            <summary>
+            transaction results: OK – successful reversal transaction, REVERSED – transaction has already been reversed, FAILED – failed to reverse transaction(transaction status remains as it was)
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.ReverseResponseDTO.ResultCode">
+            <summary>
+            transaction result code returned from Card Suite Processing RTPS (3 digits)
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.ReverseResponseDTO.Warning">
+            <summary>
+            reserved for future use.
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.TransactionResponseDTO.TransactionId">
+            <summary>
+            transaction identifier (28 characters in base64 encoding)
+            </summary>
+        </member>
+        <member name="T:Zek.Model.DTO.EditBaseDTO">
+            <summary>
+            Edit model base class
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.EditBaseDTO.Id">
+            <summary>
+            ID of model
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.EditBaseDTO.ReadOnly">
+            <summary>
+            Set true if entity is read only
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.EditBaseDTO.IsDeleted">
+            <summary>
+            Set is deleted if entity is deleted
+            </summary>
+        </member>
+        <member name="T:Zek.Model.DTO.FilterDTO">
+            <summary>
+            Filter DTO
+            </summary>
+        </member>
+        <member name="M:Zek.Model.DTO.FilterDTO.#ctor">
+            <summary>
+            Constructor FilterDTO
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.FilterDTO.Page">
+            <summary>
+            Page number
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.FilterDTO.PageSize">
+            <summary>
+            Page size
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.FilterDTO.Sort">
+            <summary>
+            Sort column name
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.FilterDTO.Asc">
+            <summary>
+            Asc = null or true, Desc = false
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.FilterDTO.MaxPageSize">
+            <summary>
+            Max page size
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.RowActionDTO`1.DetailsAction">
+            <summary>
+            Details action name
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.RowActionDTO`1.EditAction">
+            <summary>
+            Edit action name
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.RowActionDTO`1.ApproveAction">
+            <summary>
+            Edit action name
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.RowActionDTO`1.DeleteAction">
+            <summary>
+            Delete action name
+            </summary>
+        </member>
+        <member name="T:Zek.Model.Identity.IdentityDbContext`4">
+            <summary>
+            Base class for the Entity Framework database context used for identity.
+            </summary>
+            <typeparam name="TUser">The type of user objects.</typeparam>
+            <typeparam name="TRole">The type of role objects.</typeparam>
+            <typeparam name="TKey">The type of the primary key for users and roles.</typeparam>
+            <typeparam name="TUserRole">The type of the user role object.</typeparam>
+        </member>
+        <member name="M:Zek.Model.Identity.IdentityDbContext`4.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions)">
+            <summary>
+            Initializes a new instance of the db context.
+            </summary>
+            <param name="options">The options to be used by a <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/>.</param>
+        </member>
+        <member name="M:Zek.Model.Identity.IdentityDbContext`4.#ctor">
+            <summary>
+            Initializes a new instance of the class.
+            </summary>
+        </member>
+        <member name="P:Zek.Model.Identity.IdentityDbContext`4.UserRoles">
+            <summary>
+            Gets or sets the <see cref="T:Microsoft.EntityFrameworkCore.DbSet`1"/> of User roles.
+            </summary>
+        </member>
+        <member name="P:Zek.Model.Identity.IdentityDbContext`4.Roles">
+            <summary>
+            Gets or sets the <see cref="T:Microsoft.EntityFrameworkCore.DbSet`1"/> of roles.
+            </summary>
+        </member>
+        <member name="M:Zek.Model.Identity.IdentityDbContext`4.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Configures the schema needed for the identity framework.
+            </summary>
+            <param name="builder">
+            The builder being used to construct the model for this context.
+            </param>
+        </member>
+        <member name="M:Zek.Model.Identity.IdentityUserContext`2.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions)">
+            <summary>
+            Initializes a new instance of the db context.
+            </summary>
+            <param name="options">The options to be used by a <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/>.</param>
+        </member>
+        <member name="M:Zek.Model.Identity.IdentityUserContext`2.#ctor">
+            <summary>
+            Initializes a new instance of the class.
+            </summary>
+        </member>
+        <member name="P:Zek.Model.Identity.IdentityUserContext`2.Users">
+            <summary>
+            Gets or sets the <see cref="T:Microsoft.EntityFrameworkCore.DbSet`1"/> of Users.
+            </summary>
+        </member>
+        <member name="M:Zek.Model.Identity.IdentityUserContext`2.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Configures the schema needed for the identity framework.
+            </summary>
+            <param name="builder">
+            The builder being used to construct the model for this context.
+            </param>
+        </member>
+        <member name="T:Zek.Model.Identity.Role`1">
+            <summary>
+            Represents a role in the identity system
+            </summary>
+            <typeparam name="TKey">The type used for the primary key for the role.</typeparam>
+        </member>
+        <member name="M:Zek.Model.Identity.Role`1.#ctor">
+            <summary>
+            Initializes a new instance of <see cref="T:Microsoft.AspNetCore.Identity.IdentityRole`1"/>.
+            </summary>
+        </member>
+        <member name="M:Zek.Model.Identity.Role`1.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of <see cref="T:Microsoft.AspNetCore.Identity.IdentityRole`1"/>.
+            </summary>
+            <param name="roleName">The role name.</param>
+        </member>
+        <member name="P:Zek.Model.Identity.Role`1.Id">
+            <summary>
+            Gets or sets the primary key for this role.
+            </summary>
+        </member>
+        <member name="P:Zek.Model.Identity.Role`1.Name">
+            <summary>
+            Gets or sets the name for this role.
+            </summary>
+        </member>
+        <member name="P:Zek.Model.Identity.Role`1.NormalizedName">
+            <summary>
+            Gets or sets the normalized name for this role.
+            </summary>
+        </member>
+        <member name="P:Zek.Model.Identity.Role`1.ConcurrencyStamp">
+            <summary>
+            A random value that should change whenever a role is persisted to the store
+            </summary>
+        </member>
+        <member name="M:Zek.Model.Identity.Role`1.ToString">
+            <summary>
+            Returns the name of the role.
+            </summary>
+            <returns>The name of the role.</returns>
+        </member>
+        <member name="T:Zek.Model.Identity.Role">
+            <summary>
+            The default implementation of <see cref="T:Zek.Model.Identity.Role`1"/> which uses a string as the primary key.
+            </summary>
+        </member>
+        <member name="P:Zek.Model.Identity.User`1.Id">
+            <summary>
+            Gets or sets the primary key for this user.
+            </summary>
+        </member>
+        <member name="P:Zek.Model.Identity.User`1.UserName">
+            <summary>
+            Gets or sets the user name for this user.
+            </summary>
+        </member>
+        <member name="P:Zek.Model.Identity.User`1.NormalizedUserName">
+            <summary>
+            Gets or sets the normalized user name for this user.
+            </summary>
+        </member>
+        <member name="P:Zek.Model.Identity.User`1.Email">
+            <summary>
+            Gets or sets the email address for this user.
+            </summary>
+        </member>
+        <member name="P:Zek.Model.Identity.User`1.NormalizedEmail">
+            <summary>
+            Gets or sets the normalized email address for this user.
+            </summary>
+        </member>
+        <member name="P:Zek.Model.Identity.User`1.EmailConfirmed">
+            <summary>
+            Gets or sets a flag indicating if a user has confirmed their email address.
+            </summary>
+            <value>True if the email address has been confirmed, otherwise false.</value>
+        </member>
+        <member name="P:Zek.Model.Identity.User`1.PasswordHash">
+            <summary>
+            Gets or sets a salted and hashed representation of the password for this user.
+            </summary>
+        </member>
+        <member name="P:Zek.Model.Identity.User`1.SecurityStamp">
+            <summary>
+            A random value that must change whenever a users credentials change (password changed, login removed)
+            </summary>
+        </member>
+        <member name="P:Zek.Model.Identity.User`1.ConcurrencyStamp">
+            <summary>
+            A random value that must change whenever a user is persisted to the store
+            </summary>
+        </member>
+        <member name="P:Zek.Model.Identity.User`1.PhoneNumber">
+            <summary>
+            Gets or sets a telephone number for the user.
+            </summary>
+        </member>
+        <member name="P:Zek.Model.Identity.User`1.PhoneNumberConfirmed">
+            <summary>
+            Gets or sets a flag indicating if a user has confirmed their telephone address.
+            </summary>
+            <value>True if the telephone number has been confirmed, otherwise false.</value>
+        </member>
+        <member name="P:Zek.Model.Identity.User`1.TwoFactorEnabled">
+            <summary>
+            Gets or sets a flag indicating if two factor authentication is enabled for this user.
+            </summary>
+            <value>True if 2fa is enabled, otherwise false.</value>
+        </member>
+        <member name="P:Zek.Model.Identity.User`1.LockoutEnd">
+            <summary>
+            Gets or sets the date and time, in UTC, when any user lockout ends.
+            </summary>
+            <remarks>
+            A value in the past means the user is not locked out.
+            </remarks>
+        </member>
+        <member name="P:Zek.Model.Identity.User`1.LockoutEnabled">
+            <summary>
+            Gets or sets a flag indicating if the user could be locked out.
+            </summary>
+            <value>True if the user could be locked out, otherwise false.</value>
+        </member>
+        <member name="P:Zek.Model.Identity.User`1.AccessFailedCount">
+            <summary>
+            Gets or sets the number of failed login attempts for the current user.
+            </summary>
+        </member>
+        <member name="M:Zek.Model.Identity.User`1.ToString">
+            <summary>
+            Returns the username for this user.
+            </summary>
+        </member>
+        <member name="T:Zek.Model.Identity.UserRole`1">
+            <summary>
+            Represents the link between a user and a role.
+            </summary>
+            <typeparam name="TKey">The type of the primary key used for users and roles.</typeparam>
+        </member>
+        <member name="P:Zek.Model.Identity.UserRole`1.UserId">
+            <summary>
+            Gets or sets the primary key of the user that is linked to a role.
+            </summary>
+        </member>
+        <member name="P:Zek.Model.Identity.UserRole`1.RoleId">
+            <summary>
+            Gets or sets the primary key of the role that is linked to the user.
+            </summary>
+        </member>
+        <member name="P:Zek.Model.WS.Request.RequestId">
+            <summary>
+            ყველა რექვესთს უნდა ჰქონდეს უნიკალური იდენთიფიკატორი (მაგ: Guid.NewGuid() ან int 1,2,3...). გამოიყენება დადარებისთვის მერჩანტმა რა გამოგვიგზავნა და რა დაუბრუნეთ.
+            </summary>
+        </member>
+        <member name="M:Zek.Services.EcommService.GetClientRedirectUrl(System.String)">
+            <summary>
+            Readdressed url to ECOMM payment server sothat to enter card data.Data is entered using the template provided by the merchant.
+            </summary>
+            <param name="transactionId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Services.EcommService.RegisterTransactionAsync(System.Int32,Zek.ISO4217.ISO4217,System.String,System.String,System.String)">
+            <summary>
+            Registering transactions / Регистрация транзакций
+            </summary>
+            <param name="clientIp"></param>
+            <param name="description"></param>
+            <param name="language"></param>
+            <param name="amount"></param>
+            <param name="currency"></param>
+            <returns>transaction identifier (28 characters in base64 encoding). In case of an error, the returned string of symbols begins with ‘error:‘.</returns>
+        </member>
+        <member name="M:Zek.Services.EcommService.RegisterDmsAuthorizationAsync(System.Int32,Zek.ISO4217.ISO4217,System.String,System.String,System.String)">
+            <summary>
+            Registering DMS authorization / Регистрация DMS авторизации
+            </summary>
+            <param name="amount"></param>
+            <param name="currency"></param>
+            <param name="clientIp"></param>
+            <param name="description"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Services.EcommService.RegisterDmsAuthorizationAsync(System.Int32,System.Int32,System.String,System.String,System.String)">
+            <summary>
+            Registering DMS authorization / Регистрация DMS авторизации
+            </summary>
+            <param name="amount"></param>
+            <param name="currency"></param>
+            <param name="clientIp"></param>
+            <param name="description"></param>
+            <param name="language"></param>
+            <returns>transaction identifier (28 characters in base64 encoding). In case of an error, the returned string of symbols begins with ‘error:‘.</returns>
+        </member>
+        <member name="M:Zek.Services.EcommService.ExecuteDmsTransactionAsync(System.String,System.Int32,Zek.ISO4217.ISO4217,System.String,System.String,System.String)">
+            <summary>
+            Executing a DMS transaction / Выполнение DMS транзакции
+            </summary>
+            <param name="authorizationId"></param>
+            <param name="amount"></param>
+            <param name="currency"></param>
+            <param name="clientIp"></param>
+            <param name="description"></param>
+            <param name="language"></param>
+            <returns>
+            RESULT: result
+            RESULT_CODE: result_code
+            RRN: rrn
+            APPROVAL_CODE: app_code
+            CARD_NUMBER pan
+            
+            
+            result – transaction results: OK – successful transaction, FAILED – failed transaction
+            result_code – transaction result code returned from Card Suite Processing RTPS(3 digits)
+            rrn – retrieval reference number returned from Card Suite Processing RTPS(12 characters)
+            app_code – approval code returned from Card Suite Processing RTPS(max 6 characters)
+            pan – masked card number
+            
+            
+            Example of the result:
+            RESULT: OK
+            RESULT_CODE: 000
+            RRN: 123456789012
+            APPROVAL_CODE: 123456
+            CARD_NUMBER: 9***********9999
+            </returns>
+        </member>
+        <member name="M:Zek.Services.EcommService.ExecuteDmsTransactionAsync(System.String,System.Int32,System.Int32,System.String,System.String,System.String)">
+            <summary>
+            Executing a DMS transaction / Выполнение DMS транзакции
+            </summary>
+            <param name="authorizationId"></param>
+            <param name="amount"></param>
+            <param name="currency"></param>
+            <param name="clientIp"></param>
+            <param name="description"></param>
+            <param name="language"></param>
+            <returns>
+            RESULT: result
+            RESULT_CODE: result_code
+            RRN: rrn
+            APPROVAL_CODE: app_code
+            CARD_NUMBER pan
+            
+            
+            result – transaction results: OK – successful transaction, FAILED – failed transaction
+            result_code – transaction result code returned from Card Suite Processing RTPS(3 digits)
+            rrn – retrieval reference number returned from Card Suite Processing RTPS(12 characters)
+            app_code – approval code returned from Card Suite Processing RTPS(max 6 characters)
+            pan – masked card number
+            
+            
+            Example of the result:
+            RESULT: OK
+            RESULT_CODE: 000
+            RRN: 123456789012
+            APPROVAL_CODE: 123456
+            CARD_NUMBER: 9***********9999
+            </returns>
+        </member>
+        <member name="M:Zek.Services.EcommService.GetTransactionResultAsync(System.String,System.String)">
+            <summary>
+            Transaction result / Результат транзакции
+            </summary>
+            <param name="transactionId"></param>
+            <param name="clientIp"></param>
+            <returns>
+            RESULT: OK
+            RESULT_PS: FINISHED
+            RESULT_CODE: 000
+            3DSECURE: ATTEMPTED
+            RRN: 123456789012
+            APPROVAL_CODE: 123456
+            CARD_NUMBER: 9***********9999
+            RECC_PMNT_ID: 1258
+            RECC_PMNT_EXPIRY: 1108
+             </returns>
+        </member>
+        <member name="M:Zek.Services.EcommService.ReverseAsync(System.String,System.Nullable{System.Int32},System.Boolean)">
+            <summary>
+            რევერსალი უბრუნებს თანხას წარმატებით საკომისიოს გარეშე იმავე დღეს. მეორე დღეს უკვე მუშავდება როგორც რეფანდი. გამოიყენება პროგრამული/სისტემური შეცდომის დროს.
+            Transaction reversal / Откат транзакции
+            </summary>
+            <param name="transactionId"></param>
+            <param name="amount"></param>
+            <param name="suspectedFraud">suspected_fraud необязательный параметр – флаг, указывающий, что откат делается из-за подозрения в мошенничестве.В таких случаях значение этого параметра должно быть установлено в "да". Если этот параметр используется, возможен откат только полной суммы.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Services.EcommService.RefundAsync(System.String)">
+            <summary>
+            რეფანდი არის ფინანსურად შესრულებული ოპერაციის თანხის ფინანსურად დაბრუნება, გადარიცხვის საკომისიოს გათვალისწინებით. ძირითადად კლიენტის მოთხოვნით.
+            Transaction refund / Возврат суммы транзакции
+            </summary>
+            <param name="transactionId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Services.EcommService.CreditAsync(System.String,System.Nullable{System.Int32})">
+            <summary>
+            Credit transaction / Кредит транзакция
+            </summary>
+            <param name="transactionId"></param>
+            <param name="amount"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Services.EcommService.CloseDayAsync">
+            <summary>
+            End of business day / Завершение бизнес-дня
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Services.EcommService.RegisterRegularPaymentAsync(System.Int32,Zek.ISO4217.ISO4217,System.String,System.String,System.String,System.String,System.DateTime,System.Boolean,System.Boolean)">
+            <summary>
+            Request for SMS transaction/DMS authorization registration
+            </summary>
+            <param name="amount">transaction amount in fractional units, mandatory (up to 12 digits)</param>
+            <param name="currency">transaction currency code (ISO 4217), mandatory, (3 digits)</param>
+            <param name="clientIp">client’s IP address, mandatory (15 characters)</param>
+            <param name="description">transaction details (up to 125 characters)</param>
+            <param name="language"></param>
+            <param name="regularPaymentId">merchant-selected regular payment identifier</param>
+            <param name="expiry">preferred deadline for a regular payment MMYY</param>
+            <param name="overwriteExistingRecurring">If recurring payment for current client (card) is already defined for template, it needs to be overwritten. Overwriting recurring payments can be done by specifying additional parameter perspayee_overwrite=1. In this case all existing recurring payments for template defined for current client (card) will be deleted.</param>
+            <param name="dms"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Services.EcommService.RegisterRegularPaymentAsync(System.Int32,System.Int32,System.String,System.String,System.String,System.String,System.DateTime,System.Boolean,System.Boolean)">
+            <summary>
+            Request for SMS transaction/DMS authorization registration / регистрации регулярного платежа авторизацией с первого платежа:
+            </summary>
+            <param name="amount">transaction amount in fractional units, mandatory (up to 12 digits)</param>
+            <param name="currency">transaction currency code (ISO 4217), mandatory, (3 digits)</param>
+            <param name="clientIp">client’s IP address, mandatory (15 characters)</param>
+            <param name="description">transaction details (up to 125 characters)</param>
+            <param name="language"></param>
+            <param name="regularPaymentId">merchant-selected regular payment identifier</param>
+            <param name="expiry">preferred deadline for a regular payment MMYY</param>
+            <param name="overwriteExistingRecurring">If recurring payment for current client (card) is already defined for template, it needs to be overwritten. Overwriting recurring payments can be done by specifying additional parameter perspayee_overwrite=1. In this case all existing recurring payments for template defined for current client (card) will be deleted.</param>
+            <param name="dms"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Zek.Services.EcommServiceOptions">
+            <summary>
+            ECOMM system config
+            </summary>
+        </member>
+        <member name="P:Zek.Services.EcommServiceOptions.CertificateFile">
+            <summary>
+            Certificate file (e.g. D:\securepay.ufc.ge_1234567_merchant_wp.p12)
+            </summary>
+        </member>
+        <member name="P:Zek.Services.EcommServiceOptions.CertificatePassword">
+            <summary>
+            Certificate file password
+            </summary>
+        </member>
+        <member name="P:Zek.Services.EcommServiceOptions.ServerUrl">
+            <summary>
+            Server Url (e.g. "https://securepay.ufc.ge:18443/ecomm2/MerchantHandler)
+            </summary>
+        </member>
+        <member name="P:Zek.Services.EcommServiceOptions.ClientUrl">
+            <summary>
+            Client Url (Readdressed url to ECOMM payment server e.g. "https://securepay.ufc.ge:18443/ecomm2/ClientHandler)
+            </summary>
+        </member>
+        <member name="P:Zek.Services.SendSmsResponse.Succeeded">
+            <summary>
+            If message sent then true.
+            </summary>
+        </member>
+        <member name="P:Zek.Services.SendSmsResponse.Content">
+            <summary>
+            Response from http2sms service (if provider is Geocell then content=Y or N).
+            </summary>
+        </member>
+        <member name="M:Zek.Utils.Func.Ka.NumToStr(System.Int64)">
+            <summary>
+            Converts the specified value to its equivalent string representation.
+            </summary>
+            <param name="value">value - A value containing a number to convert.</param>
+            <returns>Returns or does not return the string representation of the integer value.</returns>
+        </member>
+        <member name="M:Zek.Utils.Func.Ka.AddUnits(System.Text.StringBuilder,System.Int64)">
+            <summary>
+            1-დან 19-მდე დამატება
+            </summary>
+            <param name="sb"></param>
+            <param name="value"></param>
+        </member>
+        <member name="T:Zek.Utils.KeyPair`2">
+            <summary>
+            Equals checked only Key property
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <typeparam name="TValue"></typeparam>
+        </member>
+        <member name="M:Zek.Utils.ListHelper.GetMerged``1(System.Collections.Generic.List{``0},System.Collections.Generic.List{``0})">
+            <summary>
+            აბრუნებს შეერთებული კოლქეციებს (უნიკალურებს).
+            </summary>
+            <typeparam name="T">კოლექციის ტიპი.</typeparam>
+            <param name="firstList"></param>
+            <param name="secondList"></param>
+            <returns>აბრუნებს მხოლოდ უნიკალურ ჩანაწერებს.</returns>
+        </member>
+        <member name="M:Zek.Utils.MathHelper.NumToStr(System.Decimal,System.Int32)">
+            <summary>
+            Converts the specified value to its equivalent string representation.
+            </summary>
+            <param name="value">value - A value containing a number to convert</param>
+            <param name="decimals">decimals - A value containing a decimals.</param>
+            <returns>Returns or does not return the string representation of the integer value.</returns>
+        </member>
+        <member name="M:Zek.Utils.MathHelper.FracToInt32(System.Decimal)">
+            <summary>
+            რიცხვიდან წილადის ამოღება 123.456 => 456
+            </summary>
+            <param name="value">რიცხვი რომლის წილადის ამოღებაც გვინდა.</param>
+            <returns>წილადის მნიშვნელობა.</returns>
+        </member>
+        <member name="M:Zek.Utils.MathHelper.FractionLength(System.Decimal)">
+            <summary>
+            რიცხვიდან წილადის სიგრძის ამოღება.
+            </summary>
+            <param name="value">რიცხვი რომლის წილადის სიგრძეც გვაინტერესებს.</param>
+            <returns>აბრუნებს სიგრძეს.</returns>
+        </member>
+        <member name="M:Zek.Utils.MathHelper.GetPercent(System.Decimal,System.Decimal)">
+            <summary>
+            GetPercent(200, 220) = 10;
+            </summary>
+            <param name="val1"></param>
+            <param name="val2"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Zek.Utils.NamedLock">
+            <summary>
+            Synchronization helper: a static lock collection associated with a key.
+            NamedLock manages the lifetime of critical sections that can be accessed by a key (name) throughout the application. 
+            It also have some helper methods to allow a maximum wait time (timeout) to aquire the lock and safelly release it.    
+            Note: this nuget package contains c# source code and depends on System.Collections.Concurrent introduced in .Net 4.0.
+            </summary>
+            <example>
+            // create a lock for this key
+            using (var padlock = new NamedLock (key))
+            {
+                if (padlock.Enter (TimeSpan.FromMilliseconds (100)))
+                {
+                    // do something as we now own the lock
+                }
+                else
+                {
+                    // do some other thing since we could not aquire the lock
+                }
+            }
+            </example>
+        </member>
+        <member name="M:Zek.Utils.NamedLock.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Zek.Utils.NamedLock" /> class.
+            </summary>
+            <param name="key">The named lock key.</param>
+        </member>
+        <member name="P:Zek.Utils.NamedLock.IsLocked">
+            <summary>
+            Check if a lock was aquired.
+            </summary>
+        </member>
+        <member name="P:Zek.Utils.NamedLock.Key">
+            <summary>
+            Gets the lock key name.
+            </summary>
+        </member>
+        <member name="P:Zek.Utils.NamedLock.Lock">
+            <summary>
+            Gets the internal lock object.
+            </summary>
+        </member>
+        <member name="M:Zek.Utils.NamedLock.Enter">
+            <summary>
+            Tries to aquire a lock.
+            </summary>
+        </member>
+        <member name="M:Zek.Utils.NamedLock.Enter(System.Int32)">
+            <summary>
+            Tries to aquire a lock respecting the specified timeout.
+            </summary>
+            <param name="waitTimeoutMilliseconds">The wait timeout milliseconds.</param>
+            <returns>If the lock was aquired in the specified timeout</returns>
+        </member>
+        <member name="M:Zek.Utils.NamedLock.Enter(System.TimeSpan)">
+            <summary>
+            Tries to aquire a lock respecting the specified timeout.
+            </summary>
+            <param name="waitTimeout">The wait timeout.</param>
+            <returns>If the lock was aquired in the specified timeout</returns>
+        </member>
+        <member name="M:Zek.Utils.NamedLock.Exit">
+            <summary>
+            Releases the lock if it was already aquired.
+            Called also at "Dispose".
+            </summary>
+        </member>
+        <member name="M:Zek.Utils.NamedLock.CreateAndEnter(System.String)">
+            <summary>
+            Creates a new instance and tries to aquire a lock.
+            </summary>
+            <param name="key">The named lock key.</param>
+        </member>
+        <member name="M:Zek.Utils.NamedLock.CreateAndEnter(System.String,System.Int32)">
+            <summary>
+            Creates a new instance and tries to aquire a lock.
+            </summary>
+            <param name="key">The named lock key.</param>
+            <param name="waitTimeoutMilliseconds">The wait timeout milliseconds.</param>
+        </member>
+        <member name="M:Zek.Utils.NamedLock.CreateAndEnter(System.String,System.TimeSpan)">
+            <summary>
+            Creates a new instance and tries to aquire a lock.
+            </summary>
+            <param name="key">The named lock key.</param>
+            <param name="waitTimeout">The wait timeout.</param>
+        </member>
+        <member name="M:Zek.Utils.NamedLock.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing,
+            or resetting unmanaged resources.
+            Releases aquired lock and related resources.
+            </summary>
+        </member>
+        <member name="M:Zek.Utils.NumToStrHelper.CurrToStr(System.Decimal,System.String,System.String,System.Boolean)">
+            <summary>
+            აკონვერტირებს გადაცემულ მნიშვნელობას სიტყვიერ ექვივალენტში.
+            </summary>
+            <param name="value">მნიშვნელობა რომელსაც აკონვერტირებთ.</param>
+            <param name="currency">ვალუტის დასახელება (ლარი, დოლარი, ევრო...).</param>
+            <param name="minorUnit">1/100 დასახელება (თეთრი, ცენტი, ევრო ცენტი...).</param>
+            <param name="showMinorUnit">თუ გადავცემთ true-ს მაშინ ცენტების მნიშვნელობაც დაემატება.</param>
+            <returns>აბრუნებს სიტყვიერ მნიშვნელობას გადაცემული რიცხვის.</returns>
+        </member>
+        <member name="M:Zek.Utils.NumToStrHelper.NumToStr(System.Int64)">
+            <summary>
+            Converts the specified value to its equivalent string representation.
+            </summary>
+            <param name="value">value - A value containing a number to convert.</param>
+            <returns>Returns or does not return the string representation of the integer value.</returns>
+        </member>
+        <member name="M:Zek.Utils.NumToStrHelper.AddUnits(System.Text.StringBuilder,System.Int64)">
+            <summary>
+            1-19 დამატება
+            </summary>
+            <param name="sb"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Zek.Utils.NumToStrHelper.AddTens(System.Text.StringBuilder,System.Int64)">
+            <summary>
+            20,40,60,80-ის დამატება
+            </summary>
+            <param name="sb"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Zek.Utils.NumToStrHelper.AddHundreds(System.Text.StringBuilder,System.Int64)">
+            <summary>
+            ასეულების დამატება
+            </summary>
+            <param name="sb"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Zek.Utils.NumToStrHelper.AddThousand(System.Text.StringBuilder,System.Int64)">
+            <summary>
+            ათასეულების დამატება
+            </summary>
+            <param name="sb"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Zek.Utils.NumToStrHelper.AddRank(System.Text.StringBuilder,System.Int64@,System.Int64@,System.String)">
+            <summary>
+            000-იანებით დაყოფა და დამატება.
+            </summary>
+            <param name="sb"></param>
+            <param name="rank"></param>
+            <param name="value"></param>
+            <param name="unit"></param>
+        </member>
+        <member name="M:Zek.Utils.NumToStrHelper.ToCurrencyName(System.String)">
+            <summary>
+            GEL, USD, EUR... გადაყავს ლარი, დოლარი, ევრო-ში.
+            </summary>
+            <param name="currencyCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Utils.NumToStrHelper.ToCurrencyMinorUnit(System.String)">
+            <summary>
+            GEL, USD, EUR... გადაყავს თეთრი, ცენტი, ევრო ცენტი.
+            </summary>
+            <param name="currencyCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Utils.NumToStrHelper.ToCurrencySymbol(System.Nullable{Zek.ISO4217.ISO4217})">
+            <summary>
+            GEL, USD, EUR... To ლ, $, .
+            </summary>
+            <param name="currency"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Utils.NumToStrHelper.ToCurrencySymbol(Zek.ISO4217.ISO4217)">
+            <summary>
+            GEL, USD, EUR... To ლ, $, .
+            </summary>
+            <param name="currency"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Utils.PasswordHasher.HashPassword(System.String)">
+            <summary>
+            Returns a hashed representation of the supplied <paramref name="password"/>
+            </summary>
+            <param name="password">The password to hash.</param>
+            <returns>A hashed representation of the supplied <paramref name="password"/></returns>
+        </member>
+        <member name="M:Zek.Utils.PasswordHasher.VerifyHashedPassword(System.String,System.String)">
+            <summary>
+            Returns a <see cref="T:Microsoft.AspNetCore.Identity.PasswordVerificationResult"/> indicating the result of a password hash comparison.
+            </summary>
+            <param name="hashedPassword">The hash value for a user's stored password.</param>
+            <param name="providedPassword">The password supplied for comparison.</param>
+            <returns>A <see cref="T:Microsoft.AspNetCore.Identity.PasswordVerificationResult"/> indicating the result of a password hash comparison.</returns>
+            <remarks>Implementations of this method should be time consistent.</remarks>
+        </member>
+        <member name="M:Zek.Utils.PasswordHelper.Generate(System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Generate Random Password
+            </summary>
+            <param name="minLength">Min Password Length</param>
+            <param name="maxLength">Max Password Length</param>
+            <param name="includeLetters">(e.g. abcdef)</param>
+            <param name="includeMixedCase">(e.g. AbcDEf)</param>
+            <param name="includeNumbers">(e.g. a9b8c7d)</param>
+            <param name="includeSymbols">(e.g. a!b*c_d)</param>
+            <param name="excludeSimilarCharacters">(e.g. i, l, o, 1, 0, I)</param>
+            <param name="excludeAmbiguousCharacters">Exclude: { } [ ] ( ) / \ ' " ` ~ , ; : . &lt; &gt; </param>
+            <returns>Random Password</returns>
+        </member>
+        <member name="M:Zek.Utils.PasswordHelper.Generate(System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Generate Random Password
+            </summary>
+            <param name="passwordLength">Password Length</param>
+            <param name="includeLetters">(e.g. abcdef)</param>
+            <param name="includeMixedCase">(e.g. AbcDEf)</param>
+            <param name="includeNumbers">(e.g. a9b8c7d)</param>
+            <param name="includeSymbols">(e.g. a!b*c_d)</param>
+            <param name="excludeSimilarCharacters">(e.g. i, l, o, 1, 0, I)</param>
+            <param name="excludeAmbiguousCharacters">Exclude: { } [ ] ( ) / \ ' " ` ~ , ; : . &lt; &gt; </param>
+            <returns>Random Password</returns>
+        </member>
+        <member name="M:Zek.Utils.PasswordHelper.GetAllowedChars(System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="includeLetters"></param>
+            <param name="includeMixedCase"></param>
+            <param name="includeNumbers"></param>
+            <param name="includeSymbols"></param>
+            <param name="excludeSimilarCharacters"></param>
+            <param name="excludeAmbiguousCharacters">Exclude: { } [ ] ( ) / \ ' " ` ~ , ; : . &lt; &gt; </param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Utils.PasswordHelper.Generate(System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Generate random password
+            </summary>
+            <param name="uppercaseLetters"></param>
+            <param name="lowercaseLetters"></param>
+            <param name="numbers"></param>
+            <param name="symbols">Punctuations ( e.g. @#$% )</param>
+            <param name="excludeSimilarCharacters">Exclude: { } [ ] ( ) / \ ' " ` ~ , ; : . &lt; &gt; </param>
+            <param name="excludeAmbiguousCharacters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Utils.PasswordHelper.GetPasswordStatus(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="password"></param>
+            <param name="minRequiredPasswordLength"></param>
+            <param name="minRequiredLowerChars"></param>
+            <param name="minRequiredUpperChars"></param>
+            <param name="minRequiredDigits"></param>
+            <param name="minRequiredSpecialChars"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Zek.Utils.IPasswordValidator">
+            <summary>
+            Provides an abstraction for validating passwords.
+            </summary>
+        </member>
+        <member name="M:Zek.Utils.IPasswordValidator.Validate(System.String)">
+            <summary>
+            Validates a password.
+            </summary>
+            <param name="password">The password supplied for validation</param>
+            <returns>Error list</returns>
+        </member>
+        <member name="M:Zek.Utils.PasswordValidator.Validate(System.String)">
+            <summary>
+                Ensures that the string is of the required length and meets the configured requirements
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Utils.PasswordValidator.IsDigit(System.Char)">
+            <summary>
+            Returns a flag indicating whether the supplied character is a digit.
+            </summary>
+            <param name="c">The character to check if it is a digit.</param>
+            <returns>True if the character is a digit, otherwise false.</returns>
+        </member>
+        <member name="M:Zek.Utils.PasswordValidator.IsLower(System.Char)">
+            <summary>
+            Returns a flag indicating whether the supplied character is a lower case ASCII letter.
+            </summary>
+            <param name="c">The character to check if it is a lower case ASCII letter.</param>
+            <returns>True if the character is a lower case ASCII letter, otherwise false.</returns>
+        </member>
+        <member name="M:Zek.Utils.PasswordValidator.IsUpper(System.Char)">
+            <summary>
+            Returns a flag indicating whether the supplied character is an upper case ASCII letter.
+            </summary>
+            <param name="c">The character to check if it is an upper case ASCII letter.</param>
+            <returns>True if the character is an upper case ASCII letter, otherwise false.</returns>
+        </member>
+        <member name="M:Zek.Utils.PasswordValidator.IsLetterOrDigit(System.Char)">
+            <summary>
+            Returns a flag indicating whether the supplied character is an ASCII letter or digit.
+            </summary>
+            <param name="c">The character to check if it is an ASCII letter or digit.</param>
+            <returns>True if the character is an ASCII letter or digit, otherwise false.</returns>
+        </member>
+        <member name="M:Zek.Utils.RandomHelper.GetRandom">
+            <summary>
+            Gets a random object with a real random seed
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Utils.RandomHelper.Shuffle``1(``0[])">
+            <summary>
+            Fisher-Yates Shuffle
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="array"></param>
+        </member>
+        <member name="M:Zek.Utils.RecursiveHelper.Flatten``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``0}})">
+            <summary>
+              This method extends the LINQ methods to flatten a collection of 
+              items that have a property of children of the same type.
+            </summary>
+            <typeparam name = "T">Item type.</typeparam>
+            <param name = "source">Source collection.</param>
+            <param name = "childPropertySelector">
+              Child property selector delegate of each item. 
+              IEnumerable'T' childPropertySelector(T itemBeingFlattened)
+            </param>
+            <returns>Returns a one level list of elements of type T.</returns>
+        </member>
+        <member name="M:Zek.Utils.RecursiveHelper.Flatten``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0}})">
+            <summary>
+              This method extends the LINQ methods to flatten a collection of 
+              items that have a property of children of the same type.
+            </summary>
+            <typeparam name = "TSource">Item type.</typeparam>
+            <param name = "source">Source collection.</param>
+            <param name = "childPropertySelector">
+              Child property selector delegate of each item. 
+              IEnumerable'T' childPropertySelector
+              (T itemBeingFlattened, IEnumerable'T' objectsBeingFlattened)
+            </param>
+            <returns>Returns a one level list of elements of type T.</returns>
+        </member>
+        <member name="M:Zek.Utils.StringHelper.FindCount(System.String,System.String)">
+            <summary>
+            Finds char array count from text.
+            </summary>
+            <param name="str"></param>
+            <param name="searchChars"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Utils.StringHelper.IsBase64(System.String)">
+            <summary>
+            Extension method to test whether the value is a base64 string
+            </summary>
+            <param name="value">Value to test</param>
+            <returns>Returns true if the string is base64, otherwise false</returns>
+        </member>
+        <member name="T:Zek.Utils.ValidationHelper">
+            <summary>
+            ვალიდაციის კლასი (ნომრიანი ტექსტის, ელ.ფოსტის).
+            </summary>
+        </member>
+        <member name="M:Zek.Utils.ValidationHelper.IsNumeric(System.String)">
+            <summary>
+            Check if string is only digits.
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Utils.ValidationHelper.IsValidUserName(System.String,System.Int32,System.Int32,System.String)">
+            <summary>
+            Validate if user charactes and length is valid
+            </summary>
+            <param name="userName"></param>
+            <param name="minLength"></param>
+            <param name="maxLength"></param>
+            <param name="allowedUserNameCharacters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Web.ApiControllerBase.Auto(System.Object)">
+            <summary>
+            Creates an <see cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/> or <see cref="T:Microsoft.AspNetCore.Mvc.NotFoundResult"/> object that produces an <see cref="F:Microsoft.AspNetCore.Http.StatusCodes.Status200OK"/> or <see cref="F:Microsoft.AspNetCore.Http.StatusCodes.Status404NotFound"/> response.
+            </summary>
+            <param name="value">The content value to format in the entity body.</param>
+            <returns>The created <see cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/> or <see cref="T:Microsoft.AspNetCore.Mvc.NotFoundResult"/> for the response.</returns>
+        </member>
+        <member name="M:Zek.Web.ApiControllerBase.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="M:Zek.Web.ApiControllerBase.Dispose(System.Boolean)">
+            <summary>
+            Releases all resources currently used by this <see cref="T:Microsoft.AspNetCore.Mvc.Controller"/> instance.
+            </summary>
+            <param name="disposing"><c>true</c> if this method is being invoked by the <see cref="M:Zek.Web.ApiControllerBase.Dispose"/> method,
+            otherwise <c>false</c>.</param>
+        </member>
+        <member name="M:Zek.Web.HtmlHelperExtensions.PartialFor``2(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Return Partial View.
+            The element naming convention is maintained in the partial view by setting the prefix name from the expression.
+            The name of the view (by default) is the class name of the Property or a UIHint("partial name").
+            @Html.PartialFor(m => m.Address)  - partial view name is the class name of the Address property.
+            </summary>
+            <param name="html"></param>
+            <param name="expression">Model expression for the prefix name (m => m.Address)</param>
+            <returns>Partial View as Mvc string</returns>
+        </member>
+        <member name="M:Zek.Web.HtmlHelperExtensions.PartialFor``2(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.String)">
+            <summary>
+            Return Partial View.
+            The element naming convention is maintained in the partial view by setting the prefix name from the expression.
+            </summary>
+            <param name="html"></param>
+            <param name="expression">Model expression for the prefix name (m => m.Group[2])</param>
+            <param name="partialName">Partial View Name</param>
+            <returns>Partial View as Mvc string</returns>
+        </member>
+        <member name="M:Zek.Web.HttpRequestExtensions.GetBaseUrl(Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+            Returns site base url.
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Web.HttpRequestExtensions.IsAjaxRequest(Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+            Determines whether the specified HTTP request is an AJAX request.
+            </summary>
+            
+            <returns>
+            true if the specified HTTP request is an AJAX request; otherwise, false.
+            </returns>
+            <param name="request">The HTTP request.</param><exception cref="T:System.ArgumentNullException">The <paramref name="request"/> parameter is null (Nothing in Visual Basic).</exception>
+        </member>
+        <member name="M:Zek.Web.NameValueCollectionExtensions.ToQueryString(System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            
+            </summary>
+            <param name="nvc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Web.SelectListExtensions.ToSelectList``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,System.String},``1,System.Boolean)">
+            <summary>
+            Returns a collection of SelectListItem for each of the items in the collection passed in, with a specific list item selected and optionally an empty list item.
+            </summary>
+            <example>
+            <code>
+            people.ToSelectList(x => x.PersonId, x => x.Name, "2345");
+            // or
+            people.ToSelectList(x => x.PersonId, x => x.Name, "2345", false); if you don't want the empty list item
+            </code>
+            </example>
+            <param name="source"></param>
+            <param name="keySelector">The property to use as the value attribute of each list item.</param>    
+            <param name="textSelector">The property to use as the text attribute of each list item.</param>
+            <param name="currentKey">The String value of the list item that should be selected by default.</param>
+            <param name="includeEmptyListItem">Whether or not a default list item should be the first list item before those from the collection.</param>
+        </member>
+        <member name="M:Zek.Web.SelectListExtensions.ToSelectList``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,System.String},``1,Microsoft.AspNetCore.Mvc.Rendering.SelectListItem)">
+            <summary>
+            Returns a collection of SelectListItem for each of the items in the collection passed in, with a specific list item selected and a custom empty list item.
+            </summary>
+            <example>
+            <code>
+            people.ToSelectList(x => x.PersonId, x => x.Name, "2345", new SelectListItem() {Text = "-- Pick One --", Value = ""});
+            </code>
+            </example>
+            <param name="source"></param>
+            <param name="keySelector">The property to use as the value attribute of each list item.</param>    
+            <param name="textSelector">The property to use as the text attribute of each list item.</param>
+            <param name="currentKey">The String value of the list item that should be selected by default.</param>
+            <param name="emptyListItem">The list item to use as the first list item before those from the collection.</param>
+        </member>
+        <member name="M:Zek.Web.UriExtensions.AddParameter(System.Uri,System.String,System.String)">
+            <summary>
+            Adds the specified parameter to the Query String.
+            </summary>
+            <param name="url"></param>
+            <param name="paramName">Name of the parameter to add.</param>
+            <param name="paramValue">Value for the parameter to add.</param>
+            <returns>Url with added parameter.</returns>
+        </member>
+        <member name="M:Zek.Web.UriExtensions.AddParameters(System.Uri,Zek.Utils.KeyPair{System.String,System.String}[])">
+            <summary>
+            Adds the specified parameter to the Query String.
+            </summary>
+            <param name="url"></param>
+            <param name="parameters">Name and value collection of the parameters to add</param>
+            <returns>Url with added parameter.</returns>
+        </member>
+        <member name="M:Zek.Web.UriExtensions.AddParameters(System.Uri,System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            Adds the specified parameter to the Query String.
+            </summary>
+            <param name="url"></param>
+            <param name="parameters">Name and value collection of the parameters to add</param>
+            <returns>Url with added parameter.</returns>
+        </member>
+        <member name="P:Zek.PagedList.BasePagedList`1.TotalItemCount">
+            <summary>
+            	Total number of objects contained within the superset.
+            </summary>
+            <value>
+            	Total number of objects contained within the superset.
+            </value>
+        </member>
+        <member name="P:Zek.PagedList.BasePagedList`1.PageNumber">
+            <summary>
+            	One-based index of this subset within the superset.
+            </summary>
+            <value>
+            	One-based index of this subset within the superset.
+            </value>
+        </member>
+        <member name="P:Zek.PagedList.BasePagedList`1.PageSize">
+            <summary>
+            	Maximum size any individual subset.
+            </summary>
+            <value>
+            	Maximum size any individual subset.
+            </value>
+        </member>
+        <member name="M:Zek.PagedList.BasePagedList`1.GetEnumerator">
+            <summary>
+            	Returns an enumerator that iterates through the BasePagedList&lt;T&gt;.
+            </summary>
+            <returns>A BasePagedList&lt;T&gt;.Enumerator for the BasePagedList&lt;T&gt;.</returns>
+        </member>
+        <member name="M:Zek.PagedList.BasePagedList`1.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            	Returns an enumerator that iterates through the BasePagedList&lt;T&gt;.
+            </summary>
+            <returns>A BasePagedList&lt;T&gt;.Enumerator for the BasePagedList&lt;T&gt;.</returns>
+        </member>
+        <member name="P:Zek.PagedList.BasePagedList`1.Item(System.Int32)">
+            <summary>
+            	Gets the element at the specified index.
+            </summary>
+            <param name = "index">The zero-based index of the element to get.</param>
+        </member>
+        <member name="P:Zek.PagedList.BasePagedList`1.Count">
+            <summary>
+            	Gets the number of elements contained on this page.
+            </summary>
+        </member>
+        <member name="M:Zek.PagedList.PagedList`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of a type deriving from <see cref = "T:Zek.PagedList.BasePagedList`1" /> and sets properties needed to calculate position and size data on the subset and superset.
+            </summary>
+            <param name="subset">The single subset this collection should represent.</param>
+            <param name = "pageNumber">The one-based index of the subset of objects contained by this instance.</param>
+            <param name = "pageSize">The maximum size of any individual subset.</param>
+            <param name = "totalItemCount">The size of the superset.</param>
+        </member>
+        <member name="P:Zek.PagedList.PagedList`1.PageCount">
+            <summary>
+            	Total number of subsets within the superset.
+            </summary>
+            <value>
+            	Total number of subsets within the superset.
+            </value>
+        </member>
+        <member name="P:Zek.PagedList.PagedList`1.HasPreviousPage">
+            <summary>
+            	Returns true if this is NOT the first subset within the superset.
+            </summary>
+            <value>
+            	Returns true if this is NOT the first subset within the superset.
+            </value>
+        </member>
+        <member name="P:Zek.PagedList.PagedList`1.HasNextPage">
+            <summary>
+            	Returns true if this is NOT the last subset within the superset.
+            </summary>
+            <value>
+            	Returns true if this is NOT the last subset within the superset.
+            </value>
+        </member>
+        <member name="P:Zek.PagedList.PagedList`1.IsFirstPage">
+            <summary>
+            	Returns true if this is the first subset within the superset.
+            </summary>
+            <value>
+            	Returns true if this is the first subset within the superset.
+            </value>
+        </member>
+        <member name="P:Zek.PagedList.PagedList`1.IsLastPage">
+            <summary>
+            	Returns true if this is the last subset within the superset.
+            </summary>
+            <value>
+            	Returns true if this is the last subset within the superset.
+            </value>
+        </member>
+        <member name="P:Zek.PagedList.PagedList`1.FirstItemOnPage">
+            <summary>
+            	One-based index of the first item in the paged subset.
+            </summary>
+            <value>
+            	One-based index of the first item in the paged subset.
+            </value>
+        </member>
+        <member name="P:Zek.PagedList.PagedList`1.LastItemOnPage">
+            <summary>
+            	One-based index of the last item in the paged subset.
+            </summary>
+            <value>
+            	One-based index of the last item in the paged subset.
+            </value>
+        </member>
+        <member name="M:Zek.PagedList.PagedListExtensions.ToPagedList``1(System.Linq.IQueryable{``0},System.Int32,System.Int32)">
+            <summary>
+            Async creates a subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.
+            </summary>
+            <typeparam name="T">The type of object the collection should contain.</typeparam>        
+            <param name="superset">The collection of objects to be divided into subsets. If the collection implements <see cref="T:System.Linq.IQueryable`1"/>, it will be treated as such.</param>
+            <param name="pageNumber">The one-based index of the subset of objects to be contained by this instance.</param>
+            <param name="pageSize">The maximum size of any individual subset.</param>
+            <returns>A subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.</returns>
+            <seealso cref="T:Zek.PagedList.PagedList`1"/>
+        </member>
+        <member name="M:Zek.PagedList.PagedListExtensions.ToPagedListAsync``1(System.Linq.IQueryable{``0},System.Int32,System.Int32)">
+            <summary>
+            Async creates a subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.
+            </summary>
+            <typeparam name="T">The type of object the collection should contain.</typeparam>        
+            <param name="superset">The collection of objects to be divided into subsets. If the collection implements <see cref="T:System.Linq.IQueryable`1"/>, it will be treated as such.</param>
+            <param name="pageNumber">The one-based index of the subset of objects to be contained by this instance.</param>
+            <param name="pageSize">The maximum size of any individual subset.</param>
+            <returns>A subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.</returns>
+            <seealso cref="T:Zek.PagedList.PagedList`1"/>
+        </member>
+        <member name="M:Zek.PagedList.PagedListExtensions.ToPagerListDTO``1(System.Linq.IQueryable{``0},System.Int32,System.Int32)">
+            <summary>
+            Async creates a subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.
+            </summary>
+            <typeparam name="T">The type of object the collection should contain.</typeparam>        
+            <param name="superset">The collection of objects to be divided into subsets. If the collection implements <see cref="T:System.Linq.IQueryable`1"/>, it will be treated as such.</param>
+            <param name="pageNumber">The one-based index of the subset of objects to be contained by this instance.</param>
+            <param name="pageSize">The maximum size of any individual subset.</param>
+            <returns>A subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.</returns>
+            <seealso cref="T:Zek.PagedList.PagerListDTO`1"/>
+        </member>
+        <member name="M:Zek.PagedList.PagedListExtensions.ToPagerListDTOAsync``1(System.Linq.IQueryable{``0},System.Int32,System.Int32)">
+            <summary>
+            Async creates a subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.
+            </summary>
+            <typeparam name="T">The type of object the collection should contain.</typeparam>        
+            <param name="superset">The collection of objects to be divided into subsets. If the collection implements <see cref="T:System.Linq.IQueryable`1"/>, it will be treated as such.</param>
+            <param name="pageNumber">The one-based index of the subset of objects to be contained by this instance.</param>
+            <param name="pageSize">The maximum size of any individual subset.</param>
+            <returns>A subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.</returns>
+            <seealso cref="T:Zek.PagedList.PagerListDTO`1"/>
+        </member>
+        <member name="T:JetBrains.Annotations.CanBeNullAttribute">
+            <summary>
+                Indicates that the value of the marked element could be <c>null</c> sometimes,
+                so the check for <c>null</c> is necessary before its usage.
+            </summary>
+            <example>
+                <code>
+            [CanBeNull] object Test() => null;
+            
+            void UseTest() {
+              var p = Test();
+              var s = p.ToString(); // Warning: Possible 'System.NullReferenceException'
+            }
+            </code>
+            </example>
+        </member>
+        <member name="T:JetBrains.Annotations.NotNullAttribute">
+            <summary>
+                Indicates that the value of the marked element could never be <c>null</c>.
+            </summary>
+            <example>
+                <code>
+            [NotNull] object Foo() {
+              return null; // Warning: Possible 'null' assignment
+            }
+            </code>
+            </example>
+        </member>
+        <member name="F:JetBrains.Annotations.ImplicitUseKindFlags.Access">
+            <summary>Only entity marked with attribute considered used.</summary>
+        </member>
+        <member name="F:JetBrains.Annotations.ImplicitUseKindFlags.Assign">
+            <summary>Indicates implicit assignment to a member.</summary>
+        </member>
+        <member name="F:JetBrains.Annotations.ImplicitUseKindFlags.InstantiatedWithFixedConstructorSignature">
+            <summary>
+                Indicates implicit instantiation of a type with fixed constructor signature.
+                That means any unused constructor parameters won't be reported as such.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Annotations.ImplicitUseKindFlags.InstantiatedNoFixedConstructorSignature">
+            <summary>Indicates implicit instantiation of a type.</summary>
+        </member>
+        <member name="T:JetBrains.Annotations.ImplicitUseTargetFlags">
+            <summary>
+                Specify what is considered used implicitly when marked
+                with <see cref="T:JetBrains.Annotations.MeansImplicitUseAttribute" /> or <see cref="T:JetBrains.Annotations.UsedImplicitlyAttribute" />.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Annotations.ImplicitUseTargetFlags.Members">
+            <summary>Members of entity marked with attribute are considered used.</summary>
+        </member>
+        <member name="F:JetBrains.Annotations.ImplicitUseTargetFlags.WithMembers">
+            <summary>Entity marked with attribute and all its members considered used.</summary>
+        </member>
+        <member name="T:JetBrains.Annotations.UsedImplicitlyAttribute">
+            <summary>
+                Indicates that the marked symbol is used implicitly (e.g. via reflection, in external library),
+                so this symbol will not be marked as unused (as well as by other usage inspections).
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.MeansImplicitUseAttribute">
+            <summary>
+                Should be used on attributes and causes ReSharper to not mark symbols marked with such attributes
+                as unused (as well as by other usage inspections)
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.PublicAPIAttribute">
+            <summary>
+                This attribute is intended to mark publicly available API
+                which should not be removed and so is treated as used.
+            </summary>
+        </member>
+    </members>
+</doc>
