@@ -126,7 +126,7 @@ namespace Zek.Web
 
         public virtual void Bind(ControllerBase controller, string[] props)
         {
-            var baseController = controller as BaseController;
+            var baseController = controller as ApiController;
             if (baseController != null)
                 baseController.UserId = props[0].ToInt32();
         }
