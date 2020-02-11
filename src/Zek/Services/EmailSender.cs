@@ -80,45 +80,41 @@ namespace Zek.Services
 
         public virtual async Task SendEmailAsync(EmailDTO model)
         {
-            using (var client = new SmtpClient())
+            using var client = new SmtpClient();
+            if (Options != null)
             {
-                if (Options != null)
+                if (!string.IsNullOrEmpty(Options.Host))
+                    client.Host = Options.Host;
+                if (Options.Port != null)
+                    client.Port = Options.Port.Value;
+
+                if (Options.EnableSsl != null)
+                    client.EnableSsl = Options.EnableSsl.Value;
+
+                if (!string.IsNullOrEmpty(Options.UserName))
                 {
-                    if (!string.IsNullOrEmpty(Options.Host))
-                        client.Host = Options.Host;
-                    if (Options.Port != null)
-                        client.Port = Options.Port.Value;
-
-                    if (Options.EnableSsl != null)
-                        client.EnableSsl = Options.EnableSsl.Value;
-
-                    if (!string.IsNullOrEmpty(Options.UserName))
-                    {
-                        client.UseDefaultCredentials = false;
-                        client.Credentials = new NetworkCredential(Options.UserName, Options.Password);
-                    }
-
-                    if (model.From == null)
-                        model.From = new EmailAddressDTO();
-
-                    if (string.IsNullOrEmpty(model.From.Address))
-                        model.From.Address = Options.FromEmail;
-                    if (string.IsNullOrEmpty(model.From.Name))
-                        model.From.Name = Options.FromName;
+                    client.UseDefaultCredentials = false;
+                    client.Credentials = new NetworkCredential(Options.UserName, Options.Password);
                 }
 
+                if (model.From == null)
+                    model.From = new EmailAddressDTO();
 
-                using (var message = ToMailMessage(model))
-                {
-                    //client.SendCompleted += (sender, e) =>
-                    //{
-                    //    client.Dispose();
-                    //    message.Dispose();
-                    //};
-
-                    await client.SendMailAsync(message);
-                }
+                if (string.IsNullOrEmpty(model.From.Address))
+                    model.From.Address = Options.FromEmail;
+                if (string.IsNullOrEmpty(model.From.Name))
+                    model.From.Name = Options.FromName;
             }
+
+
+            using var message = ToMailMessage(model);
+            //client.SendCompleted += (sender, e) =>
+            //{
+            //    client.Dispose();
+            //    message.Dispose();
+            //};
+
+            await client.SendMailAsync(message);
         }
     }
 }

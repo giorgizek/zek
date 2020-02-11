@@ -86,12 +86,10 @@ namespace Zek.Services
             //todo clientHandler.SslProtocols = SslProtocols.Tls11 | SslProtocols.Tls12;
             clientHandler.UseProxy = false;
 
-            using (var client = new HttpClient(clientHandler))
-            {
-                var response = await client.PostAsync(_serverUrl + "?" + parameters, new StringContent(string.Empty));
-                response.EnsureSuccessStatusCode();
-                return await response.Content.ReadAsStringAsync();
-            }
+            using var client = new HttpClient(clientHandler);
+            var response = await client.PostAsync(_serverUrl + "?" + parameters, new StringContent(string.Empty));
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsStringAsync();
         }
 
         private static ResultDTO Deserialize(string response)

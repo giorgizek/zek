@@ -6,10 +6,10 @@ namespace Zek.Web
     [ApiController]
     [ApiConventionType(typeof(DefaultApiConventions))]
     [Produces("application/json")]
-    public class ApiController<TService> : ApiControllerBase
+    public class ApiControllerBase<TService> : ApiControllerBase
         where TService : IDisposable
     {
-        public ApiController(TService service)
+        public ApiControllerBase(TService service)
         {
             Service = service;
         }
@@ -25,11 +25,11 @@ namespace Zek.Web
         }
     }
 
-    //public class ApiController<TService1, TService2> : ApiControllerBase
+    //public class ApiControllerBase<TService1, TService2> : ApiControllerBase
     //    where TService1 : IDisposable
     //    where TService2 : IDisposable
     //{
-    //    public ApiController(TService1 service1, TService2 service2)
+    //    public ApiControllerBase(TService1 service1, TService2 service2)
     //    {
     //        Service1 = service1;
     //        Service2 = service2;

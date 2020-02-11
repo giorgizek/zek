@@ -25,51 +25,33 @@ namespace Zek.Web
         [NonAction]
         public virtual IActionResult Auto(ModelStateResult modelStateResult)
         {
-            switch (modelStateResult.StatusCode)
+            return modelStateResult.StatusCode switch
             {
-                case Model.StatusCode.BadRequest:
-                    return new BadRequestObjectResult(modelStateResult);
-
-                case Model.StatusCode.Forbidden:
-                    return new ForbidResult();
-
-                case Model.StatusCode.NotFound:
-                    return new NotFoundObjectResult(modelStateResult);
-
-                case Model.StatusCode.InternalServerError:
-                    return new ObjectResult(modelStateResult)
-                    {
-                        StatusCode = modelStateResult.StatusCode.ToInt32()
-                    };
-
-                default:
-                    return new OkResult();
-            }
+                Model.StatusCode.BadRequest => (IActionResult) new BadRequestObjectResult(modelStateResult),
+                Model.StatusCode.Forbidden => new ForbidResult(),
+                Model.StatusCode.NotFound => new NotFoundObjectResult(modelStateResult),
+                Model.StatusCode.InternalServerError => new ObjectResult(modelStateResult)
+                {
+                    StatusCode = modelStateResult.StatusCode.ToInt32()
+                },
+                _ => new OkResult()
+            };
         }
 
         [NonAction]
         public virtual IActionResult Auto<T>(ModelStateResult<T> modelStateResult)
         {
-            switch (modelStateResult.StatusCode)
+            return modelStateResult.StatusCode switch
             {
-                case Model.StatusCode.BadRequest:
-                    return new BadRequestObjectResult(modelStateResult.Errors);
-
-                case Model.StatusCode.Forbidden:
-                    return new ForbidResult();
-
-                case Model.StatusCode.NotFound:
-                    return new NotFoundObjectResult(modelStateResult.Errors);
-
-                case Model.StatusCode.InternalServerError:
-                    return new ObjectResult(modelStateResult.Errors)
-                    {
-                        StatusCode = modelStateResult.StatusCode.ToInt32()
-                    };
-
-                default:
-                    return new OkObjectResult(modelStateResult.Value);
-            }
+                Model.StatusCode.BadRequest => (IActionResult) new BadRequestObjectResult(modelStateResult.Errors),
+                Model.StatusCode.Forbidden => new ForbidResult(),
+                Model.StatusCode.NotFound => new NotFoundObjectResult(modelStateResult.Errors),
+                Model.StatusCode.InternalServerError => new ObjectResult(modelStateResult.Errors)
+                {
+                    StatusCode = modelStateResult.StatusCode.ToInt32()
+                },
+                _ => new OkObjectResult(modelStateResult.Value)
+            };
         }
 
 
