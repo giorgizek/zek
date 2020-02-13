@@ -18,14 +18,22 @@ namespace Zek.Model.Contact
         public decimal? Longitude { get; set; }
     }
 
-
     public class AddressMap : EntityTypeMap<Address>
+    {
+        public AddressMap(ModelBuilder builder) : base(builder)
+        {
+
+        }
+    }
+
+    public class AddressMap<TAddress> : EntityTypeMap<TAddress>
+        where TAddress : Address
     {
         public AddressMap(ModelBuilder builder) : base(builder)
         {
             ToTable("Addresses", "Contact");
             HasKey(t => t.Id);
-            
+
             Property(t => t.Id).ValueGeneratedOnAdd();
             Property(t => t.City).HasMaxLength(100);
             Property(t => t.Address1).HasMaxLength(200);

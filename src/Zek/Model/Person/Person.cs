@@ -6,12 +6,16 @@ using Zek.Model.Contact;
 
 namespace Zek.Model.Person
 {
-    public class Person : PersonPoco
+    public class Person<TAddress, TContact> : PersonPoco
+        where TAddress : Address
+        where TContact : Contact.Contact
     {
-        //public PersonTitle Title { get; set; }
-        //public Country Resident { get; set; }
-        public Address Address { get; set; }
-        public Contact.Contact Contact { get; set; }
+        public TAddress Address { get; set; }
+        public TContact Contact { get; set; }
+    }
+
+    public class Person : Person<Address, Contact.Contact>
+    {
     }
 
     public class PersonPoco : PocoModel
@@ -40,14 +44,17 @@ namespace Zek.Model.Person
         public int ContactId { get; set; }
     }
 
-    public class PersonMap : PersonMap<Person>
+    public class PersonMap : PersonMap<Person, Address, Contact.Contact>
     {
         public PersonMap(ModelBuilder builder) : base(builder)
         {
         }
     }
 
-    public class PersonMap<TEntity> : PersonPocoMap<TEntity> where TEntity : Person
+    public class PersonMap<TEntity, TAddress, TContact> : PersonPocoMap<TEntity>
+        where TEntity : Person<TAddress, TContact>
+        where TAddress : Address
+        where TContact : Contact.Contact
     {
         public PersonMap(ModelBuilder builder, bool? valueGeneratedOnAdd = null) : base(builder, valueGeneratedOnAdd)
         {

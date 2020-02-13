@@ -1524,6 +1524,71 @@
             Controller name
             </summary>
         </member>
+        <member name="P:Zek.Model.DTO.ContactBaseDTO.Phone1">
+            <summary>
+            Phone 1
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.ContactBaseDTO.Fax1">
+            <summary>
+            Fax 1
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.ContactBaseDTO.Mobile1">
+            <summary>
+            Mobile 1
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.ContactBaseDTO.Email1">
+            <summary>
+            Email 1
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.ContactDTO.Url">
+            <summary>
+            Homepage or personal page
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.ContactDTO.Phone2">
+            <summary>
+            Phone 2
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.ContactDTO.Phone3">
+            <summary>
+            Phone 3
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.ContactDTO.Fax2">
+            <summary>
+            Fax 2
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.ContactDTO.Fax3">
+            <summary>
+            Fax 3
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.ContactDTO.Mobile2">
+            <summary>
+            Mobile 2
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.ContactDTO.Mobile3">
+            <summary>
+            Mobile 3
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.ContactDTO.Email2">
+            <summary>
+            Email 2
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.ContactDTO.Email3">
+            <summary>
+            Email 3
+            </summary>
+        </member>
         <member name="P:Zek.Model.DTO.Ecomm.BaseResponseDTO.Error">
             <summary>
             In case of an error, the returned string of symbols begins with ‘error:‘
