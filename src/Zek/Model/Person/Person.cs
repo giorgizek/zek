@@ -51,6 +51,14 @@ namespace Zek.Model.Person
         }
     }
 
+    public class PersonMap<TPerson> : PersonMap<TPerson, Address, Contact.Contact>
+        where TPerson : Person<Address, Contact.Contact>
+    {
+        public PersonMap(ModelBuilder builder) : base(builder)
+        {
+        }
+    }
+
     public class PersonMap<TEntity, TAddress, TContact> : PersonPocoMap<TEntity>
         where TEntity : Person<TAddress, TContact>
         where TAddress : Address
