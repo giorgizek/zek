@@ -18,7 +18,7 @@ namespace Zek.Model.Contact
         public decimal? Longitude { get; set; }
     }
 
-    public class AddressMap : EntityTypeMap<Address>
+    public class AddressMap : AddressMap<Address>
     {
         public AddressMap(ModelBuilder builder) : base(builder)
         {
