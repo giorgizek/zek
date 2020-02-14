@@ -1524,6 +1524,11 @@
             Controller name
             </summary>
         </member>
+        <member name="P:Zek.Model.DTO.ContactBaseDTO.Id">
+            <summary>
+            Contact ID
+            </summary>
+        </member>
         <member name="P:Zek.Model.DTO.ContactBaseDTO.Phone1">
             <summary>
             Phone 1

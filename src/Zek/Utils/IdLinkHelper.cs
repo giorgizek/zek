@@ -11,9 +11,8 @@ namespace Zek.Utils
 {
     public enum IdLinkMode
     {
-        None,
         //MD5,
-        SHA1,
+        SHA1 = 1,
         //SHA256,
         Aes
     }

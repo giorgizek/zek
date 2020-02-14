@@ -2,6 +2,9 @@
 {
     public class ContactBaseDTO
     {
+        /// <summary>
+        /// Contact ID
+        /// </summary>
         public int? Id { get; set; }
         /// <summary>
         /// Phone 1
