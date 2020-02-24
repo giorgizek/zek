@@ -50,4 +50,24 @@ namespace Zek.Utils
             return Key.GetHashCode();
         }
     }
+
+
+
+    public class KeyPair : KeyPair<int, string>
+    {
+        public KeyPair()
+        {
+        }
+        public KeyPair(int key, string value)
+        {
+            Key = key;
+            Value = value;
+        }
+    }
+
+
+    public class KeyPairCode : KeyPair
+    {
+        public string Code { get; set; }
+    }
 }

@@ -43,6 +43,7 @@ namespace Zek.Model.Attachment
         /// For dropdown values (like: passport, contract, signature, photo, avator, icon);
         /// </summary>
         public int? TypeId { get; set; }
+        public string Name { get; set; }
         public string Path { get; set; }
         public string FileName { get; set; }
         //public string FileType { get; set; }
@@ -70,8 +71,8 @@ namespace Zek.Model.Attachment
             HasIndex(t => new { t.ApplicationId, t.AreaId });
             HasIndex(t => t.CheckSum);
 
-
-            Property(t => t.Path).IsRequired();
+            Property(t => t.Name).HasMaxLength(255);
+            Property(t => t.Path).IsRequired().HasMaxLength(4000);
             Property(t => t.FileName).IsRequired().HasMaxLength(260);
             Property(t => t.CheckSum).IsRequired().HasMaxLength(255);
         }
