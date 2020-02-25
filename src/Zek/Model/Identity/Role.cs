@@ -82,7 +82,7 @@ namespace Zek.Model.Identity
         where TEntity : Role<TKey>
         where TKey : IEquatable<TKey>
     {
-        public RoleMap(ModelBuilder builder, bool indexNormalizedName = true) : base(builder)
+        public RoleMap(ModelBuilder builder, bool unique = true) : base(builder)
         {
             ToTable("Roles", nameof(Schema.Identity));
             
@@ -93,7 +93,7 @@ namespace Zek.Model.Identity
 
             HasKey(r => r.Id);
 
-            if (indexNormalizedName)
+            if (unique)
                 HasIndex(r => r.NormalizedName).IsUnique();
         }
     }

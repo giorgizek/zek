@@ -39,7 +39,9 @@ namespace Zek.Model.Identity
         {
             base.OnModelCreating(builder);
 
-            new UserMap<TUser, TKey>(builder);
+            // ReSharper disable once ObjectCreationAsStatement
+            new UserMap<TUser, TKey>(builder, false, false);
         }
+
     }
 }

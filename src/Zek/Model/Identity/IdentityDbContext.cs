@@ -77,7 +77,8 @@ namespace Zek.Model.Identity
         {
             base.OnModelCreating(builder);
 
-            new RoleMap<TRole, TKey>(builder);
+            // ReSharper disable once ObjectCreationAsStatement
+            new RoleMap<TRole, TKey>(builder, false);
 
             builder.Entity<TUser>(b =>
             {
