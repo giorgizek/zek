@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Zek.Data.Entity;
 
-namespace Zek.Model.Licensing
+namespace Zek.Licensing
 {
     public class License
     {
@@ -89,10 +89,7 @@ namespace Zek.Model.Licensing
         public string ExplicitRunTimeLicenseCode { get; set; }
         public string AllowedDomains { get; set; }
 
-        public bool HasAllowedDomains
-        {
-            get { return !string.IsNullOrWhiteSpace(AllowedDomains); }
-        }
+        public bool HasAllowedDomains => !string.IsNullOrWhiteSpace(AllowedDomains);
 
         #endregion
 
@@ -240,7 +237,7 @@ namespace Zek.Model.Licensing
             Property(t => t.HostAssemblyName)/*.IsUnicode(false)*/.HasMaxLength(200);
             Property(t => t.ExplicitRunTimeLicenseCode)/*.IsUnicode(false)*/.HasMaxLength(2500);
             Property(t => t.AllowedDomains)/*.IsUnicode(false)*/.HasMaxLength(300);
-            Property(t => t.UserData)/*.IsUnicode(false)*/.HasMaxLength(2500);
+            Property(t => t.UserData)/*.IsUnicode(false)*/.HasMaxLength(5000);
 
 
             Property(t => t.ProjectName)/*.IsUnicode(false)*/.HasMaxLength(200);
@@ -250,9 +247,9 @@ namespace Zek.Model.Licensing
 
 
 
-            Property(t => t.DateExpires).HasColumnType("datetime2(0)");
-            Property(t => t.DateGenerated).HasColumnType("datetime2(0)");
-            Property(t => t.DateLastUsed).HasColumnType("datetime2(0)");
+            Property(t => t.DateExpires).HasColumnTypeDateTime();
+            Property(t => t.DateGenerated).HasColumnTypeDateTime();
+            Property(t => t.DateLastUsed).HasColumnTypeDateTime();
 
             Property(t => t.FloatingLeasePeriod).HasColumnType("time");
 

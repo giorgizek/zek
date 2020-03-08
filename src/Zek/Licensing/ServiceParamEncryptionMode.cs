@@ -1,5 +1,5 @@
 ﻿// ReSharper disable InconsistentNaming
-namespace Zek.Model.Licensing
+namespace Zek.Licensing
 {
     public enum ServiceParamEncryptionMode
     {

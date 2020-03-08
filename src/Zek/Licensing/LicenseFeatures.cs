@@ -1,4 +1,4 @@
-﻿namespace Zek.Model.Licensing
+﻿namespace Zek.Licensing
 {
     public enum LicenseFeatures
     {
