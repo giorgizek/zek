@@ -1,14 +1,14 @@
 ﻿namespace Zek.Model.DTO
 {
     /// <summary>
-    /// Filter DTO
+    /// Filter Base DTO
     /// </summary>
-    public class FilterDTO
+    public class FilterBaseDTO
     {
         /// <summary>
         /// Constructor FilterDTO
         /// </summary>
-        public FilterDTO()
+        public FilterBaseDTO()
         {
             Page = 1;
             PageSize = 10;
