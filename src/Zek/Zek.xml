@@ -2046,37 +2046,37 @@
             Set is deleted if entity is deleted
             </summary>
         </member>
-        <member name="T:Zek.Model.DTO.FilterDTO">
+        <member name="T:Zek.Model.DTO.FilterBaseDTO">
             <summary>
-            Filter DTO
+            Filter Base DTO
             </summary>
         </member>
-        <member name="M:Zek.Model.DTO.FilterDTO.#ctor">
+        <member name="M:Zek.Model.DTO.FilterBaseDTO.#ctor">
             <summary>
             Constructor FilterDTO
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.FilterDTO.Page">
+        <member name="P:Zek.Model.DTO.FilterBaseDTO.Page">
             <summary>
             Page number
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.FilterDTO.PageSize">
+        <member name="P:Zek.Model.DTO.FilterBaseDTO.PageSize">
             <summary>
             Page size
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.FilterDTO.Sort">
+        <member name="P:Zek.Model.DTO.FilterBaseDTO.Sort">
             <summary>
             Sort column name
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.FilterDTO.Asc">
+        <member name="P:Zek.Model.DTO.FilterBaseDTO.Asc">
             <summary>
             Asc = null or true, Desc = false
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.FilterDTO.MaxPageSize">
+        <member name="P:Zek.Model.DTO.FilterBaseDTO.MaxPageSize">
             <summary>
             Max page size
             </summary>
