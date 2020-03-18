@@ -6,5 +6,6 @@
         public const string UserName = nameof(UserName);
         public const string Email = nameof(Email);
         public const string Role = nameof(Role);
+        public const string Permission = "pid";
     }
 }
