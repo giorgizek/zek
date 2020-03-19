@@ -2,6 +2,7 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Zek.Security.Claims;
 using Zek.Utils;
@@ -15,7 +16,7 @@ namespace Zek.Web
         {
 
         }
-        public PermissionBaseAttribute(int permission, int action)
+        public PermissionBaseAttribute(int? permission, int? action)
             : this()
         {
             Permission = permission;
@@ -23,33 +24,34 @@ namespace Zek.Web
         }
 
 
-        public int Permission { get; set; }
-        public int Action { get; set; }
+        public int? Permission { get; set; }
+        public int? Action { get; set; }
 
 
         public void OnAuthorization(AuthorizationFilterContext context)
         {
             var user = context.HttpContext.User;
-
+            //this validation need if user not authenticated or [AllowAnonymous] the base Authorize filter will response unauthorized;
             if (!user.Identity.IsAuthenticated)
-            {
                 return;
-            }
 
-
-
-            //bool isAuthorized = MumboJumboFunction(context.HttpContext.User, _item, _action); // :)
-
-            //if (!isAuthorized)
-            //{
-            //    context.Result = new ForbidResult();
-            //}
-
-            var key = CustomClaimTypes.Permission + "_" + Permission;
-            var permissionValue = user.FindFirstValue(key);
-            if (string.IsNullOrEmpty(permissionValue) || !int.TryParse(permissionValue, out var permission) || BitwiseHelper.HasFlag(permission, Permission))
+            if (Permission != null)
             {
-                context.Result = new ForbidResult();
+                var claimType = CustomClaimTypes.Permission + "_" + Permission;
+                var claim = user.FindFirst(claimType);
+
+                if (Action != null)
+                {
+                    var permissionValue = user.FindFirstValue(claimType);
+                    if (string.IsNullOrEmpty(permissionValue) || !int.TryParse(permissionValue, out var permission) || BitwiseHelper.HasFlag(permission, Permission.Value))
+                    {
+                        context.Result = new ForbidResult();
+                    }
+                }
+                else if (!user.HasClaim(c => c.Type == claimType))
+                {
+                    context.Result = new ForbidResult();
+                }
             }
         }
     }

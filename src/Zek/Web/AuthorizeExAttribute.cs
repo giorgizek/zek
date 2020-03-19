@@ -12,7 +12,8 @@ namespace Zek.Web
 
         public AuthorizeExAttribute(params string[] roles)
         {
-            Roles = string.Join(",", roles);
+            if (roles != null)
+                Roles = string.Join(",", roles);
         }
 
     }
