@@ -40,17 +40,16 @@ namespace Zek.Web
                 var claimType = CustomClaimTypes.Permission + "_" + Permission;
                 var claim = user.FindFirst(claimType);
 
-                if (Action != null)
+                if (claim == null)
                 {
-                    var permissionValue = user.FindFirstValue(claimType);
-                    if (string.IsNullOrEmpty(permissionValue) || !int.TryParse(permissionValue, out var permission) || BitwiseHelper.HasFlag(permission, Permission.Value))
+                    context.Result = new ForbidResult();
+                }
+                else if (Action != null)
+                {
+                    if (string.IsNullOrEmpty(claim.Value) || !int.TryParse(claim.Value, out var permission) || BitwiseHelper.HasFlag(permission, Permission.Value))
                     {
                         context.Result = new ForbidResult();
                     }
-                }
-                else if (!user.HasClaim(c => c.Type == claimType))
-                {
-                    context.Result = new ForbidResult();
                 }
             }
         }
