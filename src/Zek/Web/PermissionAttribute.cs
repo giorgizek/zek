@@ -46,7 +46,7 @@ namespace Zek.Web
                 }
                 else if (Action != null)
                 {
-                    if (string.IsNullOrEmpty(claim.Value) || !int.TryParse(claim.Value, out var permission) || BitwiseHelper.HasFlag(permission, Permission.Value))
+                    if (string.IsNullOrEmpty(claim.Value) || !int.TryParse(claim.Value, out var permission) || !BitwiseHelper.HasFlag(permission, Permission.Value))
                     {
                         context.Result = new ForbidResult();
                     }
