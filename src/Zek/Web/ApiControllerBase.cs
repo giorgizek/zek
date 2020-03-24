@@ -32,7 +32,7 @@ namespace Zek.Web
                 Model.StatusCode.NotFound => new NotFoundObjectResult(modelStateResult),
                 Model.StatusCode.InternalServerError => new ObjectResult(modelStateResult)
                 {
-                    StatusCode = modelStateResult.StatusCode.ToInt32()
+                    StatusCode = (int)modelStateResult.StatusCode
                 },
                 _ => new OkResult()
             };
@@ -48,7 +48,7 @@ namespace Zek.Web
                 Model.StatusCode.NotFound => new NotFoundObjectResult(modelStateResult.Errors),
                 Model.StatusCode.InternalServerError => new ObjectResult(modelStateResult.Errors)
                 {
-                    StatusCode = modelStateResult.StatusCode.ToInt32()
+                    StatusCode = (int)modelStateResult.StatusCode
                 },
                 _ => new OkObjectResult(modelStateResult.Value)
             };

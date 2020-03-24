@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using Novell.Directory.Ldap;
 using Zek.Extensions;
+using Zek.Model;
 using Zek.Model.Config;
 using Zek.Model.DTO.Email;
 using Zek.Services;
@@ -23,28 +24,74 @@ namespace Zek.Test
         {
             //GetConnection();
 
-            int? z = null;
 
-            var x = (ISO4217.ISO4217?)z;
+            CRUD? c = null;
 
-            var s = x.ToString();
+           Console.WriteLine(c.ToInt32());
 
-            Console.WriteLine(s);
 
-            var roles = new[] { "Admin", "Accountant", "Accountant1", "Accountant2" };
+            Console.ReadKey();
 
-            var adminRoles = new[] { "Admin2222222222222222222", "Accountant222" };
-            //var canEdit = roles.Any(x => adminRoles.Contains(x, StringComparer.OrdinalIgnoreCase));
+            return;
+
+
+
+
 
             var sw = new Stopwatch();
-            sw.Start();
-            for (int i = 0; i < 1000000; i++)
+            var count = 100000000;
+            for (var i = 0; i < count; i++)
             {
-                var canEdit = roles.Any(x => adminRoles.Contains(x, StringComparer.OrdinalIgnoreCase));
+                var t1 = (int)CRUD.Create;
+            }
+            for (var i = 0; i < count; i++)
+            {
+                var t2 = CRUD.Create.ToInt32();
+            }
+
+
+            sw.Start();
+            for (var i = 0; i < count; i++)
+            {
+                var t1 = (int)CRUD.Create;
             }
             sw.Stop();
-
             Console.WriteLine(sw.ElapsedMilliseconds);
+            sw.Reset();
+
+
+            sw.Start();
+            for (var i = 0; i < count; i++)
+            {
+                var t2 = CRUD.Create.ToInt32();
+            }
+            sw.Stop();
+            Console.WriteLine(sw.ElapsedMilliseconds);
+
+            return;
+
+
+
+            //var x = (ISO4217.ISO4217?)z;
+
+            //var s = x.ToString();
+
+            //Console.WriteLine(s);
+
+            //var roles = new[] { "Admin", "Accountant", "Accountant1", "Accountant2" };
+
+            //var adminRoles = new[] { "Admin2222222222222222222", "Accountant222" };
+            ////var canEdit = roles.Any(x => adminRoles.Contains(x, StringComparer.OrdinalIgnoreCase));
+
+            //sw = new Stopwatch();
+            //sw.Start();
+            //for (int i = 0; i < 1000000; i++)
+            //{
+            //    var canEdit = roles.Any(x => adminRoles.Contains(x, StringComparer.OrdinalIgnoreCase));
+            //}
+            //sw.Stop();
+
+            //Console.WriteLine(sw.ElapsedMilliseconds);
 
             //var sender = new EmailSender(new EmailSenderOptions
             //{
