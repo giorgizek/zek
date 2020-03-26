@@ -2293,6 +2293,11 @@
             Gets or sets the number of failed login attempts for the current user.
             </summary>
         </member>
+        <member name="P:Zek.Model.Identity.User`1.IsActive">
+            <summary>
+            User active status
+            </summary>
+        </member>
         <member name="M:Zek.Model.Identity.User`1.ToString">
             <summary>
             Returns the username for this user.

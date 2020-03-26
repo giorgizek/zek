@@ -109,6 +109,11 @@ namespace Zek.Model.Identity
         public virtual int AccessFailedCount { get; set; }
 
         /// <summary>
+        /// User active status
+        /// </summary>
+        public bool IsActive { get; set; }
+
+        /// <summary>
         /// Returns the username for this user.
         /// </summary>
         public override string ToString() => UserName;
@@ -164,6 +169,8 @@ namespace Zek.Model.Identity
                 HasIndex(u => u.NormalizedUserName).IsUnique();
             if (uniqueEmail)
                 HasIndex(u => u.NormalizedEmail).IsUnique();
+            
+            HasIndex(x => x.IsActive);
             HasIndex(t => t.CreatorId);
             HasIndex(t => t.ModifierId);
         }
