@@ -25,6 +25,7 @@ namespace Zek.Model.Person
         public int? TitleId { get; set; }
 
         public string FirstName { get; set; }
+        public string MiddleName { get; set; }
         public string LastName { get; set; }
         public string FullName { get; set; }
         public string FirstNameEn { get; set; }
@@ -80,6 +81,7 @@ namespace Zek.Model.Person
             ToTable("Persons", "Person");
 
             Property(t => t.FirstName).HasMaxLength(100);
+            Property(x => x.MiddleName).HasMaxLength(100);
             Property(t => t.LastName).HasMaxLength(150);
             Property(t => t.FullName).HasMaxLength(255);
             Property(t => t.FirstNameEn).HasMaxLength(100);
@@ -87,13 +89,12 @@ namespace Zek.Model.Person
             Property(t => t.FullNameEn).HasMaxLength(255);
             Property(t => t.PersonalNumber).IsRequired().HasMaxLength(50);
             Property(t => t.Passport).HasMaxLength(50);
-            HasIndex(t => t.Passport);
-
             Property(t => t.BirthDate).HasColumnTypeDate();
 
             HasIndex(t => t.FullName);
             HasIndex(t => t.FullNameEn);
             HasIndex(t => t.PersonalNumber);
+            HasIndex(t => t.Passport);
         }
     }
 
