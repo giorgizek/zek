@@ -4,6 +4,7 @@ namespace Zek.Model.DTO
 {
     public class FileBaseDTO : EditBaseDTO
     {
+        public string Name { get; set; }
         public string FileName { get; set; }
 
         public long FileSize { get; set; }
@@ -22,6 +23,7 @@ namespace Zek.Model.DTO
     {
         public byte[] Data { get; set; }
     }
+
     public class FileStringDTO : FileBaseDTO
     {
         public string Data { get; set; }
