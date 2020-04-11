@@ -11,7 +11,7 @@ namespace Zek.Model.DTO.Identity
         public string[] Roles { get; set; }
         public string Token { get; set; }
         public DateTime Expired { get; set; }
-        public KeyPair<string, int>[] Permissions { get; set; }
+        public KeyPair<int, int>[] Permissions { get; set; }
         //public DateTime CurrentDateTime { get; set; }
     }
 }
