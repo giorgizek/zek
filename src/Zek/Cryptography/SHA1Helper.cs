@@ -11,10 +11,8 @@ namespace Zek.Cryptography
 
         public static string SHA1Hex(byte[] bytes)
         {
-            using (var sha1 = SHA1.Create())
-            {
-                return ByteArrayHelper.ByteArrayToHex(sha1.ComputeHash(bytes));
-            }
+            using var sha1 = SHA1.Create();
+            return ByteArrayHelper.ByteArrayToHex(sha1.ComputeHash(bytes));
         }
         public static bool VerifySHA1Hex(string cypherText, string plainText)
         {
@@ -28,10 +26,8 @@ namespace Zek.Cryptography
 
         public static string SHA1Base64(byte[] bytes)
         {
-            using (var sha1 = SHA1.Create())
-            {
-                return Convert.ToBase64String(sha1.ComputeHash(bytes));
-            }
+            using var sha1 = SHA1.Create();
+            return Convert.ToBase64String(sha1.ComputeHash(bytes));
         }
         public static bool VerifySHA1Base64(string cypherText, string plainText)
         {

@@ -21,10 +21,8 @@ namespace Zek.Utils
         public static string ByteArrayToHex(byte[] bytes)
         {
             var builder = new StringBuilder(bytes.Length * 2);
-
             foreach (var b in bytes)
             {
-
                 //builder.AppendFormat("{0:X2}", b);
                 builder.AppendFormat(b.ToString("X2"));//this is faster
             }

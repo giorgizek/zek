@@ -33,7 +33,6 @@ namespace Zek.Utils
 
     public static class IdLinkHelper
     {
-
         public static string Encode(IEnumerable<string> values, string key = null, IdLinkMode mode = IdLinkMode.SHA1)
         {
             if (values == null)
