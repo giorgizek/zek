@@ -13,7 +13,7 @@
         /// <summary>
         /// Set true if entity is read only
         /// </summary>
-        public bool ReadOnly { get; set; }
+        public bool? ReadOnly { get; set; }
 
         /// <summary>
         /// Set is deleted if entity is deleted
