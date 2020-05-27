@@ -95,6 +95,7 @@ namespace Zek.Services
                 {
                     client.UseDefaultCredentials = false;
                     client.Credentials = new NetworkCredential(Options.UserName, Options.Password);
+                    //client.DeliveryMethod = SmtpDeliveryMethod.Network;
                 }
 
                 if (model.From == null)

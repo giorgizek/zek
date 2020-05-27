@@ -22,12 +22,44 @@ namespace Zek.Test
 
         static void Main(string[] args)
         {
-            //GetConnection();
+
+            var mailSender = new EmailSender(new EmailSenderOptions
+            {
+                Host = "mail.mercatus.mba",
+                Port = 587,
+                EnableSsl = false,
+                UserName = "no-reply@mercatus.mba",
+                Password = "Atr10nsyst3ms",
+                FromEmail = "no-reply@mercatus.mba",
+            });
 
 
-            CRUD? c = null;
 
-           Console.WriteLine(c.ToInt32());
+            mailSender = new EmailSender(new EmailSenderOptions
+            {
+                Host = "uashared10.twinservers.net",
+                Port = 465,
+                EnableSsl = true,
+                UserName = "no-reply@mercatus.mba",
+                Password = "Atr10nsyst3ms",
+                FromEmail = "no-reply@mercatus.mba",
+            });
+
+            
+            //mailSender = new EmailSender(new EmailSenderOptions
+            //{
+            //    Host = "smtp.gmail.com",
+            //    Port = 587,
+            //    EnableSsl = true,
+            //    UserName = "atrion.app@gmail.com",
+            //    Password = "Atri0n.@pp123",
+            //    FromEmail = "atrion.app@gmail.com",
+            //});
+
+            mailSender.SendEmailAsync("giorgizek@gmail.com", "hello", "test body").RunSync();
+
+
+
 
 
             Console.ReadKey();

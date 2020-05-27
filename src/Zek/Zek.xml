@@ -1489,11 +1489,6 @@
             Female
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.ActionDTO`1.Action">
-            <summary>
-            Action name
-            </summary>
-        </member>
         <member name="P:Zek.Model.DTO.AddressDTO.CountryId">
             <summary>
             Country ID (<see cref="!:https://en.wikipedia.org/wiki/ISO_3166-1">ISO 3166</see>)
@@ -2079,26 +2074,6 @@
         <member name="P:Zek.Model.DTO.FilterBaseDTO.MaxPageSize">
             <summary>
             Max page size
-            </summary>
-        </member>
-        <member name="P:Zek.Model.DTO.RowActionDTO`1.DetailsAction">
-            <summary>
-            Details action name
-            </summary>
-        </member>
-        <member name="P:Zek.Model.DTO.RowActionDTO`1.EditAction">
-            <summary>
-            Edit action name
-            </summary>
-        </member>
-        <member name="P:Zek.Model.DTO.RowActionDTO`1.ApproveAction">
-            <summary>
-            Edit action name
-            </summary>
-        </member>
-        <member name="P:Zek.Model.DTO.RowActionDTO`1.DeleteAction">
-            <summary>
-            Delete action name
             </summary>
         </member>
         <member name="T:Zek.Model.Identity.IdentityDbContext`4">
