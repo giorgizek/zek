@@ -6,6 +6,7 @@
         /// Contact ID
         /// </summary>
         public int? Id { get; set; }
+
         /// <summary>
         /// Phone 1
         /// </summary>
