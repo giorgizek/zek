@@ -15,7 +15,8 @@ namespace Zek.Grid.Columns
         public bool AllowEdit { get; set; }
     }
 
-    public class GridColumnBaseMap : EntityTypeMap<GridColumn>
+    public class GridColumnBaseMap<TEntity> : EntityTypeMap<TEntity>
+        where TEntity : GridColumn
     {
         public GridColumnBaseMap(ModelBuilder builder) : base(builder)
         {
