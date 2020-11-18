@@ -1,99 +1,42 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <SignAssembly>false</SignAssembly>
-    <AssemblyOriginatorKeyFile>StrongKey.snk</AssemblyOriginatorKeyFile>
-    <DelaySign>false</DelaySign>
+    <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <NoWarn>1701;1702;1591</NoWarn>
     <DocumentationFile>.\Zek.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>.\Zek.xml</DocumentationFile>
-    <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Localization\**" />
-    <Compile Remove="Model\Accounting\**" />
-    <Compile Remove="Model\Chat\**" />
-    <Compile Remove="Model\Comment\**" />
-    <Compile Remove="Model\Document\**" />
-    <Compile Remove="Model\Faq\**" />
-    <Compile Remove="Model\Licensing\**" />
-    <Compile Remove="Model\Post\**" />
-    <Compile Remove="Model\Production\**" />
-    <Compile Remove="Model\Tag\**" />
-    <Compile Remove="PagedList\**" />
     <Compile Remove="_Excluded\**" />
-    <EmbeddedResource Remove="Localization\**" />
-    <EmbeddedResource Remove="Model\Accounting\**" />
-    <EmbeddedResource Remove="Model\Chat\**" />
-    <EmbeddedResource Remove="Model\Comment\**" />
-    <EmbeddedResource Remove="Model\Document\**" />
-    <EmbeddedResource Remove="Model\Faq\**" />
-    <EmbeddedResource Remove="Model\Licensing\**" />
-    <EmbeddedResource Remove="Model\Post\**" />
-    <EmbeddedResource Remove="Model\Production\**" />
-    <EmbeddedResource Remove="Model\Tag\**" />
-    <EmbeddedResource Remove="PagedList\**" />
     <EmbeddedResource Remove="_Excluded\**" />
-    <None Remove="Localization\**" />
-    <None Remove="Model\Accounting\**" />
-    <None Remove="Model\Chat\**" />
-    <None Remove="Model\Comment\**" />
-    <None Remove="Model\Document\**" />
-    <None Remove="Model\Faq\**" />
-    <None Remove="Model\Licensing\**" />
-    <None Remove="Model\Post\**" />
-    <None Remove="Model\Production\**" />
-    <None Remove="Model\Tag\**" />
-    <None Remove="PagedList\**" />
     <None Remove="_Excluded\**" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Remove="Data\Repository\LicenseRepository.cs" />
-    <Compile Remove="Financial\PaymentCycle.cs" />
-    <Compile Remove="Financial\PaymentHelper.cs" />
-    <Compile Remove="Model\Base\DictionaryModel.cs" />
-    <Compile Remove="Model\Contact\Map.cs" />
-    <Compile Remove="Model\Dictionary\AccountType.cs" />
-    <Compile Remove="Model\Dictionary\Category.cs" />
-    <Compile Remove="Model\Dictionary\ChatType.cs" />
-    <Compile Remove="Model\Dictionary\City.cs" />
-    <Compile Remove="Model\Dictionary\Culture.cs" />
-    <Compile Remove="Model\Dictionary\Currency.cs" />
-    <Compile Remove="Model\Dictionary\Menu.cs" />
-    <Compile Remove="Model\Dictionary\OrderStatus.cs" />
-    <Compile Remove="Model\Dictionary\PanelBar.cs" />
-    <Compile Remove="Model\Dictionary\PersonTitle.cs" />
-    <Compile Remove="Model\Dictionary\PmType.cs" />
-    <Compile Remove="Model\Dictionary\TransactionStatus.cs" />
-    <Compile Remove="Model\Dictionary\TransactionType.cs" />
-    <Compile Remove="Web\ViewContextExtensions.cs" />
-  </ItemGroup>
 
-  <ItemGroup>
-    <Compile Include="Model\Accounting\Account.cs" />
-    <Compile Include="PagedList\BasePagedList.cs" />
-    <Compile Include="PagedList\PagedListExtensions.cs" />
-    <Compile Include="PagedList\PagerListDTO.cs" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.8" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.8" />
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.7.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="5.0.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.8.0" />
   </ItemGroup>
+
+
+
+  <ItemGroup>
+    <Folder Include="Model\Accounting\" />
+  </ItemGroup>
+
+
 
   <ItemGroup>
     <None Update="Zek.xml">

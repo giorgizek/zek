@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Zek.Localization;
+//using Zek.Localization;
 
 namespace Zek.Model.Accounting
 {
@@ -9,12 +9,12 @@ namespace Zek.Model.Accounting
         /// <summary>
         /// successfully completed transaction
         /// </summary>
-        [Display(Name = nameof(TransactionStatusResources.Ok), ResourceType = typeof(TransactionStatusResources))]
+        //[Display(Name = nameof(TransactionStatusResources.Ok), ResourceType = typeof(TransactionStatusResources))]
         Ok = 1,
         /// <summary>
         /// transaction has failed
         /// </summary>
-        [Display(Name = nameof(TransactionStatusResources.Failed), ResourceType = typeof(TransactionStatusResources))]
+        //[Display(Name = nameof(TransactionStatusResources.Failed), ResourceType = typeof(TransactionStatusResources))]
         Failed = 2,
         /*
         /// <summary>

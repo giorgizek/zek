@@ -2146,12 +2146,12 @@
         </member>
         <member name="M:Zek.Model.Identity.Role`1.#ctor">
             <summary>
-            Initializes a new instance of <see cref="T:Microsoft.AspNetCore.Identity.IdentityRole`1"/>.
+            Initializes a new instance of <see cref="!:IdentityRole&lt;TKey&gt;"/>.
             </summary>
         </member>
         <member name="M:Zek.Model.Identity.Role`1.#ctor(System.String)">
             <summary>
-            Initializes a new instance of <see cref="T:Microsoft.AspNetCore.Identity.IdentityRole`1"/>.
+            Initializes a new instance of <see cref="!:IdentityRole&lt;TKey&gt;"/>.
             </summary>
             <param name="roleName">The role name.</param>
         </member>
@@ -2298,6 +2298,162 @@
             <summary>
             ყველა რექვესთს უნდა ჰქონდეს უნიკალური იდენთიფიკატორი (მაგ: Guid.NewGuid() ან int 1,2,3...). გამოიყენება დადარებისთვის მერჩანტმა რა გამოგვიგზავნა და რა დაუბრუნეთ.
             </summary>
+        </member>
+        <member name="P:Zek.PagedList.BasePagedList`1.TotalItemCount">
+            <summary>
+            	Total number of objects contained within the superset.
+            </summary>
+            <value>
+            	Total number of objects contained within the superset.
+            </value>
+        </member>
+        <member name="P:Zek.PagedList.BasePagedList`1.PageNumber">
+            <summary>
+            	One-based index of this subset within the superset.
+            </summary>
+            <value>
+            	One-based index of this subset within the superset.
+            </value>
+        </member>
+        <member name="P:Zek.PagedList.BasePagedList`1.PageSize">
+            <summary>
+            	Maximum size any individual subset.
+            </summary>
+            <value>
+            	Maximum size any individual subset.
+            </value>
+        </member>
+        <member name="M:Zek.PagedList.BasePagedList`1.GetEnumerator">
+            <summary>
+            	Returns an enumerator that iterates through the BasePagedList&lt;T&gt;.
+            </summary>
+            <returns>A BasePagedList&lt;T&gt;.Enumerator for the BasePagedList&lt;T&gt;.</returns>
+        </member>
+        <member name="M:Zek.PagedList.BasePagedList`1.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            	Returns an enumerator that iterates through the BasePagedList&lt;T&gt;.
+            </summary>
+            <returns>A BasePagedList&lt;T&gt;.Enumerator for the BasePagedList&lt;T&gt;.</returns>
+        </member>
+        <member name="P:Zek.PagedList.BasePagedList`1.Item(System.Int32)">
+            <summary>
+            	Gets the element at the specified index.
+            </summary>
+            <param name = "index">The zero-based index of the element to get.</param>
+        </member>
+        <member name="P:Zek.PagedList.BasePagedList`1.Count">
+            <summary>
+            	Gets the number of elements contained on this page.
+            </summary>
+        </member>
+        <member name="M:Zek.PagedList.PagedList`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of a type deriving from <see cref = "T:Zek.PagedList.BasePagedList`1" /> and sets properties needed to calculate position and size data on the subset and superset.
+            </summary>
+            <param name="subset">The single subset this collection should represent.</param>
+            <param name = "pageNumber">The one-based index of the subset of objects contained by this instance.</param>
+            <param name = "pageSize">The maximum size of any individual subset.</param>
+            <param name = "totalItemCount">The size of the superset.</param>
+        </member>
+        <member name="P:Zek.PagedList.PagedList`1.PageCount">
+            <summary>
+            	Total number of subsets within the superset.
+            </summary>
+            <value>
+            	Total number of subsets within the superset.
+            </value>
+        </member>
+        <member name="P:Zek.PagedList.PagedList`1.HasPreviousPage">
+            <summary>
+            	Returns true if this is NOT the first subset within the superset.
+            </summary>
+            <value>
+            	Returns true if this is NOT the first subset within the superset.
+            </value>
+        </member>
+        <member name="P:Zek.PagedList.PagedList`1.HasNextPage">
+            <summary>
+            	Returns true if this is NOT the last subset within the superset.
+            </summary>
+            <value>
+            	Returns true if this is NOT the last subset within the superset.
+            </value>
+        </member>
+        <member name="P:Zek.PagedList.PagedList`1.IsFirstPage">
+            <summary>
+            	Returns true if this is the first subset within the superset.
+            </summary>
+            <value>
+            	Returns true if this is the first subset within the superset.
+            </value>
+        </member>
+        <member name="P:Zek.PagedList.PagedList`1.IsLastPage">
+            <summary>
+            	Returns true if this is the last subset within the superset.
+            </summary>
+            <value>
+            	Returns true if this is the last subset within the superset.
+            </value>
+        </member>
+        <member name="P:Zek.PagedList.PagedList`1.FirstItemOnPage">
+            <summary>
+            	One-based index of the first item in the paged subset.
+            </summary>
+            <value>
+            	One-based index of the first item in the paged subset.
+            </value>
+        </member>
+        <member name="P:Zek.PagedList.PagedList`1.LastItemOnPage">
+            <summary>
+            	One-based index of the last item in the paged subset.
+            </summary>
+            <value>
+            	One-based index of the last item in the paged subset.
+            </value>
+        </member>
+        <member name="M:Zek.PagedList.PagedListExtensions.ToPagedList``1(System.Linq.IQueryable{``0},System.Int32,System.Int32)">
+            <summary>
+            Async creates a subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.
+            </summary>
+            <typeparam name="T">The type of object the collection should contain.</typeparam>        
+            <param name="superset">The collection of objects to be divided into subsets. If the collection implements <see cref="T:System.Linq.IQueryable`1"/>, it will be treated as such.</param>
+            <param name="pageNumber">The one-based index of the subset of objects to be contained by this instance.</param>
+            <param name="pageSize">The maximum size of any individual subset.</param>
+            <returns>A subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.</returns>
+            <seealso cref="T:Zek.PagedList.PagedList`1"/>
+        </member>
+        <member name="M:Zek.PagedList.PagedListExtensions.ToPagedListAsync``1(System.Linq.IQueryable{``0},System.Int32,System.Int32)">
+            <summary>
+            Async creates a subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.
+            </summary>
+            <typeparam name="T">The type of object the collection should contain.</typeparam>        
+            <param name="superset">The collection of objects to be divided into subsets. If the collection implements <see cref="T:System.Linq.IQueryable`1"/>, it will be treated as such.</param>
+            <param name="pageNumber">The one-based index of the subset of objects to be contained by this instance.</param>
+            <param name="pageSize">The maximum size of any individual subset.</param>
+            <returns>A subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.</returns>
+            <seealso cref="T:Zek.PagedList.PagedList`1"/>
+        </member>
+        <member name="M:Zek.PagedList.PagedListExtensions.ToPagerListDTO``1(System.Linq.IQueryable{``0},System.Int32,System.Int32)">
+            <summary>
+            Async creates a subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.
+            </summary>
+            <typeparam name="T">The type of object the collection should contain.</typeparam>        
+            <param name="superset">The collection of objects to be divided into subsets. If the collection implements <see cref="T:System.Linq.IQueryable`1"/>, it will be treated as such.</param>
+            <param name="pageNumber">The one-based index of the subset of objects to be contained by this instance.</param>
+            <param name="pageSize">The maximum size of any individual subset.</param>
+            <returns>A subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.</returns>
+            <seealso cref="T:Zek.PagedList.PagerListDTO`1"/>
+        </member>
+        <member name="M:Zek.PagedList.PagedListExtensions.ToPagerListDTOAsync``1(System.Linq.IQueryable{``0},System.Int32,System.Int32)">
+            <summary>
+            Async creates a subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.
+            </summary>
+            <typeparam name="T">The type of object the collection should contain.</typeparam>        
+            <param name="superset">The collection of objects to be divided into subsets. If the collection implements <see cref="T:System.Linq.IQueryable`1"/>, it will be treated as such.</param>
+            <param name="pageNumber">The one-based index of the subset of objects to be contained by this instance.</param>
+            <param name="pageSize">The maximum size of any individual subset.</param>
+            <returns>A subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.</returns>
+            <seealso cref="T:Zek.PagedList.PagerListDTO`1"/>
         </member>
         <member name="M:Zek.Services.EcommService.GetClientRedirectUrl(System.String)">
             <summary>
@@ -3022,38 +3178,6 @@
             <param name="nvc"></param>
             <returns></returns>
         </member>
-        <member name="M:Zek.Web.SelectListExtensions.ToSelectList``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,System.String},``1,System.Boolean)">
-            <summary>
-            Returns a collection of SelectListItem for each of the items in the collection passed in, with a specific list item selected and optionally an empty list item.
-            </summary>
-            <example>
-            <code>
-            people.ToSelectList(x => x.PersonId, x => x.Name, "2345");
-            // or
-            people.ToSelectList(x => x.PersonId, x => x.Name, "2345", false); if you don't want the empty list item
-            </code>
-            </example>
-            <param name="source"></param>
-            <param name="keySelector">The property to use as the value attribute of each list item.</param>    
-            <param name="textSelector">The property to use as the text attribute of each list item.</param>
-            <param name="currentKey">The String value of the list item that should be selected by default.</param>
-            <param name="includeEmptyListItem">Whether or not a default list item should be the first list item before those from the collection.</param>
-        </member>
-        <member name="M:Zek.Web.SelectListExtensions.ToSelectList``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,System.String},``1,Microsoft.AspNetCore.Mvc.Rendering.SelectListItem)">
-            <summary>
-            Returns a collection of SelectListItem for each of the items in the collection passed in, with a specific list item selected and a custom empty list item.
-            </summary>
-            <example>
-            <code>
-            people.ToSelectList(x => x.PersonId, x => x.Name, "2345", new SelectListItem() {Text = "-- Pick One --", Value = ""});
-            </code>
-            </example>
-            <param name="source"></param>
-            <param name="keySelector">The property to use as the value attribute of each list item.</param>    
-            <param name="textSelector">The property to use as the text attribute of each list item.</param>
-            <param name="currentKey">The String value of the list item that should be selected by default.</param>
-            <param name="emptyListItem">The list item to use as the first list item before those from the collection.</param>
-        </member>
         <member name="M:Zek.Web.UriExtensions.AddParameter(System.Uri,System.String,System.String)">
             <summary>
             Adds the specified parameter to the Query String.
@@ -3078,162 +3202,6 @@
             <param name="url"></param>
             <param name="parameters">Name and value collection of the parameters to add</param>
             <returns>Url with added parameter.</returns>
-        </member>
-        <member name="P:Zek.PagedList.BasePagedList`1.TotalItemCount">
-            <summary>
-            	Total number of objects contained within the superset.
-            </summary>
-            <value>
-            	Total number of objects contained within the superset.
-            </value>
-        </member>
-        <member name="P:Zek.PagedList.BasePagedList`1.PageNumber">
-            <summary>
-            	One-based index of this subset within the superset.
-            </summary>
-            <value>
-            	One-based index of this subset within the superset.
-            </value>
-        </member>
-        <member name="P:Zek.PagedList.BasePagedList`1.PageSize">
-            <summary>
-            	Maximum size any individual subset.
-            </summary>
-            <value>
-            	Maximum size any individual subset.
-            </value>
-        </member>
-        <member name="M:Zek.PagedList.BasePagedList`1.GetEnumerator">
-            <summary>
-            	Returns an enumerator that iterates through the BasePagedList&lt;T&gt;.
-            </summary>
-            <returns>A BasePagedList&lt;T&gt;.Enumerator for the BasePagedList&lt;T&gt;.</returns>
-        </member>
-        <member name="M:Zek.PagedList.BasePagedList`1.System#Collections#IEnumerable#GetEnumerator">
-            <summary>
-            	Returns an enumerator that iterates through the BasePagedList&lt;T&gt;.
-            </summary>
-            <returns>A BasePagedList&lt;T&gt;.Enumerator for the BasePagedList&lt;T&gt;.</returns>
-        </member>
-        <member name="P:Zek.PagedList.BasePagedList`1.Item(System.Int32)">
-            <summary>
-            	Gets the element at the specified index.
-            </summary>
-            <param name = "index">The zero-based index of the element to get.</param>
-        </member>
-        <member name="P:Zek.PagedList.BasePagedList`1.Count">
-            <summary>
-            	Gets the number of elements contained on this page.
-            </summary>
-        </member>
-        <member name="M:Zek.PagedList.PagedList`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Initializes a new instance of a type deriving from <see cref = "T:Zek.PagedList.BasePagedList`1" /> and sets properties needed to calculate position and size data on the subset and superset.
-            </summary>
-            <param name="subset">The single subset this collection should represent.</param>
-            <param name = "pageNumber">The one-based index of the subset of objects contained by this instance.</param>
-            <param name = "pageSize">The maximum size of any individual subset.</param>
-            <param name = "totalItemCount">The size of the superset.</param>
-        </member>
-        <member name="P:Zek.PagedList.PagedList`1.PageCount">
-            <summary>
-            	Total number of subsets within the superset.
-            </summary>
-            <value>
-            	Total number of subsets within the superset.
-            </value>
-        </member>
-        <member name="P:Zek.PagedList.PagedList`1.HasPreviousPage">
-            <summary>
-            	Returns true if this is NOT the first subset within the superset.
-            </summary>
-            <value>
-            	Returns true if this is NOT the first subset within the superset.
-            </value>
-        </member>
-        <member name="P:Zek.PagedList.PagedList`1.HasNextPage">
-            <summary>
-            	Returns true if this is NOT the last subset within the superset.
-            </summary>
-            <value>
-            	Returns true if this is NOT the last subset within the superset.
-            </value>
-        </member>
-        <member name="P:Zek.PagedList.PagedList`1.IsFirstPage">
-            <summary>
-            	Returns true if this is the first subset within the superset.
-            </summary>
-            <value>
-            	Returns true if this is the first subset within the superset.
-            </value>
-        </member>
-        <member name="P:Zek.PagedList.PagedList`1.IsLastPage">
-            <summary>
-            	Returns true if this is the last subset within the superset.
-            </summary>
-            <value>
-            	Returns true if this is the last subset within the superset.
-            </value>
-        </member>
-        <member name="P:Zek.PagedList.PagedList`1.FirstItemOnPage">
-            <summary>
-            	One-based index of the first item in the paged subset.
-            </summary>
-            <value>
-            	One-based index of the first item in the paged subset.
-            </value>
-        </member>
-        <member name="P:Zek.PagedList.PagedList`1.LastItemOnPage">
-            <summary>
-            	One-based index of the last item in the paged subset.
-            </summary>
-            <value>
-            	One-based index of the last item in the paged subset.
-            </value>
-        </member>
-        <member name="M:Zek.PagedList.PagedListExtensions.ToPagedList``1(System.Linq.IQueryable{``0},System.Int32,System.Int32)">
-            <summary>
-            Async creates a subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.
-            </summary>
-            <typeparam name="T">The type of object the collection should contain.</typeparam>        
-            <param name="superset">The collection of objects to be divided into subsets. If the collection implements <see cref="T:System.Linq.IQueryable`1"/>, it will be treated as such.</param>
-            <param name="pageNumber">The one-based index of the subset of objects to be contained by this instance.</param>
-            <param name="pageSize">The maximum size of any individual subset.</param>
-            <returns>A subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.</returns>
-            <seealso cref="T:Zek.PagedList.PagedList`1"/>
-        </member>
-        <member name="M:Zek.PagedList.PagedListExtensions.ToPagedListAsync``1(System.Linq.IQueryable{``0},System.Int32,System.Int32)">
-            <summary>
-            Async creates a subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.
-            </summary>
-            <typeparam name="T">The type of object the collection should contain.</typeparam>        
-            <param name="superset">The collection of objects to be divided into subsets. If the collection implements <see cref="T:System.Linq.IQueryable`1"/>, it will be treated as such.</param>
-            <param name="pageNumber">The one-based index of the subset of objects to be contained by this instance.</param>
-            <param name="pageSize">The maximum size of any individual subset.</param>
-            <returns>A subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.</returns>
-            <seealso cref="T:Zek.PagedList.PagedList`1"/>
-        </member>
-        <member name="M:Zek.PagedList.PagedListExtensions.ToPagerListDTO``1(System.Linq.IQueryable{``0},System.Int32,System.Int32)">
-            <summary>
-            Async creates a subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.
-            </summary>
-            <typeparam name="T">The type of object the collection should contain.</typeparam>        
-            <param name="superset">The collection of objects to be divided into subsets. If the collection implements <see cref="T:System.Linq.IQueryable`1"/>, it will be treated as such.</param>
-            <param name="pageNumber">The one-based index of the subset of objects to be contained by this instance.</param>
-            <param name="pageSize">The maximum size of any individual subset.</param>
-            <returns>A subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.</returns>
-            <seealso cref="T:Zek.PagedList.PagerListDTO`1"/>
-        </member>
-        <member name="M:Zek.PagedList.PagedListExtensions.ToPagerListDTOAsync``1(System.Linq.IQueryable{``0},System.Int32,System.Int32)">
-            <summary>
-            Async creates a subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.
-            </summary>
-            <typeparam name="T">The type of object the collection should contain.</typeparam>        
-            <param name="superset">The collection of objects to be divided into subsets. If the collection implements <see cref="T:System.Linq.IQueryable`1"/>, it will be treated as such.</param>
-            <param name="pageNumber">The one-based index of the subset of objects to be contained by this instance.</param>
-            <param name="pageSize">The maximum size of any individual subset.</param>
-            <returns>A subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.</returns>
-            <seealso cref="T:Zek.PagedList.PagerListDTO`1"/>
         </member>
         <member name="T:JetBrains.Annotations.CanBeNullAttribute">
             <summary>

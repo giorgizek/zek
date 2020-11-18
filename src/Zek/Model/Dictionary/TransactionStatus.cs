@@ -11,7 +11,7 @@ namespace Zek.Model.Dictionary
     {
         public TransactionStatusMap(ModelBuilder builder) : base(builder)
         {
-            ToTable($"{nameof(TransactionStatus)es}", "Dictionary");
+            ToTable($"{nameof(TransactionStatus)}es", "Dictionary");
         }
     }
 
