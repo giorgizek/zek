@@ -2076,6 +2076,23 @@
             Max page size
             </summary>
         </member>
+        <member name="T:Zek.Model.Form.FieldBase">
+            <summary>
+            Field base
+            </summary>
+        </member>
+        <member name="T:Zek.Model.Form.FieldBaseMap`1">
+            <summary>
+            Field base map
+            </summary>
+            <typeparam name="TField"></typeparam>
+        </member>
+        <member name="M:Zek.Model.Form.FieldBaseMap`1.#ctor(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="builder"></param>
+        </member>
         <member name="T:Zek.Model.Identity.IdentityDbContext`4">
             <summary>
             Base class for the Entity Framework database context used for identity.

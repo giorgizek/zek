@@ -1,14 +1,22 @@
 ﻿namespace Zek.Data
 {
-    public enum FormatType
+    public enum DataType
     {
         None = 0,
         Numeric = 1,
         DateTime = 2,
 
-        Custom = 3
+        //Custom = 3
     }
 
+    public enum ConteoType
+    {
+        None = 0,
+        Numeric = 1,
+        DateTime = 2,
+
+        //Custom = 3
+    }
 
    
 }
