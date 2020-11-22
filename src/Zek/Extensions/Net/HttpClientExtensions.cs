@@ -45,9 +45,6 @@ namespace Zek.Extensions.Net
         /// Sends a POST request as an asynchronous operation to the specified Uri with the given <paramref name="value"/> serialized
         /// as JSON.
         /// </summary>
-        /// <remarks>
-        /// This method uses the default instance of <see cref="JsonMediaTypeFormatter"/>.
-        /// </remarks>
         /// <typeparam name="T">The type of <paramref name="value"/>.</typeparam>
         /// <param name="client">The client used to make the request.</param>
         /// <param name="requestUri">The Uri the request is sent to.</param>
