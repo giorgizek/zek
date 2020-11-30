@@ -2,7 +2,7 @@
 
 namespace Zek.Model.DTO.Form
 {
-    public class FieldDTO : EditBaseDTO
+    public class FieldBaseDTO : EditBaseDTO
     {
         public string Label { get; set; }
         public string FormatString { get; set; }
@@ -16,5 +16,13 @@ namespace Zek.Model.DTO.Form
         public decimal? Max { get; set; }
         public int? MaxLength { get; set; }
         public bool? AllowEdit { get; set; }
+    }
+
+    public class FieldDTO<TValue> : FieldBaseDTO
+    {
+        public TValue Value { get; set; }
+    }
+    public class FieldDTO : FieldDTO<string>
+    {
     }
 }
