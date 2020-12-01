@@ -24,26 +24,27 @@ namespace Zek.Utils
         /// <param name="includeMixedCase">(e.g. AbcDEf)</param>
         /// <param name="includeNumbers">(e.g. a9b8c7d)</param>
         /// <param name="includeSymbols">(e.g. a!b*c_d)</param>
-        /// <param name="excludeSimilarCharacters">(e.g. i, l, o, 1, 0, I)</param>
-        /// <param name="excludeAmbiguousCharacters">Exclude: { } [ ] ( ) / \ ' " ` ~ , ; : . &lt; &gt; </param>
+        /// <param name="excludeSimilarChars">(e.g. i, l, o, 1, 0, I)</param>
+        /// <param name="excludeAmbiguousChars">Exclude: { } [ ] ( ) / \ ' " ` ~ , ; : . &lt; &gt; </param>
         /// <returns>Random Password</returns>
-        public static string Generate(int minLength, int maxLength, bool includeLetters, bool includeMixedCase, bool includeNumbers, bool includeSymbols, bool excludeSimilarCharacters = true, bool excludeAmbiguousCharacters = true)
+        public static string Generate(int minLength, int maxLength, bool includeLetters, bool includeMixedCase, bool includeNumbers, bool includeSymbols, bool excludeSimilarChars = true, bool excludeAmbiguousChars = true)
         {
             var passwordLength = maxLength;
 
             if (minLength != maxLength)
                 passwordLength = RandomHelper.GetRandom().Next(minLength, maxLength);
-            return Generate(passwordLength, includeLetters, includeMixedCase, includeNumbers, includeSymbols, excludeSimilarCharacters);
+            return Generate(passwordLength, includeLetters, includeMixedCase, includeNumbers, includeSymbols, excludeSimilarChars);
         }
 
         public const string Uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        public const string UppercaseSimilarCharactersExcluded = "ABCDEFGHJKLMNPQRSTUVWXYZ";
+        public const string UppercaseSimilarCharsExcluded = "ABCDEFGHJKLMNPQRSTUVWXYZ";
         public const string Lowercase = "abcdefghijklmnopqrstuvwxyz";
-        public const string LowercaseSimilarCharactersExcluded = "abcdefghijklmnopqrstuvwxyz";
+        public const string LowercaseSimilarCharsExcluded = "abcdefghijkmnpqrstuvwxyz";
 
         public const string Numbers = "0123456789";
-        public const string NumbersSimilarCharactersExcluded = "23456789";
-        public const string SpecialChars = "*$-+?_=%{}/";
+        public const string NumbersSimilarCharsExcluded = "23456789";
+        public const string Special = "!@#$%^&*()_-+=[{]};:>|./?";//From Oracle Membership
+        public const string SpecialAmbiguousCharsExcluded  = "!@#$%^&*_-+=?";//From Oracle Membership
 
 
         /// <summary>
@@ -54,12 +55,12 @@ namespace Zek.Utils
         /// <param name="includeMixedCase">(e.g. AbcDEf)</param>
         /// <param name="includeNumbers">(e.g. a9b8c7d)</param>
         /// <param name="includeSymbols">(e.g. a!b*c_d)</param>
-        /// <param name="excludeSimilarCharacters">(e.g. i, l, o, 1, 0, I)</param>
-        /// <param name="excludeAmbiguousCharacters">Exclude: { } [ ] ( ) / \ ' " ` ~ , ; : . &lt; &gt; </param>
+        /// <param name="excludeSimilarChars"></param>
+        /// <param name="excludeAmbiguousChars"></param>
         /// <returns>Random Password</returns>
-        public static string Generate(int passwordLength, bool includeLetters, bool includeMixedCase, bool includeNumbers, bool includeSymbols, bool excludeSimilarCharacters = true, bool excludeAmbiguousCharacters = true)
+        public static string Generate(int passwordLength, bool includeLetters, bool includeMixedCase, bool includeNumbers, bool includeSymbols, bool excludeSimilarChars = true, bool excludeAmbiguousChars = true)
         {
-            return RandomHelper.GetRandomString(passwordLength, GetAllowedChars(includeLetters, includeMixedCase, includeNumbers, includeSymbols, excludeSimilarCharacters, excludeAmbiguousCharacters));
+            return RandomHelper.GetRandomString(passwordLength, GetAllowedChars(includeLetters, includeMixedCase, includeNumbers, includeSymbols, excludeSimilarChars, excludeAmbiguousChars));
         }
 
         /// <summary>
@@ -69,23 +70,17 @@ namespace Zek.Utils
         /// <param name="includeMixedCase"></param>
         /// <param name="includeNumbers"></param>
         /// <param name="includeSymbols"></param>
-        /// <param name="excludeSimilarCharacters"></param>
-        /// <param name="excludeAmbiguousCharacters">Exclude: { } [ ] ( ) / \ ' " ` ~ , ; : . &lt; &gt; </param>
+        /// <param name="excludeSimilarChars"></param>
+        /// <param name="excludeAmbiguousChars">Exclude: { } [ ] ( ) / \ ' " ` ~ , ; : . &lt; &gt; </param>
         /// <returns></returns>
-        public static string GetAllowedChars(bool includeLetters, bool includeMixedCase, bool includeNumbers, bool includeSymbols, bool excludeSimilarCharacters = true, bool excludeAmbiguousCharacters = true)
+        public static string GetAllowedChars(bool includeLetters, bool includeMixedCase, bool includeNumbers, bool includeSymbols, bool excludeSimilarChars = true, bool excludeAmbiguousChars = true)
         {
-            var allowedChars = includeLetters ? (excludeSimilarCharacters ? "abcdefghijkmnpqrstuvwxyz" : "abcdefghijklmnopqrstuvwxyz") : string.Empty;
-            allowedChars += includeMixedCase ? (excludeSimilarCharacters ? "ABCDEFGHJKLMNPQRSTUVWXYZ" : "ABCDEFGHIJKLMNOPQRSTUVWXYZ") : string.Empty;
-            allowedChars += includeNumbers ? (excludeSimilarCharacters ? NumbersSimilarCharactersExcluded : "0123456789") : string.Empty;
+            var allowedChars = includeLetters ? (excludeSimilarChars ? LowercaseSimilarCharsExcluded : Lowercase) : string.Empty;
+            allowedChars += includeMixedCase ? (excludeSimilarChars ? UppercaseSimilarCharsExcluded : Uppercase) : string.Empty;
+            allowedChars += includeNumbers ? (excludeSimilarChars ? NumbersSimilarCharsExcluded : Numbers) : string.Empty;
             if (includeSymbols)
             {
-                allowedChars += excludeSimilarCharacters
-                    ? (excludeAmbiguousCharacters
-                        ? SymbolsWithoutAmbiguousCharacters
-                        : SpecialChars)
-                    : (excludeAmbiguousCharacters
-                        ? @"!#$%&*+-=?@^_|"
-                        : SpecialChars);
+                allowedChars += excludeAmbiguousChars ? SpecialAmbiguousCharsExcluded : Special;
             }
 
             return allowedChars;
@@ -98,29 +93,30 @@ namespace Zek.Utils
         /// <param name="lowercaseLetters"></param>
         /// <param name="numbers"></param>
         /// <param name="symbols">Punctuations ( e.g. @#$% )</param>
-        /// <param name="excludeSimilarCharacters">Exclude: { } [ ] ( ) / \ ' " ` ~ , ; : . &lt; &gt; </param>
+        /// <param name="excludeSimilarChars">Exclude: I O ... </param>
+        /// <param name="excludeAmbiguousChars">Exclude: { } [ ] ( ) / \ ' " ` ~ , ; : . &lt; &gt; </param>
         /// <returns></returns>
-        public static string Generate(int uppercaseLetters, int lowercaseLetters, int numbers, int symbols, bool excludeSimilarCharacters = true)
+        public static string Generate(int uppercaseLetters, int lowercaseLetters, int numbers, int symbols, bool excludeSimilarChars = true, bool excludeAmbiguousChars = true)
         {
             var password = string.Empty;
             if (uppercaseLetters > 0)
             {
-                var allowedChars = excludeSimilarCharacters ? "ABCDEFGHJKLMNPQRSTUVWXYZ" : "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                var allowedChars = excludeSimilarChars ? UppercaseSimilarCharsExcluded : Uppercase;
                 password += RandomHelper.GetRandomString(uppercaseLetters, allowedChars);
             }
             if (lowercaseLetters > 0)
             {
-                var allowedChars = excludeSimilarCharacters ? "abcdefghijkmnpqrstuvwxyz" : "abcdefghijklmnopqrstuvwxyz";
+                var allowedChars = excludeSimilarChars ? LowercaseSimilarCharsExcluded : Lowercase;
                 password += RandomHelper.GetRandomString(lowercaseLetters, allowedChars);
             }
             if (numbers > 0)
             {
-                var allowedChars = excludeSimilarCharacters ? NumbersSimilarCharactersExcluded : Numbers;
+                var allowedChars = excludeSimilarChars ? NumbersSimilarCharsExcluded : Numbers;
                 password += RandomHelper.GetRandomString(numbers, allowedChars);
             }
             if (symbols > 0)
             {
-                var allowedChars = SpecialChars;
+                var allowedChars = excludeAmbiguousChars ? SpecialAmbiguousCharsExcluded : Special;
                 password += RandomHelper.GetRandomString(symbols, allowedChars);
             }
 
@@ -147,17 +143,17 @@ namespace Zek.Utils
             if (password.Length > 128)
                 return PasswordStatus.TooLong;
 
-            if (StringHelper.FindCount(password, "abcdefghijklmnopqrstuvwxyz") < minRequiredLowerChars)
+            if (StringHelper.FindCount(password, Lowercase) < minRequiredLowerChars)
                 return PasswordStatus.NeedMoreLowerChars;
 
-            if (StringHelper.FindCount(password, "ABCDEFGHIJKLMNOPQRSTUVWXYZ") < minRequiredUpperChars)
+            if (StringHelper.FindCount(password, Uppercase) < minRequiredUpperChars)
                 return PasswordStatus.NeedMoreUpperChars;
 
-            if (StringHelper.FindCount(password, "0123456789") < minRequiredDigits)
+            if (StringHelper.FindCount(password, Numbers) < minRequiredDigits)
                 return PasswordStatus.NeedMoreDigitChars;
-
-            if (StringHelper.FindCount(password, @"`-=\~!@#$%^&*()_+|[]{};':"",./<>?") < minRequiredSpecialChars)
-                return PasswordStatus.NeedMoreDigitChars;
+            
+            if (StringHelper.FindCount(password, Special) < minRequiredSpecialChars)
+                return PasswordStatus.NeedMoreSpecialChars;
 
             return PasswordStatus.Success;
         }
