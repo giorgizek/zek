@@ -18,7 +18,6 @@ namespace Zek.Utils
             DisposeUnmanagedResources();
 
             Disposed = true;
-
         }
 
         protected abstract void DisposeResources();

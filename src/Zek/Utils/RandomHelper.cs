@@ -23,22 +23,22 @@ namespace Zek.Utils
 
             // Convert 4 bytes into a 32-bit integer value.
             var seed = (randomBytes[0] & 0x7f) << 24 |
-                        randomBytes[1] << 16 |
-                        randomBytes[2] << 8 |
-                        randomBytes[3];
+                       randomBytes[1] << 16 |
+                       randomBytes[2] << 8 |
+                       randomBytes[3];
 
             // Now, this is real randomization.
             return new Random(seed);
         }
 
-        public static string GetRandomString(int passwordLength, string chars)
+        public static string GetRandomString(int length, string chars)
         {
-            var randomBytes = new byte[passwordLength];
+            var randomBytes = new byte[length];
             GetRandom().NextBytes(randomBytes);
-            var tempChars = new char[passwordLength];
+            var tempChars = new char[length];
             var allowedCharCount = chars.Length;
 
-            for (var i = 0; i < passwordLength; i++)
+            for (var i = 0; i < length; i++)
             {
                 tempChars[i] = chars[randomBytes[i] % allowedCharCount];
             }

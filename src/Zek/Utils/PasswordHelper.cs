@@ -36,6 +36,16 @@ namespace Zek.Utils
             return Generate(passwordLength, includeLetters, includeMixedCase, includeNumbers, includeSymbols, excludeSimilarCharacters);
         }
 
+        public const string Uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        public const string UppercaseSimilarCharactersExcluded = "ABCDEFGHJKLMNPQRSTUVWXYZ";
+        public const string Lowercase = "abcdefghijklmnopqrstuvwxyz";
+        public const string LowercaseSimilarCharactersExcluded = "abcdefghijklmnopqrstuvwxyz";
+
+        public const string Numbers = "0123456789";
+        public const string NumbersSimilarCharactersExcluded = "23456789";
+        public const string SpecialChars = "*$-+?_=%{}/";
+
+
         /// <summary>
         /// Generate Random Password
         /// </summary>
@@ -66,12 +76,16 @@ namespace Zek.Utils
         {
             var allowedChars = includeLetters ? (excludeSimilarCharacters ? "abcdefghijkmnpqrstuvwxyz" : "abcdefghijklmnopqrstuvwxyz") : string.Empty;
             allowedChars += includeMixedCase ? (excludeSimilarCharacters ? "ABCDEFGHJKLMNPQRSTUVWXYZ" : "ABCDEFGHIJKLMNOPQRSTUVWXYZ") : string.Empty;
-            allowedChars += includeNumbers ? (excludeSimilarCharacters ? "23456789" : "0123456789") : string.Empty;
+            allowedChars += includeNumbers ? (excludeSimilarCharacters ? NumbersSimilarCharactersExcluded : "0123456789") : string.Empty;
             if (includeSymbols)
             {
                 allowedChars += excludeSimilarCharacters
-                    ? (excludeAmbiguousCharacters ? @"!#$%&*+-=?@^_" : @"!""#$%&'()*+,-./:;<=>?@[\]^_`{|}~")
-                    : (excludeAmbiguousCharacters ? @"!#$%&*+-=?@^_|" : @"!""#$%&'()*+,-./:;<=>?@[\]^_`{|}~");
+                    ? (excludeAmbiguousCharacters
+                        ? SymbolsWithoutAmbiguousCharacters
+                        : SpecialChars)
+                    : (excludeAmbiguousCharacters
+                        ? @"!#$%&*+-=?@^_|"
+                        : SpecialChars);
             }
 
             return allowedChars;
@@ -85,9 +99,8 @@ namespace Zek.Utils
         /// <param name="numbers"></param>
         /// <param name="symbols">Punctuations ( e.g. @#$% )</param>
         /// <param name="excludeSimilarCharacters">Exclude: { } [ ] ( ) / \ ' " ` ~ , ; : . &lt; &gt; </param>
-        /// <param name="excludeAmbiguousCharacters"></param>
         /// <returns></returns>
-        public static string Generate(int uppercaseLetters, int lowercaseLetters, int numbers, int symbols, bool excludeSimilarCharacters = true, bool excludeAmbiguousCharacters = true)
+        public static string Generate(int uppercaseLetters, int lowercaseLetters, int numbers, int symbols, bool excludeSimilarCharacters = true)
         {
             var password = string.Empty;
             if (uppercaseLetters > 0)
@@ -102,14 +115,12 @@ namespace Zek.Utils
             }
             if (numbers > 0)
             {
-                var allowedChars = excludeSimilarCharacters ? "23456789" : "0123456789";
+                var allowedChars = excludeSimilarCharacters ? NumbersSimilarCharactersExcluded : Numbers;
                 password += RandomHelper.GetRandomString(numbers, allowedChars);
             }
             if (symbols > 0)
             {
-                var allowedChars = excludeSimilarCharacters
-                    ? (excludeAmbiguousCharacters ? @"!#$%&*+-=?@^_" : @"!""#$%&'()*+,-./:;<=>?@[\]^_`{|}~")
-                    : (excludeAmbiguousCharacters ? @"!#$%&*+-=?@^_|" : @"!""#$%&'()*+,-./:;<=>?@[\]^_`{|}~");
+                var allowedChars = SpecialChars;
                 password += RandomHelper.GetRandomString(symbols, allowedChars);
             }
 
@@ -129,7 +140,7 @@ namespace Zek.Utils
         /// <returns></returns>
         public static PasswordStatus GetPasswordStatus(string password, int minRequiredPasswordLength, int minRequiredLowerChars, int minRequiredUpperChars, int minRequiredDigits, int minRequiredSpecialChars)
         {
-            password = password ?? string.Empty;
+            password ??= string.Empty;
 
             if (password.Length < minRequiredPasswordLength)
                 return PasswordStatus.TooShort;
