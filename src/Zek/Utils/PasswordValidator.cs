@@ -3,8 +3,6 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Zek.Utils
 {
@@ -39,12 +37,12 @@ namespace Zek.Utils
             Options = optionsAccessor?.Value ?? new IdentityOptions();
         }
 
-        public virtual IdentityOptions Options { get; set; }
+        public IdentityOptions Options { get; set; }
 
         /// <summary>
         ///     Ensures that the string is of the required length and meets the configured requirements
         /// </summary>
-        /// <param name="item"></param>
+        /// <param name="password"></param>
         /// <returns></returns>
         public virtual List<PasswordValidatorStatus> Validate(string password)
         {
@@ -59,6 +57,7 @@ namespace Zek.Utils
             {
                 errors.Add(PasswordValidatorStatus.PasswordTooShort);
             }
+
             if (options.RequireNonAlphanumeric && password.All(IsLetterOrDigit))
             {
                 errors.Add(PasswordValidatorStatus.PasswordRequiresNonAlphanumeric);

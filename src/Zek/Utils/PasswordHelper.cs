@@ -125,7 +125,7 @@ namespace Zek.Utils
 
    
         /// <summary>
-        /// 
+        /// Get password status
         /// </summary>
         /// <param name="password"></param>
         /// <param name="minRequiredPasswordLength"></param>
@@ -136,9 +136,9 @@ namespace Zek.Utils
         /// <returns></returns>
         public static PasswordStatus GetPasswordStatus(string password, int minRequiredPasswordLength, int minRequiredLowerChars, int minRequiredUpperChars, int minRequiredDigits, int minRequiredSpecialChars)
         {
-            password ??= string.Empty;
+            //password ??= string.Empty;
 
-            if (password.Length < minRequiredPasswordLength)
+            if (string.IsNullOrEmpty(password) || password.Length < minRequiredPasswordLength)
                 return PasswordStatus.TooShort;
             if (password.Length > 128)
                 return PasswordStatus.TooLong;

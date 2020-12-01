@@ -16,6 +16,6 @@
         //[DataType(DataType.Password)]
         //[Display(Name = nameof(MembershipResources.ConfirmPassword), ResourceType = typeof(MembershipResources))]
         //[Compare(nameof(Password), ErrorMessageResourceName = nameof(MembershipResources.ConfirmPasswordErrorText), ErrorMessageResourceType = typeof(MembershipResources))]
-        //public string ConfirmPassword { get; set; }
+        public string ConfirmPassword { get; set; }
     }
 }

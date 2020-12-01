@@ -2953,8 +2953,8 @@
             <param name="includeMixedCase">(e.g. AbcDEf)</param>
             <param name="includeNumbers">(e.g. a9b8c7d)</param>
             <param name="includeSymbols">(e.g. a!b*c_d)</param>
-            <param name="excludeSimilarCharacters">(e.g. i, l, o, 1, 0, I)</param>
-            <param name="excludeAmbiguousCharacters">Exclude: { } [ ] ( ) / \ ' " ` ~ , ; : . &lt; &gt; </param>
+            <param name="excludeSimilarChars">(e.g. i, l, o, 1, 0, I)</param>
+            <param name="excludeAmbiguousChars">Exclude: { } [ ] ( ) / \ ' " ` ~ , ; : . &lt; &gt; </param>
             <returns>Random Password</returns>
         </member>
         <member name="M:Zek.Utils.PasswordHelper.Generate(System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
@@ -2966,8 +2966,8 @@
             <param name="includeMixedCase">(e.g. AbcDEf)</param>
             <param name="includeNumbers">(e.g. a9b8c7d)</param>
             <param name="includeSymbols">(e.g. a!b*c_d)</param>
-            <param name="excludeSimilarCharacters">(e.g. i, l, o, 1, 0, I)</param>
-            <param name="excludeAmbiguousCharacters">Exclude: { } [ ] ( ) / \ ' " ` ~ , ; : . &lt; &gt; </param>
+            <param name="excludeSimilarChars"></param>
+            <param name="excludeAmbiguousChars"></param>
             <returns>Random Password</returns>
         </member>
         <member name="M:Zek.Utils.PasswordHelper.GetAllowedChars(System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
@@ -2978,8 +2978,8 @@
             <param name="includeMixedCase"></param>
             <param name="includeNumbers"></param>
             <param name="includeSymbols"></param>
-            <param name="excludeSimilarCharacters"></param>
-            <param name="excludeAmbiguousCharacters">Exclude: { } [ ] ( ) / \ ' " ` ~ , ; : . &lt; &gt; </param>
+            <param name="excludeSimilarChars"></param>
+            <param name="excludeAmbiguousChars">Exclude: { } [ ] ( ) / \ ' " ` ~ , ; : . &lt; &gt; </param>
             <returns></returns>
         </member>
         <member name="M:Zek.Utils.PasswordHelper.Generate(System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)">
@@ -2990,13 +2990,13 @@
             <param name="lowercaseLetters"></param>
             <param name="numbers"></param>
             <param name="symbols">Punctuations ( e.g. @#$% )</param>
-            <param name="excludeSimilarCharacters">Exclude: { } [ ] ( ) / \ ' " ` ~ , ; : . &lt; &gt; </param>
-            <param name="excludeAmbiguousCharacters"></param>
+            <param name="excludeSimilarChars">Exclude: I O ... </param>
+            <param name="excludeAmbiguousChars">Exclude: { } [ ] ( ) / \ ' " ` ~ , ; : . &lt; &gt; </param>
             <returns></returns>
         </member>
         <member name="M:Zek.Utils.PasswordHelper.GetPasswordStatus(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
-            
+            Get password status
             </summary>
             <param name="password"></param>
             <param name="minRequiredPasswordLength"></param>
@@ -3022,7 +3022,7 @@
             <summary>
                 Ensures that the string is of the required length and meets the configured requirements
             </summary>
-            <param name="item"></param>
+            <param name="password"></param>
             <returns></returns>
         </member>
         <member name="M:Zek.Utils.PasswordValidator.IsDigit(System.Char)">
