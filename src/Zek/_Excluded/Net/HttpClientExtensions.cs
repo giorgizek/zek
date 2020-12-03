@@ -17,12 +17,11 @@ namespace Zek.Extensions.Net
     {
         private static StringContent CreateJsonContent(object value)
         {
-            return new StringContent(JsonConvert.SerializeObject(value, Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }), Encoding.UTF8, "application/json");
+            return new StringContent(
+                JsonConvert.SerializeObject(value, Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }),
+                Encoding.UTF8,
+                "application/json");
         }
-
-
-
-
 
 
 

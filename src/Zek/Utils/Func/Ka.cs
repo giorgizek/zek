@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Zek.Utils
 {
@@ -7,6 +8,7 @@ namespace Zek.Utils
     {
         public class Ka
         {
+            public const string RegexMatch = @"^[ა-ჰ]*$";
             private static readonly string[] Unicode = { "ა", "ბ", "გ", "დ", "ე", "ვ", "ზ", "თ", "ი", "კ", "ლ", "მ", "ნ", "ო", "პ", "ჟ", "რ", "ს", "ტ", "უ", "ფ", "ქ", "ღ", "ყ", "შ", "ჩ", "ც", "ძ", "წ", "ჭ", "ხ", "ჯ", "ჰ" };
             private static readonly string[] Phonetic = { "a", "b", "g", "d", "e", "v", "z", "th", "i", "k", "l", "m", "n", "o", "p", "zh", "r", "s", "t", "u", "ph", "q", "gh", "kh", "sh", "ch", "ts", "dz", "ts", "ch", "kh", "j", "h" };
             private static readonly string[] Passport = { "a", "b", "g", "d", "e", "v", "z", "t", "i", "k", "l", "m", "n", "o", "p", "zh", "r", "s", "t", "u", "p", "k", "gh", "kh", "sh", "ch", "ts", "dz", "ts", "ch", "kh", "j", "h" };
