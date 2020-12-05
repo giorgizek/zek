@@ -22,6 +22,10 @@ namespace Zek.Utils
          * (All UInt32s are stored big-endian.)
          */
 
+        private readonly PasswordHasherCompatibilityMode _compatibilityMode;
+        private readonly int _iterCount;
+        private readonly RandomNumberGenerator _rng;
+
 
         public PasswordHasher(PasswordHasherCompatibilityMode compatibilityMode = PasswordHasherCompatibilityMode.IdentityV3, int iterationCount = 10000, RandomNumberGenerator rng = null)
         {
@@ -34,32 +38,53 @@ namespace Zek.Utils
 
                 case PasswordHasherCompatibilityMode.IdentityV3:
                     if (iterationCount < 1)
-                        throw new InvalidOperationException("Error when the iteration count is < 1");
+                        throw new InvalidOperationException("The iteration count must be a positive integer.");
                     _iterCount = iterationCount;
                     break;
 
                 default:
-                    throw new InvalidOperationException("Error when the password hasher doesn't understand the format it's being asked to produce.");
+                    throw new InvalidOperationException("The provided PasswordHasherCompatibilityMode is invalid.");
             }
 
             _rng = rng ?? RandomNumberGenerator.Create();
         }
 
-        private readonly PasswordHasherCompatibilityMode _compatibilityMode;//same as  = PasswordHasherCompatibilityMode.IdentityV2;
-        private readonly int _iterCount;
-        private readonly RandomNumberGenerator _rng;
 
+        
+#if NETSTANDARD2_0 || NET461
+        // Compares two byte arrays for equality. The method is specifically written so that the loop is not optimized.
+        [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
+        private static bool ByteArraysEqual(byte[] a, byte[] b)
+        {
+            if (a == null && b == null)
+            {
+                return true;
+            }
+            if (a == null || b == null || a.Length != b.Length)
+            {
+                return false;
+            }
+            var areSame = true;
+            for (var i = 0; i < a.Length; i++)
+            {
+                areSame &= (a[i] == b[i]);
+            }
+            return areSame;
+        }
+#endif
 
         /// <summary>
-        /// Returns a hashed representation of the supplied <paramref name="password"/>
+        /// Returns a hashed representation of the supplied <paramref name="password"/> for the specified <paramref name="user"/>.
         /// </summary>
+        /// <param name="user">The user whose password is to be hashed.</param>
         /// <param name="password">The password to hash.</param>
-        /// <returns>A hashed representation of the supplied <paramref name="password"/></returns>
-        public string HashPassword(string password)
+        /// <returns>A hashed representation of the supplied <paramref name="password"/> for the specified <paramref name="user"/>.</returns>
+        public virtual string HashPassword(string password)
         {
             if (password == null)
+            {
                 throw new ArgumentNullException(nameof(password));
-
+            }
 
             if (_compatibilityMode == PasswordHasherCompatibilityMode.IdentityV2)
             {
@@ -71,23 +96,22 @@ namespace Zek.Utils
             }
         }
 
-
         private static byte[] HashPasswordV2(string password, RandomNumberGenerator rng)
         {
-            const KeyDerivationPrf pbkdf2Prf = KeyDerivationPrf.HMACSHA1; // default for Rfc2898DeriveBytes
-            const int pbkdf2IterCount = 1000; // default for Rfc2898DeriveBytes
-            const int pbkdf2SubkeyLength = 256 / 8; // 256 bits
-            const int saltSize = 128 / 8; // 128 bits
+            const KeyDerivationPrf Pbkdf2Prf = KeyDerivationPrf.HMACSHA1; // default for Rfc2898DeriveBytes
+            const int Pbkdf2IterCount = 1000; // default for Rfc2898DeriveBytes
+            const int Pbkdf2SubkeyLength = 256 / 8; // 256 bits
+            const int SaltSize = 128 / 8; // 128 bits
 
             // Produce a version 2 (see comment above) text hash.
-            var salt = new byte[saltSize];
+            byte[] salt = new byte[SaltSize];
             rng.GetBytes(salt);
-            var subkey = KeyDerivation.Pbkdf2(password, salt, pbkdf2Prf, pbkdf2IterCount, pbkdf2SubkeyLength);
+            byte[] subkey = KeyDerivation.Pbkdf2(password, salt, Pbkdf2Prf, Pbkdf2IterCount, Pbkdf2SubkeyLength);
 
-            var outputBytes = new byte[1 + saltSize + pbkdf2SubkeyLength];
+            var outputBytes = new byte[1 + SaltSize + Pbkdf2SubkeyLength];
             outputBytes[0] = 0x00; // format marker
-            Buffer.BlockCopy(salt, 0, outputBytes, 1, saltSize);
-            Buffer.BlockCopy(subkey, 0, outputBytes, 1 + saltSize, pbkdf2SubkeyLength);
+            Buffer.BlockCopy(salt, 0, outputBytes, 1, SaltSize);
+            Buffer.BlockCopy(subkey, 0, outputBytes, 1 + SaltSize, Pbkdf2SubkeyLength);
             return outputBytes;
         }
 
@@ -99,12 +123,13 @@ namespace Zek.Utils
                 saltSize: 128 / 8,
                 numBytesRequested: 256 / 8);
         }
+
         private static byte[] HashPasswordV3(string password, RandomNumberGenerator rng, KeyDerivationPrf prf, int iterCount, int saltSize, int numBytesRequested)
         {
             // Produce a version 3 (see comment above) text hash.
-            var salt = new byte[saltSize];
+            byte[] salt = new byte[saltSize];
             rng.GetBytes(salt);
-            var subkey = KeyDerivation.Pbkdf2(password, salt, prf, iterCount, numBytesRequested);
+            byte[] subkey = KeyDerivation.Pbkdf2(password, salt, prf, iterCount, numBytesRequested);
 
             var outputBytes = new byte[13 + salt.Length + subkey.Length];
             outputBytes[0] = 0x01; // format marker
@@ -116,11 +141,18 @@ namespace Zek.Utils
             return outputBytes;
         }
 
-
+        private static uint ReadNetworkByteOrder(byte[] buffer, int offset)
+        {
+            return ((uint)(buffer[offset + 0]) << 24)
+                | ((uint)(buffer[offset + 1]) << 16)
+                | ((uint)(buffer[offset + 2]) << 8)
+                | ((uint)(buffer[offset + 3]));
+        }
 
         /// <summary>
         /// Returns a <see cref="PasswordVerificationResult"/> indicating the result of a password hash comparison.
         /// </summary>
+        /// <param name="user">The user whose password should be verified.</param>
         /// <param name="hashedPassword">The hash value for a user's stored password.</param>
         /// <param name="providedPassword">The password supplied for comparison.</param>
         /// <returns>A <see cref="PasswordVerificationResult"/> indicating the result of a password hash comparison.</returns>
@@ -128,12 +160,15 @@ namespace Zek.Utils
         public virtual PasswordVerificationResult VerifyHashedPassword(string hashedPassword, string providedPassword)
         {
             if (hashedPassword == null)
+            {
                 throw new ArgumentNullException(nameof(hashedPassword));
+            }
             if (providedPassword == null)
+            {
                 throw new ArgumentNullException(nameof(providedPassword));
+            }
 
-
-            var decodedHashedPassword = Convert.FromBase64String(hashedPassword);
+            byte[] decodedHashedPassword = Convert.FromBase64String(hashedPassword);
 
             // read the format marker from the hashed password
             if (decodedHashedPassword.Length == 0)
@@ -156,7 +191,8 @@ namespace Zek.Utils
                     }
 
                 case 0x01:
-                    if (VerifyHashedPasswordV3(decodedHashedPassword, providedPassword, out var embeddedIterCount))
+                    int embeddedIterCount;
+                    if (VerifyHashedPasswordV3(decodedHashedPassword, providedPassword, out embeddedIterCount))
                     {
                         // If this hasher was configured with a higher iteration count, change the entry now.
                         return (embeddedIterCount < _iterCount)
@@ -172,29 +208,37 @@ namespace Zek.Utils
                     return PasswordVerificationResult.Failed; // unknown format marker
             }
         }
+
         private static bool VerifyHashedPasswordV2(byte[] hashedPassword, string password)
         {
-            const KeyDerivationPrf pbkdf2Prf = KeyDerivationPrf.HMACSHA1; // default for Rfc2898DeriveBytes
-            const int pbkdf2IterCount = 1000; // default for Rfc2898DeriveBytes
-            const int pbkdf2SubkeyLength = 256 / 8; // 256 bits
-            const int saltSize = 128 / 8; // 128 bits
+            const KeyDerivationPrf Pbkdf2Prf = KeyDerivationPrf.HMACSHA1; // default for Rfc2898DeriveBytes
+            const int Pbkdf2IterCount = 1000; // default for Rfc2898DeriveBytes
+            const int Pbkdf2SubkeyLength = 256 / 8; // 256 bits
+            const int SaltSize = 128 / 8; // 128 bits
 
             // We know ahead of time the exact length of a valid hashed password payload.
-            if (hashedPassword.Length != 1 + saltSize + pbkdf2SubkeyLength)
+            if (hashedPassword.Length != 1 + SaltSize + Pbkdf2SubkeyLength)
             {
                 return false; // bad size
             }
 
-            var salt = new byte[saltSize];
+            byte[] salt = new byte[SaltSize];
             Buffer.BlockCopy(hashedPassword, 1, salt, 0, salt.Length);
 
-            var expectedSubkey = new byte[pbkdf2SubkeyLength];
+            byte[] expectedSubkey = new byte[Pbkdf2SubkeyLength];
             Buffer.BlockCopy(hashedPassword, 1 + salt.Length, expectedSubkey, 0, expectedSubkey.Length);
 
             // Hash the incoming password and verify it
-            var actualSubkey = KeyDerivation.Pbkdf2(password, salt, pbkdf2Prf, pbkdf2IterCount, pbkdf2SubkeyLength);
+            byte[] actualSubkey = KeyDerivation.Pbkdf2(password, salt, Pbkdf2Prf, Pbkdf2IterCount, Pbkdf2SubkeyLength);
+#if NETSTANDARD2_0 || NET461
             return ByteArraysEqual(actualSubkey, expectedSubkey);
+#elif NETCOREAPP
+            return CryptographicOperations.FixedTimeEquals(actualSubkey, expectedSubkey);
+#else
+#error Update target frameworks
+#endif
         }
+
         private static bool VerifyHashedPasswordV3(byte[] hashedPassword, string password, out int iterCount)
         {
             iterCount = default(int);
@@ -202,30 +246,36 @@ namespace Zek.Utils
             try
             {
                 // Read header information
-                var prf = (KeyDerivationPrf)ReadNetworkByteOrder(hashedPassword, 1);
+                KeyDerivationPrf prf = (KeyDerivationPrf)ReadNetworkByteOrder(hashedPassword, 1);
                 iterCount = (int)ReadNetworkByteOrder(hashedPassword, 5);
-                var saltLength = (int)ReadNetworkByteOrder(hashedPassword, 9);
+                int saltLength = (int)ReadNetworkByteOrder(hashedPassword, 9);
 
                 // Read the salt: must be >= 128 bits
                 if (saltLength < 128 / 8)
                 {
                     return false;
                 }
-                var salt = new byte[saltLength];
+                byte[] salt = new byte[saltLength];
                 Buffer.BlockCopy(hashedPassword, 13, salt, 0, salt.Length);
 
                 // Read the subkey (the rest of the payload): must be >= 128 bits
-                var subkeyLength = hashedPassword.Length - 13 - salt.Length;
+                int subkeyLength = hashedPassword.Length - 13 - salt.Length;
                 if (subkeyLength < 128 / 8)
                 {
                     return false;
                 }
-                var expectedSubkey = new byte[subkeyLength];
+                byte[] expectedSubkey = new byte[subkeyLength];
                 Buffer.BlockCopy(hashedPassword, 13 + salt.Length, expectedSubkey, 0, expectedSubkey.Length);
 
                 // Hash the incoming password and verify it
-                var actualSubkey = KeyDerivation.Pbkdf2(password, salt, prf, iterCount, subkeyLength);
+                byte[] actualSubkey = KeyDerivation.Pbkdf2(password, salt, prf, iterCount, subkeyLength);
+#if NETSTANDARD2_0 || NET461
                 return ByteArraysEqual(actualSubkey, expectedSubkey);
+#elif NETCOREAPP
+                return CryptographicOperations.FixedTimeEquals(actualSubkey, expectedSubkey);
+#else
+#error Update target frameworks
+#endif
             }
             catch
             {
@@ -236,31 +286,6 @@ namespace Zek.Utils
             }
         }
 
-
-        private static bool ByteArraysEqual(byte[] a, byte[] b)
-        {
-            if (a == null && b == null)
-            {
-                return true;
-            }
-            if (a == null || b == null || a.Length != b.Length)
-            {
-                return false;
-            }
-            var areSame = true;
-            for (var i = 0; i < a.Length; i++)
-            {
-                areSame &= (a[i] == b[i]);
-            }
-            return areSame;
-        }
-        private static uint ReadNetworkByteOrder(byte[] buffer, int offset)
-        {
-            return ((uint)(buffer[offset + 0]) << 24)
-                | ((uint)(buffer[offset + 1]) << 16)
-                | ((uint)(buffer[offset + 2]) << 8)
-                | ((uint)(buffer[offset + 3]));
-        }
         private static void WriteNetworkByteOrder(byte[] buffer, int offset, uint value)
         {
             buffer[offset + 0] = (byte)(value >> 24);

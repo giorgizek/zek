@@ -13,33 +13,29 @@ namespace Zek.Cryptography
             if (string.IsNullOrEmpty(key))
                 throw new ArgumentNullException(nameof(key));
 
-            using (var aesAlg = Aes.Create())
+            using var aesAlg = Aes.Create();
+            aesAlg.Key = aesAlg.GetLegalKey(key);
+
+            var encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
+            using var msEncrypt = new MemoryStream();
+            using (var csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
             {
-                aesAlg.Key = aesAlg.GetLegalKey(key);
-
-                var encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
-                using (var msEncrypt = new MemoryStream())
+                using (var swEncrypt = new StreamWriter(csEncrypt))
                 {
-                    using (var csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
-                    {
-                        using (var swEncrypt = new StreamWriter(csEncrypt))
-                        {
-                            swEncrypt.Write(plainText);
-                        }
-                    }
-
-                    var iv = aesAlg.IV;
-
-                    var decryptedContent = msEncrypt.ToArray();
-
-                    var result = new byte[iv.Length + decryptedContent.Length];
-
-                    Buffer.BlockCopy(iv, 0, result, 0, iv.Length);
-                    Buffer.BlockCopy(decryptedContent, 0, result, iv.Length, decryptedContent.Length);
-
-                    return result;
+                    swEncrypt.Write(plainText);
                 }
             }
+
+            var iv = aesAlg.IV;
+
+            var decryptedContent = msEncrypt.ToArray();
+
+            var result = new byte[iv.Length + decryptedContent.Length];
+
+            Buffer.BlockCopy(iv, 0, result, 0, iv.Length);
+            Buffer.BlockCopy(decryptedContent, 0, result, iv.Length, decryptedContent.Length);
+
+            return result;
         }
         public static string Encrypt(string plainText, string key) => Convert.ToBase64String(EncryptToByteArray(plainText, key));
 
@@ -51,26 +47,18 @@ namespace Zek.Cryptography
             if (string.IsNullOrEmpty(key))
                 throw new ArgumentNullException(nameof(key));
 
-            string plaintext;
-            using (var aesAlg = Aes.Create())
-            {
-                var iv = new byte[aesAlg.IV.Length];
-                var cipher = new byte[cipherBytes.Length - iv.Length];
+            using var aesAlg = Aes.Create();
+            var iv = new byte[aesAlg.IV.Length];
+            var cipher = new byte[cipherBytes.Length - iv.Length];
 
-                Buffer.BlockCopy(cipherBytes, 0, iv, 0, iv.Length);
-                Buffer.BlockCopy(cipherBytes, iv.Length, cipher, 0, cipher.Length);
-                var decryptor = aesAlg.CreateDecryptor(aesAlg.GetLegalKey(key), iv);
-                using (var msDecrypt = new MemoryStream(cipher))
-                {
-                    using (var csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
-                    {
-                        using (var srDecrypt = new StreamReader(csDecrypt))
-                        {
-                            plaintext = srDecrypt.ReadToEnd();
-                        }
-                    }
-                }
-            }
+            Buffer.BlockCopy(cipherBytes, 0, iv, 0, iv.Length);
+            Buffer.BlockCopy(cipherBytes, iv.Length, cipher, 0, cipher.Length);
+            var decryptor = aesAlg.CreateDecryptor(aesAlg.GetLegalKey(key), iv);
+            using var msDecrypt = new MemoryStream(cipher);
+            using var csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read);
+            using var srDecrypt = new StreamReader(csDecrypt);
+            var plaintext = srDecrypt.ReadToEnd();
+
             return plaintext;
         }
 

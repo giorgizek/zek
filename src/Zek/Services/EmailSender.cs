@@ -98,8 +98,7 @@ namespace Zek.Services
                     //client.DeliveryMethod = SmtpDeliveryMethod.Network;
                 }
 
-                if (model.From == null)
-                    model.From = new EmailAddressDTO();
+                model.From ??= new EmailAddressDTO();
 
                 if (string.IsNullOrEmpty(model.From.Address))
                     model.From.Address = Options.FromEmail;

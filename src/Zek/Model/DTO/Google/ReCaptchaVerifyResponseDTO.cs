@@ -14,7 +14,7 @@ namespace Zek.Model.DTO.Google
         
         public string Action { get; set; }
 
-        public decimal Score { get; set; }
+        public decimal? Score { get; set; }
 
         [JsonPropertyName("error-codes")]
         public string[] ErrorCodes { get; set; }
