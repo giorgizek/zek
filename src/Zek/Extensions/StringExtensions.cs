@@ -161,7 +161,7 @@ namespace Zek.Extensions
 
 
         /// <summary>
-        /// If string not has text returns default text.
+        /// If string is null or empty returns default text.
         /// </summary>
         /// <param name="str"></param>
         /// <param name="defaultText"></param>

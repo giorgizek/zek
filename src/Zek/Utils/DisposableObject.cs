@@ -23,6 +23,16 @@ namespace Zek.Utils
         protected abstract void DisposeResources();
         protected virtual void DisposeUnmanagedResources() { }
 
+        /// <summary>
+        /// Throws if this class has been disposed.
+        /// </summary>
+        protected void ThrowIfDisposed()
+        {
+            if (Disposed)
+            {
+                throw new ObjectDisposedException(GetType().Name);
+            }
+        }
 
         public void Dispose()
         {
@@ -34,5 +44,7 @@ namespace Zek.Utils
         {
             Dispose(false);
         }
+
+
     }
 }

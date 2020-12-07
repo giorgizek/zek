@@ -1,6 +1,6 @@
 ﻿namespace Zek.Model.DTO.Identity
 {
-    public class RegisterDTO
+    public class RegisterBaseDTO
     {
         //[Required(ErrorMessageResourceName =nameof(DataAnnotationsResources.RequiredAttribute_ValidationError), ErrorMessageResourceType =typeof(DataAnnotationsResources))]
         //[EmailAddress(ErrorMessageResourceName = nameof(DataAnnotationsResources.EmailAddressAttribute_Invalid), ErrorMessageResourceType = typeof(DataAnnotationsResources))]

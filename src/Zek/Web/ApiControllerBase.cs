@@ -27,10 +27,10 @@ namespace Zek.Web
         {
             return modelStateResult.StatusCode switch
             {
-                Model.StatusCode.BadRequest => (IActionResult) new BadRequestObjectResult(modelStateResult),
+                Model.StatusCode.BadRequest => new BadRequestObjectResult(modelStateResult.Errors),
                 Model.StatusCode.Forbidden => new ForbidResult(),
-                Model.StatusCode.NotFound => new NotFoundObjectResult(modelStateResult),
-                Model.StatusCode.InternalServerError => new ObjectResult(modelStateResult)
+                Model.StatusCode.NotFound => new NotFoundObjectResult(modelStateResult.Errors),
+                Model.StatusCode.InternalServerError => new ObjectResult(modelStateResult.Errors)
                 {
                     StatusCode = (int)modelStateResult.StatusCode
                 },
@@ -43,7 +43,7 @@ namespace Zek.Web
         {
             return modelStateResult.StatusCode switch
             {
-                Model.StatusCode.BadRequest => (IActionResult) new BadRequestObjectResult(modelStateResult.Errors),
+                Model.StatusCode.BadRequest => new BadRequestObjectResult(modelStateResult.Errors),
                 Model.StatusCode.Forbidden => new ForbidResult(),
                 Model.StatusCode.NotFound => new NotFoundObjectResult(modelStateResult.Errors),
                 Model.StatusCode.InternalServerError => new ObjectResult(modelStateResult.Errors)

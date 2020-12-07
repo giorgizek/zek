@@ -366,7 +366,7 @@
         </member>
         <member name="M:Zek.Extensions.StringExtensions.DefaultText(System.String,System.String)">
             <summary>
-            If string not has text returns default text.
+            If string is null or empty returns default text.
             </summary>
             <param name="str"></param>
             <param name="defaultText"></param>
@@ -2618,6 +2618,11 @@
         <member name="P:Zek.Services.SendSmsResponse.Content">
             <summary>
             Response from http2sms service (if provider is Geocell then content=Y or N).
+            </summary>
+        </member>
+        <member name="M:Zek.Utils.DisposableObject.ThrowIfDisposed">
+            <summary>
+            Throws if this class has been disposed.
             </summary>
         </member>
         <member name="M:Zek.Utils.Func.Ka.NumToStr(System.Int64)">
