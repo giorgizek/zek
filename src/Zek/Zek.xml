@@ -405,7 +405,7 @@
         </member>
         <member name="M:Zek.Extensions.StringExtensions.ToInt64(System.String,System.Int64)">
             <summary>
-            იღებს Int64-ს ტექსტიდან
+            Try parse int 64
             </summary>
             <param name="str"></param>
             <param name="defaultValue"></param>

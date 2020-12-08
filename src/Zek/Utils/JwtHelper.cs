@@ -15,7 +15,6 @@ namespace Zek.Utils
                  options.ValidIssuer,
                  options.ValidAudience,
                  ClaimHelper.Create(userId, userName, roles),
-                 expires != null ? (DateTime?)DateTime.Now : null,
                  expires,
                  options.IssuerSigningKey);
 
@@ -24,11 +23,10 @@ namespace Zek.Utils
                 options.ValidIssuer,
                 options.ValidAudience,
                 ClaimHelper.Create(userId, userName, roles, claimCollection),
-                expires != null ? (DateTime?)DateTime.Now : null,
                 expires,
                 options.IssuerSigningKey);
 
-        private static string Create(string issuer, string audience, IEnumerable<Claim> claims, DateTime? notBefore, DateTime? expires, string key)
+        private static string Create(string issuer, string audience, IEnumerable<Claim> claims, DateTime? expires, string key)
         {
             var symKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
             var creds = new SigningCredentials(symKey, SecurityAlgorithms.HmacSha256);
@@ -36,7 +34,6 @@ namespace Zek.Utils
                 issuer: issuer,
                 audience: audience,
                 claims: claims,
-                notBefore: notBefore,
                 expires: expires,
                 signingCredentials: creds);
             var jwtToken = "Bearer " + new JwtSecurityTokenHandler().WriteToken(token);

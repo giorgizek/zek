@@ -388,7 +388,7 @@ namespace Zek.Extensions
             return int.TryParse(str, out var result) ? result : defaultValue;
         }
         /// <summary>
-        /// იღებს Int64-ს ტექსტიდან
+        /// Try parse int 64
         /// </summary>
         /// <param name="str"></param>
         /// <param name="defaultValue"></param>

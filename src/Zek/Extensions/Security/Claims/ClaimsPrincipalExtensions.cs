@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Reflection;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
 using Zek.Security.Claims;
 
 namespace Zek.Extensions.Security.Claims
@@ -103,6 +105,20 @@ namespace Zek.Extensions.Security.Claims
             return roles != null && roles.Any(principal.IsInRole);
         }
 
+        public static DateTime? GetExpirationTime(this ClaimsPrincipal principal)
+        {
+            if (principal == null)
+            {
+                throw new ArgumentNullException(nameof(principal));
+            }
+
+            //this[JwtRegisteredClaimNames.Exp] = EpochTime.GetIntDate(expires.Value.ToUniversalTime());
+            var exp = principal.FindFirstValue(JwtRegisteredClaimNames.Exp);
+            if (string.IsNullOrEmpty(exp)) return null;
+
+            if (!long.TryParse(exp, out var secondsSinceUnixEpoch)) return null;
+            return EpochTime.DateTime(secondsSinceUnixEpoch);
+        }
         
         public static bool IsAuthorized<TController>(this ClaimsPrincipal user)
         {
