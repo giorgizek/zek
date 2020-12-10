@@ -17,12 +17,12 @@ namespace Zek.Web
         {
 
         }
-        public PermissionBaseAttribute(int? permission, int? action)
-            : this()
-        {
-            Permission = permission;
-            Action = action;
-        }
+        //public PermissionBaseAttribute(int? permission, int? action)
+        //    : this()
+        //{
+        //    Permission = permission;
+        //    Action = action;
+        //}
         public PermissionBaseAttribute(int[] permissions, int? action)
             : this()
         {
@@ -33,18 +33,18 @@ namespace Zek.Web
 
         private static readonly string[] EmptyArray = new string[0];
 
-        private int? _permission;
         private string[] _claimTypes = EmptyArray;
 
-        public int? Permission
-        {
-            get => _permission;
-            set
-            {
-                _permission = value;
-                Permissions = value != null ? new[] { (int)value } : null;
-            }
-        }
+        //private int? _permission;
+        //public int? Permission
+        //{
+        //    get => _permission;
+        //    set
+        //    {
+        //        _permission = value;
+        //        Permissions = value != null ? new[] { (int)value } : null;
+        //    }
+        //}
 
 
         private int[] _permissions;
@@ -65,9 +65,8 @@ namespace Zek.Web
         {
             var user = context.HttpContext.User;
             //this validation need if user not authenticated or [AllowAnonymous] the base Authorize filter will response unauthorized;
-            if (!user.Identity.IsAuthenticated)
+            if (user.Identity == null || !user.Identity.IsAuthenticated)
                 return;
-
 
             if (_claimTypes.Length > 0)
             {
