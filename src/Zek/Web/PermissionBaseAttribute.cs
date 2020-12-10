@@ -33,6 +33,9 @@ namespace Zek.Web
 
         private static readonly string[] EmptyArray = new string[0];
 
+        /// <summary>
+        /// List of claim types in token
+        /// </summary>
         private string[] _claimTypes = EmptyArray;
 
         //private int? _permission;

@@ -3129,6 +3129,11 @@
             <param name="nvc"></param>
             <returns></returns>
         </member>
+        <member name="F:Zek.Web.PermissionBaseAttribute._claimTypes">
+            <summary>
+            List of claim types in token
+            </summary>
+        </member>
         <member name="M:Zek.Web.UriExtensions.AddParameter(System.Uri,System.String,System.String)">
             <summary>
             Adds the specified parameter to the Query String.
