@@ -18,9 +18,9 @@ namespace Zek.Services
     }
     public class RecaptchaService : DisposableObject, IRecaptchaService
     {
-        private readonly reCAPTCHAOptions _options;
+        private readonly ReCaptchaOptions _options;
 
-        public RecaptchaService(IOptions<reCAPTCHAOptions> optionsAccessor)
+        public RecaptchaService(IOptions<ReCaptchaOptions> optionsAccessor)
         {
             _options = optionsAccessor.Value;
         }

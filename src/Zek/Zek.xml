@@ -3045,6 +3045,12 @@
             <param name="value">Value to test</param>
             <returns>Returns true if the string is base64, otherwise false</returns>
         </member>
+        <member name="T:Zek.Utils.UrlEncoder">
+            <summary>
+            Encode and decode urls by Base64UrlEncode and Base64UrlDecode.
+            This is not standard encoder and if you encode you should decode too.
+            </summary>
+        </member>
         <member name="T:Zek.Utils.ValidationHelper">
             <summary>
             ვალიდაციის კლასი (ნომრიანი ტექსტის, ელ.ფოსტის).
