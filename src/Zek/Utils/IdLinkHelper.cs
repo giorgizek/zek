@@ -32,7 +32,6 @@ namespace Zek.Utils
         {
 
         }
-        public DateTime? ValidTo { get; set; }
         public T Value { get; set; }
     }
 
