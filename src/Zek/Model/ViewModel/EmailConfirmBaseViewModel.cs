@@ -11,6 +11,7 @@ namespace Zek.Model.ViewModel
         public string Company { get; set; }
         public string Website { get; set; }
         public string ConfirmUrl { get; set; }
+        public string Code { get; set; }
         public DateTime ValidTo { get; set; }
     }
 }
