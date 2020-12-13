@@ -2,7 +2,7 @@
 
 namespace Zek.Model.ViewModel
 {
-    public class EmailConfirmBaseViewModel
+    public class ConfirmBaseViewModel
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -12,6 +12,7 @@ namespace Zek.Model.ViewModel
         public string Website { get; set; }
         public string ConfirmUrl { get; set; }
         public string Code { get; set; }
+        public int? ExpireMinutes { get; set; }
         public DateTime ValidTo { get; set; }
     }
 }

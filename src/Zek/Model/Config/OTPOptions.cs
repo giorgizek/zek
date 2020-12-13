@@ -1,7 +1,12 @@
-﻿namespace Zek.Model.Config
+﻿using Zek.Utils;
+
+namespace Zek.Model.Config
 {
-    public class OTPOptions
+    public class OtpOptions
     {
-        public int ExpireMinutes { get; set; }
+        public int ExpireMinutes { get; set; } = 2;
+        public int CharLength { get; set; } = 4;
+        public string Chars { get; set; } = PasswordHelper.Numbers;
+        public int MaxFailedAccessAttempts { get; set; } = 5;
     }
 }

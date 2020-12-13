@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,9 +11,7 @@ namespace Zek.Data.Repository
     {
         public Repository(IDbContext context)
         {
-            if (context == null)
-                throw new ArgumentNullException(nameof(context));
-            Context = context;
+            Context = context ?? throw new ArgumentNullException(nameof(context));
         }
         protected IDbContext Context;
 
@@ -138,7 +135,8 @@ namespace Zek.Data.Repository
         }
 
 
-        //public virtual void Save() => Context.SaveChanges();
+
+        public virtual Task<int> SaveAsync() => Context.SaveChangesAsync();
 
 
 

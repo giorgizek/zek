@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace Zek.Data.Repository
@@ -40,6 +39,6 @@ namespace Zek.Data.Repository
 
         //void Save();
 
-        //Task<int> SaveAsync(CancellationToken cancellationToken = default(CancellationToken));
+        Task<int> SaveAsync();
     }
 }

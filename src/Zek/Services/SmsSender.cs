@@ -97,20 +97,18 @@ namespace Zek.Services
 
             //var url = GetUrl(url, number, message, merchantId);
             var result = new SendSmsResponse();
-            using (var httpClient = new HttpClient())
+            using var httpClient = new HttpClient();
+            //result.Content = await httpClient.GetStringAsync(url);
+
+            var content = new FormUrlEncodedContent(new[]
             {
-                //result.Content = await httpClient.GetStringAsync(url);
+                new KeyValuePair<string, string>("src", merchantId),
+                new KeyValuePair<string, string>("dst", ParseMobile(number)),
+                new KeyValuePair<string, string>("txt", message)
+            });
 
-                var content = new FormUrlEncodedContent(new[]
-                {
-                    new KeyValuePair<string, string>("src", merchantId),
-                    new KeyValuePair<string, string>("dst", ParseMobile(number)),
-                    new KeyValuePair<string, string>("txt", message)
-                });
-
-                var response = await httpClient.PostAsync(url, content);
-                result.Content = await response.Content.ReadAsStringAsync();
-            }
+            var response = await httpClient.PostAsync(url, content);
+            result.Content = await response.Content.ReadAsStringAsync();
 
             result.Succeeded = "y".Equals(result.Content, StringComparison.CurrentCultureIgnoreCase);
             return result;
