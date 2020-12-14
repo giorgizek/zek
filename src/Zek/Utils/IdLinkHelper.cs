@@ -17,24 +17,10 @@ namespace Zek.Utils
         Aes
     }
 
-    public class IdLinkBaseDTO
+    public class IdLinkBase
     {
         public DateTime? ValidTo { get; set; }
     }
-
-    public class IdLinkDTO<T> : IdLinkBaseDTO
-    {
-        public IdLinkDTO(T value)
-        {
-            this.Value = value;
-        }
-        public IdLinkDTO()
-        {
-
-        }
-        public T Value { get; set; }
-    }
-
 
 
     public static class IdLinkHelper
