@@ -1,6 +1,6 @@
 ﻿namespace Zek.Model.DTO.Identity
 {
-    public class LoginBaseDTO
+    public class LoginBaseDTO : CaptchaDTO
     {
         public string Password { get; set; }
 

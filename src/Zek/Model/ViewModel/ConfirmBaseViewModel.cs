@@ -14,5 +14,6 @@ namespace Zek.Model.ViewModel
         public string Code { get; set; }
         public int? ExpireMinutes { get; set; }
         public DateTime ValidTo { get; set; }
+        public string Ip { get; set; }
     }
 }
