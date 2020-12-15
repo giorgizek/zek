@@ -57,16 +57,12 @@ namespace Zek.Services
         public GeocellSmsSender()
         {
         }
-        public GeocellSmsSender(SmsSenderOptions options)
-        {
-            if (_options == null)
-                throw new ArgumentNullException(nameof(options));
-            _options = options;
-        }
+        //public GeocellSmsSender(SmsSenderOptions options)
+        //{
+        //    _options = options;
+        //}
         public GeocellSmsSender(IOptions<SmsSenderOptions> optionsAccessor)
         {
-            if (optionsAccessor == null)
-                throw new ArgumentNullException(nameof(optionsAccessor));
             _options = optionsAccessor.Value;
         }
 
