@@ -2003,6 +2003,11 @@
             Max page size
             </summary>
         </member>
+        <member name="P:Zek.Model.DTO.FilterBaseDTO.QuickSearch">
+            <summary>
+            Quick Search Field
+            </summary>
+        </member>
         <member name="T:Zek.Model.Form.FieldBase">
             <summary>
             Field base

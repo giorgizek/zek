@@ -62,5 +62,10 @@
         /// Max page size
         /// </summary>
         protected virtual int MaxPageSize => 10000;
+
+        /// <summary>
+        /// Quick Search Field
+        /// </summary>
+        public string QuickSearch { get; set; }
     }
 }

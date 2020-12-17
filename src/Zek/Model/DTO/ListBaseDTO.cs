@@ -2,7 +2,7 @@
 {
     public class ListBaseDTO
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         public bool? IsDeleted { get; set; }
     }
