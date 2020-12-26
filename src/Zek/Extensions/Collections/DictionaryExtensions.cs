@@ -42,8 +42,7 @@ namespace Zek.Extensions.Collections
 
         public static TValue TryGetValue<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key)
         {
-            TValue value;
-            dictionary.TryGetValue(key, out value);
+            dictionary.TryGetValue(key, out var value);
             return value;
         }
 
