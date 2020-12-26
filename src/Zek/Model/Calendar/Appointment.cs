@@ -20,9 +20,19 @@ namespace Zek.Model.Calendar
         public string ResourceIds { get; set; }
         public string ReminderInfo { get; set; }
         public string RecurrenceInfo { get; set; }
+        public string ConcurrencyStamp { get; set; } = Guid.NewGuid().ToString();
     }
 
-    public class AppointmentMap : PocoModelMap<Appointment>
+
+    public class AppointmentMap : AppointmentMap<Appointment>
+    {
+        public AppointmentMap(ModelBuilder builder) : base(builder)
+        {
+        }
+    }
+
+    public class AppointmentMap<TAppointment> : PocoModelMap<TAppointment>
+        where TAppointment : Appointment
     {
         public AppointmentMap(ModelBuilder builder) : base(builder)
         {
@@ -35,6 +45,7 @@ namespace Zek.Model.Calendar
             Property(x => x.ResourceIds).HasMaxLength(4000);
             Property(x => x.ReminderInfo).HasMaxLength(4000);
             Property(x => x.RecurrenceInfo).HasMaxLength(4000);
+            Property(u => u.ConcurrencyStamp).HasMaxLength(50).IsConcurrencyToken();
 
             HasIndex(x => new { x.CreatorId, x.StartDate });
         }

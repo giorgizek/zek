@@ -17,7 +17,6 @@ namespace Zek.Model.Identity
     {
         public User()
         {
-            SecurityStamp = Guid.NewGuid().ToString();
         }
         public User(string userName) : this()
         {
@@ -64,7 +63,7 @@ namespace Zek.Model.Identity
         /// <summary>
         /// A random value that must change whenever a users credentials change (password changed, login removed)
         /// </summary>
-        public virtual string SecurityStamp { get; set; }
+        public virtual string SecurityStamp { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
         /// A random value that must change whenever a user is persisted to the store
