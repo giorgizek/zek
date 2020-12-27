@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using Zek.Extensions;
+using System.Linq;
 using Zek.Model;
+using Zek.Model.DTO;
 
 namespace Zek.Web
 {
@@ -54,6 +55,23 @@ namespace Zek.Web
             };
         }
 
+        [NonAction]
+        public virtual IActionResult Auto(ApiResponse obj)
+        {
+            if (obj.Errors != null && obj.Errors.Count > 0)
+            {
+                //foreach (var pair in obj.Errors)
+                //{
+                //    foreach (var error in pair.Value)
+                //    {
+                //        ModelState.AddModelError(pair.Key, error);
+                //    }
+                //}
+                return BadRequest(obj);
+            }
+
+            return new OkObjectResult(obj);
+        }
 
         /// <inheritdoc />
         public void Dispose() => Dispose(disposing: true);
