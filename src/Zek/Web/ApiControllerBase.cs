@@ -56,7 +56,7 @@ namespace Zek.Web
         }
 
         [NonAction]
-        public virtual IActionResult Auto(ApiResponse obj)
+        public virtual IActionResult Auto(IApiResponse obj)
         {
             if (obj.Errors != null && obj.Errors.Count > 0)
             {

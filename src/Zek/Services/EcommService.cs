@@ -12,11 +12,21 @@ namespace Zek.Services
 {
     public class EcommService
     {
-        //public TbcService(string certificateFile, string certificatePassword, string baseUrl) : this(certificateFile, certificatePassword, baseUrl + "MerchantHandler", baseUrl + "ClientHandler")
-        //{
-        //}
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="options"></param>
+        /// <param name="rootPath">IHostingEnvironment.ContentRootPath</param>
+        public EcommService(EcommOptions options, string rootPath) : this(options.CertificateFile, options.CertificatePassword, options.ServerUrl, options.ClientUrl)
+        {
+            if (!Path.IsPathRooted(options.CertificateFile))
+            {
+                _certificateFile = Path.GetFullPath(Path.Combine(rootPath, options.CertificateFile));
+            }
 
-        public EcommService(EcommServiceOptions options) : this(options.CertificateFile, options.CertificatePassword, options.ServerUrl, options.ClientUrl)
+        }
+
+        public EcommService(EcommOptions options) : this(options.CertificateFile, options.CertificatePassword, options.ServerUrl, options.ClientUrl)
         {
 
         }
@@ -32,6 +42,7 @@ namespace Zek.Services
             if (string.IsNullOrEmpty(serverUrl))
                 throw new ArgumentException("Server Url is required", nameof(serverUrl));
 
+
             //if (string.IsNullOrEmpty(clientUrl))
             //    throw new ArgumentException("Client Url is required", nameof(clientUrl));
 
@@ -42,7 +53,7 @@ namespace Zek.Services
             _clientUrl = clientUrl;
         }
 
-        private readonly string _serverUrl; 
+        private readonly string _serverUrl;
         private readonly string _clientUrl;
         private readonly string _certificateFile;
         private readonly string _certificatePassword;
@@ -71,7 +82,7 @@ namespace Zek.Services
         private async Task<string> PostAsync(string parameters)
         {
             var clientHandler = new HttpClientHandler();
-            var clientCertificate = new X509Certificate2(File.ReadAllBytes(_certificateFile), _certificatePassword/*, X509KeyStorageFlags.MachineKeySet*/);
+            var clientCertificate = new X509Certificate2(await File.ReadAllBytesAsync(_certificateFile), _certificatePassword/*, X509KeyStorageFlags.MachineKeySet*/);
 
             clientHandler.ClientCertificates.Add(clientCertificate);
             clientHandler.ServerCertificateCustomValidationCallback += (message, certificate2, x509Chain, sslPolicyErrors) => true;
@@ -204,26 +215,48 @@ namespace Zek.Services
         }
 
 
+
         /// <summary>
         /// Registering transactions / Регистрация транзакций
         /// </summary>
-        /// <param name="clientIp"></param>
-        /// <param name="description"></param>
-        /// <param name="language"></param>
-        /// <param name="amount"></param>
-        /// <param name="currency"></param>
-        /// <returns>transaction identifier (28 characters in base64 encoding). In case of an error, the returned string of symbols begins with ‘error:‘.</returns>
-        public async Task<TransactionResponseDTO> RegisterTransactionAsync(int amount, ISO4217.ISO4217 currency, string clientIp, string description, string language)
-        {
-            return await RegisterTransactionAsync(amount, (int)currency, clientIp, description, language);
-            //var parameters2 = new Dictionary<string, string>
-            //{
-            //    ["command"] = "v",
-            //    ["amount"] = model.Amount.ToString("F"),
-            //    ["currency"] = ((int)model.Currency).ToString("F"),
-            //    ["client_ip_addr"] = 
-            //};
-        }
+        /// <param name="clientIp">Client's IP address, mandatory (15 characters)</param>
+        /// <param name="description">Transaction details, optional (up to 125 characters)</param>
+        /// <param name="language">Authorization language identifier, optional (up to 32 characters)</param>
+        /// <param name="amount">Transaction amount, mandatory</param>
+        /// <param name="currency">transaction currency code  (ISO 4217), mandatory</param>
+        /// <returns>transaction identifier (28 characters in base64 encoding). In case of an error, the returned string of symbols begins with 'error:'.</returns>
+        public Task<TransactionResponseDTO> RegisterTransactionAsync(decimal amount, ISO4217.ISO4217 currency, string clientIp, string description, string language) => RegisterTransactionAsync(Convert.ToInt32(amount * 100M), (int)currency, clientIp, description, language);
+
+
+
+        //var parameters2 = new Dictionary<string, string>
+        //{
+        //    ["command"] = "v",
+        //    ["amount"] = model.Amount.ToString("F"),
+        //    ["currency"] = ((int)model.Currency).ToString("F"),
+        //    ["client_ip_addr"] = 
+        //};
+
+        /// <summary>
+        /// Registering transactions / Регистрация транзакций
+        /// </summary>
+        /// <param name="clientIp">Client's IP address, mandatory (15 characters)</param>
+        /// <param name="description">Transaction details, optional (up to 125 characters)</param>
+        /// <param name="language">Authorization language identifier, optional (up to 32 characters)</param>
+        /// <param name="amount">Transaction amount in fractional units, mandatory (up to 12 digits)</param>
+        /// <param name="currency">transaction currency code  (ISO 4217), mandatory</param>
+        /// <returns>transaction identifier (28 characters in base64 encoding). In case of an error, the returned string of symbols begins with 'error:'.</returns>
+        public Task<TransactionResponseDTO> RegisterTransactionAsync(int amount, ISO4217.ISO4217 currency, string clientIp, string description, string language) => RegisterTransactionAsync(amount, (int)currency, clientIp, description, language);
+
+        /// <summary>
+        /// Registering transactions / Регистрация транзакций
+        /// </summary>
+        /// <param name="clientIp">Client's IP address, mandatory (15 characters)</param>
+        /// <param name="description">Transaction details, optional (up to 125 characters)</param>
+        /// <param name="language">Authorization language identifier, optional (up to 32 characters)</param>
+        /// <param name="amount">Transaction amount in fractional units, mandatory (up to 12 digits)</param>
+        /// <param name="currency">transaction currency code  (ISO 4217), mandatory, (3 digits)</param>
+        /// <returns>transaction identifier (28 characters in base64 encoding). In case of an error, the returned string of symbols begins with 'error:'.</returns>
         public async Task<TransactionResponseDTO> RegisterTransactionAsync(int amount, int currency, string clientIp, string description, string language)
         {
             if (amount <= 0)

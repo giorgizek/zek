@@ -1,10 +1,9 @@
 ﻿namespace Zek.Services
 {
-
     /// <summary>
     /// ECOMM system config
     /// </summary>
-    public class EcommServiceOptions
+    public class EcommOptions
     {
         /// <summary>
         /// Certificate file (e.g. D:\securepay.ufc.ge_1234567_merchant_wp.p12)
@@ -17,13 +16,13 @@
         public string CertificatePassword { get; set; }
 
         /// <summary>
-        /// Server Url (e.g. "https://securepay.ufc.ge:18443/ecomm2/MerchantHandler)
+        /// Server Url (e.g. "https://ecommerce.ufc.ge:18443/ecomm2/MerchantHandler)
         /// </summary>
         public string ServerUrl { get; set; }
 
 
         /// <summary>
-        /// Client Url (Readdressed url to ECOMM payment server e.g. "https://securepay.ufc.ge:18443/ecomm2/ClientHandler)
+        /// Client Url (Readdressed url to ECOMM payment server e.g. "https://securepay.ufc.ge/ecomm2/ClientHandler)
         /// </summary>
         public string ClientUrl { get; set; }
     }

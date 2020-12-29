@@ -39,8 +39,8 @@ namespace Zek.Utils
 
             if (stream != null)
             {
-                using (var sr = new StreamReader(stream))
-                    content = await sr.ReadToEndAsync();
+                using var sr = new StreamReader(stream);
+                content = await sr.ReadToEndAsync();
             }
 
             return content;
@@ -63,7 +63,7 @@ namespace Zek.Utils
                 using (var request = new HttpRequestMessage(HttpMethod.Post, requestUri) { Content = CreateJsonContent(value) })
                 using (var response = await client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken))
                 {
-                    var stream = await response.Content.ReadAsStreamAsync();
+                    var stream = await response.Content.ReadAsStreamAsync(cancellationToken);
 
                     if (response.IsSuccessStatusCode)
                         return Deserialize<T>(stream);

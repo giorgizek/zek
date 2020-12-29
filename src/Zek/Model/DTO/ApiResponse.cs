@@ -3,12 +3,21 @@ using System.Collections.Generic;
 
 namespace Zek.Model.DTO
 {
-    public class ApiResponse
+    public interface IApiResponse
+    {
+        bool Success { get; set; }
+        Dictionary<string, List<string>> Errors { get; set; }
+    }
+
+    public class ApiResponse : IApiResponse
     {
         public bool Success { get; set; }
 
         public Dictionary<string, List<string>> Errors { get; set; }
 
+
+        public void AddError(Enum @enum) => AddError(string.Empty, @enum.ToString());
+        public void AddError(string errorMessage) => AddError(string.Empty, errorMessage);
         public void AddError(string key, Enum @enum) => AddError(key, @enum.ToString());
         public void AddError(string key, string errorMessage)
         {
@@ -72,7 +81,14 @@ namespace Zek.Model.DTO
         }
     }
 
-    public class ApiResponse<T> : ApiResponse
+
+
+    public interface IApiResponse<T> : IApiResponse
+    {
+        public T Value { get; set; }
+    }
+
+    public class ApiResponse<T> : ApiResponse, IApiResponse<T>
     {
         public T Value { get; set; }
     }
