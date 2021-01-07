@@ -90,5 +90,24 @@ namespace Zek.Utils
             //    array[i] = t;
             //}
         }
+
+        
+        /// <summary>
+        /// Fisher-Yates Shuffle
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        public static void Shuffle<T>(List<T> list)
+        {
+            var rnd = GetRandom();
+            for (var i = list.Count - 1; i > 0; i--)
+            {
+                var index = rnd.Next(i);
+                //swap
+                var tmp = list[index];
+                list[index] = list[i];
+                list[i] = tmp;
+            }
+        }
     }
 }

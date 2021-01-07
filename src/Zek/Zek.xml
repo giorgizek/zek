@@ -3037,6 +3037,13 @@
             <typeparam name="T"></typeparam>
             <param name="array"></param>
         </member>
+        <member name="M:Zek.Utils.RandomHelper.Shuffle``1(System.Collections.Generic.List{``0})">
+            <summary>
+            Fisher-Yates Shuffle
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="list"></param>
+        </member>
         <member name="M:Zek.Utils.RecursiveHelper.Flatten``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``0}})">
             <summary>
               This method extends the LINQ methods to flatten a collection of 
@@ -3174,8 +3181,8 @@
                  </item>
              </list>
              </summary>
-             <param name="value">The ShortGuid encoded string to decode.</param>
-             <param name="guid">A new <see cref="T:System.Guid"/> instance from the parsed string.</param>
+             <param name="input">The ShortGuid encoded string to decode.</param>
+             <param name="result">A new <see cref="T:System.Guid"/> instance from the parsed string.</param>
              <returns>A boolean indicating if the decode was successful.</returns>
         </member>
         <member name="M:Zek.Utils.ShortGuid.op_Equality(Zek.Utils.ShortGuid,Zek.Utils.ShortGuid)">
@@ -3248,8 +3255,8 @@
                 </item>
             </list>
             </summary>
-            <param name="value">The ShortGuid encoded string or string representation of a Guid.</param>
-            <param name="shortGuid">A new <see cref="T:Zek.Utils.ShortGuid"/> instance from the parsed string.</param>
+            <param name="input">The ShortGuid encoded string or string representation of a Guid.</param>
+            <param name="result">A new <see cref="T:Zek.Utils.ShortGuid"/> instance from the parsed string.</param>
             <returns>A boolean indicating if the parse was successful.</returns>
         </member>
         <member name="M:Zek.Utils.ShortGuid.TryParse(System.String,System.Guid@)">
@@ -3272,8 +3279,8 @@
                  </item>
              </list>
              </summary>
-             <param name="value">The ShortGuid encoded string or string representation of a Guid.</param>
-             <param name="guid">A new <see cref="T:System.Guid"/> instance from the parsed string.</param>
+             <param name="input">The ShortGuid encoded string or string representation of a Guid.</param>
+             <param name="result">A new <see cref="T:System.Guid"/> instance from the parsed string.</param>
              <returns>A boolean indicating if the parse was successful.</returns>
         </member>
         <member name="M:Zek.Utils.StringHelper.FindCount(System.String,System.String)">

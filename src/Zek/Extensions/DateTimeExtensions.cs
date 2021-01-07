@@ -8,8 +8,8 @@ namespace Zek.Extensions
         public const string UniversalDateFormat = "yyyy-MM-dd";
         public const string UniversalDateTimeFormat = "yyyy-MM-dd HH:mm:ss";
         //public const string UniversalDateTimeMillisecondFormat = "yyyy-MM-dd HH:mm:ss.fff";
-        public static readonly DateTime MinDbDate = new DateTime(1900, 1, 1);
-        public static readonly DateTime MaxDbDate = new DateTime(9000, 12, 31);
+        public static readonly DateTime MinDbDate = new(1900, 1, 1);
+        public static readonly DateTime MaxDbDate = new(9000, 12, 31);
 
 
         public static string ToUniversalDateString(this DateTime date)
@@ -29,51 +29,51 @@ namespace Zek.Extensions
 
         public static DateTime GetStartOfSecond(this DateTime date)
         {
-            return new DateTime(date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second);
+            return new(date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second);
         }
         public static DateTime GetEndOfSecond(this DateTime date)
         {
-            return new DateTime(date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second, 999);
+            return new(date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second, 999);
         }
         public static DateTime GetStartOfMinute(this DateTime date)
         {
-            return new DateTime(date.Year, date.Month, date.Day, date.Hour, date.Minute, 0);
+            return new(date.Year, date.Month, date.Day, date.Hour, date.Minute, 0);
         }
         public static DateTime GetEndOfMinute(this DateTime date)
         {
-            return new DateTime(date.Year, date.Month, date.Day, date.Hour, date.Minute, 59, 999);
+            return new(date.Year, date.Month, date.Day, date.Hour, date.Minute, 59, 999);
         }
         public static DateTime GetStartOfHour(this DateTime date)
         {
-            return new DateTime(date.Year, date.Month, date.Day, date.Hour, 0, 0);
+            return new(date.Year, date.Month, date.Day, date.Hour, 0, 0);
         }
         public static DateTime GetEndOfHour(this DateTime date)
         {
-            return new DateTime(date.Year, date.Month, date.Day, date.Hour, 59, 59, 999);
+            return new(date.Year, date.Month, date.Day, date.Hour, 59, 59, 999);
         }
         public static DateTime GetStartOfDay(this DateTime date)
         {
-            return new DateTime(date.Year, date.Month, date.Day, 0, 0, 0, 0);
+            return new(date.Year, date.Month, date.Day, 0, 0, 0, 0);
         }
         public static DateTime GetEndOfDay(this DateTime date)
         {
-            return new DateTime(date.Year, date.Month, date.Day, 23, 59, 59, 999);
+            return new(date.Year, date.Month, date.Day, 23, 59, 59, 999);
         }
         public static DateTime GetStartOfMonth(this DateTime date)
         {
-            return new DateTime(date.Year, date.Month, 1, 0, 0, 0, 0);
+            return new(date.Year, date.Month, 1, 0, 0, 0, 0);
         }
         public static DateTime GetEndOfMonth(this DateTime date)
         {
-            return new DateTime(date.Year, date.Month, DateTime.DaysInMonth(date.Year, date.Month), 23, 59, 59, 999);
+            return new(date.Year, date.Month, DateTime.DaysInMonth(date.Year, date.Month), 23, 59, 59, 999);
         }
         public static DateTime GetStartOfYear(this DateTime date)
         {
-            return new DateTime(date.Year, 1, 1, 0, 0, 0, 0);
+            return new(date.Year, 1, 1, 0, 0, 0, 0);
         }
         public static DateTime GetEndOfYear(this DateTime date)
         {
-            return new DateTime(date.Year, 12, 31, 23, 59, 59, 999);
+            return new(date.Year, 12, 31, 23, 59, 59, 999);
         }
 
 

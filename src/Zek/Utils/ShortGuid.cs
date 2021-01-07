@@ -84,7 +84,7 @@ namespace Zek.Utils
                 if (TryDecode(str, out guid))
                     return _guid.Equals(guid);
 
-                // Try a guid string.
+                // Try a result string.
                 if (Guid.TryParse(str, out guid))
                     return _guid.Equals(guid);
             }
@@ -169,19 +169,32 @@ namespace Zek.Utils
         ///     </item>
         /// </list>
         /// </summary>
-        /// <param name="value">The ShortGuid encoded string to decode.</param>
-        /// <param name="guid">A new <see cref="System.Guid"/> instance from the parsed string.</param>
+        /// <param name="input">The ShortGuid encoded string to decode.</param>
+        /// <param name="result">A new <see cref="System.Guid"/> instance from the parsed string.</param>
         /// <returns>A boolean indicating if the decode was successful.</returns>
-        public static bool TryDecode(string value, out Guid guid)
+        public static bool TryDecode(string input, out Guid result)
         {
+            if (input == null)
+            {
+                result = default;
+                return false;
+            }
+
+            input = input.Trim();
+            if (input.Length == 0)
+            {
+                result = default;
+                return false;
+            }
+
             try
             {
-                guid = Decode(value);
+                result = Decode(input);
                 return true;
             }
             catch
             {
-                guid = Guid.Empty;
+                result = Guid.Empty;
                 return false;
             }
         }
@@ -285,26 +298,26 @@ namespace Zek.Utils
         ///     </item>
         /// </list>
         /// </summary>
-        /// <param name="value">The ShortGuid encoded string or string representation of a Guid.</param>
-        /// <param name="shortGuid">A new <see cref="ShortGuid"/> instance from the parsed string.</param>
+        /// <param name="input">The ShortGuid encoded string or string representation of a Guid.</param>
+        /// <param name="result">A new <see cref="ShortGuid"/> instance from the parsed string.</param>
         /// <returns>A boolean indicating if the parse was successful.</returns>
-        public static bool TryParse(string value, out ShortGuid shortGuid)
+        public static bool TryParse(string input, out ShortGuid result)
         {
             // Try a ShortGuid string.
-            if (ShortGuid.TryDecode(value, out var guid))
+            if (TryDecode(input, out var guid))
             {
-                shortGuid = guid;
+                result = guid;
                 return true;
             }
 
             // Try a Guid string.
-            if (Guid.TryParse(value, out guid))
+            if (Guid.TryParse(input, out guid))
             {
-                shortGuid = guid;
+                result = guid;
                 return true;
             }
 
-            shortGuid = Empty;
+            result = Empty;
             return false;
         }
 
@@ -327,20 +340,20 @@ namespace Zek.Utils
         ///     </item>
         /// </list>
         /// </summary>
-        /// <param name="value">The ShortGuid encoded string or string representation of a Guid.</param>
-        /// <param name="guid">A new <see cref="System.Guid"/> instance from the parsed string.</param>
+        /// <param name="input">The ShortGuid encoded string or string representation of a Guid.</param>
+        /// <param name="result">A new <see cref="System.Guid"/> instance from the parsed string.</param>
         /// <returns>A boolean indicating if the parse was successful.</returns>
-        public static bool TryParse(string value, out Guid guid)
+        public static bool TryParse(string input, out Guid result)
         {
             // Try a ShortGuid string.
-            if (ShortGuid.TryDecode(value, out guid))
+            if (TryDecode(input, out result))
                 return true;
 
             // Try a Guid string.
-            if (Guid.TryParse(value, out guid))
+            if (Guid.TryParse(input, out result))
                 return true;
 
-            guid = Guid.Empty;
+            result = Guid.Empty;
             return false;
         }
     }
