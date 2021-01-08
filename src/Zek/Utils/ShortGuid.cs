@@ -259,7 +259,7 @@ namespace Zek.Utils
         public static implicit operator ShortGuid(string value)
         {
             if (string.IsNullOrEmpty(value))
-                return ShortGuid.Empty;
+                return Empty;
 
             if (TryParse(value, out ShortGuid shortGuid))
                 return shortGuid;
@@ -273,7 +273,7 @@ namespace Zek.Utils
         public static implicit operator ShortGuid(Guid guid)
         {
             return guid == Guid.Empty
-                ? ShortGuid.Empty
+                ? Empty
                 : new ShortGuid(guid);
         }
 
