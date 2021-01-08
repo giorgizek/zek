@@ -39,7 +39,7 @@ namespace Zek.Linq
 
             return source;
         }
-        public static IQueryable<TSource> Filter<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> selector, WhereOperator whereOperator, TKey value1, TKey value2 = default(TKey), bool filterIfDefault = false)
+        public static IQueryable<TSource> Filter<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> selector, WhereOperator whereOperator, TKey value1, TKey value2 = default, bool filterIfDefault = false)
         {
             if (!filterIfDefault && Equals(value1, default(TKey)))
             {
@@ -86,7 +86,7 @@ namespace Zek.Linq
         }
 
 
-        public static IQueryable<TSource> Filter2<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> selector, WhereOperator whereOperator, TKey value1, TKey value2 = default(TKey), bool filterIfDefault = false)
+        public static IQueryable<TSource> Filter2<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> selector, WhereOperator whereOperator, TKey value1, TKey value2 = default, bool filterIfDefault = false)
         {
             if (!filterIfDefault && Equals(value1, default(TKey)))
             {

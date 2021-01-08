@@ -21,7 +21,7 @@ namespace Zek.Data.Sql
 
         public bool IsEmpty => WhereStatement.Count == 0;
 
-        private List<string> _whereStatement = new List<string>();
+        private List<string> _whereStatement = new();
         public List<string> WhereStatement
         {
             get { return _whereStatement; }

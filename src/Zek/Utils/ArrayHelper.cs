@@ -5,7 +5,7 @@
         public static T Coalesce<T>(params T[] args)
         {
             if (args == null)
-                return default(T);
+                return default;
 
             foreach (var arg in args)
             {
@@ -13,7 +13,7 @@
                     return arg;
             }
 
-            return default(T);
+            return default;
         }
     }
 }

@@ -241,7 +241,7 @@ namespace Zek.Utils
 
         private static bool VerifyHashedPasswordV3(byte[] hashedPassword, string password, out int iterCount)
         {
-            iterCount = default(int);
+            iterCount = default;
 
             try
             {

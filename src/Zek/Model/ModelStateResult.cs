@@ -35,6 +35,6 @@ namespace Zek.Model
 
         public bool IsValid => Errors.IsValid;
 
-        public ModelStateDictionary Errors { get; set; }  = new ModelStateDictionary();
+        public ModelStateDictionary Errors { get; set; }  = new();
     }
 }

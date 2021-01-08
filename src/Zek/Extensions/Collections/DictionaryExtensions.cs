@@ -14,7 +14,7 @@ namespace Zek.Extensions.Collections
                     return item.Key;
             }
 
-            return default(TKey);
+            return default;
         }
 
         public static TKey FindKey<TKey>(this IDictionary<TKey, string> dictionary, string value, StringComparison comparisonType)
@@ -25,7 +25,7 @@ namespace Zek.Extensions.Collections
                     return item.Key;
             }
 
-            return default(TKey);
+            return default;
         }
 
         

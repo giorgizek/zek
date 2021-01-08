@@ -6,7 +6,7 @@ namespace Zek.Extensions
     {
         public static async Task<bool> Invert(this Task<bool> task)
         {
-            return !(await task);
+            return !await task;
         }
 
 

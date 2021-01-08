@@ -32,7 +32,7 @@ namespace Zek.Extensions
             }
             else
             {
-                return (rng.GetSampleForLargeRange() * range) + minValue;
+                return rng.GetSampleForLargeRange() * range + minValue;
             }
         }
 
@@ -46,13 +46,13 @@ namespace Zek.Extensions
 
             var result = rng.Next();
             // Note we can't use addition here. The distribution will be bad if we do that.
-            var negative = (rng.Next() % 2 == 0);  // decide the sign based on second sample
+            var negative = rng.Next() % 2 == 0;  // decide the sign based on second sample
             if (negative)
             {
                 result = -result;
             }
             decimal d = result;
-            d += (int.MaxValue - 1); // get a number in range [0 .. 2 * Int32MaxValue - 1)
+            d += int.MaxValue - 1; // get a number in range [0 .. 2 * Int32MaxValue - 1)
             d /= 2 * (uint)int.MaxValue - 1;
             return d;
         }

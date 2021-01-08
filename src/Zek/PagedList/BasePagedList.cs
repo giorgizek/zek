@@ -6,7 +6,7 @@ namespace Zek.PagedList
 {
     public class BasePagedList<T> : IEnumerable<T>
     {
-        protected readonly List<T> Subset = new List<T>();
+        protected readonly List<T> Subset = new();
 
         /// <summary>
         /// 	Total number of objects contained within the superset.

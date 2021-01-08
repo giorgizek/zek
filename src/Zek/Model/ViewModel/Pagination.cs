@@ -12,7 +12,7 @@ namespace Zek.Model.ViewModel
     {
         public PagedIndexViewModel()
         {
-            Default = default(T);
+            Default = default;
         }
         public PagedIndexViewModel(int totalItems, int? page, int pageSize = 10) : this()
         {

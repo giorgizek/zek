@@ -20,7 +20,7 @@ namespace Zek.Extensions
 
 
 
-        public static T? NullIfDefault<T>(this T? value, T defaultValue = default(T)) where T : struct
+        public static T? NullIfDefault<T>(this T? value, T defaultValue = default) where T : struct
         {
             if (value == null)
                 return null;

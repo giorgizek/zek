@@ -44,7 +44,7 @@ namespace Zek.Services
                 Body = message,
                 To = new List<EmailAddressDTO>
                 {
-                    new EmailAddressDTO { Address = email }
+                    new() { Address = email }
                 },
             };
             await SendEmailAsync(model);

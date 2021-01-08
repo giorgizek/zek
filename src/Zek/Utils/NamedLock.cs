@@ -39,7 +39,7 @@ namespace Zek.Utils
         
         #region *   Internal static methods   *
 
-        private static readonly ConcurrentDictionary<string, CountedLock> WaitLock = new ConcurrentDictionary<string, CountedLock>(StringComparer.Ordinal);
+        private static readonly ConcurrentDictionary<string, CountedLock> WaitLock = new(StringComparer.Ordinal);
 
         private static object GetOrAdd(string key)
         {
@@ -57,7 +57,7 @@ namespace Zek.Utils
             }
         }
 
-        private static CountedLock LockFactory(string key) => new CountedLock();
+        private static CountedLock LockFactory(string key) => new();
 
         private class CountedLock
         {

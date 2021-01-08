@@ -16,13 +16,13 @@ namespace Zek.Utils
 
         private static StringContent CreateJsonContent(object value)
         {
-            return new StringContent(SerializeObject(value), Encoding.UTF8, "application/json");
+            return new(SerializeObject(value), Encoding.UTF8, "application/json");
         }
 
         private static T Deserialize<T>(Stream stream)
         {
             if (stream == null || stream.CanRead == false)
-                return default(T);
+                return default;
 
             using (var sr = new StreamReader(stream))
             using (var jtr = new JsonTextReader(sr))

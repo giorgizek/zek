@@ -18,7 +18,7 @@ namespace Zek.Utils
 
         public Pair<TFirst, TSecond> Clone()
         {
-            return new Pair<TFirst, TSecond>(First, Second);
+            return new(First, Second);
         }
 
         public override string ToString()

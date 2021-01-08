@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Globalization;
+using Zek.Extensions;
 
 namespace Zek.Office
 {
@@ -12,36 +12,13 @@ namespace Zek.Office
         [JsonIgnore]
         public virtual DateTime? DateTime
         {
-            get => GetDateTimeFromString(DateTimeRaw);
-            set => DateTimeRaw = GetStringFromDateTime(value);
+            get => DateTimeRaw.ToNullableDateTime();
+            set => DateTimeRaw = value.ToRfc3339String();
         }
 
         public virtual string TimeZone { get; set; }
 
-
       
-        private static string GetStringFromDateTime(DateTime? date) => date.HasValue ? ConvertToRFC3339(date.Value) : null;
-
-        private static DateTime? GetDateTimeFromString(string raw)
-        {
-            if (System.DateTime.TryParse(raw, out var time))
-            {
-                return time;
-            }
-            return null;
-        }
-
-        private static string ConvertToRFC3339(DateTime date)
-        {
-            if (date.Kind == DateTimeKind.Unspecified)
-            {
-                date = date.ToUniversalTime();
-            }
-
-            return date.ToString("yyyy-MM-dd'T'HH:mm:ss.fffK", DateTimeFormatInfo.InvariantInfo);
-        }
-
-
         /// <summary>
         /// Implicitly converts the DateTime? to a DateTimeTimeZone.
         /// </summary>

@@ -14,7 +14,7 @@ namespace Zek.Data.Repository
         /// </summary>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken));
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 
         EntityEntry Entry(object o);
         void Dispose();

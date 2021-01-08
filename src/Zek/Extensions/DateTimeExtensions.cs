@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace Zek.Extensions
 {
@@ -7,124 +8,81 @@ namespace Zek.Extensions
     {
         public const string UniversalDateFormat = "yyyy-MM-dd";
         public const string UniversalDateTimeFormat = "yyyy-MM-dd HH:mm:ss";
+        public const string Rfc3339Format = "yyyy-MM-dd'T'HH:mm:ss.fffK";
+
         //public const string UniversalDateTimeMillisecondFormat = "yyyy-MM-dd HH:mm:ss.fff";
         public static readonly DateTime MinDbDate = new(1900, 1, 1);
         public static readonly DateTime MaxDbDate = new(9000, 12, 31);
 
 
-        public static string ToUniversalDateString(this DateTime date)
-        {
-            return date.ToString(UniversalDateFormat);
-        }
-        public static string ToUniversalDateTimeString(this DateTime date)
-        {
-            return date.ToString(UniversalDateTimeFormat);
-        }
-
-        public static long ToJavaScriptMilliseconds(this DateTime date)
-        {
-            return (long)(date.ToUniversalTime().Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds);
-            //    return (long)((date.ToUniversalTime().Ticks - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).Ticks) / 10000D);
-        }
-
-        public static DateTime GetStartOfSecond(this DateTime date)
-        {
-            return new(date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second);
-        }
-        public static DateTime GetEndOfSecond(this DateTime date)
-        {
-            return new(date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second, 999);
-        }
-        public static DateTime GetStartOfMinute(this DateTime date)
-        {
-            return new(date.Year, date.Month, date.Day, date.Hour, date.Minute, 0);
-        }
-        public static DateTime GetEndOfMinute(this DateTime date)
-        {
-            return new(date.Year, date.Month, date.Day, date.Hour, date.Minute, 59, 999);
-        }
-        public static DateTime GetStartOfHour(this DateTime date)
-        {
-            return new(date.Year, date.Month, date.Day, date.Hour, 0, 0);
-        }
-        public static DateTime GetEndOfHour(this DateTime date)
-        {
-            return new(date.Year, date.Month, date.Day, date.Hour, 59, 59, 999);
-        }
-        public static DateTime GetStartOfDay(this DateTime date)
-        {
-            return new(date.Year, date.Month, date.Day, 0, 0, 0, 0);
-        }
-        public static DateTime GetEndOfDay(this DateTime date)
-        {
-            return new(date.Year, date.Month, date.Day, 23, 59, 59, 999);
-        }
-        public static DateTime GetStartOfMonth(this DateTime date)
-        {
-            return new(date.Year, date.Month, 1, 0, 0, 0, 0);
-        }
-        public static DateTime GetEndOfMonth(this DateTime date)
-        {
-            return new(date.Year, date.Month, DateTime.DaysInMonth(date.Year, date.Month), 23, 59, 59, 999);
-        }
-        public static DateTime GetStartOfYear(this DateTime date)
-        {
-            return new(date.Year, 1, 1, 0, 0, 0, 0);
-        }
-        public static DateTime GetEndOfYear(this DateTime date)
-        {
-            return new(date.Year, 12, 31, 23, 59, 59, 999);
-        }
+        public static string ToUniversalDateString(this DateTime date) => date.ToString(UniversalDateFormat);
+        public static string ToUniversalDateTimeString(this DateTime date) => date.ToString(UniversalDateTimeFormat);
 
 
-        public static DateTime? GetStartOfSecond(this DateTime? date)
+        public static string ToRfc3339String(this DateTime? date)
         {
-            return date != null ? (DateTime?)GetStartOfSecond(date.Value) : null;
+            return date?.ToRfc3339String();
         }
-        public static DateTime? GetEndOfSecond(this DateTime? date)
+
+        public static string ToRfc3339String(this DateTime date)
         {
-            return date != null ? (DateTime?)GetEndOfSecond(date.Value) : null;
+            if (date.Kind == DateTimeKind.Unspecified)
+            {
+                date = date.ToUniversalTime();
+            }
+           return date.ToString(Rfc3339Format, DateTimeFormatInfo.InvariantInfo);
         }
-        public static DateTime? GetStartOfMinute(this DateTime? date)
-        {
-            return date != null ? (DateTime?)GetStartOfMinute(date.Value) : null;
-        }
-        public static DateTime? GetEndOfMinute(this DateTime? date)
-        {
-            return date != null ? (DateTime?)GetEndOfMinute(date.Value) : null;
-        }
-        public static DateTime? GetStartOfHour(this DateTime? date)
-        {
-            return date != null ? (DateTime?)GetStartOfHour(date.Value) : null;
-        }
-        public static DateTime? GetEndOfHour(this DateTime? date)
-        {
-            return date != null ? (DateTime?)GetEndOfHour(date.Value) : null;
-        }
-        public static DateTime? GetStartOfDay(this DateTime? date)
-        {
-            return date != null ? (DateTime?)GetStartOfDay(date.Value) : null;
-        }
-        public static DateTime? GetEndOfDay(this DateTime? date)
-        {
-            return date != null ? (DateTime?)GetEndOfDay(date.Value) : null;
-        }
-        public static DateTime? GetStartOfMonth(this DateTime? date)
-        {
-            return date != null ? (DateTime?)GetStartOfMonth(date.Value) : null;
-        }
-        public static DateTime? GetEndOfMonth(this DateTime? date)
-        {
-            return date != null ? (DateTime?)GetEndOfMonth(date.Value) : null;
-        }
-        public static DateTime? GetStartOfYear(this DateTime? date)
-        {
-            return date != null ? (DateTime?)GetStartOfYear(date.Value) : null;
-        }
-        public static DateTime? GetEndOfYear(this DateTime? date)
-        {
-            return date != null ? (DateTime?)GetEndOfYear(date.Value) : null;
-        }
+
+        public static long ToJavaScriptMilliseconds(this DateTime date) => (long)date.ToUniversalTime().Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds;
+
+        public static DateTime GetStartOfSecond(this DateTime date) => new(date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second);
+
+        public static DateTime GetEndOfSecond(this DateTime date) => new(date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second, 999);
+
+        public static DateTime GetStartOfMinute(this DateTime date) => new(date.Year, date.Month, date.Day, date.Hour, date.Minute, 0);
+
+        public static DateTime GetEndOfMinute(this DateTime date) => new(date.Year, date.Month, date.Day, date.Hour, date.Minute, 59, 999);
+
+        public static DateTime GetStartOfHour(this DateTime date) => new(date.Year, date.Month, date.Day, date.Hour, 0, 0);
+
+        public static DateTime GetEndOfHour(this DateTime date) => new(date.Year, date.Month, date.Day, date.Hour, 59, 59, 999);
+
+        public static DateTime GetStartOfDay(this DateTime date) => new(date.Year, date.Month, date.Day, 0, 0, 0, 0);
+
+        public static DateTime GetEndOfDay(this DateTime date) => new(date.Year, date.Month, date.Day, 23, 59, 59, 999);
+
+        public static DateTime GetStartOfMonth(this DateTime date) => new(date.Year, date.Month, 1, 0, 0, 0, 0);
+
+        public static DateTime GetEndOfMonth(this DateTime date) => new(date.Year, date.Month, DateTime.DaysInMonth(date.Year, date.Month), 23, 59, 59, 999);
+
+        public static DateTime GetStartOfYear(this DateTime date) => new(date.Year, 1, 1, 0, 0, 0, 0);
+
+        public static DateTime GetEndOfYear(this DateTime date) => new(date.Year, 12, 31, 23, 59, 59, 999);
+
+
+        public static DateTime? GetStartOfSecond(this DateTime? date) => date != null ? (DateTime?)GetStartOfSecond(date.Value) : null;
+
+        public static DateTime? GetEndOfSecond(this DateTime? date) => date != null ? (DateTime?)GetEndOfSecond(date.Value) : null;
+
+        public static DateTime? GetStartOfMinute(this DateTime? date) => date != null ? (DateTime?)GetStartOfMinute(date.Value) : null;
+
+        public static DateTime? GetEndOfMinute(this DateTime? date) => date != null ? (DateTime?)GetEndOfMinute(date.Value) : null;
+
+        public static DateTime? GetStartOfHour(this DateTime? date) => date != null ? (DateTime?)GetStartOfHour(date.Value) : null;
+
+        public static DateTime? GetEndOfHour(this DateTime? date) => date != null ? (DateTime?)GetEndOfHour(date.Value) : null;
+
+        public static DateTime? GetStartOfDay(this DateTime? date) => date != null ? (DateTime?)GetStartOfDay(date.Value) : null;
+
+        public static DateTime? GetEndOfDay(this DateTime? date) => date != null ? (DateTime?)GetEndOfDay(date.Value) : null;
+
+        public static DateTime? GetStartOfMonth(this DateTime? date) => date != null ? (DateTime?)GetStartOfMonth(date.Value) : null;
+
+        public static DateTime? GetEndOfMonth(this DateTime? date) => date != null ? (DateTime?)GetEndOfMonth(date.Value) : null;
+
+        public static DateTime? GetStartOfYear(this DateTime? date) => date != null ? (DateTime?)GetStartOfYear(date.Value) : null;
+
+        public static DateTime? GetEndOfYear(this DateTime? date) => date != null ? (DateTime?)GetEndOfYear(date.Value) : null;
 
 
         /// <summary>
@@ -138,7 +96,7 @@ namespace Zek.Extensions
         {
             return 12 * (date1.Year - date2.Year) + date1.Month - date2.Month
                 + (round
-                ? (date1.Day - date2.Day >= 27 ? 1 : (date2.Day - date1.Day >= 27 ? -1 : 0))
+                ? date1.Day - date2.Day >= 27 ? 1 : date2.Day - date1.Day >= 27 ? -1 : 0
                 : 0);
         }
 
@@ -151,18 +109,17 @@ namespace Zek.Extensions
         /// <returns>ასაკი.</returns>
         public static int GetAge(this DateTime birthDate, DateTime? now = null)
         {
-            if (now == null)
-                now = DateTime.Now;
+            now ??= DateTime.Now;
 
             var age = now.Value.Year - birthDate.Year;
             if (birthDate <= now)
             {
-                if (now.Value.Month < birthDate.Month || (now.Value.Month == birthDate.Month && now.Value.Day < birthDate.Day))
+                if (now.Value.Month < birthDate.Month || now.Value.Month == birthDate.Month && now.Value.Day < birthDate.Day)
                     age--;
             }
             else
             {
-                if (now.Value.Month > birthDate.Month || (now.Value.Month == birthDate.Month && now.Value.Day > birthDate.Day))
+                if (now.Value.Month > birthDate.Month || now.Value.Month == birthDate.Month && now.Value.Day > birthDate.Day)
                     age++;
             }
             return age;
@@ -172,11 +129,11 @@ namespace Zek.Extensions
 
 
         /// <summary>
-        /// უცვლის დროს (საათი, წუთი, წამი).
+        /// Combines date with time (removes time and add time from parameter hour, min, sec).
         /// </summary>
-        /// <param name="date">თარიღი, რომელზეც გვინდა დროის შეცვლა.</param>
-        /// <param name="time">თარიღი, რომლიდანაც ამოვიღებთ მხოლოდ დროს.</param>
-        /// <returns>აბრუნებს შეცვლილ თარიღს.</returns>
+        /// <param name="date">Date</param>
+        /// <param name="time">Gets time from this parameter.</param>
+        /// <returns>Returns merger date time.</returns>
         public static DateTime CombineTime(this DateTime date, DateTime time)
         {
             return CombineTime(date, time.Hour, time.Minute, time.Second);
@@ -195,11 +152,11 @@ namespace Zek.Extensions
         }
 
 
-        public static DateTime? NullIfDefault(this DateTime? value, DateTime defaultValue = default(DateTime))
+        public static DateTime? NullIfDefault(this DateTime? value, DateTime defaultValue = default)
         {
             return value == null || value == defaultValue ? null : value;
         }
-        public static DateTime DefaultIfNull(this DateTime? value, DateTime defaultValue = default(DateTime))
+        public static DateTime DefaultIfNull(this DateTime? value, DateTime defaultValue = default)
         {
             return value ?? defaultValue;
         }

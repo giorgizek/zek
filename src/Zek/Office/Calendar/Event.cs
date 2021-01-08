@@ -2,13 +2,36 @@
 
 namespace Zek.Office
 {
-    public class Event : Event<EventType?, int>
+    public class Event : Event<DateTimeTimeZone, EventType?, int>
     {
 
     }
-    public class Event< TEventType, TStatus>
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TDate">DateTime? or DateTimeTimeZone</typeparam>
+    /// <typeparam name="TEventType">EventType? or other nullable enum</typeparam>
+    /// <typeparam name="TStatus"></typeparam>
+    public class Event<TDate, TEventType, TStatus> : EventBase<TDate, TEventType, TStatus>
     {
-        public string Id { get; set; }
+        /// <summary>
+        /// Gets or sets calendar.
+        /// The calendar that contains the event. Navigation property. Read-only.
+        /// </summary>
+        public Calendar Calendar { get; set; }
+    }
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TDate">DateTime? or DateTimeTimeZone</typeparam>
+    /// <typeparam name="TEventType">EventType? or other nullable enum</typeparam>
+    /// <typeparam name="TStatus"></typeparam>
+    public class EventBase<TDate, TEventType, TStatus>
+    {
+         public string Id { get; set; }
 
         /// <summary>
         /// Gets or sets type.
@@ -20,13 +43,13 @@ namespace Zek.Office
         /// Gets or sets start.
         /// The date, time, and time zone that the event starts. By default, the start time is in UTC.
         /// </summary>
-        public DateTimeTimeZone Start { get; set; }
+        public TDate Start { get; set; }
 
         /// <summary>
         /// Gets or sets end.
         /// The date, time, and time zone that the event ends. By default, the end time is in UTC.
         /// </summary>
-        public DateTimeTimeZone End { get; set; }
+        public TDate End { get; set; }
 
         /// <summary>
         /// Gets or sets is all day.
@@ -218,13 +241,6 @@ namespace Zek.Office
 
 
         #endregion
-
-
-        /// <summary>
-        /// Gets or sets calendar.
-        /// The calendar that contains the event. Navigation property. Read-only.
-        /// </summary>
-        public Calendar Calendar { get; set; }
 
         /// <summary>
         /// Gets or sets transaction id.

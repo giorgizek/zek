@@ -50,7 +50,7 @@ namespace Zek.ISO3166
         /// <summary>
         /// This collection built from Wikipedia entry on ISO3166-1 on 9th Feb 2016
         /// </summary>
-        public static readonly Collection<ISO3166Country> Countries = new Collection<ISO3166Country>
+        public static readonly Collection<ISO3166Country> Countries = new()
         {
             new ISO3166Country("Afghanistan", "AF", "AFG", 4),
             new ISO3166Country("Åland Islands", "AX", "ALA", 248),

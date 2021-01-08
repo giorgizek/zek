@@ -25,7 +25,7 @@ namespace Zek.Utils
             var claims = new List<Claim>
             {
                 //new Claim(ClaimTypes.CookiePath, ".contoso.com"),//CookieDomain - the domain name the cookie will be served to. By default this is the host name the request was sent to. The browser will only serve the cookie to a matching host name. You may wish to adjust this to have cookies available to any host in your domain. For example setting the cookie domain to .contoso.com will make it available to contoso.com, www.contoso.com, staging.www.contoso.com etc.
-                new Claim(CustomClaimTypes.UserId, userId),
+                new(CustomClaimTypes.UserId, userId),
             };
 
             if (!string.IsNullOrEmpty(userName))

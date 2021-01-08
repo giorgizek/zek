@@ -8,7 +8,7 @@ namespace Zek.Utils
     {
         public static List<TSource> SelectTree<TSource, TKey>(List<TSource> source, Func<TSource, TKey> keySelector, Func<TSource, TKey> parentKeySelector, Func<TSource, ICollection<TSource>> childrenSelector)
         {
-            return new List<TSource>(InternalSelectTree(source, keySelector, parentKeySelector, childrenSelector));
+            return new(InternalSelectTree(source, keySelector, parentKeySelector, childrenSelector));
         }
         public static TSource[] SelectTree<TSource, TKey>(TSource[] source, Func<TSource, TKey> keySelector, Func<TSource, TKey> parentKeySelector, Func<TSource, ICollection<TSource>> childrenSelector)
         {
@@ -23,7 +23,7 @@ namespace Zek.Utils
             return new List<TSource>(InternalSelectTree(source, keySelector, parentKeySelector, childrenSelector));
         }
 
-        private static IEnumerable<TSource> InternalSelectTree<TSource, TKey>(IEnumerable<TSource> source, Func<TSource, TKey> keySelector, Func<TSource, TKey> parentKeySelector, Func<TSource, ICollection<TSource>> childrenSelector, TKey key = default(TKey))
+        private static IEnumerable<TSource> InternalSelectTree<TSource, TKey>(IEnumerable<TSource> source, Func<TSource, TKey> keySelector, Func<TSource, TKey> parentKeySelector, Func<TSource, ICollection<TSource>> childrenSelector, TKey key = default)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));

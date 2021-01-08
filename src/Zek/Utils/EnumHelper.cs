@@ -67,7 +67,7 @@ namespace Zek.Utils
         }
 
 
-        private static readonly object Lock = new object();
+        private static readonly object Lock = new();
         private static Dictionary<Type, HashSet<long>> _cache;
         //private static Dictionary<Type, HashSet<long>> Cache
         //{

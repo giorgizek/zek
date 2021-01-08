@@ -114,7 +114,7 @@ namespace Zek.Extensions
             if (startIndex < 0)
                 startIndex = 0;
 
-            return str.Length > startIndex ? (str.Length > startIndex + length ? str.Substring(startIndex, length.Value) : str.Substring(startIndex)) : string.Empty;
+            return str.Length > startIndex ? str.Length > startIndex + length ? str.Substring(startIndex, length.Value) : str.Substring(startIndex) : string.Empty;
         }
 
 
@@ -201,7 +201,7 @@ namespace Zek.Extensions
 
         public static string Etc(this string str, int max, string etcString = "(...)")
         {
-            if (!string.IsNullOrEmpty(str) && (str.Length > max))
+            if (!string.IsNullOrEmpty(str) && str.Length > max)
                 return str.Left(max - (!string.IsNullOrEmpty(etcString) ? etcString.Length : 0)) + etcString;
             return str;
         }
@@ -427,7 +427,7 @@ namespace Zek.Extensions
         /// <param name="str"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public static Guid ToGuid(this string str, Guid defaultValue = default(Guid))
+        public static Guid ToGuid(this string str, Guid defaultValue = default)
         {
             //str = str.IfNullEmpty();
             return Guid.TryParse(str, out var result) ? result : defaultValue;
@@ -447,15 +447,13 @@ namespace Zek.Extensions
         /// <returns></returns>
         public static DateTime ToDateTime(this string str, DateTime? defaultValue = null)
         {
-            if (defaultValue == null)
-                defaultValue = DateTime.MinValue;
+            defaultValue ??= DateTime.MinValue;
 
             return DateTime.TryParse(str, out var result) ? result : defaultValue.Value;
         }
         public static DateTime ParseUniversalDateTime(this string str, DateTime? defaultValue = null)
         {
-            if (defaultValue == null)
-                defaultValue = DateTime.MinValue;
+            defaultValue ??= DateTime.MinValue;
 
             return DateTime.TryParseExact(str, DateTimeExtensions.UniversalDateTimeFormat, null, DateTimeStyles.None, out var result) ? result : defaultValue.Value;
         }
@@ -630,8 +628,8 @@ namespace Zek.Extensions
                 var currentChar = str[i];
                 if (char.IsUpper(currentChar))
                 {
-                    if ((i > 1 && !char.IsUpper(str[i - 1])) 
-                        || (i + 1 < str.Length && !char.IsUpper(str[i + 1])))
+                    if (i > 1 && !char.IsUpper(str[i - 1]) 
+                        || i + 1 < str.Length && !char.IsUpper(str[i + 1]))
                         retVal.Append(' ');
                 }
 

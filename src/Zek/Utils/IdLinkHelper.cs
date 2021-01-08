@@ -177,7 +177,7 @@ namespace Zek.Utils
             }
             catch
             {
-                return default(T);
+                return default;
             }
 
             try
@@ -190,7 +190,7 @@ namespace Zek.Utils
                     case IdLinkMode.SHA1:
                         var values = Encoding.UTF8.GetString(array).Split(new[] { "||" }, StringSplitOptions.None);
                         if (values.Length == 1)
-                            return default(T);
+                            return default;
 
                         using (var alg = SHA1.Create())
                         {
@@ -198,7 +198,7 @@ namespace Zek.Utils
 
                             var hash = Convert.ToBase64String(alg.ComputeHash(Encoding.UTF8.GetBytes(values[0] + key)));
                             if (hashed != hash)
-                                return default(T);
+                                return default;
 
                             return JsonConvert.DeserializeObject<T>(values[0]);
                         }
@@ -209,7 +209,7 @@ namespace Zek.Utils
             }
             catch
             {
-                return default(T);
+                return default;
             }
 
         }

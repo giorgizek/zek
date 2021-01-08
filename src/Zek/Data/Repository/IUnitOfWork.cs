@@ -8,7 +8,7 @@ namespace Zek.Data.Repository
     {
         //void Dispose();
         void Save();
-        Task<int> SaveAsync(CancellationToken cancellationToken = default(CancellationToken));
+        Task<int> SaveAsync(CancellationToken cancellationToken = default);
         //void Dispose(bool disposing);
         IRepository<TEntity> Repository<TEntity>() where TEntity : class, IDisposable;
     }

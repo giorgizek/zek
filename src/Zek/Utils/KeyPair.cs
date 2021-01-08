@@ -23,7 +23,7 @@ namespace Zek.Utils
         }
         public KeyPair<TKey, TValue> Clone()
         {
-            return new KeyPair<TKey, TValue>(Key, Value);
+            return new(Key, Value);
         }
         public override string ToString()
         {

@@ -20,7 +20,7 @@ namespace Zek.Extensions.Caching.Memory
             cache.Set(key, content, options);
         }
 
-        public static T TryGetValue<T>(this IMemoryCache cache, string key, T defaultValue = default(T))
+        public static T TryGetValue<T>(this IMemoryCache cache, string key, T defaultValue = default)
         {
             if (cache.TryGetValue(key, out var result))
             {
