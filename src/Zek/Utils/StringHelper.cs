@@ -108,5 +108,18 @@ namespace Zek.Utils
             // + or /
             return intValue != 43 && intValue != 47;
         }
+
+
+        public static string Join(string separator, params object[] values)
+        {
+            var sb = new StringBuilder();
+            foreach (var value in values)
+                if (value != null)
+                    sb.Append(value + separator);
+
+            sb.Remove(sb.Length - separator.Length, separator.Length);
+            
+            return sb.ToString();
+        }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Zek.Office
 {
-    public class Event : Event<DateTimeTimeZone, EventType?, int>
+    public class Event : Event<int, DateTimeTimeZone, EventType?, int>
     {
 
     }
@@ -13,7 +13,7 @@ namespace Zek.Office
     /// <typeparam name="TDate">DateTime? or DateTimeTimeZone</typeparam>
     /// <typeparam name="TEventType">EventType? or other nullable enum</typeparam>
     /// <typeparam name="TStatus"></typeparam>
-    public class Event<TDate, TEventType, TStatus> : EventBase<TDate, TEventType, TStatus>
+    public class Event<TId, TDate, TEventType, TStatus> : EventBase<TId, TDate, TEventType, TStatus>
     {
         /// <summary>
         /// Gets or sets calendar.
@@ -26,12 +26,13 @@ namespace Zek.Office
     /// <summary>
     /// 
     /// </summary>
+    /// <typeparam name="TId">int, string, Guid</typeparam>
     /// <typeparam name="TDate">DateTime? or DateTimeTimeZone</typeparam>
     /// <typeparam name="TEventType">EventType? or other nullable enum</typeparam>
     /// <typeparam name="TStatus"></typeparam>
-    public class EventBase<TDate, TEventType, TStatus>
+    public class EventBase<TId, TDate, TEventType, TStatus>
     {
-         public string Id { get; set; }
+         public TId Id { get; set; }
 
         /// <summary>
         /// Gets or sets type.
