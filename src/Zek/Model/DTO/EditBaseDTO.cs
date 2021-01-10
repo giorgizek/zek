@@ -3,12 +3,21 @@
     /// <summary>
     /// Edit model base class
     /// </summary>
-    public class EditBaseDTO
+    public class EditBaseDTO : EditBaseDTO<int?>
+    {
+        
+    }
+
+    /// <summary>
+    /// Edit model base class
+    /// </summary>
+    /// <typeparam name="TId"></typeparam>
+    public class EditBaseDTO<TId>
     {
         /// <summary>
         /// ID of model
         /// </summary>
-        public int? Id { get; set; }
+        public TId Id { get; set; }
 
         /// <summary>
         /// Set true if entity is read only

@@ -9,9 +9,7 @@ namespace Zek.Utils
         private readonly int _hashCode;
         public MultiKey(params object[] keyParts)
         {
-            if (keyParts == null)
-                throw new ArgumentNullException(nameof(keyParts));
-            KeyParts = keyParts;
+            KeyParts = keyParts ?? throw new ArgumentNullException(nameof(keyParts));
             var count = keyParts.Length;
             var hashCodes = new int[count];
             for (var i = 0; i < count; i++)
@@ -29,8 +27,7 @@ namespace Zek.Utils
         }
         public override bool Equals(object obj)
         {
-            var other = obj as MultiKey;
-            if (other == null || GetType() != other.GetType() || KeyParts.Length != other.KeyParts.Length)
+            if (!(obj is MultiKey other) || GetType() != other.GetType() || KeyParts.Length != other.KeyParts.Length)
                 return false;
             var count = KeyParts.Length;
             for (var i = 0; i < count; i++)
