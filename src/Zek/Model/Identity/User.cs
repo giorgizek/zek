@@ -153,22 +153,24 @@ namespace Zek.Model.Identity
             ToTable("Users", nameof(Schema.Identity));
 
             Property(t => t.Id).ValueGeneratedOnAdd();
-            Property(u => u.ConcurrencyStamp).HasMaxLength(50).IsConcurrencyToken();
             Property(u => u.UserName).HasMaxLength(256);
             Property(u => u.NormalizedUserName).HasMaxLength(256);
             Property(u => u.Email).HasMaxLength(256);
             Property(u => u.NormalizedEmail).HasMaxLength(256);
+            Property(u => u.ConcurrencyStamp).HasMaxLength(50).IsConcurrencyToken();
+            Property(u => u.SecurityStamp).HasMaxLength(50).IsConcurrencyToken();
+            Property(u => u.PhoneNumber).HasMaxLength(50);
             Property(u => u.LockoutEnd).HasColumnTypeDateTime();
-
             Property(t => t.CreateDate).HasColumnTypeDateTime();
             Property(t => t.ModifiedDate).HasColumnTypeDateTime();
+
 
             HasKey(u => u.Id);
             if (uniqueUserName)
                 HasIndex(u => u.NormalizedUserName).IsUnique();
             if (uniqueEmail)
                 HasIndex(u => u.NormalizedEmail).IsUnique();
-            
+
             HasIndex(x => x.IsActive);
             HasIndex(t => t.CreatorId);
             HasIndex(t => t.ModifierId);
