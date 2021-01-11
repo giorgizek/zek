@@ -9,6 +9,8 @@ namespace Zek.Data.Entity
         public static PropertyBuilder<TProperty> HasColumnTypeDate<TProperty>([NotNull] this PropertyBuilder<TProperty> propertyBuilder) => propertyBuilder.HasColumnType("date");
         public static PropertyBuilder<TProperty> HasColumnTypeDateTime<TProperty>([NotNull] this PropertyBuilder<TProperty> propertyBuilder) => propertyBuilder.HasColumnType("datetime2(0)");
 
+        public static PropertyBuilder<TProperty> HasColumnTypePhoneNumber<TProperty>([NotNull] this PropertyBuilder<TProperty> propertyBuilder) => propertyBuilder.HasMaxLength(50);
+
         public static PropertyBuilder<TProperty> HasColumnTypeTemperature<TProperty>([NotNull] this PropertyBuilder<TProperty> propertyBuilder) => propertyBuilder.HasColumnType("decimal(4,1)");
         public static PropertyBuilder<TProperty> HasColumnTypeWeight<TProperty>([NotNull] this PropertyBuilder<TProperty> propertyBuilder) => propertyBuilder.HasColumnType("decimal(4,1)");
 
