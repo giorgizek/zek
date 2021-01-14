@@ -21,13 +21,16 @@ namespace Zek.Utils
             }
             _hashCode = HashCodeHelper.CalcHashCode(hashCodes);
         }
+
         public override int GetHashCode()
         {
             return _hashCode;
         }
+
+
         public override bool Equals(object obj)
         {
-            if (!(obj is MultiKey other) || GetType() != other.GetType() || KeyParts.Length != other.KeyParts.Length)
+            if (obj is not MultiKey other || GetType() != other.GetType() || KeyParts.Length != other.KeyParts.Length)
                 return false;
             var count = KeyParts.Length;
             for (var i = 0; i < count; i++)
@@ -37,6 +40,7 @@ namespace Zek.Utils
             }
             return true;
         }
+
         public override string ToString()
         {
             var builder = new StringBuilder();
