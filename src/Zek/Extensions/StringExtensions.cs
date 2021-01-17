@@ -8,7 +8,7 @@ namespace Zek.Extensions
     public static class StringExtensions
     {
         /// <summary>
-        /// იღებს String-ს ტექსტიდან. თუ ტექსტი == null მაშინ აბრუნებს ""
+        /// Checks if string is null and return string.Empty otherwise returns string
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>

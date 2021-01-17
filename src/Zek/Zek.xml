@@ -325,7 +325,7 @@
         </member>
         <member name="M:Zek.Extensions.StringExtensions.IfNullEmpty(System.String)">
             <summary>
-            იღებს String-ს ტექსტიდან. თუ ტექსტი == null მაშინ აბრუნებს ""
+            Checks if string is null and return string.Empty otherwise returns string
             </summary>
             <param name="str"></param>
             <returns></returns>
@@ -2899,20 +2899,42 @@
             <param name="currency">transaction currency code  (ISO 4217), mandatory, (3 digits)</param>
             <returns>transaction identifier (28 characters in base64 encoding). In case of an error, the returned string of symbols begins with 'error:'.</returns>
         </member>
-        <member name="M:Zek.Services.EcommService.RegisterDmsAuthorizationAsync(System.Int32,Zek.ISO4217.ISO4217,System.String,System.String,System.String)">
+        <member name="M:Zek.Services.EcommService.RegisterDmsAuthorizationAsync(System.Decimal,System.Int32,System.String,System.String,System.String)">
             <summary>
-            Registering DMS authorization / Регистрация DMS авторизации
+            Registering DMS authorization (block amount) / Регистрация DMS авторизации (Прошу учесть, что после этой команды необходимо выполнить процедуру 1.1.3 Transaction result, для выяснения результата.)
             </summary>
             <param name="amount"></param>
             <param name="currency"></param>
             <param name="clientIp"></param>
             <param name="description"></param>
             <param name="language"></param>
-            <returns></returns>
+            <returns>transaction identifier (28 characters in base64 encoding). In case of an error, the returned string of symbols begins with ‘error:‘.</returns>
+        </member>
+        <member name="M:Zek.Services.EcommService.RegisterDmsAuthorizationAsync(System.Decimal,Zek.ISO4217.ISO4217,System.String,System.String,System.String)">
+            <summary>
+            Registering DMS authorization (block amount) / Регистрация DMS авторизации (Прошу учесть, что после этой команды необходимо выполнить процедуру 1.1.3 Transaction result, для выяснения результата.)
+            </summary>
+            <param name="amount"></param>
+            <param name="currency"></param>
+            <param name="clientIp"></param>
+            <param name="description"></param>
+            <param name="language"></param>
+            <returns>transaction identifier (28 characters in base64 encoding). In case of an error, the returned string of symbols begins with ‘error:‘.</returns>
+        </member>
+        <member name="M:Zek.Services.EcommService.RegisterDmsAuthorizationAsync(System.Int32,Zek.ISO4217.ISO4217,System.String,System.String,System.String)">
+            <summary>
+            Registering DMS authorization (block amount) / Регистрация DMS авторизации (Прошу учесть, что после этой команды необходимо выполнить процедуру 1.1.3 Transaction result, для выяснения результата.)
+            </summary>
+            <param name="amount"></param>
+            <param name="currency"></param>
+            <param name="clientIp"></param>
+            <param name="description"></param>
+            <param name="language"></param>
+            <returns>transaction identifier (28 characters in base64 encoding). In case of an error, the returned string of symbols begins with ‘error:‘.</returns>
         </member>
         <member name="M:Zek.Services.EcommService.RegisterDmsAuthorizationAsync(System.Int32,System.Int32,System.String,System.String,System.String)">
             <summary>
-            Registering DMS authorization / Регистрация DMS авторизации
+            Registering DMS authorization (block amount) / Регистрация DMS авторизации (Прошу учесть, что после этой команды необходимо выполнить процедуру 1.1.3 Transaction result, для выяснения результата.)
             </summary>
             <param name="amount"></param>
             <param name="currency"></param>

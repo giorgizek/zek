@@ -23,8 +23,7 @@
         public static bool IsEquals(this object val1, object val2)
         {
             if (val1 != null && val2 != null && val1.Equals(val2)) return true;
-            if (val1 == val2) return true;
-            return false;
+            return val1 == val2;
         }
     }
 }

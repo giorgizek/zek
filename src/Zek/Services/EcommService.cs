@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Http;
@@ -7,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Zek.Extensions;
 using Zek.Model.DTO.Ecomm;
+// ReSharper disable InconsistentNaming
 
 namespace Zek.Services
 {
@@ -103,102 +105,188 @@ namespace Zek.Services
             return await response.Content.ReadAsStringAsync();
         }
 
+        private static Dictionary<string, string> GetValues(string response)
+        {
+            var values = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+
+            foreach (var l in response.Split(new[] { '\r', '\n', }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                var line = l.Trim();
+                var equalPox = line.IndexOf(':');
+                if (equalPox >= 0)
+                    values.Add(line.Substring(0, equalPox), line.Substring(equalPox + 1));
+            }
+
+            return values;
+        }
+
         private static ResultDTO Deserialize(string response)
         {
             if (string.IsNullOrEmpty(response))
                 return null;
 
             var model = new ResultDTO();
-            var lines = response.Split(new[] { '\r', '\n', }, StringSplitOptions.RemoveEmptyEntries);
-            foreach (var line in lines)
-            {
-                var index = line.IndexOf(":", StringComparison.Ordinal);
-                if (index == -1)
-                    continue;
+            var values = GetValues(response);
 
-                var key = line.Substring(0, index).ToUpperInvariant();
-                switch (key)
-                {
-                    case "TRANSACTION_ID":
-                        model.TransactionId = line.Substring(index + 1).Trim();
-                        break;
+            values.TryGetValue("transaction_id", out var transaction_id);
+            model.TransactionId = transaction_id;
 
-                    case "ERROR":
-                        model.Error = line.Substring(index + 1).Trim();
-                        break;
+            values.TryGetValue("error", out var error);
+            model.Error = error;
 
-                    case "RESULT_CODE":
-                        model.ResultCode = line.Substring(index + 1).Trim();
-                        break;
+            values.TryGetValue("result_code", out var result_code);
+            model.ResultCode = result_code;
 
-                    case "RRN":
-                        model.Rrn = line.Substring(index + 1).Trim();
-                        break;
+            values.TryGetValue("rrn", out var rrn);
+            model.Rrn = rrn;
 
-                    case "APPROVAL_CODE":
-                        model.ApprovalCode = line.Substring(index + 1).Trim();
-                        break;
+            values.TryGetValue("approval_code", out var approval_code);
+            model.ApprovalCode = approval_code;
 
-                    case "CARD_NUMBER":
-                        model.CardNumber = line.Substring(index + 1).Trim();
-                        break;
+            values.TryGetValue("card_number", out var card_number);
+            model.CardNumber = card_number;
 
-                    case "RESULT":
-                        model.ResultText = line.Substring(index + 1).Trim();
-                        break;
+            values.TryGetValue("result", out var result);
+            model.ResultText = result;
 
-                    case "RESULT_PS":
-                        model.ResultPaymentServerText = line.Substring(index + 1).Trim();
-                        break;
+            values.TryGetValue("result_ps", out var result_ps);
+            model.ResultPaymentServerText = result_ps;
 
-                    case "3DSECURE":
-                        model.Secure3DText = line.Substring(index + 1).Trim();
-                        break;
+            values.TryGetValue("3dsecure", out var _3dsecure);
+            model.Secure3DText = _3dsecure;
 
-                    case "AAV":
-                        model.Aav = line.Substring(index + 1).Trim();
-                        break;
+            values.TryGetValue("aav", out var aav);
+            model.Aav = aav;
 
-                    case "RECC_PMNT_ID":
-                        model.RegularPaymentId = line.Substring(index + 1).Trim();
-                        break;
+            values.TryGetValue("recc_pmnt_id", out var recc_pmnt_id);
+            model.RegularPaymentId = recc_pmnt_id;
 
-                    case "RECC_PMNT_EXPIRY":
-                        model.RegularPaymentExpiry = line.Substring(index + 1).Trim();
-                        break;
+            values.TryGetValue("recc_pmnt_expiry", out var recc_pmnt_expiry);
+            model.RegularPaymentExpiry = recc_pmnt_expiry;
 
-                    case "MRCH_TRANSACTION_ID":
-                        model.MerchantTransactionId = line.Substring(index + 1).Trim();
-                        break;
+            values.TryGetValue("mrch_transaction_id", out var mrch_transaction_id);
+            model.MerchantTransactionId = mrch_transaction_id;
 
-                    case "WARNING":
-                        model.Warning = line.Substring(index + 1).Trim();
-                        break;
+            values.TryGetValue("warning", out var warning);
+            model.Warning = warning;
 
-                    case "FLD_075":
-                        model.Fld075 = line.Substring(index + 1).Trim();
-                        model.CreditReversalCount = model.Fld075.ToInt32();
-                        break;
+            values.TryGetValue("fld_075", out var fld_075);
+            model.Fld075 = fld_075;
+            model.CreditReversalCount = fld_075.ToInt32();
 
-                    case "FLD_076":
-                        model.Fld076 = line.Substring(index + 1).Trim();
-                        model.DebitTransactionCount = model.Fld076.ToInt32();
-                        break;
-
-                    case "FLD_087":
-                        model.Fld087 = line.Substring(index + 1).Trim();
-                        model.CreditReversalTotal = model.Fld087.ToInt64();
-                        break;
-
-                    case "FLD_088":
-                        model.Fld088 = line.Substring(index + 1).Trim();
-                        model.DebitTransactionTotal = model.Fld088.ToInt32();
-                        break;
-                }
-            }
-
+            values.TryGetValue("fld_076", out var fld_076);
+            model.Fld076 = fld_076;
+            model.DebitTransactionCount = fld_076.ToInt32();
+            
+            values.TryGetValue("fld_087", out var fld_087);
+            model.Fld087 = fld_087;
+            model.CreditReversalTotal = fld_087.ToInt32();
+            
+            
+            values.TryGetValue("fld_088", out var fld_088);
+            model.Fld088 = fld_088;
+            model.DebitTransactionTotal = fld_088.ToInt32();
+           
             return model;
         }
+
+        //private static ResultDTO Deserialize(string response)
+        //{
+        //    if (string.IsNullOrEmpty(response))
+        //        return null;
+
+        //    var model = new ResultDTO();
+        //    var lines = response.Split(new[] { '\r', '\n', }, StringSplitOptions.RemoveEmptyEntries);
+        //    foreach (var l in lines)
+        //    {
+        //        var line = l.Trim();
+        //        var equalPox = line.IndexOf(':');
+        //        if (equalPox == -1)
+        //            continue;
+
+        //        var key = line.Substring(0, equalPox).ToUpperInvariant();
+        //        switch (key)
+        //        {
+        //            //case "TRANSACTION_ID":
+        //            //    model.TransactionId = line.Substring(equalPox + 1).Trim();
+        //            //    break;
+
+        //            //case "ERROR":
+        //            //    model.Error = line.Substring(equalPox + 1).Trim();
+        //            //    break;
+
+        //            //case "RESULT_CODE":
+        //            //    model.ResultCode = line.Substring(equalPox + 1).Trim();
+        //            //    break;
+
+        //            //case "RRN":
+        //            //    model.Rrn = line.Substring(equalPox + 1).Trim();
+        //            //    break;
+
+        //            //case "APPROVAL_CODE":
+        //            //    model.ApprovalCode = line.Substring(equalPox + 1).Trim();
+        //            //    break;
+
+        //            //case "CARD_NUMBER":
+        //            //    model.CardNumber = line.Substring(equalPox + 1).Trim();
+        //            //    break;
+
+        //            //case "RESULT":
+        //            //    model.ResultText = line.Substring(equalPox + 1).Trim();
+        //            //    break;
+
+        //            //case "RESULT_PS":
+        //            //    model.ResultPaymentServerText = line.Substring(equalPox + 1).Trim();
+        //            //    break;
+
+        //            //case "3DSECURE":
+        //            //    model.Secure3DText = line.Substring(equalPox + 1).Trim();
+        //            //    break;
+
+        //            //case "AAV":
+        //            //    model.Aav = line.Substring(equalPox + 1).Trim();
+        //            //    break;
+
+        //            //case "RECC_PMNT_ID":
+        //            //    model.RegularPaymentId = line.Substring(equalPox + 1).Trim();
+        //            //    break;
+
+        //            //case "RECC_PMNT_EXPIRY":
+        //            //    model.RegularPaymentExpiry = line.Substring(equalPox + 1).Trim();
+        //            //    break;
+
+        //            //case "MRCH_TRANSACTION_ID":
+        //            //    model.MerchantTransactionId = line.Substring(equalPox + 1).Trim();
+        //            //    break;
+
+        //            //case "WARNING":
+        //            //    model.Warning = line.Substring(equalPox + 1).Trim();
+        //            //    break;
+
+        //            //case "FLD_075":
+        //            //    model.Fld075 = line.Substring(equalPox + 1).Trim();
+        //            //    model.CreditReversalCount = model.Fld075.ToInt32();
+        //            //    break;
+
+        //            //case "FLD_076":
+        //            //    model.Fld076 = line.Substring(equalPox + 1).Trim();
+        //            //    model.DebitTransactionCount = model.Fld076.ToInt32();
+        //            //    break;
+
+        //            //case "FLD_087":
+        //            //    model.Fld087 = line.Substring(equalPox + 1).Trim();
+        //            //    model.CreditReversalTotal = model.Fld087.ToInt64();
+        //            //    break;
+
+        //            //case "FLD_088":
+        //            //    model.Fld088 = line.Substring(equalPox + 1).Trim();
+        //            //    model.DebitTransactionTotal = model.Fld088.ToInt32();
+        //            //    break;
+        //        }
+        //    }
+
+        //    return model;
+        //}
 
 
         /// <summary>
@@ -288,22 +376,41 @@ namespace Zek.Services
             };
         }
 
-
         /// <summary>
-        /// Registering DMS authorization / Регистрация DMS авторизации
+        /// Registering DMS authorization (block amount) / Регистрация DMS авторизации (Прошу учесть, что после этой команды необходимо выполнить процедуру 1.1.3 Transaction result, для выяснения результата.)
         /// </summary>
         /// <param name="amount"></param>
         /// <param name="currency"></param>
         /// <param name="clientIp"></param>
         /// <param name="description"></param>
         /// <param name="language"></param>
-        /// <returns></returns>
-        public async Task<TransactionResponseDTO> RegisterDmsAuthorizationAsync(int amount, ISO4217.ISO4217 currency, string clientIp, string description, string language)
-        {
-            return await RegisterDmsAuthorizationAsync(amount, (int)currency, clientIp, description, language);
-        }
+        /// <returns>transaction identifier (28 characters in base64 encoding). In case of an error, the returned string of symbols begins with ‘error:‘.</returns>
+        public Task<TransactionResponseDTO> RegisterDmsAuthorizationAsync(decimal amount, int currency, string clientIp, string description, string language) => RegisterDmsAuthorizationAsync(Convert.ToInt32(amount * 100M), currency, clientIp, description, language);
+
         /// <summary>
-        /// Registering DMS authorization / Регистрация DMS авторизации
+        /// Registering DMS authorization (block amount) / Регистрация DMS авторизации (Прошу учесть, что после этой команды необходимо выполнить процедуру 1.1.3 Transaction result, для выяснения результата.)
+        /// </summary>
+        /// <param name="amount"></param>
+        /// <param name="currency"></param>
+        /// <param name="clientIp"></param>
+        /// <param name="description"></param>
+        /// <param name="language"></param>
+        /// <returns>transaction identifier (28 characters in base64 encoding). In case of an error, the returned string of symbols begins with ‘error:‘.</returns>
+        public Task<TransactionResponseDTO> RegisterDmsAuthorizationAsync(decimal amount, ISO4217.ISO4217 currency, string clientIp, string description, string language) => RegisterDmsAuthorizationAsync(Convert.ToInt32(amount * 100M), (int)currency, clientIp, description, language);
+
+        /// <summary>
+        /// Registering DMS authorization (block amount) / Регистрация DMS авторизации (Прошу учесть, что после этой команды необходимо выполнить процедуру 1.1.3 Transaction result, для выяснения результата.)
+        /// </summary>
+        /// <param name="amount"></param>
+        /// <param name="currency"></param>
+        /// <param name="clientIp"></param>
+        /// <param name="description"></param>
+        /// <param name="language"></param>
+        /// <returns>transaction identifier (28 characters in base64 encoding). In case of an error, the returned string of symbols begins with ‘error:‘.</returns>
+        public Task<TransactionResponseDTO> RegisterDmsAuthorizationAsync(int amount, ISO4217.ISO4217 currency, string clientIp, string description, string language) => RegisterDmsAuthorizationAsync(amount, (int)currency, clientIp, description, language);
+
+        /// <summary>
+        /// Registering DMS authorization (block amount) / Регистрация DMS авторизации (Прошу учесть, что после этой команды необходимо выполнить процедуру 1.1.3 Transaction result, для выяснения результата.)
         /// </summary>
         /// <param name="amount"></param>
         /// <param name="currency"></param>
@@ -683,7 +790,7 @@ namespace Zek.Services
             if (amount != 0)
                 sb.Append($"&amount={amount:F0}");
 
-            sb.Append($"&currency={currency:F0}&client_ip_addr={clientIp}&description={description}&language=<language>&msg_type={msgType}&biller_client_id={regularPaymentId}&perspayee_expiry={expiry:MMyy}&perspayee_gen=1");
+            sb.Append($"&currency={currency:F0}&client_ip_addr={clientIp}&description={description}&language={language}&msg_type={msgType}&biller_client_id={regularPaymentId}&perspayee_expiry={expiry:MMyy}&perspayee_gen=1");
             if (overwriteExistingRecurring)
                 sb.Append("&perspayee_overwrite=1");
 
