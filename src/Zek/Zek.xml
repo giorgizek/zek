@@ -4,6 +4,106 @@
         <name>Zek</name>
     </assembly>
     <members>
+        <member name="T:Zek.Accounting.OrderStatus">
+            <summary>
+            Represents an order status enumeration
+            </summary>
+        </member>
+        <member name="F:Zek.Accounting.OrderStatus.Pending">
+            <summary>
+            Pending
+            </summary>
+        </member>
+        <member name="F:Zek.Accounting.OrderStatus.Processing">
+            <summary>
+            Processing
+            </summary>
+        </member>
+        <member name="F:Zek.Accounting.OrderStatus.Complete">
+            <summary>
+            Complete
+            </summary>
+        </member>
+        <member name="F:Zek.Accounting.OrderStatus.Cancelled">
+            <summary>
+            Cancelled
+            </summary>
+        </member>
+        <member name="T:Zek.Accounting.PaymentStatus">
+            <summary>
+            Represents a payment status enumeration
+            </summary>
+        </member>
+        <member name="F:Zek.Accounting.PaymentStatus.Pending">
+            <summary>
+            Pending
+            </summary>
+        </member>
+        <member name="F:Zek.Accounting.PaymentStatus.Authorized">
+            <summary>
+            Authorized
+            </summary>
+        </member>
+        <member name="F:Zek.Accounting.PaymentStatus.Paid">
+            <summary>
+            Paid
+            </summary>
+        </member>
+        <member name="F:Zek.Accounting.PaymentStatus.PartiallyRefunded">
+            <summary>
+            Partially Refunded
+            </summary>
+        </member>
+        <member name="F:Zek.Accounting.PaymentStatus.Refunded">
+            <summary>
+            Refunded
+            </summary>
+        </member>
+        <member name="F:Zek.Accounting.PaymentStatus.Voided">
+            <summary>
+            Voided
+            </summary>
+        </member>
+        <member name="T:Zek.Accounting.ReturnRequestStatus">
+            <summary>
+            Represents a return status
+            </summary>
+        </member>
+        <member name="F:Zek.Accounting.ReturnRequestStatus.Pending">
+            <summary>
+            Pending
+            </summary>
+        </member>
+        <member name="F:Zek.Accounting.ReturnRequestStatus.Received">
+            <summary>
+            Received
+            </summary>
+        </member>
+        <member name="F:Zek.Accounting.ReturnRequestStatus.ReturnAuthorized">
+            <summary>
+            Return authorized
+            </summary>
+        </member>
+        <member name="F:Zek.Accounting.ReturnRequestStatus.ItemsRepaired">
+            <summary>
+            Item(s) repaired
+            </summary>
+        </member>
+        <member name="F:Zek.Accounting.ReturnRequestStatus.ItemsRefunded">
+            <summary>
+            Item(s) refunded
+            </summary>
+        </member>
+        <member name="F:Zek.Accounting.ReturnRequestStatus.RequestRejected">
+            <summary>
+            Request rejected
+            </summary>
+        </member>
+        <member name="F:Zek.Accounting.ReturnRequestStatus.Cancelled">
+            <summary>
+            Cancelled
+            </summary>
+        </member>
         <member name="T:Zek.Cryptography.Crc32">
             <summary>
             Implements a 32-bit CRC hash algorithm compatible with Zip etc.
