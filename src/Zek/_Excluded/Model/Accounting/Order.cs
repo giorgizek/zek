@@ -47,7 +47,7 @@ namespace Zek.Model.Accounting
         public int ShippingAddressId { get; set; }
 
 
-        public TransactionStatus StatusId { get; set; }
+        public PaymentStatus StatusId { get; set; }
         //public OrderStatus OrderStatus { get; set; }
 
 

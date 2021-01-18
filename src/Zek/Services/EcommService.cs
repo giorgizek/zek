@@ -120,12 +120,12 @@ namespace Zek.Services
             return values;
         }
 
-        private static ResultDTO Deserialize(string response)
+        private static EcommResponse Deserialize(string response)
         {
             if (string.IsNullOrEmpty(response))
                 return null;
 
-            var model = new ResultDTO();
+            var model = new EcommResponse();
             var values = GetValues(response);
 
             values.TryGetValue("transaction_id", out var transaction_id);

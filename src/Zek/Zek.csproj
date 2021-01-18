@@ -36,7 +36,7 @@
 
   <ItemGroup>
     <Folder Include="Extensions\Net\" />
-    <Folder Include="Model\Accounting\" />
+    <Folder Include="NewFolder\" />
   </ItemGroup>
 
 

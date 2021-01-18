@@ -1,6 +1,6 @@
 ﻿namespace Zek.Model.DTO.Ecomm
 {
-    internal class ResultDTO
+    internal class EcommResponse
     {
         /// <summary>
         /// transaction identifier (28 characters in base64 encoding)

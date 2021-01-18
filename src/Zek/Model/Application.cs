@@ -6,6 +6,6 @@
         public string Name { get; set; }
         public string ApiKey { get; set; }
 
-        public int StatusId { get; set; }
+        public int Status { get; set; }
     }
 }

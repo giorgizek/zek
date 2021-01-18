@@ -1583,6 +1583,115 @@
             In case of a warning, the returned string of symbols begins with ‘warning:’ (reserved for future use).
             </summary>
         </member>
+        <member name="P:Zek.Model.DTO.Ecomm.EcommResponse.TransactionId">
+            <summary>
+            transaction identifier (28 characters in base64 encoding)
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.EcommResponse.Error">
+            <summary>
+            In case of an error, the returned string of symbols begins with ‘error:‘
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.EcommResponse.Warning">
+            <summary>
+            In case of a warning, the returned string of symbols begins with ‘warning:’ (reserved for future use).
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.EcommResponse.ResultText">
+            <summary>
+            transaction results: OK – successful transaction, FAILED – failed transaction
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.EcommResponse.ResultCode">
+            <summary>
+            transaction result code returned from Card Suite Processing RTPS (3 digits)
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.EcommResponse.ResultPaymentServerText">
+            <summary>
+            transaction result, Payment Server interpretation (shown only if configured to return ECOMM2 specific details – see ecomm.server.version parameter in 2.2.3 chapter):
+            FINISHED – successfully completed payment,
+            CANCELLED – cancelled payment,
+            RETURNED – returned payment,
+            ACTIVE – registered and not yet completed payment.
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.EcommResponse.Secure3DText">
+            <summary>
+            3D Secure status:
+            AUTHENTICATED – successful 3D Secure authorization
+            DECLINED – failed 3D Secure authorization
+            NOTPARTICIPATED – cardholder is not a member of 3D Secure scheme
+            NO_RANGE – card is not in 3D secure card range defined by issuer
+            ATTEMPTED – cardholder 3D secure authorization using attempts ACS server
+            UNAVAILABLE – cardholder 3D secure authorization is unavailable
+            ERROR – error message received from ACS server
+            SYSERROR – 3D secure authorization ended with system error
+            UNKNOWNSCHEME – 3D secure authorization was attempted by wrong card scheme (Dinners club, American Express)
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.EcommResponse.RegularPaymentId">
+            <summary>
+            Reoccurring payment (if available) identification in Payment Server.
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.EcommResponse.RegularPaymentExpiry">
+            <summary>
+            Reoccurring payment (if available) expiry date in Payment Server in form of YYMM
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.EcommResponse.MerchantTransactionId">
+            <summary>
+            Merchant Transaction Identifier (if available) for Payment – shown if it was sent as additional parameter with name “mrch_transaction_id” on Payment registration.
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.EcommResponse.Aav">
+            <summary>
+            the results of the verification of hash value in AAV merchant name (only if failed):
+            FAILED – hash value fails to match
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.EcommResponse.Rrn">
+            <summary>
+            retrieval reference number returned from Card Suite Processing RTPS (12 characters)
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.EcommResponse.ApprovalCode">
+            <summary>
+            approval code returned from Card Suite Processing RTPS (max 6 characters) 
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.EcommResponse.CardNumber">
+            <summary>
+            masked card number
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.EcommResponse.RefundTransactionId">
+            <summary>
+            refund transaction identifier – applicable for obtaining refund payment details or to request refund payment reversal.
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.EcommResponse.Fld075">
+            <summary>
+            the number of credit reversals (up to 10 digits), shown only if result_code begins with 5
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.EcommResponse.Fld076">
+            <summary>
+            the number of debit transactions (up to 10 digits), shown only if result_code begins with 5
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.EcommResponse.Fld087">
+            <summary>
+            total amount of credit reversals (up to 16 digits), shown only if result_code begins with 5
+            </summary>
+        </member>
+        <member name="P:Zek.Model.DTO.Ecomm.EcommResponse.Fld088">
+            <summary>
+            total amount of debit transactions (up to 16 digits), shown only if result_code begins with 5
+            </summary>
+        </member>
         <member name="T:Zek.Model.DTO.Ecomm.EcommResultPaymentServer">
             <summary>
             transaction result, Payment Server interpretation (shown only if configured to return ECOMM2 specific details – see ecomm.server.version parameter in 2.2.3 chapter)
@@ -1829,115 +1938,6 @@
         <member name="F:Zek.Model.DTO.Ecomm.EcommResult.Timeout">
             <summary>
             transaction was timed out
-            </summary>
-        </member>
-        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.TransactionId">
-            <summary>
-            transaction identifier (28 characters in base64 encoding)
-            </summary>
-        </member>
-        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.Error">
-            <summary>
-            In case of an error, the returned string of symbols begins with ‘error:‘
-            </summary>
-        </member>
-        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.Warning">
-            <summary>
-            In case of a warning, the returned string of symbols begins with ‘warning:’ (reserved for future use).
-            </summary>
-        </member>
-        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.ResultText">
-            <summary>
-            transaction results: OK – successful transaction, FAILED – failed transaction
-            </summary>
-        </member>
-        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.ResultCode">
-            <summary>
-            transaction result code returned from Card Suite Processing RTPS (3 digits)
-            </summary>
-        </member>
-        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.ResultPaymentServerText">
-            <summary>
-            transaction result, Payment Server interpretation (shown only if configured to return ECOMM2 specific details – see ecomm.server.version parameter in 2.2.3 chapter):
-            FINISHED – successfully completed payment,
-            CANCELLED – cancelled payment,
-            RETURNED – returned payment,
-            ACTIVE – registered and not yet completed payment.
-            </summary>
-        </member>
-        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.Secure3DText">
-            <summary>
-            3D Secure status:
-            AUTHENTICATED – successful 3D Secure authorization
-            DECLINED – failed 3D Secure authorization
-            NOTPARTICIPATED – cardholder is not a member of 3D Secure scheme
-            NO_RANGE – card is not in 3D secure card range defined by issuer
-            ATTEMPTED – cardholder 3D secure authorization using attempts ACS server
-            UNAVAILABLE – cardholder 3D secure authorization is unavailable
-            ERROR – error message received from ACS server
-            SYSERROR – 3D secure authorization ended with system error
-            UNKNOWNSCHEME – 3D secure authorization was attempted by wrong card scheme (Dinners club, American Express)
-            </summary>
-        </member>
-        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.RegularPaymentId">
-            <summary>
-            Reoccurring payment (if available) identification in Payment Server.
-            </summary>
-        </member>
-        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.RegularPaymentExpiry">
-            <summary>
-            Reoccurring payment (if available) expiry date in Payment Server in form of YYMM
-            </summary>
-        </member>
-        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.MerchantTransactionId">
-            <summary>
-            Merchant Transaction Identifier (if available) for Payment – shown if it was sent as additional parameter with name “mrch_transaction_id” on Payment registration.
-            </summary>
-        </member>
-        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.Aav">
-            <summary>
-            the results of the verification of hash value in AAV merchant name (only if failed):
-            FAILED – hash value fails to match
-            </summary>
-        </member>
-        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.Rrn">
-            <summary>
-            retrieval reference number returned from Card Suite Processing RTPS (12 characters)
-            </summary>
-        </member>
-        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.ApprovalCode">
-            <summary>
-            approval code returned from Card Suite Processing RTPS (max 6 characters) 
-            </summary>
-        </member>
-        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.CardNumber">
-            <summary>
-            masked card number
-            </summary>
-        </member>
-        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.RefundTransactionId">
-            <summary>
-            refund transaction identifier – applicable for obtaining refund payment details or to request refund payment reversal.
-            </summary>
-        </member>
-        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.Fld075">
-            <summary>
-            the number of credit reversals (up to 10 digits), shown only if result_code begins with 5
-            </summary>
-        </member>
-        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.Fld076">
-            <summary>
-            the number of debit transactions (up to 10 digits), shown only if result_code begins with 5
-            </summary>
-        </member>
-        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.Fld087">
-            <summary>
-            total amount of credit reversals (up to 16 digits), shown only if result_code begins with 5
-            </summary>
-        </member>
-        <member name="P:Zek.Model.DTO.Ecomm.ResultDTO.Fld088">
-            <summary>
-            total amount of debit transactions (up to 16 digits), shown only if result_code begins with 5
             </summary>
         </member>
         <member name="P:Zek.Model.DTO.Ecomm.ReverseResponseDTO.ResultText">

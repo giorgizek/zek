@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
+using Zek.Data.Entity;
 using Zek.Model.Base;
 using Zek.Model.DTO.Ecomm;
 
@@ -35,7 +36,6 @@ namespace Zek.Model.Accounting
         public string Error { get; set; }
         public string Response { get; set; }
 
-
         public string ClientIp { get; set; }
     }
 
@@ -53,27 +53,29 @@ namespace Zek.Model.Accounting
             ToTable("Ecomms", "Accounting");
 
             Property(e => e.TransactionId).HasMaxLength(28).IsRequired();
-            HasIndex(e => new { e.MerchantId, e.TransactionId }).IsUnique();
 
-            HasIndex(e => e.ApplicationId);
-            HasIndex(e => e.CustomerId);
-            Property(o => o.Date).HasColumnType("date");
-            HasIndex(o => o.Date);
+          
+            Property(o => o.Date).HasColumnTypeDate();
 
-            Property(e => e.Amount).HasColumnType("decimal(18, 4)");
-            Property(e => e.ReversalAmount).HasColumnType("decimal(18, 4)");
-            Property(e => e.Balance).HasComputedColumnSql("[Amount]+[ReversalAmount]");
+            Property(e => e.Amount).HasColumnTypeAmount();
+            Property(e => e.ReversalAmount).HasColumnTypeAmount();
+            Property(e => e.Balance).HasColumnTypeAmount();
             Property(e => e.Description).HasMaxLength(125);
 
-            Property(e => e.ResultCode).HasColumnType("varchar(3)");
+            Property(e => e.ResultCode).HasMaxLength(3);
             Property(e => e.Rrn).HasMaxLength(12);
             Property(e => e.ApprovalCode).HasMaxLength(6);
             Property(e => e.CardNumber).HasMaxLength(19);
             Property(e => e.Aav).HasMaxLength(400);
             Property(e => e.RegularPaymentId).HasMaxLength(28);
-            Property(e => e.RegularPaymentExpiry).HasColumnType("date");
+            Property(e => e.RegularPaymentExpiry).HasColumnTypeDate();
             Property(e => e.MerchantTransactionId).HasMaxLength(28);
-            Property(e => e.ClientIp).HasColumnType("varchar(3)");
+            Property(e => e.ClientIp).HasMaxLength(50);
+
+            HasIndex(e => new { e.MerchantId, e.TransactionId }).IsUnique();
+            HasIndex(e => e.ApplicationId);
+            HasIndex(e => e.CustomerId);
+            HasIndex(o => o.Date);
         }
     }
 
