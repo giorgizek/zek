@@ -1,6 +1,6 @@
 ﻿namespace Zek.Model.DTO.Ecomm
 {
-    public class ExecuteRegularPaymentDTO : ExecuteTransactionDTO
+    public class ExecuteRegularPaymentResponse : ExecuteTransactionResponse
     {
         /// <summary>
         /// transaction identifier (28 characters in base64 encoding)

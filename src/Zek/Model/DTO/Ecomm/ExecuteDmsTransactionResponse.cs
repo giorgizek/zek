@@ -1,6 +1,6 @@
 ﻿namespace Zek.Model.DTO.Ecomm
 {
-    public class ExecuteDmsTransactionDTO : ExecuteTransactionDTO
+    public class ExecuteDmsTransactionResponse : ExecuteTransactionResponse
     {
         /// <summary>
         /// masked card number

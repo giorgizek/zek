@@ -1,6 +1,6 @@
 ﻿namespace Zek.Model.DTO.Ecomm
 {
-    public class BaseResponseDTO
+    public class BaseEcommResponse
     {
         /// <summary>
         /// In case of an error, the returned string of symbols begins with ‘error:‘

@@ -1,6 +1,6 @@
 ﻿namespace Zek.Model.DTO.Ecomm
 {
-    public class TransactionResponseDTO : BaseResponseDTO
+    public class TransactionResponse : BaseEcommResponse
     {
         private string _transactionId;
 

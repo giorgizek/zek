@@ -1628,12 +1628,12 @@
             Email 3
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.BaseResponseDTO.Error">
+        <member name="P:Zek.Model.DTO.Ecomm.BaseEcommResponse.Error">
             <summary>
             In case of an error, the returned string of symbols begins with ‘error:‘
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.BaseResponseDTO.Response">
+        <member name="P:Zek.Model.DTO.Ecomm.BaseEcommResponse.Response">
             <summary>
             Response from web request.
             </summary>
@@ -1862,22 +1862,22 @@
             3D secure authorization was attempted by wrong card scheme (Dinners club, American Express)
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.ExecuteDmsTransactionDTO.CardNumber">
+        <member name="P:Zek.Model.DTO.Ecomm.ExecuteDmsTransactionResponse.CardNumber">
             <summary>
             masked card number
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.ExecuteRegularPaymentDTO.TransactionId">
+        <member name="P:Zek.Model.DTO.Ecomm.ExecuteRegularPaymentResponse.TransactionId">
             <summary>
             transaction identifier (28 characters in base64 encoding)
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.ExecuteTransactionDTO.ResultText">
+        <member name="P:Zek.Model.DTO.Ecomm.ExecuteTransactionResponse.ResultText">
             <summary>
             transaction results: OK – successful transaction, FAILED – failed transaction
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.ExecuteTransactionDTO.ResultCode">
+        <member name="P:Zek.Model.DTO.Ecomm.ExecuteTransactionResponse.ResultCode">
             <summary>
             transaction result code returned from Card Suite Processing RTPS (3 digits)
             108 – Merchant communication with cardholder has to be done;
@@ -1886,12 +1886,12 @@
             2xx – Regular payment has been deleted.
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.ExecuteTransactionDTO.Rrn">
+        <member name="P:Zek.Model.DTO.Ecomm.ExecuteTransactionResponse.Rrn">
             <summary>
             retrieval reference number returned from Card Suite Processing RTPS (12 characters)
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.ExecuteTransactionDTO.ApprovalCode">
+        <member name="P:Zek.Model.DTO.Ecomm.ExecuteTransactionResponse.ApprovalCode">
             <summary>
             approval code returned from Card Suite Processing RTPS (max 6 characters) 
             </summary>
@@ -1965,22 +1965,22 @@
             Merchant Transaction Identifier (if available) for Payment – shown if it was sent as additional parameter with name “mrch_transaction_id” on Payment registration.
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.RefundResponseDTO.ResultText">
+        <member name="P:Zek.Model.DTO.Ecomm.RefundResponse.ResultText">
             <summary>
             transaction results: OK – successful transaction, FAILED – failed transaction
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.RefundResponseDTO.ResultCode">
+        <member name="P:Zek.Model.DTO.Ecomm.RefundResponse.ResultCode">
             <summary>
             transaction result code returned from Card Suite Processing RTPS (3 digits)
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.RefundResponseDTO.RefundTransactionId">
+        <member name="P:Zek.Model.DTO.Ecomm.RefundResponse.RefundTransactionId">
             <summary>
             refund transaction identifier – applicable for obtaining refund payment details or to request refund payment reversal.
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.RefundResponseDTO.Warning">
+        <member name="P:Zek.Model.DTO.Ecomm.RefundResponse.Warning">
             <summary>
             reserved for future use.
             </summary>
@@ -2040,22 +2040,22 @@
             transaction was timed out
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.ReverseResponseDTO.ResultText">
+        <member name="P:Zek.Model.DTO.Ecomm.ReverseResponse.ResultText">
             <summary>
             transaction results: OK – successful reversal transaction, REVERSED – transaction has already been reversed, FAILED – failed to reverse transaction(transaction status remains as it was)
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.ReverseResponseDTO.ResultCode">
+        <member name="P:Zek.Model.DTO.Ecomm.ReverseResponse.ResultCode">
             <summary>
             transaction result code returned from Card Suite Processing RTPS (3 digits)
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.ReverseResponseDTO.Warning">
+        <member name="P:Zek.Model.DTO.Ecomm.ReverseResponse.Warning">
             <summary>
             reserved for future use.
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.TransactionResponseDTO.TransactionId">
+        <member name="P:Zek.Model.DTO.Ecomm.TransactionResponse.TransactionId">
             <summary>
             transaction identifier (28 characters in base64 encoding)
             </summary>
@@ -2964,6 +2964,7 @@
             Readdressed url to ECOMM payment server sothat to enter card data.Data is entered using the template provided by the merchant.
             </summary>
             <param name="transactionId"></param>
+            <exception cref="T:System.ArgumentException"></exception>
             <returns></returns>
         </member>
         <member name="M:Zek.Services.EcommService.RegisterTransactionAsync(System.Decimal,Zek.ISO4217.ISO4217,System.String,System.String,System.String)">

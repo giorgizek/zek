@@ -293,6 +293,7 @@ namespace Zek.Services
         /// Readdressed url to ECOMM payment server sothat to enter card data.Data is entered using the template provided by the merchant.
         /// </summary>
         /// <param name="transactionId"></param>
+        /// <exception cref="ArgumentException"></exception>
         /// <returns></returns>
         public string GetClientRedirectUrl(string transactionId = null)
         {
@@ -313,7 +314,7 @@ namespace Zek.Services
         /// <param name="amount">Transaction amount, mandatory</param>
         /// <param name="currency">transaction currency code  (ISO 4217), mandatory</param>
         /// <returns>transaction identifier (28 characters in base64 encoding). In case of an error, the returned string of symbols begins with 'error:'.</returns>
-        public Task<TransactionResponseDTO> RegisterTransactionAsync(decimal amount, ISO4217.ISO4217 currency, string clientIp, string description, string language) => RegisterTransactionAsync(Convert.ToInt32(amount * 100M), (int)currency, clientIp, description, language);
+        public Task<TransactionResponse> RegisterTransactionAsync(decimal amount, ISO4217.ISO4217 currency, string clientIp, string description, string language) => RegisterTransactionAsync(Convert.ToInt32(amount * 100M), (int)currency, clientIp, description, language);
 
 
 
@@ -334,7 +335,7 @@ namespace Zek.Services
         /// <param name="amount">Transaction amount in fractional units, mandatory (up to 12 digits)</param>
         /// <param name="currency">transaction currency code  (ISO 4217), mandatory</param>
         /// <returns>transaction identifier (28 characters in base64 encoding). In case of an error, the returned string of symbols begins with 'error:'.</returns>
-        public Task<TransactionResponseDTO> RegisterTransactionAsync(int amount, ISO4217.ISO4217 currency, string clientIp, string description, string language) => RegisterTransactionAsync(amount, (int)currency, clientIp, description, language);
+        public Task<TransactionResponse> RegisterTransactionAsync(int amount, ISO4217.ISO4217 currency, string clientIp, string description, string language) => RegisterTransactionAsync(amount, (int)currency, clientIp, description, language);
 
         /// <summary>
         /// Registering transactions / Регистрация транзакций
@@ -345,7 +346,7 @@ namespace Zek.Services
         /// <param name="amount">Transaction amount in fractional units, mandatory (up to 12 digits)</param>
         /// <param name="currency">transaction currency code  (ISO 4217), mandatory, (3 digits)</param>
         /// <returns>transaction identifier (28 characters in base64 encoding). In case of an error, the returned string of symbols begins with 'error:'.</returns>
-        public async Task<TransactionResponseDTO> RegisterTransactionAsync(int amount, int currency, string clientIp, string description, string language)
+        public async Task<TransactionResponse> RegisterTransactionAsync(int amount, int currency, string clientIp, string description, string language)
         {
             if (amount <= 0)
                 throw new ArgumentException("Amount parameter is required", nameof(amount));
@@ -367,7 +368,7 @@ namespace Zek.Services
             var response = await PostAsync($"command=v&amount={amount:F0}&currency={currency:F0}&client_ip_addr={clientIp}&description={description}&language={language}&msg_type=SMS");
             var result = Deserialize(response);
 
-            return new TransactionResponseDTO
+            return new TransactionResponse
             {
                 TransactionId = result.TransactionId,
 
@@ -385,7 +386,7 @@ namespace Zek.Services
         /// <param name="description"></param>
         /// <param name="language"></param>
         /// <returns>transaction identifier (28 characters in base64 encoding). In case of an error, the returned string of symbols begins with ‘error:‘.</returns>
-        public Task<TransactionResponseDTO> RegisterDmsAuthorizationAsync(decimal amount, int currency, string clientIp, string description, string language) => RegisterDmsAuthorizationAsync(Convert.ToInt32(amount * 100M), currency, clientIp, description, language);
+        public Task<TransactionResponse> RegisterDmsAuthorizationAsync(decimal amount, int currency, string clientIp, string description, string language) => RegisterDmsAuthorizationAsync(Convert.ToInt32(amount * 100M), currency, clientIp, description, language);
 
         /// <summary>
         /// Registering DMS authorization (block amount) / Регистрация DMS авторизации (Прошу учесть, что после этой команды необходимо выполнить процедуру 1.1.3 Transaction result, для выяснения результата.)
@@ -396,7 +397,7 @@ namespace Zek.Services
         /// <param name="description"></param>
         /// <param name="language"></param>
         /// <returns>transaction identifier (28 characters in base64 encoding). In case of an error, the returned string of symbols begins with ‘error:‘.</returns>
-        public Task<TransactionResponseDTO> RegisterDmsAuthorizationAsync(decimal amount, ISO4217.ISO4217 currency, string clientIp, string description, string language) => RegisterDmsAuthorizationAsync(Convert.ToInt32(amount * 100M), (int)currency, clientIp, description, language);
+        public Task<TransactionResponse> RegisterDmsAuthorizationAsync(decimal amount, ISO4217.ISO4217 currency, string clientIp, string description, string language) => RegisterDmsAuthorizationAsync(Convert.ToInt32(amount * 100M), (int)currency, clientIp, description, language);
 
         /// <summary>
         /// Registering DMS authorization (block amount) / Регистрация DMS авторизации (Прошу учесть, что после этой команды необходимо выполнить процедуру 1.1.3 Transaction result, для выяснения результата.)
@@ -407,7 +408,7 @@ namespace Zek.Services
         /// <param name="description"></param>
         /// <param name="language"></param>
         /// <returns>transaction identifier (28 characters in base64 encoding). In case of an error, the returned string of symbols begins with ‘error:‘.</returns>
-        public Task<TransactionResponseDTO> RegisterDmsAuthorizationAsync(int amount, ISO4217.ISO4217 currency, string clientIp, string description, string language) => RegisterDmsAuthorizationAsync(amount, (int)currency, clientIp, description, language);
+        public Task<TransactionResponse> RegisterDmsAuthorizationAsync(int amount, ISO4217.ISO4217 currency, string clientIp, string description, string language) => RegisterDmsAuthorizationAsync(amount, (int)currency, clientIp, description, language);
 
         /// <summary>
         /// Registering DMS authorization (block amount) / Регистрация DMS авторизации (Прошу учесть, что после этой команды необходимо выполнить процедуру 1.1.3 Transaction result, для выяснения результата.)
@@ -418,7 +419,7 @@ namespace Zek.Services
         /// <param name="description"></param>
         /// <param name="language"></param>
         /// <returns>transaction identifier (28 characters in base64 encoding). In case of an error, the returned string of symbols begins with ‘error:‘.</returns>
-        public async Task<TransactionResponseDTO> RegisterDmsAuthorizationAsync(int amount, int currency, string clientIp, string description, string language)
+        public async Task<TransactionResponse> RegisterDmsAuthorizationAsync(int amount, int currency, string clientIp, string description, string language)
         {
             if (amount <= 0)
                 throw new ArgumentException("Amount parameter is required", nameof(amount));
@@ -439,7 +440,7 @@ namespace Zek.Services
 
             var response = await PostAsync($"command=a&amount={amount:F0}&currency={currency:F0}&client_ip_addr={clientIp}&description={description}&language={language}&msg_type=DMS");
             var result = Deserialize(response);
-            return new TransactionResponseDTO
+            return new TransactionResponse
             {
                 TransactionId = result.TransactionId,
                 Error = result.Error,
@@ -478,7 +479,7 @@ namespace Zek.Services
         /// APPROVAL_CODE: 123456
         /// CARD_NUMBER: 9***********9999
         /// </returns>
-        public async Task<ExecuteDmsTransactionDTO> ExecuteDmsTransactionAsync(string authorizationId, int amount, ISO4217.ISO4217 currency, string clientIp, string description, string language)
+        public async Task<ExecuteDmsTransactionResponse> ExecuteDmsTransactionAsync(string authorizationId, int amount, ISO4217.ISO4217 currency, string clientIp, string description, string language)
         {
             return await ExecuteDmsTransactionAsync(authorizationId, amount, (int)currency, clientIp, description, language);
         }
@@ -513,7 +514,7 @@ namespace Zek.Services
         /// APPROVAL_CODE: 123456
         /// CARD_NUMBER: 9***********9999
         /// </returns>
-        public async Task<ExecuteDmsTransactionDTO> ExecuteDmsTransactionAsync(string authorizationId, int amount, int currency, string clientIp, string description, string language)
+        public async Task<ExecuteDmsTransactionResponse> ExecuteDmsTransactionAsync(string authorizationId, int amount, int currency, string clientIp, string description, string language)
         {
             if (string.IsNullOrEmpty(authorizationId))
                 throw new ArgumentException("Authorization ID parameter is required", nameof(authorizationId));
@@ -537,7 +538,7 @@ namespace Zek.Services
             var response = await PostAsync($"command=t&trans_id={WebUtility.UrlEncode(authorizationId)}&amount={amount:F0}&currency={currency:F0}&client_ip_addr={clientIp}&description={description}&language={language}&msg_type=DMS");
             var result = Deserialize(response);
 
-            return new ExecuteDmsTransactionDTO
+            return new ExecuteDmsTransactionResponse
             {
                 ResultText = result.ResultText,
                 Result = result.Result,
@@ -610,7 +611,7 @@ namespace Zek.Services
         /// <param name="amount"></param>
         /// <param name="suspectedFraud">suspected_fraud необязательный параметр – флаг, указывающий, что откат делается из-за подозрения в мошенничестве.В таких случаях значение этого параметра должно быть установлено в "да". Если этот параметр используется, возможен откат только полной суммы.</param>
         /// <returns></returns>
-        public async Task<ReverseResponseDTO> ReverseAsync(string transactionId, int? amount = null, bool suspectedFraud = false)
+        public async Task<ReverseResponse> ReverseAsync(string transactionId, int? amount = null, bool suspectedFraud = false)
         {
             if (string.IsNullOrEmpty(transactionId))
                 throw new ArgumentException("TransactionId parameter is required", nameof(transactionId));
@@ -624,7 +625,7 @@ namespace Zek.Services
             var response = await PostAsync(sb.ToString());
             var result = Deserialize(response);
 
-            return new ReverseResponseDTO
+            return new ReverseResponse
             {
                 ResultText = result.ResultText,
                 Result = result.Result,
@@ -643,7 +644,7 @@ namespace Zek.Services
         /// </summary>
         /// <param name="transactionId"></param>
         /// <returns></returns>
-        public async Task<RefundResponseDTO> RefundAsync(string transactionId)
+        public async Task<RefundResponse> RefundAsync(string transactionId)
         {
             if (string.IsNullOrEmpty(transactionId))
                 throw new ArgumentException("Transaction ID parameter is required", nameof(transactionId));
@@ -651,7 +652,7 @@ namespace Zek.Services
             var response = await PostAsync($"command=k&trans_id={WebUtility.UrlEncode(transactionId)}");
             var result = Deserialize(response);
 
-            return new RefundResponseDTO
+            return new RefundResponse
             {
                 ResultText = result.ResultText,
                 Result = result.Result,
@@ -805,11 +806,11 @@ namespace Zek.Services
             };
         }
 
-        public async Task<ExecuteTransactionDTO> ExecuteRegularPaymentAsync(int amount, ISO4217.ISO4217 currency, string clientIp, string description, string language, string regularPaymentId)
+        public async Task<ExecuteTransactionResponse> ExecuteRegularPaymentAsync(int amount, ISO4217.ISO4217 currency, string clientIp, string description, string language, string regularPaymentId)
         {
             return await ExecuteRegularPaymentAsync(amount, (int)currency, clientIp, description, language, regularPaymentId);
         }
-        public async Task<ExecuteTransactionDTO> ExecuteRegularPaymentAsync(int amount, int currency, string clientIp, string description, string language, string regularPaymentId)
+        public async Task<ExecuteTransactionResponse> ExecuteRegularPaymentAsync(int amount, int currency, string clientIp, string description, string language, string regularPaymentId)
         {
             if (amount < 0)
                 throw new ArgumentException("Amount parameter is invalid", nameof(amount));
@@ -831,7 +832,7 @@ namespace Zek.Services
             var response = await PostAsync($"command=e&amount={amount:F0}&currency={currency:F0}&client_ip_addr={clientIp}&description={description}&language={language}&biller_client_id={WebUtility.UrlEncode(regularPaymentId)}");
             var result = Deserialize(response);
 
-            return new ExecuteRegularPaymentDTO
+            return new ExecuteRegularPaymentResponse
             {
                 TransactionId = result.TransactionId,
 

@@ -1,6 +1,6 @@
 ﻿namespace Zek.Model.DTO.Ecomm
 {
-    public class ReverseResponseDTO : BaseResponseDTO
+    public class ReverseResponse : BaseEcommResponse
     {
         public EcommResult Result { get; set; }
         /// <summary>
