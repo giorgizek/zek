@@ -27,10 +27,8 @@ namespace Zek.Web
         private int? _userId;
         public virtual int GetUserId()
         {
-            if (_userId == null)
-                _userId = _contextAccessor.HttpContext.User.GetUserId().ToInt32();
+            _userId ??= _contextAccessor.HttpContext.User.GetUserId().ToInt32();
             return _userId.Value;
-
         }
 
 

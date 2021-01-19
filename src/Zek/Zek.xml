@@ -1896,17 +1896,17 @@
             approval code returned from Card Suite Processing RTPS (max 6 characters) 
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.GetTransactionResultResponseDTO.ResultText">
+        <member name="P:Zek.Model.DTO.Ecomm.GetTransactionResultResponse.ResultText">
             <summary>
             transaction results: OK – successful transaction, FAILED – failed transaction
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.GetTransactionResultResponseDTO.ResultCode">
+        <member name="P:Zek.Model.DTO.Ecomm.GetTransactionResultResponse.ResultCode">
             <summary>
             transaction result code returned from Card Suite Processing RTPS (3 digits)
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.GetTransactionResultResponseDTO.ResultPaymentServerText">
+        <member name="P:Zek.Model.DTO.Ecomm.GetTransactionResultResponse.ResultPaymentServerText">
             <summary>
             transaction result, Payment Server interpretation (shown only if configured to return ECOMM2 specific details – see ecomm.server.version parameter in 2.2.3 chapter):
             FINISHED – successfully completed payment,
@@ -1915,7 +1915,7 @@
             ACTIVE – registered and not yet completed payment.
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.GetTransactionResultResponseDTO.Secure3DText">
+        <member name="P:Zek.Model.DTO.Ecomm.GetTransactionResultResponse.Secure3DText">
             <summary>
             3D Secure status:
             AUTHENTICATED – successful 3D Secure authorization
@@ -1929,38 +1929,38 @@
             UNKNOWNSCHEME – 3D secure authorization was attempted by wrong card scheme (Dinners club, American Express)
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.GetTransactionResultResponseDTO.Rrn">
+        <member name="P:Zek.Model.DTO.Ecomm.GetTransactionResultResponse.Rrn">
             <summary>
             retrieval reference number returned from Card Suite Processing RTPS (12 characters)
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.GetTransactionResultResponseDTO.ApprovalCode">
+        <member name="P:Zek.Model.DTO.Ecomm.GetTransactionResultResponse.ApprovalCode">
             <summary>
             approval code returned from Card Suite Processing RTPS (max 6 characters) 
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.GetTransactionResultResponseDTO.CardNumber">
+        <member name="P:Zek.Model.DTO.Ecomm.GetTransactionResultResponse.CardNumber">
             <summary>
             masked card number
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.GetTransactionResultResponseDTO.Aav">
+        <member name="P:Zek.Model.DTO.Ecomm.GetTransactionResultResponse.Aav">
             <summary>
             the results of the verification of hash value in AAV merchant name (only if failed):
             FAILED – hash value fails to match
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.GetTransactionResultResponseDTO.RegularPaymentId">
+        <member name="P:Zek.Model.DTO.Ecomm.GetTransactionResultResponse.RegularPaymentId">
             <summary>
             Reoccurring payment (if available) identification in Payment Server.
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.GetTransactionResultResponseDTO.RegularPaymentExpiryText">
+        <member name="P:Zek.Model.DTO.Ecomm.GetTransactionResultResponse.RegularPaymentExpiryText">
             <summary>
             Reoccurring payment (if available) expiry date in Payment Server in form of YYMM
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.GetTransactionResultResponseDTO.MerchantTransactionId">
+        <member name="P:Zek.Model.DTO.Ecomm.GetTransactionResultResponse.MerchantTransactionId">
             <summary>
             Merchant Transaction Identifier (if available) for Payment – shown if it was sent as additional parameter with name “mrch_transaction_id” on Payment registration.
             </summary>

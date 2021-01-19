@@ -569,7 +569,7 @@ namespace Zek.Services
         /// RECC_PMNT_ID: 1258
         /// RECC_PMNT_EXPIRY: 1108
         ///  </returns>
-        public async Task<GetTransactionResultResponseDTO> GetTransactionResultAsync(string transactionId, string clientIp)
+        public async Task<GetTransactionResultResponse> GetTransactionResultAsync(string transactionId, string clientIp)
         {
             if (string.IsNullOrEmpty(transactionId))
                 throw new ArgumentException("Transaction ID parameter is required", nameof(transactionId));
@@ -579,7 +579,7 @@ namespace Zek.Services
             var response = await PostAsync($"command=c&trans_id={WebUtility.UrlEncode(transactionId)}&client_ip_addr={clientIp}");
             var result = Deserialize(response);
 
-            return new GetTransactionResultResponseDTO
+            return new GetTransactionResultResponse
             {
                 ResultText = result.ResultText,
                 Result = result.Result,

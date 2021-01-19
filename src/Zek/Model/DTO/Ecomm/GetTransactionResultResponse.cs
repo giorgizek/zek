@@ -3,19 +3,30 @@ using System.Globalization;
 
 namespace Zek.Model.DTO.Ecomm
 {
-    public class GetTransactionResultResponseDTO
+    public class GetTransactionResultResponse
     {
-        
+        public bool Success { get; private set; }
+
         public EcommResult Result { get; set; }
         /// <summary>
         /// transaction results: OK – successful transaction, FAILED – failed transaction
         /// </summary>
         public string ResultText { get; set; }
 
+        private string _resultCode;
         /// <summary>
         /// transaction result code returned from Card Suite Processing RTPS (3 digits)
         /// </summary>
-        public string ResultCode { get; set; }
+        public string ResultCode
+        {
+            get => _resultCode;
+            set
+            {
+                if (value == _resultCode) return;
+                _resultCode = value;
+                Success = value == "000";
+            }
+        }
 
         public EcommResultPaymentServer ResultPaymentServer { get; set; }
         /// <summary>
@@ -69,6 +80,7 @@ namespace Zek.Model.DTO.Ecomm
         public string RegularPaymentId { get; set; }
 
         private string _regularPaymentExpiryText;
+
         /// <summary>
         /// Reoccurring payment (if available) expiry date in Payment Server in form of YYMM
         /// </summary>
@@ -81,8 +93,7 @@ namespace Zek.Model.DTO.Ecomm
                 {
                     _regularPaymentExpiryText = value;
 
-                    DateTime date;
-                    RegularPaymentExpiry = DateTime.TryParseExact("0199", "MMyy", null, DateTimeStyles.None, out date)
+                    RegularPaymentExpiry = DateTime.TryParseExact(_regularPaymentExpiryText, "MMyy", null, DateTimeStyles.None, out var date)
                         ? date
                         : (DateTime?)null;
                 }
@@ -98,8 +109,6 @@ namespace Zek.Model.DTO.Ecomm
 
         public string Error { get; set; }
         public string Warning { get; set; }
-
         public string Response { get; set; }
-
     }
 }
