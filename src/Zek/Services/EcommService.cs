@@ -83,11 +83,13 @@ namespace Zek.Services
 
         private async Task<string> PostAsync(string parameters)
         {
-            var clientHandler = new HttpClientHandler();
-            var clientCertificate = new X509Certificate2(await File.ReadAllBytesAsync(_certificateFile), _certificatePassword/*, X509KeyStorageFlags.MachineKeySet*/);
+            try
+            {
+                var clientHandler = new HttpClientHandler();
+                var clientCertificate = new X509Certificate2(await File.ReadAllBytesAsync(_certificateFile), _certificatePassword/*, X509KeyStorageFlags.MachineKeySet*/);
 
-            clientHandler.ClientCertificates.Add(clientCertificate);
-            clientHandler.ServerCertificateCustomValidationCallback += (message, certificate2, x509Chain, sslPolicyErrors) => true;
+                clientHandler.ClientCertificates.Add(clientCertificate);
+                clientHandler.ServerCertificateCustomValidationCallback += (message, certificate2, x509Chain, sslPolicyErrors) => true;
 
 #if NET461
             
@@ -96,13 +98,18 @@ namespace Zek.Services
 #if NETSTANDARD1_6
 
 #endif
-            //todo clientHandler.SslProtocols = SslProtocols.Tls11 | SslProtocols.Tls12;
-            clientHandler.UseProxy = false;
+                //todo clientHandler.SslProtocols = SslProtocols.Tls11 | SslProtocols.Tls12;
+                clientHandler.UseProxy = false;
 
-            using var client = new HttpClient(clientHandler);
-            var response = await client.PostAsync(_serverUrl + "?" + parameters, new StringContent(string.Empty));
-            response.EnsureSuccessStatusCode();
-            return await response.Content.ReadAsStringAsync();
+                using var client = new HttpClient(clientHandler);
+                var response = await client.PostAsync(_serverUrl + "?" + parameters, new StringContent(string.Empty));
+                response.EnsureSuccessStatusCode();
+                return await response.Content.ReadAsStringAsync();
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
         }
 
         private static Dictionary<string, string> GetValues(string response)
@@ -114,7 +121,7 @@ namespace Zek.Services
                 var line = l.Trim();
                 var equalPox = line.IndexOf(':');
                 if (equalPox >= 0)
-                    values.Add(line.Substring(0, equalPox), line.Substring(equalPox + 1));
+                    values.Add(line.Substring(0, equalPox), line.Substring(equalPox + 2));
             }
 
             return values;
@@ -314,7 +321,8 @@ namespace Zek.Services
         /// <param name="amount">Transaction amount, mandatory</param>
         /// <param name="currency">transaction currency code  (ISO 4217), mandatory</param>
         /// <returns>transaction identifier (28 characters in base64 encoding). In case of an error, the returned string of symbols begins with 'error:'.</returns>
-        public Task<TransactionResponse> RegisterTransactionAsync(decimal amount, ISO4217.ISO4217 currency, string clientIp, string description, string language) => RegisterTransactionAsync(Convert.ToInt32(amount * 100M), (int)currency, clientIp, description, language);
+        public Task<TransactionResponse> RegisterTransactionAsync(decimal amount, ISO4217.ISO4217 currency, string clientIp, string description, string language)
+            => RegisterTransactionAsync(Convert.ToInt32(amount * 100M), (int)currency, clientIp, description, language);
 
 
 
@@ -335,7 +343,8 @@ namespace Zek.Services
         /// <param name="amount">Transaction amount in fractional units, mandatory (up to 12 digits)</param>
         /// <param name="currency">transaction currency code  (ISO 4217), mandatory</param>
         /// <returns>transaction identifier (28 characters in base64 encoding). In case of an error, the returned string of symbols begins with 'error:'.</returns>
-        public Task<TransactionResponse> RegisterTransactionAsync(int amount, ISO4217.ISO4217 currency, string clientIp, string description, string language) => RegisterTransactionAsync(amount, (int)currency, clientIp, description, language);
+        public Task<TransactionResponse> RegisterTransactionAsync(int amount, ISO4217.ISO4217 currency, string clientIp, string description, string language)
+            => RegisterTransactionAsync(amount, (int)currency, clientIp, description, language);
 
         /// <summary>
         /// Registering transactions / Регистрация транзакций
@@ -354,7 +363,7 @@ namespace Zek.Services
                 throw new ArgumentException("Currency parameter is required", nameof(currency));
             if (string.IsNullOrEmpty(clientIp))
                 throw new ArgumentException("Client IP parameter is required", nameof(clientIp));
-            if (clientIp.Length > 15)
+            if (clientIp.Length > 50)
                 throw new ArgumentException("Client IP parameter max length is 15", nameof(clientIp));
             //if (string.IsNullOrEmpty(description))
             //    throw new ArgumentException("Description parameter is required", nameof(description));
@@ -386,7 +395,8 @@ namespace Zek.Services
         /// <param name="description"></param>
         /// <param name="language"></param>
         /// <returns>transaction identifier (28 characters in base64 encoding). In case of an error, the returned string of symbols begins with ‘error:‘.</returns>
-        public Task<TransactionResponse> RegisterDmsAuthorizationAsync(decimal amount, int currency, string clientIp, string description, string language) => RegisterDmsAuthorizationAsync(Convert.ToInt32(amount * 100M), currency, clientIp, description, language);
+        public Task<TransactionResponse> RegisterDmsAuthorizationAsync(decimal amount, int currency, string clientIp, string description, string language)
+            => RegisterDmsAuthorizationAsync(Convert.ToInt32(amount * 100M), currency, clientIp, description, language);
 
         /// <summary>
         /// Registering DMS authorization (block amount) / Регистрация DMS авторизации (Прошу учесть, что после этой команды необходимо выполнить процедуру 1.1.3 Transaction result, для выяснения результата.)
@@ -397,7 +407,8 @@ namespace Zek.Services
         /// <param name="description"></param>
         /// <param name="language"></param>
         /// <returns>transaction identifier (28 characters in base64 encoding). In case of an error, the returned string of symbols begins with ‘error:‘.</returns>
-        public Task<TransactionResponse> RegisterDmsAuthorizationAsync(decimal amount, ISO4217.ISO4217 currency, string clientIp, string description, string language) => RegisterDmsAuthorizationAsync(Convert.ToInt32(amount * 100M), (int)currency, clientIp, description, language);
+        public Task<TransactionResponse> RegisterDmsAuthorizationAsync(decimal amount, ISO4217.ISO4217 currency, string clientIp, string description, string language)
+            => RegisterDmsAuthorizationAsync(Convert.ToInt32(amount * 100M), (int)currency, clientIp, description, language);
 
         /// <summary>
         /// Registering DMS authorization (block amount) / Регистрация DMS авторизации (Прошу учесть, что после этой команды необходимо выполнить процедуру 1.1.3 Transaction result, для выяснения результата.)
@@ -408,7 +419,8 @@ namespace Zek.Services
         /// <param name="description"></param>
         /// <param name="language"></param>
         /// <returns>transaction identifier (28 characters in base64 encoding). In case of an error, the returned string of symbols begins with ‘error:‘.</returns>
-        public Task<TransactionResponse> RegisterDmsAuthorizationAsync(int amount, ISO4217.ISO4217 currency, string clientIp, string description, string language) => RegisterDmsAuthorizationAsync(amount, (int)currency, clientIp, description, language);
+        public Task<TransactionResponse> RegisterDmsAuthorizationAsync(int amount, ISO4217.ISO4217 currency, string clientIp, string description, string language)
+            => RegisterDmsAuthorizationAsync(amount, (int)currency, clientIp, description, language);
 
         /// <summary>
         /// Registering DMS authorization (block amount) / Регистрация DMS авторизации (Прошу учесть, что после этой команды необходимо выполнить процедуру 1.1.3 Transaction result, для выяснения результата.)
@@ -427,7 +439,7 @@ namespace Zek.Services
                 throw new ArgumentException("Currency parameter is required", nameof(currency));
             if (string.IsNullOrEmpty(clientIp))
                 throw new ArgumentException("Client IP parameter is required", nameof(clientIp));
-            if (clientIp.Length > 15)
+            if (clientIp.Length > 50)
                 throw new ArgumentException("Client IP parameter max length is 15", nameof(clientIp));
             if (string.IsNullOrEmpty(description))
                 throw new ArgumentException("Description parameter is required", nameof(description));
@@ -448,83 +460,95 @@ namespace Zek.Services
             };
         }
 
+
         /// <summary>
-        /// Executing a DMS transaction / Выполнение DMS транзакции
+        /// პრეავტორიზაციის კომიტი (ბლოკში არსებული თანხის ჩამოსაჭრელად)
         /// </summary>
-        /// <param name="authorizationId"></param>
+        /// <param name="transactionId"></param>
         /// <param name="amount"></param>
         /// <param name="currency"></param>
         /// <param name="clientIp"></param>
         /// <param name="description"></param>
         /// <param name="language"></param>
         /// <returns>
-        /// RESULT: result
-        /// RESULT_CODE: result_code
-        /// RRN: rrn
-        /// APPROVAL_CODE: app_code
-        /// CARD_NUMBER pan
-        /// 
-        /// 
-        /// result – transaction results: OK – successful transaction, FAILED – failed transaction
-        /// result_code – transaction result code returned from Card Suite Processing RTPS(3 digits)
-        /// rrn – retrieval reference number returned from Card Suite Processing RTPS(12 characters)
-        /// app_code – approval code returned from Card Suite Processing RTPS(max 6 characters)
-        /// pan – masked card number
-        /// 
-        /// 
-        /// Example of the result:
+        /// შედეგი:
         /// RESULT: OK
         /// RESULT_CODE: 000
         /// RRN: 123456789012
         /// APPROVAL_CODE: 123456
-        /// CARD_NUMBER: 9***********9999
+        /// CARD_NUMBER: 9***********999
         /// </returns>
-        public async Task<ExecuteDmsTransactionResponse> ExecuteDmsTransactionAsync(string authorizationId, int amount, ISO4217.ISO4217 currency, string clientIp, string description, string language)
-        {
-            return await ExecuteDmsTransactionAsync(authorizationId, amount, (int)currency, clientIp, description, language);
-        }
+        public Task<ExecuteDmsTransactionResponse> ExecuteDmsTransactionAsync(string transactionId, decimal amount, ISO4217.ISO4217 currency, string clientIp, string description, string language)
+            => ExecuteDmsTransactionAsync(transactionId, Convert.ToInt32(amount * 100M), (int)currency, clientIp, description, language);
+
         /// <summary>
-        /// Executing a DMS transaction / Выполнение DMS транзакции
+        /// პრეავტორიზაციის კომიტი (ბლოკში არსებული თანხის ჩამოსაჭრელად)
         /// </summary>
-        /// <param name="authorizationId"></param>
+        /// <param name="transactionId"></param>
         /// <param name="amount"></param>
         /// <param name="currency"></param>
         /// <param name="clientIp"></param>
         /// <param name="description"></param>
         /// <param name="language"></param>
         /// <returns>
-        /// RESULT: result
-        /// RESULT_CODE: result_code
-        /// RRN: rrn
-        /// APPROVAL_CODE: app_code
-        /// CARD_NUMBER pan
-        /// 
-        /// 
-        /// result – transaction results: OK – successful transaction, FAILED – failed transaction
-        /// result_code – transaction result code returned from Card Suite Processing RTPS(3 digits)
-        /// rrn – retrieval reference number returned from Card Suite Processing RTPS(12 characters)
-        /// app_code – approval code returned from Card Suite Processing RTPS(max 6 characters)
-        /// pan – masked card number
-        /// 
-        /// 
-        /// Example of the result:
+        /// შედეგი:
         /// RESULT: OK
         /// RESULT_CODE: 000
         /// RRN: 123456789012
         /// APPROVAL_CODE: 123456
-        /// CARD_NUMBER: 9***********9999
+        /// CARD_NUMBER: 9***********999
         /// </returns>
-        public async Task<ExecuteDmsTransactionResponse> ExecuteDmsTransactionAsync(string authorizationId, int amount, int currency, string clientIp, string description, string language)
+        public Task<ExecuteDmsTransactionResponse> ExecuteDmsTransactionAsync(string transactionId, decimal amount, int currency, string clientIp, string description, string language)
+            => ExecuteDmsTransactionAsync(transactionId, Convert.ToInt32(amount * 100M), currency, clientIp, description, language);
+
+        /// <summary>
+        /// პრეავტორიზაციის კომიტი (ბლოკში არსებული თანხის ჩამოსაჭრელად)
+        /// </summary>
+        /// <param name="transactionId"></param>
+        /// <param name="amount"></param>
+        /// <param name="currency"></param>
+        /// <param name="clientIp"></param>
+        /// <param name="description"></param>
+        /// <param name="language"></param>
+        /// <returns>
+        /// შედეგი:
+        /// RESULT: OK
+        /// RESULT_CODE: 000
+        /// RRN: 123456789012
+        /// APPROVAL_CODE: 123456
+        /// CARD_NUMBER: 9***********999
+        /// </returns>
+        public Task<ExecuteDmsTransactionResponse> ExecuteDmsTransactionAsync(string transactionId, int amount, ISO4217.ISO4217 currency, string clientIp, string description, string language)
+            => ExecuteDmsTransactionAsync(transactionId, amount, (int)currency, clientIp, description, language);
+
+        /// <summary>
+        /// პრეავტორიზაციის კომიტი (ბლოკში არსებული თანხის ჩამოსაჭრელად)
+        /// </summary>
+        /// <param name="transactionId"></param>
+        /// <param name="amount"></param>
+        /// <param name="currency"></param>
+        /// <param name="clientIp"></param>
+        /// <param name="description"></param>
+        /// <param name="language"></param>
+        /// <returns>
+        /// შედეგი:
+        /// RESULT: OK
+        /// RESULT_CODE: 000
+        /// RRN: 123456789012
+        /// APPROVAL_CODE: 123456
+        /// CARD_NUMBER: 9***********999
+        /// </returns>
+        public async Task<ExecuteDmsTransactionResponse> ExecuteDmsTransactionAsync(string transactionId, int amount, int currency, string clientIp, string description, string language)
         {
-            if (string.IsNullOrEmpty(authorizationId))
-                throw new ArgumentException("Authorization ID parameter is required", nameof(authorizationId));
+            if (string.IsNullOrEmpty(transactionId))
+                throw new ArgumentException("Transaction ID parameter is required", nameof(transactionId));
             if (amount <= 0)
                 throw new ArgumentException("Amount parameter is required", nameof(amount));
             if (currency <= 0)
                 throw new ArgumentException("Currency parameter is required", nameof(currency));
             if (string.IsNullOrEmpty(clientIp))
                 throw new ArgumentException("Client IP parameter is required", nameof(clientIp));
-            if (clientIp.Length > 15)
+            if (clientIp.Length > 50)
                 throw new ArgumentException("Client IP parameter max length is 15", nameof(clientIp));
             if (string.IsNullOrEmpty(description))
                 throw new ArgumentException("Description parameter is required", nameof(description));
@@ -535,7 +559,7 @@ namespace Zek.Services
             if (language.Length > 32)
                 throw new ArgumentException("Language parameter max length is 32", nameof(language));
 
-            var response = await PostAsync($"command=t&trans_id={WebUtility.UrlEncode(authorizationId)}&amount={amount:F0}&currency={currency:F0}&client_ip_addr={clientIp}&description={description}&language={language}&msg_type=DMS");
+            var response = await PostAsync($"command=t&trans_id={WebUtility.UrlEncode(transactionId)}&amount={amount:F0}&currency={currency:F0}&client_ip_addr={clientIp}&description={description}&language={language}&msg_type=DMS");
             var result = Deserialize(response);
 
             return new ExecuteDmsTransactionResponse
@@ -604,25 +628,18 @@ namespace Zek.Services
 
 
         /// <summary>
-        /// რევერსალი უბრუნებს თანხას წარმატებით საკომისიოს გარეშე იმავე დღეს. მეორე დღეს უკვე მუშავდება როგორც რეფანდი. გამოიყენება პროგრამული/სისტემური შეცდომის დროს.
-        /// Transaction reversal / Откат транзакции
+        /// ტრანზაქციის რევერსალი
         /// </summary>
         /// <param name="transactionId"></param>
         /// <param name="amount"></param>
         /// <param name="suspectedFraud">suspected_fraud необязательный параметр – флаг, указывающий, что откат делается из-за подозрения в мошенничестве.В таких случаях значение этого параметра должно быть установлено в "да". Если этот параметр используется, возможен откат только полной суммы.</param>
         /// <returns></returns>
-        public async Task<ReverseResponse> ReverseAsync(string transactionId, int? amount = null, bool suspectedFraud = false)
+        public async Task<ReverseResponse> ReverseAsync(string transactionId, int amount = 0)
         {
             if (string.IsNullOrEmpty(transactionId))
                 throw new ArgumentException("TransactionId parameter is required", nameof(transactionId));
 
-            var sb = new StringBuilder($"command=r&trans_id={WebUtility.UrlEncode(transactionId)}");
-            if (amount != null)
-                sb.Append($"&amount={amount:F0}");
-            if (suspectedFraud)
-                sb.Append("&suspected_fraud=yes");
-
-            var response = await PostAsync(sb.ToString());
+            var response = await PostAsync($"command=r&trans_id={WebUtility.UrlEncode(transactionId)}&amount={amount:F0}");
             var result = Deserialize(response);
 
             return new ReverseResponse
@@ -644,12 +661,16 @@ namespace Zek.Services
         /// </summary>
         /// <param name="transactionId"></param>
         /// <returns></returns>
-        public async Task<RefundResponse> RefundAsync(string transactionId)
+        public async Task<RefundResponse> RefundAsync(string transactionId, int? amount = null)
         {
             if (string.IsNullOrEmpty(transactionId))
                 throw new ArgumentException("Transaction ID parameter is required", nameof(transactionId));
 
-            var response = await PostAsync($"command=k&trans_id={WebUtility.UrlEncode(transactionId)}");
+            var sb = new StringBuilder($"command=k&trans_id={WebUtility.UrlEncode(transactionId)}");
+            if (amount != null)
+                sb.Append($"&amount={amount:F0}");
+
+            var response = await PostAsync(sb.ToString());
             var result = Deserialize(response);
 
             return new RefundResponse
@@ -764,7 +785,7 @@ namespace Zek.Services
                 throw new ArgumentException("Currency parameter is required", nameof(currency));
             if (string.IsNullOrEmpty(clientIp))
                 throw new ArgumentException("Client IP parameter is required", nameof(clientIp));
-            if (clientIp.Length > 15)
+            if (clientIp.Length > 50)
                 throw new ArgumentException("Client IP parameter max length is 15", nameof(clientIp));
             if (string.IsNullOrEmpty(description))
                 throw new ArgumentException("Description parameter is required", nameof(description));
@@ -818,7 +839,7 @@ namespace Zek.Services
                 throw new ArgumentException("Currency parameter is required", nameof(currency));
             if (string.IsNullOrEmpty(clientIp))
                 throw new ArgumentException("Client IP parameter is required", nameof(clientIp));
-            if (clientIp.Length > 15)
+            if (clientIp.Length > 50)
                 throw new ArgumentException("Client IP parameter max length is 15", nameof(clientIp));
             if (string.IsNullOrEmpty(description))
                 throw new ArgumentException("Description parameter is required", nameof(description));

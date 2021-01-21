@@ -3,7 +3,7 @@
     public class ExecuteDmsTransactionResponse : ExecuteTransactionResponse
     {
         /// <summary>
-        /// masked card number
+        /// Masked card number
         /// </summary>
         public string CardNumber { get; set; }
 

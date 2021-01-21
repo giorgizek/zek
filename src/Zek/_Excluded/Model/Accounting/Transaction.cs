@@ -10,7 +10,7 @@ namespace Zek.Model.Accounting
         public int AccountId { get; set; }
 
         /// <summary>
-        /// If amount is recieved then IsCredit=true. If amount is send to other account then IsCredit=false
+        /// If amount is received then IsCredit=true. If amount is send to other account then IsCredit=false
         /// </summary>
         public bool IsCredit { get; set; }
         public DateTime Date { get; set; }

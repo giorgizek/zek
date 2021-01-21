@@ -1864,7 +1864,7 @@
         </member>
         <member name="P:Zek.Model.DTO.Ecomm.ExecuteDmsTransactionResponse.CardNumber">
             <summary>
-            masked card number
+            Masked card number
             </summary>
         </member>
         <member name="P:Zek.Model.DTO.Ecomm.ExecuteRegularPaymentResponse.TransactionId">
@@ -3044,70 +3044,80 @@
             <param name="language"></param>
             <returns>transaction identifier (28 characters in base64 encoding). In case of an error, the returned string of symbols begins with ‘error:‘.</returns>
         </member>
-        <member name="M:Zek.Services.EcommService.ExecuteDmsTransactionAsync(System.String,System.Int32,Zek.ISO4217.ISO4217,System.String,System.String,System.String)">
+        <member name="M:Zek.Services.EcommService.ExecuteDmsTransactionAsync(System.String,System.Decimal,Zek.ISO4217.ISO4217,System.String,System.String,System.String)">
             <summary>
-            Executing a DMS transaction / Выполнение DMS транзакции
+            პრეავტორიზაციის კომიტი (ბლოკში არსებული თანხის ჩამოსაჭრელად)
             </summary>
-            <param name="authorizationId"></param>
+            <param name="transactionId"></param>
             <param name="amount"></param>
             <param name="currency"></param>
             <param name="clientIp"></param>
             <param name="description"></param>
             <param name="language"></param>
             <returns>
-            RESULT: result
-            RESULT_CODE: result_code
-            RRN: rrn
-            APPROVAL_CODE: app_code
-            CARD_NUMBER pan
-            
-            
-            result – transaction results: OK – successful transaction, FAILED – failed transaction
-            result_code – transaction result code returned from Card Suite Processing RTPS(3 digits)
-            rrn – retrieval reference number returned from Card Suite Processing RTPS(12 characters)
-            app_code – approval code returned from Card Suite Processing RTPS(max 6 characters)
-            pan – masked card number
-            
-            
-            Example of the result:
+            შედეგი:
             RESULT: OK
             RESULT_CODE: 000
             RRN: 123456789012
             APPROVAL_CODE: 123456
-            CARD_NUMBER: 9***********9999
+            CARD_NUMBER: 9***********999
+            </returns>
+        </member>
+        <member name="M:Zek.Services.EcommService.ExecuteDmsTransactionAsync(System.String,System.Decimal,System.Int32,System.String,System.String,System.String)">
+            <summary>
+            პრეავტორიზაციის კომიტი (ბლოკში არსებული თანხის ჩამოსაჭრელად)
+            </summary>
+            <param name="transactionId"></param>
+            <param name="amount"></param>
+            <param name="currency"></param>
+            <param name="clientIp"></param>
+            <param name="description"></param>
+            <param name="language"></param>
+            <returns>
+            შედეგი:
+            RESULT: OK
+            RESULT_CODE: 000
+            RRN: 123456789012
+            APPROVAL_CODE: 123456
+            CARD_NUMBER: 9***********999
+            </returns>
+        </member>
+        <member name="M:Zek.Services.EcommService.ExecuteDmsTransactionAsync(System.String,System.Int32,Zek.ISO4217.ISO4217,System.String,System.String,System.String)">
+            <summary>
+            პრეავტორიზაციის კომიტი (ბლოკში არსებული თანხის ჩამოსაჭრელად)
+            </summary>
+            <param name="transactionId"></param>
+            <param name="amount"></param>
+            <param name="currency"></param>
+            <param name="clientIp"></param>
+            <param name="description"></param>
+            <param name="language"></param>
+            <returns>
+            შედეგი:
+            RESULT: OK
+            RESULT_CODE: 000
+            RRN: 123456789012
+            APPROVAL_CODE: 123456
+            CARD_NUMBER: 9***********999
             </returns>
         </member>
         <member name="M:Zek.Services.EcommService.ExecuteDmsTransactionAsync(System.String,System.Int32,System.Int32,System.String,System.String,System.String)">
             <summary>
-            Executing a DMS transaction / Выполнение DMS транзакции
+            პრეავტორიზაციის კომიტი (ბლოკში არსებული თანხის ჩამოსაჭრელად)
             </summary>
-            <param name="authorizationId"></param>
+            <param name="transactionId"></param>
             <param name="amount"></param>
             <param name="currency"></param>
             <param name="clientIp"></param>
             <param name="description"></param>
             <param name="language"></param>
             <returns>
-            RESULT: result
-            RESULT_CODE: result_code
-            RRN: rrn
-            APPROVAL_CODE: app_code
-            CARD_NUMBER pan
-            
-            
-            result – transaction results: OK – successful transaction, FAILED – failed transaction
-            result_code – transaction result code returned from Card Suite Processing RTPS(3 digits)
-            rrn – retrieval reference number returned from Card Suite Processing RTPS(12 characters)
-            app_code – approval code returned from Card Suite Processing RTPS(max 6 characters)
-            pan – masked card number
-            
-            
-            Example of the result:
+            შედეგი:
             RESULT: OK
             RESULT_CODE: 000
             RRN: 123456789012
             APPROVAL_CODE: 123456
-            CARD_NUMBER: 9***********9999
+            CARD_NUMBER: 9***********999
             </returns>
         </member>
         <member name="M:Zek.Services.EcommService.GetTransactionResultAsync(System.String,System.String)">
@@ -3128,17 +3138,16 @@
             RECC_PMNT_EXPIRY: 1108
              </returns>
         </member>
-        <member name="M:Zek.Services.EcommService.ReverseAsync(System.String,System.Nullable{System.Int32},System.Boolean)">
+        <member name="M:Zek.Services.EcommService.ReverseAsync(System.String,System.Int32)">
             <summary>
-            რევერსალი უბრუნებს თანხას წარმატებით საკომისიოს გარეშე იმავე დღეს. მეორე დღეს უკვე მუშავდება როგორც რეფანდი. გამოიყენება პროგრამული/სისტემური შეცდომის დროს.
-            Transaction reversal / Откат транзакции
+            ტრანზაქციის რევერსალი
             </summary>
             <param name="transactionId"></param>
             <param name="amount"></param>
             <param name="suspectedFraud">suspected_fraud необязательный параметр – флаг, указывающий, что откат делается из-за подозрения в мошенничестве.В таких случаях значение этого параметра должно быть установлено в "да". Если этот параметр используется, возможен откат только полной суммы.</param>
             <returns></returns>
         </member>
-        <member name="M:Zek.Services.EcommService.RefundAsync(System.String)">
+        <member name="M:Zek.Services.EcommService.RefundAsync(System.String,System.Nullable{System.Int32})">
             <summary>
             რეფანდი არის ფინანსურად შესრულებული ოპერაციის თანხის ფინანსურად დაბრუნება, გადარიცხვის საკომისიოს გათვალისწინებით. ძირითადად კლიენტის მოთხოვნით.
             Transaction refund / Возврат суммы транзакции
