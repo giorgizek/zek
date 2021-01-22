@@ -374,7 +374,7 @@ namespace Zek.Services
             if (language.Length > 32)
                 throw new ArgumentException("Language parameter max length is 32", nameof(language));
 
-            var response = await PostAsync($"command=v&amount={amount:F0}&currency={currency:F0}&client_ip_addr={clientIp}&description={description}&language={language}&msg_type=SMS");
+            var response = await PostAsync($"command=v&amount={amount:F0}&currency={currency:F0}&client_ip_addr={clientIp}&desc={description}&language={language}&msg_type=SMS");
             var result = Deserialize(response);
 
             return new TransactionResponse
@@ -450,7 +450,7 @@ namespace Zek.Services
             if (language.Length > 32)
                 throw new ArgumentException("Language parameter max length is 32", nameof(language));
 
-            var response = await PostAsync($"command=a&amount={amount:F0}&currency={currency:F0}&client_ip_addr={clientIp}&description={description}&language={language}&msg_type=DMS");
+            var response = await PostAsync($"command=a&amount={amount:F0}&currency={currency:F0}&client_ip_addr={clientIp}&desc={description}&language={language}&msg_type=DMS");
             var result = Deserialize(response);
             return new TransactionResponse
             {
@@ -542,7 +542,7 @@ namespace Zek.Services
         {
             if (string.IsNullOrEmpty(transactionId))
                 throw new ArgumentException("Transaction ID parameter is required", nameof(transactionId));
-            if (amount <= 0)
+            if (amount < 0)
                 throw new ArgumentException("Amount parameter is required", nameof(amount));
             if (currency <= 0)
                 throw new ArgumentException("Currency parameter is required", nameof(currency));
@@ -550,8 +550,8 @@ namespace Zek.Services
                 throw new ArgumentException("Client IP parameter is required", nameof(clientIp));
             if (clientIp.Length > 50)
                 throw new ArgumentException("Client IP parameter max length is 15", nameof(clientIp));
-            if (string.IsNullOrEmpty(description))
-                throw new ArgumentException("Description parameter is required", nameof(description));
+            //if (string.IsNullOrEmpty(description))
+            //    throw new ArgumentException("Description parameter is required", nameof(description));
             if (description.Length > 125)
                 throw new ArgumentException("Description parameter max length is 125", nameof(description));
             if (string.IsNullOrEmpty(language))
@@ -559,7 +559,12 @@ namespace Zek.Services
             if (language.Length > 32)
                 throw new ArgumentException("Language parameter max length is 32", nameof(language));
 
-            var response = await PostAsync($"command=t&trans_id={WebUtility.UrlEncode(transactionId)}&amount={amount:F0}&currency={currency:F0}&client_ip_addr={clientIp}&description={description}&language={language}&msg_type=DMS");
+            var sb = new StringBuilder($"command=t&trans_id={WebUtility.UrlEncode(transactionId)}&amount={amount:F0}&currency={currency:F0}&client_ip_addr={clientIp}");
+            if (!string.IsNullOrEmpty(description))
+                sb.Append($"&desc={description}");
+            sb.Append($"&language={language}&msg_type=DMS");
+
+            var response = await PostAsync(sb.ToString());
             var result = Deserialize(response);
 
             return new ExecuteDmsTransactionResponse
@@ -850,7 +855,7 @@ namespace Zek.Services
             if (language.Length > 32)
                 throw new ArgumentException("Language parameter max length is 32", nameof(language));
 
-            var response = await PostAsync($"command=e&amount={amount:F0}&currency={currency:F0}&client_ip_addr={clientIp}&description={description}&language={language}&biller_client_id={WebUtility.UrlEncode(regularPaymentId)}");
+            var response = await PostAsync($"command=e&amount={amount:F0}&currency={currency:F0}&client_ip_addr={clientIp}&desc={description}&language={language}&biller_client_id={WebUtility.UrlEncode(regularPaymentId)}");
             var result = Deserialize(response);
 
             return new ExecuteRegularPaymentResponse
