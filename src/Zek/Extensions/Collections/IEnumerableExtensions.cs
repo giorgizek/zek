@@ -19,20 +19,20 @@ namespace Zek.Extensions.Collections
 
 
 
-        public static void ForEach<T>(this IEnumerable<T> en, Action<T> action)
+        public static void ForEach<T>(this IEnumerable<T> source, Action<T> action)
         {
-            foreach (T local in en)
+            foreach (T element in source)
             {
-                action(local);
+                action(element);
             }
         }
 
 
-        public static async Task ForEachAsync<T>(this IEnumerable<T> en, Func<T, Task> func)
+        public static async Task ForEachAsync<T>(this IEnumerable<T> source, Func<T, Task> func)
         {
-            foreach (var value in en)
+            foreach (var element in source)
             {
-                await func(value);
+                await func(element);
             }
         }
 

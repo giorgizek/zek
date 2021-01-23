@@ -6,15 +6,17 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
+using Zek.Extensions.Collections;
 using Zek.Model.Config;
 using Zek.Model.DTO.Email;
+using Zek.Office;
 
 namespace Zek.Services
 {
     public interface IEmailSender
     {
         Task SendEmailAsync(string email, string subject, string message);
-        Task SendEmailAsync(EmailDTO model);
+        Task SendEmailAsync(Email model);
     }
 
     public class EmailSender : IEmailSender
@@ -36,20 +38,21 @@ namespace Zek.Services
             Options = options ?? throw new ArgumentNullException(nameof(options));
         }
 
-        public virtual async Task SendEmailAsync(string email, string subject, string message)
+        public virtual Task SendEmailAsync(string email, string subject, string message)
         {
-            var model = new EmailDTO
+            var model = new Email
             {
                 Subject = subject,
                 Body = message,
-                To = new List<EmailAddressDTO>
+                To = new List<EmailAddress>
                 {
                     new() { Address = email }
                 },
             };
-            await SendEmailAsync(model);
+            return SendEmailAsync(model);
         }
 
+        [Obsolete("User Zek.Office.Email class instead")]
         private static MailMessage ToMailMessage(EmailDTO model)
         {
             var message = new MailMessage
@@ -75,9 +78,13 @@ namespace Zek.Services
                 message.Attachments.Add(attachment);
             });
 
+
+
+
             return message;
         }
 
+        [Obsolete("User Zek.Office.Email class instead")]
         public virtual async Task SendEmailAsync(EmailDTO model)
         {
             using var client = new SmtpClient();
@@ -115,6 +122,83 @@ namespace Zek.Services
             //};
 
             await client.SendMailAsync(message);
+        }
+
+
+        public virtual async Task SendEmailAsync(Email model)
+        {
+            using var client = new SmtpClient();
+            if (Options != null)
+            {
+                if (!string.IsNullOrEmpty(Options.Host))
+                    client.Host = Options.Host;
+                if (Options.Port != null)
+                    client.Port = Options.Port.Value;
+
+                if (Options.EnableSsl != null)
+                    client.EnableSsl = Options.EnableSsl.Value;
+
+                if (!string.IsNullOrEmpty(Options.UserName))
+                {
+                    client.UseDefaultCredentials = false;
+                    client.Credentials = new NetworkCredential(Options.UserName, Options.Password);
+                    //client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                }
+
+                model.From ??= new EmailAddress();
+
+                if (string.IsNullOrEmpty(model.From.Address))
+                    model.From.Address = Options.FromEmail;
+                if (string.IsNullOrEmpty(model.From.Name))
+                    model.From.Name = Options.FromName;
+            }
+
+
+            using var message = ToMailMessage(model);
+            //client.SendCompleted += (sender, e) =>
+            //{
+            //    client.Dispose();
+            //    message.Dispose();
+            //};
+
+            await client.SendMailAsync(message);
+        }
+        public static MailMessage ToMailMessage(Email model)
+        {
+            var message = new MailMessage
+            {
+                Subject = model.Subject,
+                SubjectEncoding = Encoding.UTF8,
+                Body = model.Body,
+                BodyEncoding = Encoding.UTF8,
+                IsBodyHtml = model.IsHtml,
+            };
+
+
+            if (!string.IsNullOrEmpty(model.From?.Address))
+            {
+                message.From = new MailAddress(model.From.Address, model.From.Name, Encoding.UTF8);
+            }
+
+            model.To?.ForEach(x => message.To.Add(new MailAddress(x.Address, x.Name, Encoding.UTF8)));
+            model.Cc?.ForEach(x => message.CC.Add(new MailAddress(x.Address, x.Name, Encoding.UTF8)));
+            model.Bcc?.ForEach(x => message.Bcc.Add(new MailAddress(x.Address, x.Name, Encoding.UTF8)));
+
+            model.Attachments?.ForEach(x =>
+            {
+                var attachment = new Attachment(new MemoryStream(x.FileData), x.FileName) { ContentId = x.ContentId };
+                message.Attachments.Add(attachment);
+            });
+
+            if (model.Calendar != null)
+            {
+                var ics = model.Calendar.ToString();
+                var calendarBytes = Encoding.UTF8.GetBytes(ics);
+                var attachment = new Attachment(new MemoryStream(calendarBytes), "event.ics", "text/calendar");
+                message.Attachments.Add(attachment);
+            }
+
+            return message;
         }
     }
 }

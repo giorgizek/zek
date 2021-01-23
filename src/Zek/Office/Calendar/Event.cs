@@ -10,6 +10,7 @@ namespace Zek.Office
     /// <summary>
     /// 
     /// </summary>
+    /// <typeparam name="TId"></typeparam>
     /// <typeparam name="TDate">DateTime? or DateTimeTimeZone</typeparam>
     /// <typeparam name="TEventType">EventType? or other nullable enum</typeparam>
     /// <typeparam name="TStatus"></typeparam>

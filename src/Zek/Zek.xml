@@ -2459,6 +2459,7 @@
             <summary>
             
             </summary>
+            <typeparam name="TId"></typeparam>
             <typeparam name="TDate">DateTime? or DateTimeTimeZone</typeparam>
             <typeparam name="TEventType">EventType? or other nullable enum</typeparam>
             <typeparam name="TStatus"></typeparam>
@@ -2698,6 +2699,28 @@
             <summary>
             Gets or sets contentType.
             The type of the content. Possible values are text and html.
+            </summary>
+        </member>
+        <member name="M:Zek.Office.iCalendar.FoldLines(System.String)">
+            <summary>
+             Folds lines at 75 characters, and prepends the next line with a space per RFC https://tools.ietf.org/html/rfc5545#section-3.1
+            </summary>
+            <param name="incoming"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Zek.Office.iCalendar.Alarm.Trigger">
+            <summary>
+            Amount of time before event to display alarm
+            </summary>
+        </member>
+        <member name="F:Zek.Office.iCalendar.Alarm.Action">
+            <summary>
+             Action to take to notify user of alarm
+            </summary>
+        </member>
+        <member name="P:Zek.Office.iCalendar.Alarm.Description">
+            <summary>
+            Description of the alarm
             </summary>
         </member>
         <member name="F:Zek.Office.Importance.Low">

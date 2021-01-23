@@ -79,5 +79,8 @@ namespace Zek.Office
         /// </summary>
         public EmailAddress Owner { get; set; }
 
+
+        public IEnumerable<Event> Events { get; set; }
+
     }
 }

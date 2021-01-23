@@ -30,7 +30,7 @@ namespace Zek.Extensions
             {
                 date = date.ToUniversalTime();
             }
-           return date.ToString(Rfc3339Format, DateTimeFormatInfo.InvariantInfo);
+            return date.ToString(Rfc3339Format, DateTimeFormatInfo.InvariantInfo);
         }
 
         public static long ToJavaScriptMilliseconds(this DateTime date) => (long)date.ToUniversalTime().Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds;
