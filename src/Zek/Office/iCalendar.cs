@@ -57,6 +57,10 @@ namespace Zek.Office
             public DateTime LastModified { get; set; }
             // ReSharper disable once InconsistentNaming
             public string UID { get; set; }
+            /// <summary>
+            /// @&quot;&lt;!DOCTYPE HTML PUBLIC &quot;&quot;-//W3C//DTD HTML 3.2//EN&quot;&quot;&gt;&lt;HTML&gt;&lt;BODY&gt;html goes here&lt;/BODY&gt;&lt;/HTML&gt;&quot;
+            /// </summary>
+            public string XAltDescription { get; set; }
             public string Description { get; set; }
             public string Location { get; set; }
             public string Summary { get; set; }
@@ -79,9 +83,9 @@ namespace Zek.Office
                 sb.AppendLine("DTSTAMP:" + ToUniversalTime(TimeStamp));
                 if (!string.IsNullOrEmpty(Organizer?.Address))
                 {
-                    sb.AppendLine(!string.IsNullOrEmpty(Organizer.Name)
+                    sb.AppendLine(TextUtil.FoldLines(!string.IsNullOrEmpty(Organizer.Name)
                         ? $"ORGANIZER;CN={Organizer.Name}:mailto:{Organizer.Address}"
-                        : $"ORGANIZER:mailto:{Organizer.Address}");
+                        : $"ORGANIZER:mailto:{Organizer.Address}"));
                 }
                 sb.AppendLine("UID:" + UID);
 
@@ -89,12 +93,14 @@ namespace Zek.Office
                     sb.Append(item);
 
                 sb.AppendLine("CREATED:" + ToUniversalTime(Created));
-                sb.AppendLine("X-ALT-DESC;FMTTYPE=text/html:" + Description);
+                sb.AppendLine(TextUtil.FoldLines("DESCRIPTION:" + Description));
+                if (!string.IsNullOrEmpty(XAltDescription))
+                    sb.AppendLine(TextUtil.FoldLines("X-ALT-DESC;FMTTYPE=text/html:" + XAltDescription));
                 sb.AppendLine("LAST-MODIFIED:" + ToUniversalTime(LastModified));
-                sb.AppendLine("LOCATION:" + Location);
+                sb.AppendLine(TextUtil.FoldLines("LOCATION:" + Location));
                 sb.AppendLine("SEQUENCE:0");
                 sb.AppendLine("STATUS:CONFIRMED");
-                sb.AppendLine("SUMMARY:" + Summary);
+                sb.AppendLine(TextUtil.FoldLines("SUMMARY:" + Summary));
                 sb.AppendLine("TRANSP:OPAQUE");
 
                 foreach (var item in Alarms)
@@ -107,45 +113,13 @@ namespace Zek.Office
 
 
 
-        private const string iCalendarFormat = "yyyyMMddTHHmmssZ";
+        // ReSharper disable once InconsistentNaming
+        public const string iCalendarDateFormat = "yyyyMMddTHHmmssZ";
         private static string ToUniversalTime(DateTime dt)
         {
-            return dt.ToUniversalTime().ToString(iCalendarFormat);
+            return dt.ToUniversalTime().ToString(iCalendarDateFormat);
         }
 
-        /// <summary>
-        ///  Folds lines at 75 characters, and prepends the next line with a space per RFC https://tools.ietf.org/html/rfc5545#section-3.1
-        /// </summary>
-        /// <param name="incoming"></param>
-        /// <returns></returns>
-        private static string FoldLines(string incoming)
-        {
-            //The spec says nothing about trimming, but it seems reasonable...
-            var trimmed = incoming.Trim();
-            if (trimmed.Length <= 75)
-            {
-                return trimmed + SerializationConstants.LineBreak;
-            }
-
-            const int takeLimit = 74;
-
-            var firstLine = trimmed.Substring(0, takeLimit);
-            var remainder = trimmed.Substring(takeLimit, trimmed.Length - takeLimit);
-
-            var chunkedRemainder = string.Join(SerializationConstants.LineBreak + " ", Chunk(remainder));
-            return firstLine + SerializationConstants.LineBreak + " " + chunkedRemainder + SerializationConstants.LineBreak;
-        }
-        private static IEnumerable<string> Chunk(string str, int chunkSize = 73)
-        {
-            for (var index = 0; index < str.Length; index += chunkSize)
-            {
-                yield return str.Substring(index, Math.Min(chunkSize, str.Length - index));
-            }
-        }
-        private static class SerializationConstants
-        {
-            public const string LineBreak = "\r\n";
-        }
 
 
         public class AttendeeCollection : Collection<Attendee>
@@ -158,9 +132,9 @@ namespace Zek.Office
             {
                 var sb = new StringBuilder();
 
-                sb.AppendLine(!string.IsNullOrEmpty(Name)
+                sb.AppendLine(TextUtil.FoldLines(!string.IsNullOrEmpty(Name)
                     ? $"ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE;CN={Name};X-NUM-GUESTS=0:{Address}"
-                    : $"ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE;X-NUM-GUESTS=0:{Address}");
+                    : $"ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE;X-NUM-GUESTS=0:{Address}"));
                 return sb.ToString();
             }
         }
@@ -193,7 +167,7 @@ namespace Zek.Office
             /// </summary>
             public string Action;
 
-            public string Repeat { get; set; }
+            public int? Repeat { get; set; }
 
             public TimeSpan? Duration { get; set; }
 
@@ -207,12 +181,12 @@ namespace Zek.Office
                 var sb = new StringBuilder();
                 sb.AppendLine("BEGIN:VALARM");
                 sb.AppendLine($"TRIGGER:-P{Trigger.Days}DT{Trigger.Hours}H{Trigger.Minutes}M");
-                if (!string.IsNullOrEmpty(Repeat))
+                if (Repeat.GetValueOrDefault() > 0)
                     sb.AppendLine("REPEAT:" + Repeat);
                 if (Duration.HasValue)
                     sb.AppendLine($"DURATION:PT{Duration.Value.Hours}H{Duration.Value.Minutes}M{Duration.Value.Seconds}S");
                 sb.AppendLine("ACTION:" + Action);
-                sb.AppendLine("DESCRIPTION:" + Description);
+                sb.AppendLine(TextUtil.FoldLines("DESCRIPTION:" + Description));
                 sb.AppendLine("END:VALARM");
                 return sb.ToString();
 
@@ -221,5 +195,44 @@ namespace Zek.Office
 
 
 
+        private static class TextUtil
+        {
+            /// <summary>
+            /// Folds lines at 75 characters, and prepends the next line with a space per RFC https://tools.ietf.org/html/rfc5545#section-3.1
+            /// </summary>
+            /// <param name="incoming"></param>
+            /// <returns></returns>
+            public static string FoldLines(string incoming)
+            {
+                //The spec says nothing about trimming, but it seems reasonable...
+                var trimmed = incoming.Trim();
+                if (trimmed.Length <= 75)
+                {
+                    return trimmed + SerializationConstants.LineBreak;
+                }
+
+                const int takeLimit = 74;
+
+                var firstLine = trimmed.Substring(0, takeLimit);
+                var remainder = trimmed.Substring(takeLimit, trimmed.Length - takeLimit);
+
+                var chunkedRemainder = string.Join(SerializationConstants.LineBreak + " ", Chunk(remainder));
+                return firstLine + SerializationConstants.LineBreak + " " + chunkedRemainder +
+                       SerializationConstants.LineBreak;
+            }
+
+            public static IEnumerable<string> Chunk(string str, int chunkSize = 73)
+            {
+                for (var index = 0; index < str.Length; index += chunkSize)
+                {
+                    yield return str.Substring(index, Math.Min(chunkSize, str.Length - index));
+                }
+            }
+
+        }
+        private static class SerializationConstants
+        {
+            public const string LineBreak = "\r\n";
+        }
     }
 }
