@@ -387,6 +387,7 @@ namespace Zek.Extensions
             //str = str.IfNullEmpty();
             return int.TryParse(str, out var result) ? result : defaultValue;
         }
+        
         /// <summary>
         /// Try parse int 64
         /// </summary>
@@ -398,6 +399,31 @@ namespace Zek.Extensions
             //str = str.IfNullEmpty();
             return long.TryParse(str, out var result) ? result : defaultValue;
         }
+
+        /// <summary>
+        /// Try parse ulong from string
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
+        public static ulong ToUInt64(this string str, ulong defaultValue = 0)
+        {
+            return ulong.TryParse(str, out var result) ? result : defaultValue;
+        }
+
+        /// <summary>
+        /// Try parse ulong from hex string
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
+        public static ulong ToUInt64Hex(this string str, ulong defaultValue = 0)
+        {
+            return ulong.TryParse(str, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out var result) ? result : defaultValue;
+        }
+        
+
+
         /// <summary>
         /// იღებს ToDecimal-ს ტექსტიდან
         /// </summary>

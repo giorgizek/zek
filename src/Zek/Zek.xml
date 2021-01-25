@@ -523,6 +523,22 @@
             <param name="defaultValue"></param>
             <returns></returns>
         </member>
+        <member name="M:Zek.Extensions.StringExtensions.ToUInt64(System.String,System.UInt64)">
+            <summary>
+            Try parse ulong from string
+            </summary>
+            <param name="str"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Extensions.StringExtensions.ToUInt64Hex(System.String,System.UInt64)">
+            <summary>
+            Try parse ulong from hex string
+            </summary>
+            <param name="str"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
         <member name="M:Zek.Extensions.StringExtensions.ToDecimal(System.String,System.Decimal)">
             <summary>
             იღებს ToDecimal-ს ტექსტიდან
@@ -2701,12 +2717,10 @@
             The type of the content. Possible values are text and html.
             </summary>
         </member>
-        <member name="M:Zek.Office.iCalendar.FoldLines(System.String)">
+        <member name="P:Zek.Office.iCalendar.Event.XAltDescription">
             <summary>
-             Folds lines at 75 characters, and prepends the next line with a space per RFC https://tools.ietf.org/html/rfc5545#section-3.1
+            @&quot;&lt;!DOCTYPE HTML PUBLIC &quot;&quot;-//W3C//DTD HTML 3.2//EN&quot;&quot;&gt;&lt;HTML&gt;&lt;BODY&gt;html goes here&lt;/BODY&gt;&lt;/HTML&gt;&quot;
             </summary>
-            <param name="incoming"></param>
-            <returns></returns>
         </member>
         <member name="P:Zek.Office.iCalendar.Alarm.Trigger">
             <summary>
@@ -2722,6 +2736,13 @@
             <summary>
             Description of the alarm
             </summary>
+        </member>
+        <member name="M:Zek.Office.iCalendar.TextUtil.FoldLines(System.String)">
+            <summary>
+            Folds lines at 75 characters, and prepends the next line with a space per RFC https://tools.ietf.org/html/rfc5545#section-3.1
+            </summary>
+            <param name="incoming"></param>
+            <returns></returns>
         </member>
         <member name="F:Zek.Office.Importance.Low">
             <summary>Low</summary>
@@ -3476,9 +3497,8 @@
         </member>
         <member name="M:Zek.Utils.PasswordHasher.HashPassword(System.String)">
             <summary>
-            Returns a hashed representation of the supplied <paramref name="password"/> for the specified <paramref name="user"/>.
+            Returns a hashed representation of the supplied <paramref name="password"/>
             </summary>
-            <param name="user">The user whose password is to be hashed.</param>
             <param name="password">The password to hash.</param>
             <returns>A hashed representation of the supplied <paramref name="password"/> for the specified <paramref name="user"/>.</returns>
         </member>

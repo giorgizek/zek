@@ -74,9 +74,8 @@ namespace Zek.Utils
 #endif
 
         /// <summary>
-        /// Returns a hashed representation of the supplied <paramref name="password"/> for the specified <paramref name="user"/>.
+        /// Returns a hashed representation of the supplied <paramref name="password"/>
         /// </summary>
-        /// <param name="user">The user whose password is to be hashed.</param>
         /// <param name="password">The password to hash.</param>
         /// <returns>A hashed representation of the supplied <paramref name="password"/> for the specified <paramref name="user"/>.</returns>
         public virtual string HashPassword(string password)
