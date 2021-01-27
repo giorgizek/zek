@@ -637,7 +637,6 @@ namespace Zek.Services
         /// </summary>
         /// <param name="transactionId"></param>
         /// <param name="amount"></param>
-        /// <param name="suspectedFraud">suspected_fraud необязательный параметр – флаг, указывающий, что откат делается из-за подозрения в мошенничестве.В таких случаях значение этого параметра должно быть установлено в "да". Если этот параметр используется, возможен откат только полной суммы.</param>
         /// <returns></returns>
         public async Task<ReverseResponse> ReverseAsync(string transactionId, int amount = 0)
         {
@@ -665,6 +664,7 @@ namespace Zek.Services
         /// Transaction refund / Возврат суммы транзакции
         /// </summary>
         /// <param name="transactionId"></param>
+        /// <param name="amount"></param>
         /// <returns></returns>
         public async Task<RefundResponse> RefundAsync(string transactionId, int? amount = null)
         {

@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace Zek.Web
 {
-    public static class HtmlHelperExtensions
+   /* public static class HtmlHelperExtensions
     {
 
         //        /// <summary>
@@ -82,5 +82,5 @@ namespace Zek.Web
         //public static Task RenderEditFormToolbarFooterPartialAsync<TModel>(this IHtmlHelper<TModel> html) => html.RenderPartialAsync("_EditFormToolbarFooter");
 
 
-    }
+    }*/
 }

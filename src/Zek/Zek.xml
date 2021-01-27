@@ -1546,7 +1546,7 @@
         </member>
         <member name="P:Zek.Model.DTO.AddressDTO.CountryId">
             <summary>
-            Country ID (<see cref="!:https://en.wikipedia.org/wiki/ISO_3166-1">ISO 3166</see>)
+            Country ID (ISO 3166)
             </summary>
         </member>
         <member name="P:Zek.Model.DTO.AreaDTO.ApplicationId">
@@ -2229,12 +2229,12 @@
         </member>
         <member name="M:Zek.Model.Identity.Role`1.#ctor">
             <summary>
-            Initializes a new instance of <see cref="!:IdentityRole&lt;TKey&gt;"/>.
+            Initializes a new instance of <see cref="T:Zek.Model.Identity.Role`1"/>.
             </summary>
         </member>
         <member name="M:Zek.Model.Identity.Role`1.#ctor(System.String)">
             <summary>
-            Initializes a new instance of <see cref="!:IdentityRole&lt;TKey&gt;"/>.
+            Initializes a new instance of <see cref="T:Zek.Model.Identity.Role`1"/>.
             </summary>
             <param name="roleName">The role name.</param>
         </member>
@@ -2375,6 +2375,56 @@
         <member name="P:Zek.Model.Identity.UserRole`1.RoleId">
             <summary>
             Gets or sets the primary key of the role that is linked to the user.
+            </summary>
+        </member>
+        <member name="P:Zek.Model.Notification.Sms.TypeId">
+            <summary>
+            Type of sms (example: 1=person, 2=booking, 3=order)
+            </summary>
+        </member>
+        <member name="P:Zek.Model.Notification.Sms.FkId">
+            <summary>
+            Foreign key ID (example: person, booking, order...)
+            </summary>
+        </member>
+        <member name="F:Zek.Model.Notification.SmsStatus.Pending">
+            <summary>
+            Pending
+            </summary>
+        </member>
+        <member name="F:Zek.Model.Notification.SmsStatus.Sending">
+            <summary>
+            Sending
+            </summary>
+        </member>
+        <member name="F:Zek.Model.Notification.SmsStatus.Sent">
+            <summary>
+            Complete
+            </summary>
+        </member>
+        <member name="F:Zek.Model.Notification.SmsStatus.PartiallySent">
+            <summary>
+            Partially Sent
+            </summary>
+        </member>
+        <member name="F:Zek.Model.Notification.SmsStatus.Delivered">
+            <summary>
+            Delivered
+            </summary>
+        </member>
+        <member name="F:Zek.Model.Notification.SmsStatus.Cancelled">
+            <summary>
+            Cancelled
+            </summary>
+        </member>
+        <member name="F:Zek.Model.Notification.SmsStatus.Error">
+            <summary>
+            Error
+            </summary>
+        </member>
+        <member name="F:Zek.Model.Notification.SmsStatus.Failed">
+            <summary>
+            Failed
             </summary>
         </member>
         <member name="P:Zek.Model.WS.Request.RequestId">
@@ -3188,7 +3238,6 @@
             </summary>
             <param name="transactionId"></param>
             <param name="amount"></param>
-            <param name="suspectedFraud">suspected_fraud необязательный параметр – флаг, указывающий, что откат делается из-за подозрения в мошенничестве.В таких случаях значение этого параметра должно быть установлено в "да". Если этот параметр используется, возможен откат только полной суммы.</param>
             <returns></returns>
         </member>
         <member name="M:Zek.Services.EcommService.RefundAsync(System.String,System.Nullable{System.Int32})">
@@ -3197,6 +3246,7 @@
             Transaction refund / Возврат суммы транзакции
             </summary>
             <param name="transactionId"></param>
+            <param name="amount"></param>
             <returns></returns>
         </member>
         <member name="M:Zek.Services.EcommService.CreditAsync(System.String,System.Nullable{System.Int32})">
@@ -3242,16 +3292,6 @@
             <param name="overwriteExistingRecurring">If recurring payment for current client (card) is already defined for template, it needs to be overwritten. Overwriting recurring payments can be done by specifying additional parameter perspayee_overwrite=1. In this case all existing recurring payments for template defined for current client (card) will be deleted.</param>
             <param name="dms"></param>
             <returns></returns>
-        </member>
-        <member name="P:Zek.Services.SendSmsResponse.Succeeded">
-            <summary>
-            If message sent then true.
-            </summary>
-        </member>
-        <member name="P:Zek.Services.SendSmsResponse.Content">
-            <summary>
-            Response from http2sms service (if provider is Geocell then content=Y or N).
-            </summary>
         </member>
         <member name="M:Zek.Utils.DisposableObject.ThrowIfDisposed">
             <summary>
@@ -3500,13 +3540,12 @@
             Returns a hashed representation of the supplied <paramref name="password"/>
             </summary>
             <param name="password">The password to hash.</param>
-            <returns>A hashed representation of the supplied <paramref name="password"/> for the specified <paramref name="user"/>.</returns>
+            <returns>A hashed representation of the supplied <paramref name="password"/>.</returns>
         </member>
         <member name="M:Zek.Utils.PasswordHasher.VerifyHashedPassword(System.String,System.String)">
             <summary>
             Returns a <see cref="T:Microsoft.AspNetCore.Identity.PasswordVerificationResult"/> indicating the result of a password hash comparison.
             </summary>
-            <param name="user">The user whose password should be verified.</param>
             <param name="hashedPassword">The hash value for a user's stored password.</param>
             <param name="providedPassword">The password supplied for comparison.</param>
             <returns>A <see cref="T:Microsoft.AspNetCore.Identity.PasswordVerificationResult"/> indicating the result of a password hash comparison.</returns>
@@ -3940,27 +3979,6 @@
             </summary>
             <param name="disposing"><c>true</c> if this method is being invoked by the <see cref="M:Zek.Web.ApiControllerBase.Dispose"/> method,
             otherwise <c>false</c>.</param>
-        </member>
-        <member name="M:Zek.Web.HtmlHelperExtensions.PartialFor``2(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
-            <summary>
-            Return Partial View.
-            The element naming convention is maintained in the partial view by setting the prefix name from the expression.
-            The name of the view (by default) is the class name of the Property or a UIHint("partial name").
-            @Html.PartialFor(m => m.Address)  - partial view name is the class name of the Address property.
-            </summary>
-            <param name="html"></param>
-            <param name="expression">Model expression for the prefix name (m => m.Address)</param>
-            <returns>Partial View as Mvc string</returns>
-        </member>
-        <member name="M:Zek.Web.HtmlHelperExtensions.PartialFor``2(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.String)">
-            <summary>
-            Return Partial View.
-            The element naming convention is maintained in the partial view by setting the prefix name from the expression.
-            </summary>
-            <param name="html"></param>
-            <param name="expression">Model expression for the prefix name (m => m.Group[2])</param>
-            <param name="partialName">Partial View Name</param>
-            <returns>Partial View as Mvc string</returns>
         </member>
         <member name="M:Zek.Web.HttpRequestExtensions.GetBaseUrl(Microsoft.AspNetCore.Http.HttpRequest)">
             <summary>

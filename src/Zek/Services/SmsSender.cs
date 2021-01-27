@@ -5,28 +5,16 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using Zek.Model.Config;
+using Zek.Model.DTO;
 
 namespace Zek.Services
 {
     public interface ISmsSender
     {
-        Task<SendSmsResponse> SendSmsAsync(string number, string message);
+        Task<IApiResponse<string>> SendSmsAsync(string number, string message);
 
-        Task<SendSmsResponse> SendSmsAsync(string url, string number, string message, string merchantId);
+        Task<IApiResponse<string>> SendSmsAsync(string url, string number, string message, string merchantId);
         //string GetUrl(string url, string number, string message, string merchantId);
-    }
-
-    public class SendSmsResponse
-    {
-        /// <summary>
-        /// If message sent then true.
-        /// </summary>
-        public bool Succeeded { get; set; }
-
-        /// <summary>
-        /// Response from http2sms service (if provider is Geocell then content=Y or N).
-        /// </summary>
-        public string Content { get; set; }
     }
 
     public class BaseSmsSender
@@ -74,9 +62,9 @@ namespace Zek.Services
         //    return $"{url}?src={merchantId}&dst={ParseMobile(number)}&txt={message}";
         //}
 
-        public async Task<SendSmsResponse> SendSmsAsync(string number, string message) => await SendSmsAsync(_options.Url, number, message, _options.MerchantId);
+        public async Task<IApiResponse<string>> SendSmsAsync(string number, string message) => await SendSmsAsync(_options.Url, number, message, _options.MerchantId);
 
-        public async Task<SendSmsResponse> SendSmsAsync(string url, string number, string message, string merchantId)
+        public async Task<IApiResponse<string>> SendSmsAsync(string url, string number, string message, string merchantId)
         {
             if (string.IsNullOrEmpty(url))
                 throw new ArgumentException($"{nameof(url)} is required");
@@ -92,7 +80,7 @@ namespace Zek.Services
 
 
             //var url = GetUrl(url, number, message, merchantId);
-            var result = new SendSmsResponse();
+            var result = new ApiResponse<string>();
             using var httpClient = new HttpClient();
             //result.Content = await httpClient.GetStringAsync(url);
 
@@ -104,9 +92,9 @@ namespace Zek.Services
             });
 
             var response = await httpClient.PostAsync(url, content);
-            result.Content = await response.Content.ReadAsStringAsync();
+            result.Value = await response.Content.ReadAsStringAsync();
 
-            result.Succeeded = "y".Equals(result.Content, StringComparison.CurrentCultureIgnoreCase);
+            result.Success = "y".Equals(result.Value, StringComparison.CurrentCultureIgnoreCase);
             return result;
         }
 

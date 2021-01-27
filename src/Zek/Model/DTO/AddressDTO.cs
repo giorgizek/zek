@@ -26,7 +26,7 @@ namespace Zek.Model.DTO
         public int? Id { get; set; }
 
         /// <summary>
-        /// Country ID (<see cref="https://en.wikipedia.org/wiki/ISO_3166-1">ISO 3166</see>)
+        /// Country ID (ISO 3166)
         /// </summary>
         public int? CountryId { get; set; }
         public string Country { get; set; }

@@ -77,7 +77,7 @@ namespace Zek.Utils
         /// Returns a hashed representation of the supplied <paramref name="password"/>
         /// </summary>
         /// <param name="password">The password to hash.</param>
-        /// <returns>A hashed representation of the supplied <paramref name="password"/> for the specified <paramref name="user"/>.</returns>
+        /// <returns>A hashed representation of the supplied <paramref name="password"/>.</returns>
         public virtual string HashPassword(string password)
         {
             if (password == null)
@@ -151,7 +151,6 @@ namespace Zek.Utils
         /// <summary>
         /// Returns a <see cref="PasswordVerificationResult"/> indicating the result of a password hash comparison.
         /// </summary>
-        /// <param name="user">The user whose password should be verified.</param>
         /// <param name="hashedPassword">The hash value for a user's stored password.</param>
         /// <param name="providedPassword">The password supplied for comparison.</param>
         /// <returns>A <see cref="PasswordVerificationResult"/> indicating the result of a password hash comparison.</returns>

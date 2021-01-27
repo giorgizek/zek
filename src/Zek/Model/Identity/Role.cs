@@ -12,14 +12,14 @@ namespace Zek.Model.Identity
     public class Role<TKey> where TKey : IEquatable<TKey>
     {
         /// <summary>
-        /// Initializes a new instance of <see cref="IdentityRole{TKey}"/>.
+        /// Initializes a new instance of <see cref="Role{TKey}"/>.
         /// </summary>
         public Role()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of <see cref="IdentityRole{TKey}"/>.
+        /// Initializes a new instance of <see cref="Role{TKey}"/>.
         /// </summary>
         /// <param name="roleName">The role name.</param>
         public Role(string roleName) : this()

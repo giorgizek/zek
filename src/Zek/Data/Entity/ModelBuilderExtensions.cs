@@ -23,7 +23,7 @@ namespace Zek.Data.Entity
 
                     var name = "AK_" + tableName + "_" + string.Join("_", index.Properties.Select(p => p.Name));
                     //var name = (index.IsUnique ? "AK_" : "IX_") + tableName + "_" + string.Join("_", index.Properties.Select(p => p.Name));
-                    index.SetName(name);
+                    index.SetDatabaseName(name);
                 }
 
                 //foreach (var fk in type.GetForeignKeys())
