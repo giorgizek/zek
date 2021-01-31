@@ -22,7 +22,7 @@ namespace Zek.Services
 
         public RecaptchaService(IOptions<ReCaptchaOptions> optionsAccessor)
         {
-            _options = optionsAccessor.Value;
+            _options = optionsAccessor?.Value ?? new ReCaptchaOptions();
         }
         protected override void DisposeResources()
         {

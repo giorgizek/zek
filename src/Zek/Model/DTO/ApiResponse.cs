@@ -90,6 +90,11 @@ namespace Zek.Model.DTO
 
     public class ApiResponse<T> : ApiResponse, IApiResponse<T>
     {
+        public ApiResponse() { }
+        public ApiResponse(T value)
+        {
+            Value = value;
+        }
         public T Value { get; set; }
     }
 }
