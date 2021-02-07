@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -31,7 +30,7 @@ namespace Zek.Web
         }
 
 
-        private static readonly string[] EmptyArray = new string[0];
+        private static readonly string[] EmptyArray = Array.Empty<string>();
 
         /// <summary>
         /// List of claim types in token
@@ -73,45 +72,45 @@ namespace Zek.Web
 
             if (_claimTypes.Length > 0)
             {
-                Claim claim = null;
+                //Claim claim = null;
 
                 if (Action != null)
                 {
-                    var hasPermission = false;
+                    //var hasPermission = false;
                     foreach (var claimType in _claimTypes)
                     {
-                        claim = user.FindFirst(claimType);
-                        if (claim != null)
+                        var claim = user.FindFirst(claimType);
+                        if (claim == null) continue;
+
+                        if (int.TryParse(claim.Value, out var permission) &&
+                            BitwiseHelper.HasFlag(permission, Action.Value))
                         {
-                            if (!string.IsNullOrEmpty(claim.Value) &&
-                                int.TryParse(claim.Value, out var permission) &&
-                                BitwiseHelper.HasFlag(permission, Action.Value))
-                            {
-                                hasPermission = true;
-                                break;
-                            }
+                            return;//return means has permission
+                            //hasPermission = true;
+                            //break;
                         }
                     }
 
-                    if (!hasPermission)
-                        context.Result = new ForbidResult();
+                    //if (!hasPermission)
+                    //    context.Result = new ForbidResult();
                 }
                 else
                 {
                     foreach (var claimType in _claimTypes)
                     {
-                        claim = user.FindFirst(claimType);
+                        var claim = user.FindFirst(claimType);
                         if (claim != null)
                         {
-                            break;
+                            return;//return means has permission
+                            //break;
                         }
                     }
 
-                    if (claim == null)
-                    {
-                        context.Result = new ForbidResult();
-                    }
+                    //if (claim == null)
+                    //    context.Result = new ForbidResult();
                 }
+
+                context.Result = new ForbidResult();
             }
 
             //if (Permission != null)
@@ -133,7 +132,7 @@ namespace Zek.Web
         }
 
 
-        internal static string[] SplitString(int[] permissions)
+        public static string[] SplitString(int[] permissions)
         {
             if (permissions == null || permissions.Length == 0)
             {
@@ -143,7 +142,6 @@ namespace Zek.Web
             var split = from piece in permissions
                             //where piece != 0
                         select CustomClaimTypes.Permission + "_" + piece;
-            ;
             return split.ToArray();
         }
     }
