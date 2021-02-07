@@ -3,6 +3,7 @@ using System;
 
 namespace Zek.Model
 {
+    [Obsolete("Use IApiResponse instead of this")]
     [Serializable]
     public class ModelStateResult<TModel> : ModelStateResult
     {
@@ -18,6 +19,7 @@ namespace Zek.Model
         public TModel Value { get; set; }
     }
 
+    [Obsolete("Use IApiResponse instead of this")]
     [Serializable]
     public class ModelStateResult// :  ModelStateDictionary
     {
