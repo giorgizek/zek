@@ -23,8 +23,6 @@ namespace Zek.Web
         }
 
 
-        
-
         [NonAction]
         public virtual IActionResult Auto(IApiResponse obj)
         {
