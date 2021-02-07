@@ -23,37 +23,7 @@ namespace Zek.Web
         }
 
 
-        [NonAction]
-        public virtual IActionResult Auto(ModelStateResult modelStateResult)
-        {
-            return modelStateResult.StatusCode switch
-            {
-                Model.StatusCode.BadRequest => new BadRequestObjectResult(modelStateResult.Errors),
-                Model.StatusCode.Forbidden => new ForbidResult(),
-                Model.StatusCode.NotFound => new NotFoundObjectResult(modelStateResult.Errors),
-                Model.StatusCode.InternalServerError => new ObjectResult(modelStateResult.Errors)
-                {
-                    StatusCode = (int)modelStateResult.StatusCode
-                },
-                _ => new OkResult()
-            };
-        }
-
-        [NonAction]
-        public virtual IActionResult Auto<T>(ModelStateResult<T> modelStateResult)
-        {
-            return modelStateResult.StatusCode switch
-            {
-                Model.StatusCode.BadRequest => new BadRequestObjectResult(modelStateResult.Errors),
-                Model.StatusCode.Forbidden => new ForbidResult(),
-                Model.StatusCode.NotFound => new NotFoundObjectResult(modelStateResult.Errors),
-                Model.StatusCode.InternalServerError => new ObjectResult(modelStateResult.Errors)
-                {
-                    StatusCode = (int)modelStateResult.StatusCode
-                },
-                _ => new OkObjectResult(modelStateResult.Value)
-            };
-        }
+        
 
         [NonAction]
         public virtual IActionResult Auto(IApiResponse obj)
