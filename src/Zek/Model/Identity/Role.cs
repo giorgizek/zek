@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
-using Microsoft.AspNetCore.Identity;
 using Zek.Data.Entity;
 
 namespace Zek.Model.Identity
@@ -86,7 +85,7 @@ namespace Zek.Model.Identity
             ToTable("Roles", nameof(Schema.Identity));
             
             Property(t => t.Id).ValueGeneratedOnAdd();
-            Property(r => r.ConcurrencyStamp).IsConcurrencyToken();
+            Property(r => r.ConcurrencyStamp).HasMaxLength(50).IsConcurrencyToken();
             Property(u => u.Name).HasMaxLength(256);
             Property(u => u.NormalizedName).HasMaxLength(256);
 

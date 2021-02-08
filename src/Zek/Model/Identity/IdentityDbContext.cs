@@ -4,31 +4,31 @@ using System;
 namespace Zek.Model.Identity
 {
 
-    public class IdentityDbContext : IdentityDbContext<User, Role, int, UserRole>
-    {
-        public IdentityDbContext()
-        {
-        }
+    //public class IdentityDbContext : IdentityDbContext<User, Role, int, UserRole>
+    //{
+    //    public IdentityDbContext()
+    //    {
+    //    }
 
-        public IdentityDbContext(DbContextOptions options)
-            : base(options)
-        {
-        }
-    }
+    //    public IdentityDbContext(DbContextOptions options)
+    //        : base(options)
+    //    {
+    //    }
+    //}
 
-    public class IdentityDbContext<TUser, TRole> : IdentityDbContext<TUser, TRole, int, UserRole>
-        where TUser : User
-        where TRole : Role
-    {
-        public IdentityDbContext()
-        {
-        }
+    //public class IdentityDbContext<TUser, TRole> : IdentityDbContext<TUser, TRole, int, UserRole>
+    //    where TUser : User
+    //    where TRole : Role
+    //{
+    //    public IdentityDbContext()
+    //    {
+    //    }
 
-        public IdentityDbContext(DbContextOptions options)
-            : base(options)
-        {
-        }
-    }
+    //    public IdentityDbContext(DbContextOptions options)
+    //        : base(options)
+    //    {
+    //    }
+    //}
 
 
 
@@ -77,8 +77,7 @@ namespace Zek.Model.Identity
         {
             base.OnModelCreating(builder);
 
-            // ReSharper disable once ObjectCreationAsStatement
-            new RoleMap<TRole, TKey>(builder, false);
+            _ = new RoleMap<TRole, TKey>(builder, false);
 
             builder.Entity<TUser>(b =>
             {
