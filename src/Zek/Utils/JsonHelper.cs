@@ -24,13 +24,11 @@ namespace Zek.Utils
             if (stream == null || stream.CanRead == false)
                 return default;
 
-            using (var sr = new StreamReader(stream))
-            using (var jtr = new JsonTextReader(sr))
-            {
-                var js = new JsonSerializer();
-                var searchResult = js.Deserialize<T>(jtr);
-                return searchResult;
-            }
+            using var sr = new StreamReader(stream);
+            using var jtr = new JsonTextReader(sr);
+            var js = new JsonSerializer();
+            var searchResult = js.Deserialize<T>(jtr);
+            return searchResult;
         }
 
         private static async Task<string> StreamToStringAsync(Stream stream)
@@ -55,27 +53,23 @@ namespace Zek.Utils
 
         public static async Task<T> PostAndDeserializeAsync<T>(Uri requestUri, object value, string token, CancellationToken cancellationToken)
         {
-            using (var client = new HttpClient())
+            using var client = new HttpClient();
+            if (!string.IsNullOrEmpty(token))
+                client.DefaultRequestHeaders.Add(nameof(HttpRequestHeaders.Authorization), token);
+
+            using var request = new HttpRequestMessage(HttpMethod.Post, requestUri) { Content = CreateJsonContent(value) };
+            using var response = await client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+            var stream = await response.Content.ReadAsStreamAsync(cancellationToken);
+
+            if (response.IsSuccessStatusCode)
+                return Deserialize<T>(stream);
+
+            var content = await StreamToStringAsync(stream);
+            throw new ApiException
             {
-                if (!string.IsNullOrEmpty(token))
-                    client.DefaultRequestHeaders.Add(nameof(HttpRequestHeaders.Authorization), token);
-
-                using (var request = new HttpRequestMessage(HttpMethod.Post, requestUri) { Content = CreateJsonContent(value) })
-                using (var response = await client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken))
-                {
-                    var stream = await response.Content.ReadAsStreamAsync(cancellationToken);
-
-                    if (response.IsSuccessStatusCode)
-                        return Deserialize<T>(stream);
-
-                    var content = await StreamToStringAsync(stream);
-                    throw new ApiException
-                    {
-                        StatusCode = response.StatusCode,
-                        Content = content
-                    };
-                }
-            }
+                StatusCode = response.StatusCode,
+                Content = content
+            };
         }
     }
 
