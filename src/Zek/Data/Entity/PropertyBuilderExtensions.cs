@@ -8,6 +8,7 @@ namespace Zek.Data.Entity
     {
         public static PropertyBuilder<TProperty> HasColumnTypeDate<TProperty>([NotNull] this PropertyBuilder<TProperty> propertyBuilder) => propertyBuilder.HasColumnType("date");
         public static PropertyBuilder<TProperty> HasColumnTypeDateTime<TProperty>([NotNull] this PropertyBuilder<TProperty> propertyBuilder) => propertyBuilder.HasColumnType("datetime2(0)");
+        public static PropertyBuilder<TProperty> HasColumnTypeTime<TProperty>([NotNull] this PropertyBuilder<TProperty> propertyBuilder) => propertyBuilder.HasColumnType("time(0)");
 
         public static PropertyBuilder<TProperty> HasColumnTypePercent<TProperty>([NotNull] this PropertyBuilder<TProperty> propertyBuilder) => propertyBuilder.HasPrecision(5, 2);
         public static PropertyBuilder<TProperty> HasColumnTypeFinPercent<TProperty>([NotNull] this PropertyBuilder<TProperty> propertyBuilder) => propertyBuilder.HasPrecision(7, 4);

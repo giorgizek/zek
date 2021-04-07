@@ -164,7 +164,6 @@ namespace Zek.Model.Identity
             Property(t => t.CreateDate).HasColumnTypeDateTime();
             Property(t => t.ModifiedDate).HasColumnTypeDateTime();
 
-
             HasKey(u => u.Id);
             if (uniqueUserName)
                 HasIndex(u => u.NormalizedUserName).IsUnique();
