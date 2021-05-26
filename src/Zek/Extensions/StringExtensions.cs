@@ -148,6 +148,7 @@ namespace Zek.Extensions
         }
 
 
+
         public static string TryTrim(this string str)
         {
             return str?.Trim();
@@ -157,6 +158,14 @@ namespace Zek.Extensions
             return str?.Trim(trimChars);
         }
 
+        public static string TryTrimStart(this string str)
+        {
+            return str?.TrimStart();
+        }
+        public static string TryTrimStart(this string str, params char[] trimChars)
+        {
+            return str?.TrimStart(trimChars);
+        }
 
 
 
