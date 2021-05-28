@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Text;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Zek.Utils
 {
