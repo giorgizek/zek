@@ -204,6 +204,25 @@ namespace Zek.Extensions
             return 0;
         }
 
+        /// <summary>
+        /// Returns dates array by start end.
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <returns>აბრუნებს სამუშაო დღეების მასივს.</returns>
+        public static DateTime[] GetDates(this DateTime start, DateTime end)
+        {
+            start = start.Date;
+            end = end.Date;
+            var dates = new List<DateTime>();
+            while (start < end)
+            {
+                dates.Add(start);
+                start = start.AddDays(1d);
+            }
+
+            return dates.ToArray();
+        }
 
         /// <summary>
         /// ამატებს სამუშაო დღეებს.
@@ -253,16 +272,16 @@ namespace Zek.Extensions
         /// <summary>
         /// აბრუნებს სამუშაო დღეების რაოდენობას შუალედში.
         /// </summary>
-        /// <param name="from"></param>
-        /// <param name="to"></param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
         /// <returns>აბრუნებს სამუშაო დღეების რაოდენობას.</returns>
-        public static int GetBusinessDays(this DateTime from, DateTime to)
+        public static int GetBusinessDays(this DateTime start, DateTime end)
         {
             var businessDays = 0;
-            while (from < to)
+            while (start < end)
             {
-                from = from.AddDays(1);
-                if (!IsWeekEnd(from))
+                start = start.AddDays(1);
+                if (!IsWeekEnd(start))
                     businessDays += 1;
             }
             return businessDays;
@@ -270,16 +289,16 @@ namespace Zek.Extensions
         /// <summary>
         /// აბრუნებს დასვენების დღეების რაოდენობას შუალედში.
         /// </summary>
-        /// <param name="from"></param>
-        /// <param name="to"></param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
         /// <returns>აბრუნებს დასვენების დღეების რაოდენობას.</returns>
-        public static int GetWeekEndDays(this DateTime from, DateTime to)
+        public static int GetWeekEndDays(this DateTime start, DateTime end)
         {
             var weekEndDays = 0;
-            while (from < to)
+            while (start < end)
             {
-                from = from.AddDays(1);
-                if (IsWeekEnd(from))
+                start = start.AddDays(1);
+                if (IsWeekEnd(start))
                     weekEndDays += 1;
             }
             return weekEndDays;
@@ -287,19 +306,19 @@ namespace Zek.Extensions
         /// <summary>
         /// აბრუნებს სამუშაო დღეების მასივს მოცემულ შუალედში.
         /// </summary>
-        /// <param name="from"></param>
-        /// <param name="to"></param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
         /// <returns>აბრუნებს სამუშაო დღეების მასივს.</returns>
-        public static DateTime[] GetBusinessDates(this DateTime from, DateTime to)
+        public static DateTime[] GetBusinessDates(this DateTime start, DateTime end)
         {
-            from = from.Date;
-            to = to.Date;
+            start = start.Date;
+            end = end.Date;
             var businessDates = new List<DateTime>();
-            while (from < to)
+            while (start < end)
             {
-                from = from.AddDays(1d);
-                if (!IsWeekEnd(from))
-                    businessDates.Add(from);
+                start = start.AddDays(1d);
+                if (!IsWeekEnd(start))
+                    businessDates.Add(start);
             }
 
             return businessDates.ToArray();
@@ -307,19 +326,19 @@ namespace Zek.Extensions
         /// <summary>
         /// აბრუნებს დასვენების დღეების მასივს მოცემულ შუალედში.
         /// </summary>
-        /// <param name="from"></param>
-        /// <param name="to"></param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
         /// <returns>აბრუნებს დასვენების დღეების მასივს.</returns>
-        public static DateTime[] GetWeekEndDates(this DateTime from, DateTime to)
+        public static DateTime[] GetWeekEndDates(this DateTime start, DateTime end)
         {
-            from = from.Date;
-            to = to.Date;
+            start = start.Date;
+            end = end.Date;
             var weekEndDates = new List<DateTime>();
-            while (from < to)
+            while (start < end)
             {
-                from = from.AddDays(1d);
-                if (IsWeekEnd(from))
-                    weekEndDates.Add(from);
+                start = start.AddDays(1d);
+                if (IsWeekEnd(start))
+                    weekEndDates.Add(start);
             }
 
             return weekEndDates.ToArray();

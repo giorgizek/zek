@@ -236,6 +236,14 @@
             <param name="date"></param>
             <returns></returns>
         </member>
+        <member name="M:Zek.Extensions.DateTimeExtensions.GetDates(System.DateTime,System.DateTime)">
+            <summary>
+            Returns dates array by start end.
+            </summary>
+            <param name="start"></param>
+            <param name="end"></param>
+            <returns>აბრუნებს სამუშაო დღეების მასივს.</returns>
+        </member>
         <member name="M:Zek.Extensions.DateTimeExtensions.AddBusinessDays(System.DateTime,System.Int32)">
             <summary>
             ამატებს სამუშაო დღეებს.
@@ -256,32 +264,32 @@
             <summary>
             აბრუნებს სამუშაო დღეების რაოდენობას შუალედში.
             </summary>
-            <param name="from"></param>
-            <param name="to"></param>
+            <param name="start"></param>
+            <param name="end"></param>
             <returns>აბრუნებს სამუშაო დღეების რაოდენობას.</returns>
         </member>
         <member name="M:Zek.Extensions.DateTimeExtensions.GetWeekEndDays(System.DateTime,System.DateTime)">
             <summary>
             აბრუნებს დასვენების დღეების რაოდენობას შუალედში.
             </summary>
-            <param name="from"></param>
-            <param name="to"></param>
+            <param name="start"></param>
+            <param name="end"></param>
             <returns>აბრუნებს დასვენების დღეების რაოდენობას.</returns>
         </member>
         <member name="M:Zek.Extensions.DateTimeExtensions.GetBusinessDates(System.DateTime,System.DateTime)">
             <summary>
             აბრუნებს სამუშაო დღეების მასივს მოცემულ შუალედში.
             </summary>
-            <param name="from"></param>
-            <param name="to"></param>
+            <param name="start"></param>
+            <param name="end"></param>
             <returns>აბრუნებს სამუშაო დღეების მასივს.</returns>
         </member>
         <member name="M:Zek.Extensions.DateTimeExtensions.GetWeekEndDates(System.DateTime,System.DateTime)">
             <summary>
             აბრუნებს დასვენების დღეების მასივს მოცემულ შუალედში.
             </summary>
-            <param name="from"></param>
-            <param name="to"></param>
+            <param name="start"></param>
+            <param name="end"></param>
             <returns>აბრუნებს დასვენების დღეების მასივს.</returns>
         </member>
         <member name="M:Zek.Extensions.DecimalExtensions.LessThan(System.Decimal,System.Decimal,System.Int32)">
@@ -2750,7 +2758,7 @@
             <summary>Busy</summary>
         </member>
         <member name="F:Zek.Office.FreeBusyStatus.Oof">
-            <summary>Oof</summary>
+            <summary>Out of Office</summary>
         </member>
         <member name="F:Zek.Office.FreeBusyStatus.WorkingElsewhere">
             <summary>Working Elsewhere</summary>

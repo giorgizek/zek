@@ -10,7 +10,7 @@
         Tentative = 1,
         /// <summary>Busy</summary>
         Busy = 2,
-        /// <summary>Oof</summary>
+        /// <summary>Out of Office</summary>
         Oof = 3,
         /// <summary>Working Elsewhere</summary>
         WorkingElsewhere = 4,
