@@ -14,7 +14,7 @@ namespace Zek.Utils
     {
         public static string SerializeObject(object value) => JsonConvert.SerializeObject(value, Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
 
-        private static StringContent CreateJsonContent(object value)
+        public static StringContent CreateJsonContent(object value)
         {
             return new(SerializeObject(value), Encoding.UTF8, "application/json");
         }
