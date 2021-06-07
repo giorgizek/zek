@@ -11,9 +11,12 @@ namespace Zek.Services
 {
     public interface ISmsSender
     {
-        Task<IApiResponse<string>> SendSmsAsync(string number, string message);
+        Task<IApiResponse> SendAsync(string phoneNumber, string message);
 
-        Task<IApiResponse<string>> SendSmsAsync(string url, string number, string message, string merchantId);
+    }
+    public interface IHttp2SmsSender : ISmsSender
+    {
+        Task<IApiResponse<string>> SendAsync(string url, string phoneNumber, string message, string merchantId);
         //string GetUrl(string url, string number, string message, string merchantId);
     }
 
@@ -40,7 +43,7 @@ namespace Zek.Services
     }
 
 
-    public class GeocellSmsSender : BaseSmsSender, ISmsSender
+    public class GeocellSmsSender : BaseSmsSender, IHttp2SmsSender
     {
         public GeocellSmsSender()
         {
@@ -62,9 +65,9 @@ namespace Zek.Services
         //    return $"{url}?src={merchantId}&dst={ParseMobile(number)}&txt={message}";
         //}
 
-        public async Task<IApiResponse<string>> SendSmsAsync(string number, string message) => await SendSmsAsync(_options.Url, number, message, _options.MerchantId);
+        public async Task<IApiResponse> SendAsync(string number, string message) => await SendAsync(_options.Url, number, message, _options.MerchantId);
 
-        public async Task<IApiResponse<string>> SendSmsAsync(string url, string number, string message, string merchantId)
+        public async Task<IApiResponse<string>> SendAsync(string url, string number, string message, string merchantId)
         {
             if (string.IsNullOrEmpty(url))
                 throw new ArgumentException($"{nameof(url)} is required");
