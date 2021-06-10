@@ -12,13 +12,8 @@ namespace Zek.Services
     public interface ISmsSender
     {
         Task<IApiResponse> SendAsync(string phoneNumber, string message);
-
     }
-    public interface IHttp2SmsSender : ISmsSender
-    {
-        Task<IApiResponse<string>> SendAsync(string url, string phoneNumber, string message, string merchantId);
-        //string GetUrl(string url, string number, string message, string merchantId);
-    }
+ 
 
     public class BaseSmsSender
     {
@@ -43,7 +38,7 @@ namespace Zek.Services
     }
 
 
-    public class GeocellSmsSender : BaseSmsSender, IHttp2SmsSender
+    public class GeocellSmsSender : BaseSmsSender, ISmsSender
     {
         public GeocellSmsSender()
         {
