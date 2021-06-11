@@ -1,8 +1,13 @@
 ﻿namespace Zek.Model.DTO
 {
-    public class ListBaseDTO
+    public class ListBaseDTO : ListBaseDTO<int>
     {
-        public int? Id { get; set; }
+
+    }
+
+    public class ListBaseDTO<T>
+    {
+        public T Id { get; set; }
 
         public bool? IsDeleted { get; set; }
     }
