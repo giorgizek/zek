@@ -4,6 +4,7 @@
     {
         InvalidLoginAttempt = 1,
         IsLockedOut,
+        Forbidden,
         InvalidToken,
         DuplicateEmail,
         InvalidIdLink,
