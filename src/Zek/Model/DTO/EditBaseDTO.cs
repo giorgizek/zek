@@ -1,7 +1,7 @@
 ﻿namespace Zek.Model.DTO
 {
     /// <summary>
-    /// Edit model base class
+    /// Edit base (Id field is nullable int)
     /// </summary>
     public class EditBaseDTO : EditBaseDTO<int?>
     {
@@ -9,7 +9,7 @@
     }
 
     /// <summary>
-    /// Edit model base class
+    /// Edit base (Id field is generic)
     /// </summary>
     /// <typeparam name="TId"></typeparam>
     public class EditBaseDTO<TId>

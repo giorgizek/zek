@@ -39,12 +39,26 @@ namespace Zek.Linq
 
             return source;
         }
+
+
+        static bool IsNullableType(Type t)
+        {
+            return t.IsGenericType && t.GetGenericTypeDefinition() == typeof(Nullable<>);
+        }
+
+
         public static IQueryable<TSource> Filter<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> selector, WhereOperator whereOperator, TKey value1, TKey value2 = default, bool filterIfDefault = false)
         {
-            if (!filterIfDefault && Equals(value1, default(TKey)))
+            if (!filterIfDefault && value1 == null)// Equals(value1, default(TKey)))
             {
                 return source;
             }
+
+            //if (value1 != null && IsNullableType(selector.Body.Type))
+            //{
+            //    selector = Expression.Convert(selector, value1.GetType()) as Expression<Func<TSource, TKey>>;
+            //}
+
 
             switch (whereOperator)
             {
