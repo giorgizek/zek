@@ -52,7 +52,7 @@ namespace Zek.Services
             return SendEmailAsync(model);
         }
 
-        [Obsolete("User Zek.Office.Email class instead")]
+        [Obsolete("Use Zek.Office.Email class instead")]
         private static MailMessage ToMailMessage(EmailDTO model)
         {
             var message = new MailMessage
@@ -84,7 +84,7 @@ namespace Zek.Services
             return message;
         }
 
-        [Obsolete("User Zek.Office.Email class instead")]
+        [Obsolete("Use Zek.Office.Email class instead")]
         public virtual async Task SendEmailAsync(EmailDTO model)
         {
             using var client = new SmtpClient();
