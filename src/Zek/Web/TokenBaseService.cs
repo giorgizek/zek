@@ -16,18 +16,18 @@ namespace Zek.Web
 
     public class TokenBaseService : ITokenBaseService
     {
-        private readonly IHttpContextAccessor _contextAccessor;
+        protected readonly IHttpContextAccessor ContextAccessor;
 
         public TokenBaseService(IHttpContextAccessor contextAccessor)
         {
-            _contextAccessor = contextAccessor;
+            ContextAccessor = contextAccessor;
         }
 
 
         private int? _userId;
         public virtual int GetUserId()
         {
-            _userId ??= _contextAccessor.HttpContext.User.GetUserId().ToInt32();
+            _userId ??= ContextAccessor.HttpContext.User.GetUserId().ToInt32();
             return _userId.Value;
         }
 
@@ -35,11 +35,11 @@ namespace Zek.Web
         private IEnumerable<string> _roles;
         public IEnumerable<string> GetRoles()
         {
-            return _roles ?? (_roles = _contextAccessor.HttpContext.User.GetRoles());
+            return _roles ??= ContextAccessor.HttpContext.User.GetRoles();
         }
 
-        protected IEnumerable<string> FindAll(string type) => _contextAccessor.HttpContext.User.FindAll(type).Select(i => i.Value);
+        protected IEnumerable<string> FindAll(string type) => ContextAccessor.HttpContext.User.FindAll(type).Select(i => i.Value);
 
-        protected string FindFirstValue(string type) => _contextAccessor.HttpContext.User.FindFirstValue(type);
+        protected string FindFirstValue(string type) => ContextAccessor.HttpContext.User.FindFirstValue(type);
     }
 }

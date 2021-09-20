@@ -34,5 +34,14 @@ namespace Zek.Data.Entity
                 //}
             }
         }
+
+
+        public static void SetAllForeignKeysDeleteBehavior(this ModelBuilder builder, DeleteBehavior deleteBehavior)
+        {
+            foreach (var fk in builder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()).Where(fk => !fk.IsOwnership && fk.DeleteBehavior != deleteBehavior))
+            {
+                fk.DeleteBehavior = deleteBehavior;
+            }
+        }
     }
 }
