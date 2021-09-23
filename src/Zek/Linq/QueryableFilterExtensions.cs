@@ -86,6 +86,9 @@ namespace Zek.Linq
                 case WhereOperator.Contains:
                     return source.Contains(selector, value1);
 
+                case WhereOperator.ContainsAny:
+                    return source.ContainsAny(selector as Expression<Func<TSource, string>>, value1 as string);
+
                 case WhereOperator.NotContains:
                     return source.NotContains(selector, value1);
 

@@ -114,7 +114,7 @@ namespace Zek.Extensions
             if (startIndex < 0)
                 startIndex = 0;
 
-            return str.Length > startIndex ? str.Length > startIndex + length ? str.Substring(startIndex, length.Value) : str.Substring(startIndex) : string.Empty;
+            return str.Length > startIndex ? str.Length > startIndex + length ? str.Substring(startIndex, length.Value) : str[startIndex..] : string.Empty;
         }
 
 
@@ -144,7 +144,7 @@ namespace Zek.Extensions
             if (string.IsNullOrEmpty(str) || length >= str.Length || length < 0)
                 return str;
 
-            return str.Substring(str.Length - length);
+            return str[^length..];
         }
 
 
@@ -218,12 +218,15 @@ namespace Zek.Extensions
         public static string FirstUpperInvariant(this string str)
         {
             if (string.IsNullOrEmpty(str)) return str;
-            return char.ToUpperInvariant(str[0]) + str.Substring(1);
+            return char.ToUpperInvariant(str[0]) + str[1..];
         }
-        public static string FirstUpper(this string str)
+        public static string FirstUpper(this string value)
         {
-            if (string.IsNullOrEmpty(str)) return str;
-            return char.ToUpper(str[0]) + str.Substring(1);
+            if (value == null) { return value; }
+            if (value.Length < 2) { return value.ToUpper(); }
+
+            // Start with the first character.
+            return value.Substring(0, 1).ToUpper() + value[1..];
         }
 
 
@@ -396,7 +399,7 @@ namespace Zek.Extensions
             //str = str.IfNullEmpty();
             return int.TryParse(str, out var result) ? result : defaultValue;
         }
-        
+
         /// <summary>
         /// Try parse int 64
         /// </summary>
@@ -430,7 +433,7 @@ namespace Zek.Extensions
         {
             return ulong.TryParse(str, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out var result) ? result : defaultValue;
         }
-        
+
 
 
         /// <summary>
@@ -663,7 +666,7 @@ namespace Zek.Extensions
                 var currentChar = str[i];
                 if (char.IsUpper(currentChar))
                 {
-                    if (i > 1 && !char.IsUpper(str[i - 1]) 
+                    if (i > 1 && !char.IsUpper(str[i - 1])
                         || i + 1 < str.Length && !char.IsUpper(str[i + 1]))
                         retVal.Append(' ');
                 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using Zek.Extensions.Collections;
 
 namespace Zek.Linq
 {
@@ -78,6 +79,22 @@ namespace Zek.Linq
             var lambda = Expression.Lambda<Func<TSource, bool>>(containsBound, selector.Parameters);
             return source.Where(lambda);
         }
+        public static IQueryable<TSource> ContainsAny<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, string>> selector, string value)
+        {
+            if (string.IsNullOrEmpty(value))
+                return source;
+
+            var parts = value.Split(" ", StringSplitOptions.RemoveEmptyEntries);
+            if (parts.Length > 0)
+            {
+                foreach (var part in parts)
+                {
+                    source = source.Contains(selector, part);
+                }
+            }
+
+            return source;
+        }
         public static IQueryable<TSource> NotContains<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> selector, TKey value)
         {
             var containsBound = Expression.Call(selector.Body, ContainsMethod, Expression.Constant(value));
@@ -112,7 +129,30 @@ namespace Zek.Linq
 
             return source.Where(lowLambda).Where(highLambda);
         }
-        public static IQueryable<TSource> Overlap<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> lowSelector, Expression<Func<TSource, TKey>> highSelector, TKey low, TKey high) where TKey : IComparable<TKey>
+        public static IQueryable<TSource> Overlaps<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> lowSelector, Expression<Func<TSource, TKey>> highSelector, TKey low, TKey high) where TKey : IComparable<TKey>
+        {
+            var lowExpression = lowSelector.Body;
+            var lowerBound = Expression.GreaterThan(lowExpression, Expression.Constant(low));
+            var upperBound = Expression.LessThan(lowExpression, Expression.Constant(high));
+            var predicateBody1 = Expression.And(lowerBound, upperBound);
+            var lambda1 = Expression.Lambda<Func<TSource, bool>>(predicateBody1, lowSelector.Parameters);
+
+
+            var highExpression = highSelector.Body;
+            lowerBound = Expression.GreaterThan(highExpression, Expression.Constant(low));
+            upperBound = Expression.LessThan(highExpression, Expression.Constant(high));
+            var predicateBody2 = Expression.And(lowerBound, upperBound);
+            var lambda2 = Expression.Lambda<Func<TSource, bool>>(predicateBody2, highSelector.Parameters);
+
+
+            lowerBound = Expression.LessThanOrEqual(lowExpression, Expression.Constant(low));
+            upperBound = Expression.GreaterThanOrEqual(highExpression, Expression.Constant(high));
+            var predicateBody3 = Expression.And(lowerBound, upperBound);
+            var lambda3 = Expression.Lambda<Func<TSource, bool>>(predicateBody3, highSelector.Parameters);
+
+            return source.Where(lambda1.Or(lambda2).Or(lambda3));
+        }
+        public static IQueryable<TSource> Intersects<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> lowSelector, Expression<Func<TSource, TKey>> highSelector, TKey low, TKey high) where TKey : IComparable<TKey>
         {
             var lowExpression = lowSelector.Body;
             var lowerBound = Expression.GreaterThanOrEqual(lowExpression, Expression.Constant(low));
@@ -134,6 +174,12 @@ namespace Zek.Linq
             var lambda3 = Expression.Lambda<Func<TSource, bool>>(predicateBody3, highSelector.Parameters);
 
             return source.Where(lambda1.Or(lambda2).Or(lambda3));
+        }
+
+        [Obsolete("User Intersects method instead")]
+        public static IQueryable<TSource> Overlap<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> lowSelector, Expression<Func<TSource, TKey>> highSelector, TKey low, TKey high) where TKey : IComparable<TKey>
+        {
+            return Overlaps(source, lowSelector, highSelector, low, high);
         }
 
         public static IQueryable<TSource> In<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> selector, IEnumerable<TKey> value)
