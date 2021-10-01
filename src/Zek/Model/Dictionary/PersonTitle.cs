@@ -17,16 +17,16 @@ namespace Zek.Model.Dictionary
     }
 
 
-    public class PersonTitleTranslate : TranslateModel<PersonTitle, int>
-    {
+    //public class PersonTitleTranslate : TranslateModel<PersonTitle, int>
+    //{
         
-    }
+    //}
 
-    public class PersonTitleTranslateMap : TranslateModelMap<PersonTitleTranslate, PersonTitle, int>
-    {
-        public PersonTitleTranslateMap(ModelBuilder builder) : base(builder)
-        {
-            ToTable("PersonTitleTranslates", "Translate");
-        }
-    }
+    //public class PersonTitleTranslateMap : TranslateModelMap<PersonTitleTranslate, PersonTitle, int>
+    //{
+    //    public PersonTitleTranslateMap(ModelBuilder builder) : base(builder)
+    //    {
+    //        ToTable("PersonTitleTranslates", "Translate");
+    //    }
+    //}
 }

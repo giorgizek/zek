@@ -23,15 +23,15 @@ namespace Zek.Model.Dictionary
 
 
 
-    public class AccountTypeTranslate : TranslateModel<AccountType, int>
-    {
-    }
+    //public class AccountTypeTranslate : TranslateModel<AccountType, int>
+    //{
+    //}
 
-    public class AccountTypeTranslateMap : TranslateModelMap<AccountTypeTranslate, AccountType, int>
-    {
-        public AccountTypeTranslateMap(ModelBuilder builder) : base(builder)
-        {
-            ToTable("AccountTypeTranslates", "Translate");
-        }
-    }
+    //public class AccountTypeTranslateMap : TranslateModelMap<AccountTypeTranslate, AccountType, int>
+    //{
+    //    public AccountTypeTranslateMap(ModelBuilder builder) : base(builder)
+    //    {
+    //        ToTable("AccountTypeTranslates", "Translate");
+    //    }
+    //}
 }

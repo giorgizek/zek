@@ -21,18 +21,18 @@ namespace Zek.Model.Dictionary
 
 
 
-    public class ChatTypeTranslate<TUser> : TranslateModel<ChatType<TUser>, int>
-        where TUser : User
-    {
+    //public class ChatTypeTranslate<TUser> : TranslateModel<ChatType<TUser>, int>
+    //    where TUser : User
+    //{
 
-    }
+    //}
 
-    public class ChatTypeTranslateMap<TUser> : TranslateModelMap<ChatTypeTranslate<TUser>, ChatType<TUser>, int>
-         where TUser : User
-    {
-        public ChatTypeTranslateMap(ModelBuilder builder) : base(builder)
-        {
-            ToTable("ChatTypeTranslates", "Translate");
-        }
-    }
+    //public class ChatTypeTranslateMap<TUser> : TranslateModelMap<ChatTypeTranslate<TUser>, ChatType<TUser>, int>
+    //     where TUser : User
+    //{
+    //    public ChatTypeTranslateMap(ModelBuilder builder) : base(builder)
+    //    {
+    //        ToTable("ChatTypeTranslates", "Translate");
+    //    }
+    //}
 }

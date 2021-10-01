@@ -25,16 +25,16 @@ namespace Zek.Model.Dictionary
 
 
 
-    public class CurrencyTranslate : TranslateModel<Currency, int>
-    {
-        public string MinorUnit { get; set; }
-    }
+    //public class CurrencyTranslate : TranslateModel<Currency, int>
+    //{
+    //    public string MinorUnit { get; set; }
+    //}
 
-    public class CurrencyTranslateMap : TranslateModelMap<CurrencyTranslate, Currency, int>
-    {
-        public CurrencyTranslateMap(ModelBuilder builder) : base(builder)
-        {
-            ToTable("CurrencyTranslates", "Translate");
-        }
-    }
+    //public class CurrencyTranslateMap : TranslateModelMap<CurrencyTranslate, Currency, int>
+    //{
+    //    public CurrencyTranslateMap(ModelBuilder builder) : base(builder)
+    //    {
+    //        ToTable("CurrencyTranslates", "Translate");
+    //    }
+    //}
 }

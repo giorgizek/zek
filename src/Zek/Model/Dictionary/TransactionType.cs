@@ -19,15 +19,15 @@ namespace Zek.Model.Dictionary
 
 
 
-    public class TransactionTypeTranslate : TranslateModel<TransactionType, int>
-    {
-    }
+    //public class TransactionTypeTranslate : TranslateModel<TransactionType, int>
+    //{
+    //}
 
-    public class TransactionTypeTranslateMap : TranslateModelMap<TransactionTypeTranslate, TransactionType, int>
-    {
-        public TransactionTypeTranslateMap(ModelBuilder builder) : base(builder)
-        {
-            ToTable("TransactionTypeTranslates", "Translate");
-        }
-    }
+    //public class TransactionTypeTranslateMap : TranslateModelMap<TransactionTypeTranslate, TransactionType, int>
+    //{
+    //    public TransactionTypeTranslateMap(ModelBuilder builder) : base(builder)
+    //    {
+    //        ToTable("TransactionTypeTranslates", "Translate");
+    //    }
+    //}
 }

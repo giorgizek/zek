@@ -22,18 +22,18 @@ namespace Zek.Model.Dictionary
 
 
 
-    public class PmTypeTranslate<TUser> : TranslateModel<PmType<TUser>, int>
-        where TUser : User
-    {
+    //public class PmTypeTranslate<TUser> : TranslateModel<PmType<TUser>, int>
+    //    where TUser : User
+    //{
 
-    }
+    //}
 
-    public class PmTypeTranslateMap<TUser> : TranslateModelMap<PmTypeTranslate<TUser>, PmType<TUser>, int>
-         where TUser : User
-    {
-        public PmTypeTranslateMap(ModelBuilder builder) : base(builder)
-        {
-            ToTable("PmTypeTranslates", "Translate");
-        }
-    }
+    //public class PmTypeTranslateMap<TUser> : TranslateModelMap<PmTypeTranslate<TUser>, PmType<TUser>, int>
+    //     where TUser : User
+    //{
+    //    public PmTypeTranslateMap(ModelBuilder builder) : base(builder)
+    //    {
+    //        ToTable("PmTypeTranslates", "Translate");
+    //    }
+    //}
 }

@@ -19,7 +19,7 @@ namespace Zek.Web
         {
             return value != null
                 ? new OkObjectResult(value)
-                : (IActionResult)NotFound();
+                : NotFound();
         }
 
 
