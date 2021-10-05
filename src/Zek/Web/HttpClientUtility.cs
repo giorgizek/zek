@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -28,7 +29,6 @@ namespace Zek.Web
             var responseContent = await response.Content.ReadAsStringAsync(cancellationToken);
 
             return JsonConvert.DeserializeObject<TResult>(responseContent);
-
         }
 
 
@@ -115,7 +115,11 @@ namespace Zek.Web
         {
             if (content != null)
             {
-                string jsonContent = JsonConvert.SerializeObject(content, Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                string jsonContent = JsonConvert.SerializeObject(content, Formatting.None, new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Ignore,
+                    ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                });
                 request.Content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
             }
         }

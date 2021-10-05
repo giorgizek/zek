@@ -3988,6 +3988,26 @@
             <param name="disposing"><c>true</c> if this method is being invoked by the <see cref="M:Zek.Web.ApiControllerBase.Dispose"/> method,
             otherwise <c>false</c>.</param>
         </member>
+        <member name="M:Zek.Web.HttpClientUtility.PostAsJsonAsync(System.String,System.Collections.Generic.IDictionary{System.String,System.String},System.Object,System.Threading.CancellationToken)">
+            <summary>
+            Send Http Post to request uri and get HttpResponseMessage
+            </summary>
+        </member>
+        <member name="M:Zek.Web.HttpClientUtility.ExecuteActionkWithAutoRetry(System.Func{System.Threading.Tasks.Task{System.Net.Http.HttpResponseMessage}})">
+            <summary>
+            Execute the action which returns HttpResponseMessage with auto retry
+            </summary>
+        </member>
+        <member name="M:Zek.Web.HttpClientUtility.AddHeaders(System.Net.Http.HttpRequestMessage,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Add headers to request
+            </summary>
+        </member>
+        <member name="M:Zek.Web.HttpClientUtility.AddContentAsJson(System.Net.Http.HttpRequestMessage,System.Object)">
+            <summary>
+            Add content to request as json
+            </summary>
+        </member>
         <member name="M:Zek.Web.HttpRequestExtensions.GetBaseUrl(Microsoft.AspNetCore.Http.HttpRequest)">
             <summary>
             Returns site base url.
