@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Routing;
 
 namespace Zek.Web
 {
-    [AttributeUsage(AttributeTargets.Method)]
+   /* [AttributeUsage(AttributeTargets.Method)]
     public class AjaxAttribute : ActionMethodSelectorAttribute
     {
         public AjaxAttribute(bool ajax = true) { Ajax = ajax; }
@@ -16,5 +16,5 @@ namespace Zek.Web
         }
 
         public bool Ajax { get; set; }
-    }
+    }*/
 }

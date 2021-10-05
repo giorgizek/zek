@@ -4,7 +4,7 @@ using System.Net;
 
 namespace Zek.Web
 {
-    public static class HttpRequestExtensions
+    /*public static class HttpRequestExtensions
     {
         /// <summary>
         /// Returns site base url.
@@ -42,7 +42,7 @@ namespace Zek.Web
             if (request == null)
                 throw new ArgumentNullException(nameof(request));
 
-            return request.Method == "POST";
+            return "POST".Equals(request.Method, StringComparison.OrdinalIgnoreCase);
         }
-    }
+    }*/
 }
