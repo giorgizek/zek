@@ -15,15 +15,120 @@ namespace Zek.Web
         public static readonly int RETRY_COUNT = 10;
         public static readonly int RETRY_DELAY = 500;
 
-        public static Task<TResult> PostAsJsonAsync<TResult>(string requestUri, IDictionary<string, string> headers, object content)
+        private static HttpClient Client;
+
+        /// <summary>
+        /// Static constructor of the HttpClientUtility
+        /// </summary>
+        static HttpClientUtility()
         {
-            return PostAsJsonAsync<TResult>(requestUri, headers, content, CancellationToken.None);
+            if (Client == null)
+            {
+                Client = new HttpClient();
+            }
         }
 
-        public static async Task<TResult> PostAsJsonAsync<TResult>(string requestUri, IDictionary<string, string> headers, object content, CancellationToken cancellationToken)
+
+        /// <summary>
+        /// Send Http Get to the request uri and get the TResult from response content
+        /// </summary>
+        public static async Task<TResult> GetAsync<TResult>(Uri requestUri, IDictionary<string, string> headers)
+        {
+            // Get response
+            var response = await GetAsync(requestUri, headers);
+
+            // Read response
+            var responseContent = await response.Content.ReadAsStringAsync();
+
+            // Get result
+            var result = JsonConvert.DeserializeObject<TResult>(responseContent);
+            return result;
+        }
+
+        /// <summary>
+        /// Send Http Get to the request uri and get HttpResponseMessage
+        /// </summary>
+        public static async Task<HttpResponseMessage> GetAsync(Uri requestUri, IDictionary<string, string> headers)
+        {
+            // Create new request function
+            HttpRequestMessage createRequestMessage()
+            {
+                // Create new request
+                var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
+
+                // Add headers to request
+                request.AddHeaders(headers);
+                return request;
+            }
+
+            // Send request and get response
+            var response = await ExecuteActionkWithAutoRetry(() => Client.SendAsync(createRequestMessage()));
+            return response;
+        }
+
+
+        /// <summary>
+        /// Send Http Get to the request uri and get the byte array from response content
+        /// </summary>
+        public static async Task<byte[]> GetBytesAsync(Uri requestUri, IDictionary<string, string> headers = default(Dictionary<string, string>))
+        {
+            // Get response
+            var response = await GetAsync(requestUri, headers);
+
+            // Read response
+            var responseContent = await response.Content.ReadAsByteArrayAsync();
+            return responseContent;
+        }
+
+        /// <summary>
+        /// Send Http Post to request uri and get TResult from response content 
+        /// </summary>
+        public static async Task<TResult> PostAsBytesAsync<TResult>(Uri requestUri, IDictionary<string, string> headers, byte[] content)
         {
             // Post request and get response
-            var response = await PostAsJsonAsync(requestUri, headers, content, cancellationToken);
+            var response = await PostAsBytesAsync(requestUri, headers, content);
+
+            // Read response
+            var responseContent = await response.Content.ReadAsStringAsync();
+
+            return JsonConvert.DeserializeObject<TResult>(responseContent);
+        }
+
+        /// <summary>
+        /// Send Http Post to request uri and get HttpResponseMessage
+        /// </summary>
+        public static async Task<HttpResponseMessage> PostAsBytesAsync(Uri requestUri, IDictionary<string, string> headers, byte[] content)
+        {
+            // Create new request function
+            Func<HttpRequestMessage> createRequestMessage = () =>
+            {
+                // Create new request
+                var request = new HttpRequestMessage(HttpMethod.Post, requestUri);
+
+                // Add headers to request
+                request.AddHeaders(headers);
+
+                // Add content as Json
+                request.AddContentAsBytes(content);
+
+                return request;
+            };
+
+            // Post request
+            HttpResponseMessage response = await ExecuteActionkWithAutoRetry(() => Client.SendAsync(createRequestMessage()));
+            return response;
+        }
+
+
+        public static Task<TResult> PostAsJsonAsync<TResult>(string requestUri, IDictionary<string, string> headers, object content, bool camelCasePropertyNames = true)
+        {
+            return PostAsJsonAsync<TResult>(requestUri, headers, content, camelCasePropertyNames, CancellationToken.None);
+        }
+
+        public static async Task<TResult> PostAsJsonAsync<TResult>(string requestUri, IDictionary<string, string> headers, object content, bool camelCasePropertyNames = true, CancellationToken cancellationToken)
+        {
+            // Post request and get response
+            var response = await PostAsJsonAsync(requestUri, headers, content, camelCasePropertyNames, cancellationToken);
 
             // Read response
             var responseContent = await response.Content.ReadAsStringAsync(cancellationToken);
@@ -31,12 +136,10 @@ namespace Zek.Web
             return JsonConvert.DeserializeObject<TResult>(responseContent);
         }
 
-
-
         /// <summary>
         /// Send Http Post to request uri and get HttpResponseMessage
         /// </summary>
-        public static async Task<HttpResponseMessage> PostAsJsonAsync(string requestUri, IDictionary<string, string> headers, object content, CancellationToken cancellationToken)
+        public static async Task<HttpResponseMessage> PostAsJsonAsync(string requestUri, IDictionary<string, string> headers, object content, bool camelCasePropertyNames, CancellationToken cancellationToken)
         {
             // Create new request function
             HttpRequestMessage createRequestMessage()
@@ -48,14 +151,57 @@ namespace Zek.Web
                 request.AddHeaders(headers);
 
                 // Add content as Json
-                request.AddContentAsJson(content);
+                request.AddContentAsJson(content, camelCasePropertyNames);
 
                 return request;
             }
 
-            using var client = new HttpClient();
             // Post request
-            var response = await ExecuteActionkWithAutoRetry(() => client.SendAsync(createRequestMessage()));
+            var response = await ExecuteActionkWithAutoRetry(() => Client.SendAsync(createRequestMessage(), cancellationToken));
+            return response;
+        }
+
+        public static async Task<HttpResponseMessage> PutAsJsonAsync(Uri requestUri, IDictionary<string, string> headers, object content)
+        {
+            // Create new request function
+            Func<HttpRequestMessage> createRequestMessage = () =>
+            {
+                // Create new request
+                var request = new HttpRequestMessage(HttpMethod.Put, requestUri);
+
+                // Add headers to request
+                request.AddHeaders(headers);
+
+                // Add content as Json
+                request.AddContentAsJson(content);
+
+                return request;
+            };
+
+            // Put request
+            var response = await ExecuteActionkWithAutoRetry(() => Client.SendAsync(createRequestMessage()));
+            return response;
+        }
+
+        /// <summary>
+        /// Send Http Delete to request uri and get HttpResponseMessage
+        /// </summary>
+        public static async Task<HttpResponseMessage> DeleteAsync(Uri requestUri, IDictionary<string, string> headers)
+        {
+            // Create new request function
+            Func<HttpRequestMessage> deleteRequestMessage = () =>
+            {
+                // Create new request
+                var request = new HttpRequestMessage(HttpMethod.Delete, requestUri);
+
+                // Add headers to request
+                request.AddHeaders(headers);
+
+                return request;
+            };
+
+            // Delete request
+            HttpResponseMessage response = await ExecuteActionkWithAutoRetry(() => Client.SendAsync(deleteRequestMessage()));
             return response;
         }
 
@@ -91,37 +237,6 @@ namespace Zek.Web
             }
 
             return response;
-        }
-
-        /// <summary>
-        /// Add headers to request
-        /// </summary>
-        private static void AddHeaders(this HttpRequestMessage request, IDictionary<string, string> headers)
-        {
-            // Add headers to request
-            if (headers != null)
-            {
-                foreach (string key in headers.Keys)
-                {
-                    request.Headers.Add(key, headers[key]);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Add content to request as json
-        /// </summary>
-        private static void AddContentAsJson(this HttpRequestMessage request, object content)
-        {
-            if (content != null)
-            {
-                string jsonContent = JsonConvert.SerializeObject(content, Formatting.None, new JsonSerializerSettings
-                {
-                    NullValueHandling = NullValueHandling.Ignore,
-                    ContractResolver = new CamelCasePropertyNamesContractResolver(),
-                });
-                request.Content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-            }
         }
     }
 }

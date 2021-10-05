@@ -3988,6 +3988,21 @@
             <param name="disposing"><c>true</c> if this method is being invoked by the <see cref="M:Zek.Web.ApiControllerBase.Dispose"/> method,
             otherwise <c>false</c>.</param>
         </member>
+        <member name="M:Zek.Web.HttpClientUtility.#cctor">
+            <summary>
+            Static constructor of the HttpClientUtility
+            </summary>
+        </member>
+        <member name="M:Zek.Web.HttpClientUtility.GetAsync``1(System.Uri,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Send Http Get to the request uri and get the TResult from response content
+            </summary>
+        </member>
+        <member name="M:Zek.Web.HttpClientUtility.GetAsync(System.Uri,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Send Http Get to the request uri and get HttpResponseMessage
+            </summary>
+        </member>
         <member name="M:Zek.Web.HttpClientUtility.PostAsJsonAsync(System.String,System.Collections.Generic.IDictionary{System.String,System.String},System.Object,System.Threading.CancellationToken)">
             <summary>
             Send Http Post to request uri and get HttpResponseMessage
