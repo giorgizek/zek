@@ -125,7 +125,7 @@ namespace Zek.Web
             return PostAsJsonAsync<TResult>(requestUri, headers, content, camelCasePropertyNames, CancellationToken.None);
         }
 
-        public static async Task<TResult> PostAsJsonAsync<TResult>(string requestUri, IDictionary<string, string> headers, object content, bool camelCasePropertyNames = true, CancellationToken cancellationToken)
+        public static async Task<TResult> PostAsJsonAsync<TResult>(string requestUri, IDictionary<string, string> headers, object content, bool camelCasePropertyNames, CancellationToken cancellationToken)
         {
             // Post request and get response
             var response = await PostAsJsonAsync(requestUri, headers, content, camelCasePropertyNames, cancellationToken);
