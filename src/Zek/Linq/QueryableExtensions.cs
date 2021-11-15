@@ -13,6 +13,12 @@ namespace Zek.Linq
         private static readonly MethodInfo StartsWithMethod = typeof(string).GetMethod("StartsWith", new[] { typeof(string) });
         private static readonly MethodInfo EndsWithMethod = typeof(string).GetMethod("EndsWith", new[] { typeof(string) });
 
+        private static bool IsNullableType(Type t)
+        {
+            return t.IsGenericType && t.GetGenericTypeDefinition() == typeof(Nullable<>);
+        }
+
+
         public static IQueryable<TSource> Equal<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> selector, TKey value)
         {
             var bound = Expression.Equal(selector.Body, Expression.Constant(value, typeof(TKey)));
@@ -33,7 +39,16 @@ namespace Zek.Linq
         }
         public static IQueryable<TSource> GreaterThanOrEqual<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> selector, TKey value)
         {
-            var bound = Expression.GreaterThanOrEqual(selector.Body, Expression.Constant(value));
+            Expression e1 = selector.Body;
+            Expression e2 = Expression.Constant(value);
+
+            if (IsNullableType(selector.Body.Type) && !IsNullableType(e2.Type))
+                e2 = Expression.Convert(e2, selector.Body.Type);
+            else if (!IsNullableType(e1.Type) && IsNullableType(e2.Type))
+                e1 = Expression.Convert(e1, e2.Type);
+
+            var bound = Expression.GreaterThanOrEqual(e1, e2);
+            //var bound = Expression.GreaterThanOrEqual(selector.Body, Expression.Constant(value));
             var lambda = Expression.Lambda<Func<TSource, bool>>(bound, selector.Parameters);
             return source.Where(lambda);
         }
@@ -45,21 +60,50 @@ namespace Zek.Linq
         }
         public static IQueryable<TSource> LessThanOrEqual<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> selector, TKey value)
         {
-            var bound = Expression.LessThanOrEqual(selector.Body, Expression.Constant(value));
+            Expression e1 = selector.Body;
+            Expression e2 = Expression.Constant(value);
+
+            if (IsNullableType(selector.Body.Type) && !IsNullableType(e2.Type))
+                e2 = Expression.Convert(e2, selector.Body.Type);
+            else if (!IsNullableType(e1.Type) && IsNullableType(e2.Type))
+                e1 = Expression.Convert(e1, e2.Type);
+
+            var bound = Expression.LessThanOrEqual(e1, e2);
+            //var bound = Expression.LessThanOrEqual(selector.Body, Expression.Constant(value));
             var lambda = Expression.Lambda<Func<TSource, bool>>(bound, selector.Parameters);
             return source.Where(lambda);
         }
         public static IQueryable<TSource> Between<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> selector, TKey low, TKey high) //where TKey : IComparable<TKey>
         {
-            var expression = selector.Body;
+            if (low != null)
+                source = GreaterThanOrEqual(source, selector, low);
 
-            var lowerBound = Expression.GreaterThanOrEqual(expression, Expression.Constant(low));
-            var upperBound = Expression.LessThanOrEqual(expression, Expression.Constant(high));
+            if (high != null)
+                source = LessThanOrEqual(source, selector, high);
 
+            return source;
+         /*    var expression = selector.Body;
+
+          Expression lowExpression = Expression.Constant(low);
+            if (IsNullableType(selector.Body.Type) && !IsNullableType(lowExpression.Type))
+                lowExpression = Expression.Convert(lowExpression, selector.Body.Type);
+            else if (!IsNullableType(expression.Type) && IsNullableType(lowExpression.Type))
+                expression = Expression.Convert(expression, lowExpression.Type);
+            var lowerBound = Expression.GreaterThanOrEqual(expression, lowExpression);
+
+            Expression upperExpression = Expression.Constant(high);
+            if (IsNullableType(selector.Body.Type) && !IsNullableType(upperExpression.Type))
+                upperExpression = Expression.Convert(upperExpression, selector.Body.Type);
+            else if (!IsNullableType(expression.Type) && IsNullableType(upperExpression.Type))
+                expression = Expression.Convert(expression, upperExpression.Type);
+            var upperBound = Expression.LessThanOrEqual(expression, upperExpression);
+
+            //var lowerBound = Expression.GreaterThanOrEqual(expression, Expression.Constant(low));
+            //var upperBound = Expression.LessThanOrEqual(expression, Expression.Constant(high));
             var lowLambda = Expression.Lambda<Func<TSource, bool>>(lowerBound, selector.Parameters);
             var highLambda = Expression.Lambda<Func<TSource, bool>>(upperBound, selector.Parameters);
 
-            return source.Where(lowLambda).Where(highLambda);
+            return source.Where(lowLambda).Where(highLambda);*/
         }
         public static IQueryable<TSource> NotBetween<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> selector, TKey low, TKey high) //where TKey : IComparable<TKey>
         {

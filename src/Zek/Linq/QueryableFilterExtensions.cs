@@ -41,10 +41,7 @@ namespace Zek.Linq
         }
 
 
-        static bool IsNullableType(Type t)
-        {
-            return t.IsGenericType && t.GetGenericTypeDefinition() == typeof(Nullable<>);
-        }
+
 
 
         public static IQueryable<TSource> Filter<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> selector, WhereOperator whereOperator, TKey value1, TKey value2 = default, bool filterIfDefault = false)
@@ -59,6 +56,7 @@ namespace Zek.Linq
             //    selector = Expression.Convert(selector, value1.GetType()) as Expression<Func<TSource, TKey>>;
             //}
 
+    
 
             switch (whereOperator)
             {
