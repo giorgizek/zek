@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection.PortableExecutable;
@@ -22,70 +23,17 @@ namespace Zek.Test
 
         static void Main(string[] args)
         {
-
-            var mailSender = new EmailSender(new EmailSenderOptions
-            {
-                Host = "mail.mercatus.mba",
-                Port = 587,
-                EnableSsl = false,
-                UserName = "no-reply@mercatus.mba",
-                Password = "Atr10nsyst3ms",
-                FromEmail = "no-reply@mercatus.mba",
-            });
+            const string zzzz = "გიორგიgiorgi а";
 
 
-
-            mailSender = new EmailSender(new EmailSenderOptions
-            {
-                Host = "uashared10.twinservers.net",
-                Port = 465,
-                EnableSsl = true,
-                UserName = "no-reply@mercatus.mba",
-                Password = "Atr10nsyst3ms",
-                FromEmail = "no-reply@mercatus.mba",
-            });
-
-            
-            //mailSender = new EmailSender(new EmailSenderOptions
-            //{
-            //    Host = "smtp.gmail.com",
-            //    Port = 587,
-            //    EnableSsl = true,
-            //    UserName = "atrion.app@gmail.com",
-            //    Password = "Atri0n.@pp123",
-            //    FromEmail = "atrion.app@gmail.com",
-            //});
-
-            mailSender.SendEmailAsync("giorgizek@gmail.com", "hello", "test body").RunSync();
-
-
-
-
-
-            Console.ReadKey();
-
-            return;
-
-
-
-
+            zzzz.RemoveDiacritics();
 
             var sw = new Stopwatch();
-            var count = 100000000;
-            for (var i = 0; i < count; i++)
-            {
-                var t1 = (int)CRUD.Create;
-            }
-            for (var i = 0; i < count; i++)
-            {
-                var t2 = CRUD.Create.ToInt32();
-            }
-
-
+            var count = 10000000;
             sw.Start();
             for (var i = 0; i < count; i++)
             {
-                var t1 = (int)CRUD.Create;
+                zzzz.ToUpper(new CultureInfo("en-US"));
             }
             sw.Stop();
             Console.WriteLine(sw.ElapsedMilliseconds);
@@ -95,7 +43,7 @@ namespace Zek.Test
             sw.Start();
             for (var i = 0; i < count; i++)
             {
-                var t2 = CRUD.Create.ToInt32();
+                zzzz.SafeToUpper();
             }
             sw.Stop();
             Console.WriteLine(sw.ElapsedMilliseconds);

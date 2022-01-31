@@ -7,6 +7,79 @@ namespace Zek.Extensions
 {
     public static class StringExtensions
     {
+        public static string RemoveDiacritics(this string text)
+        {
+            var normalizedString = text.Normalize(NormalizationForm.FormD);
+            var stringBuilder = new StringBuilder();
+
+            foreach (var c in normalizedString)
+            {
+                var unicodeCategory = CharUnicodeInfo.GetUnicodeCategory(c);
+                if (unicodeCategory != UnicodeCategory.NonSpacingMark)
+                {
+                    stringBuilder.Append(c);
+                }
+            }
+
+            return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
+        }
+
+        public static string SafeToUpper(this string str)
+        {
+            if (string.IsNullOrEmpty(str))
+                return str;
+
+            var result = new StringBuilder();
+            foreach (var c in str)
+            {
+                if (IsGeorgianhLetter(c))
+                    result.Append(c);
+                else
+                    result.Append(char.ToUpper(c));
+            }
+
+            return result.ToString();
+        }
+        public static string SafeToUpperInvariant(this string str)
+        {
+            if (string.IsNullOrEmpty(str))
+                return str;
+
+            var result = new StringBuilder();
+            foreach (var c in str)
+            {
+                //if (IsGeorgianhLetter(c))
+                //    result.Append(c);
+                //else
+                    result.Append(char.ToUpperInvariant(c));
+            }
+
+            return result.ToString();
+        }
+        private static char InternalToUpper(char c)
+        {
+            if (IsGeorgianhLetter(c))
+                return c;
+            else
+                return char.ToUpper(c);
+        }
+        private static char InternalToUpperInvariant(char c)
+        {
+            if (IsGeorgianhLetter(c))
+                return c;
+            else
+                return char.ToUpperInvariant(c);
+        }
+
+        /*private static bool IsEnglishLetter(this char c)
+        {
+            return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z');
+        }*/
+        private static bool IsGeorgianhLetter(this char c)
+        {
+            return (c >= 'ა' && c <= 'ჰ');
+        }
+
         /// <summary>
         /// Checks if string is null and return string.Empty otherwise returns string
         /// </summary>
