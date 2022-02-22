@@ -2,10 +2,10 @@
 {
     public class CustomClaimTypes
     {
-        public const string UserId = nameof(UserId);
-        public const string UserName = nameof(UserName);
-        public const string Email = nameof(Email);
-        public const string Role = nameof(Role);
+        public const string UserId = "uid";
+        public const string UserName = "uname";
+        public const string Email = "email";
+        public const string Role = "roles";
         public const string Permission = "pid";
     }
 }

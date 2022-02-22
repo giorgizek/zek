@@ -11,7 +11,6 @@ namespace Zek.Web
     {
         int GetUserId();
         IEnumerable<string> GetRoles();
-
     }
 
     public class TokenBaseService : ITokenBaseService
