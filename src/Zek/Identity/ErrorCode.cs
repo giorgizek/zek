@@ -8,5 +8,6 @@
         InvalidToken,
         DuplicateEmail,
         InvalidIdLink,
+        AccountDisabled
     }
 }
