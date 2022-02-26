@@ -27,7 +27,7 @@ namespace Zek.Model.Identity
         /// <summary>
         /// Gets or sets the primary key for this user.
         /// </summary>
-        public virtual TKey Id { get; set; }
+        public virtual TKey Id { get; set; } = default!;
 
         /// <summary>
         /// Gets or sets the user name for this user.
@@ -115,7 +115,7 @@ namespace Zek.Model.Identity
         /// <summary>
         /// Returns the username for this user.
         /// </summary>
-        public override string ToString() => UserName;
+        public override string ToString() => UserName ?? string.Empty;
 
         public int? CreatorId { get; set; }
         public DateTime CreateDate { get; set; }
