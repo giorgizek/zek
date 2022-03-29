@@ -184,16 +184,16 @@ namespace Zek.Services
             values.TryGetValue("fld_076", out var fld_076);
             model.Fld076 = fld_076;
             model.DebitTransactionCount = fld_076.ToInt32();
-            
+
             values.TryGetValue("fld_087", out var fld_087);
             model.Fld087 = fld_087;
             model.CreditReversalTotal = fld_087.ToInt32();
-            
-            
+
+
             values.TryGetValue("fld_088", out var fld_088);
             model.Fld088 = fld_088;
             model.DebitTransactionTotal = fld_088.ToInt32();
-           
+
             return model;
         }
 
@@ -423,7 +423,9 @@ namespace Zek.Services
             => RegisterDmsAuthorizationAsync(amount, (int)currency, clientIp, description, language);
 
         /// <summary>
-        /// Registering DMS authorization (block amount) / Регистрация DMS авторизации (Прошу учесть, что после этой команды необходимо выполнить процедуру 1.1.3 Transaction result, для выяснения результата.)
+        /// Registering DMS authorization (block amount) / Регистрация DMS авторизации (Прошу учесть, что после этой команды необходимо выполнить процедуру 1.1.3 Transaction result, для выяснения результата.) /
+        /// პრე-ავტორიზაცია წარმოადგენს ტრანზაქციის ისეთ ტიპს, სადაც კლიენტს ებლოკება თანხა ბარათზე და არ ეჭრება, სანამ მერჩანტი არ ჩამოაჭრის, ბლოკის შენახვის დრო სტანდარტულად არის 30 დღე, თუმცა შესაძლებელია ზოგიერთ ბანკს სხვა პარამეტრი ჰქონდეს განსაზღვრული, ასე რომ ეს პარამეტრი დამოკიდებულია ბარათის მწარმოებელ ბანკზე (იშუერ ბანკი).
+        /// ეს ფუნქცია განსაკუთრებით გამოსადეგი შეიძლება იყოს სასტუმროებისათვის, სადაც მერჩანტმა არ იცის თუ ზუსტად რა თანხა უნდა ჩამოაჭრას კლიენტს ან ნებისმიერი სერვისის გაწევისას როდესაც ანგარიშსწორების თანხა შეიძლება შეიცვალოს.
         /// </summary>
         /// <param name="amount"></param>
         /// <param name="currency"></param>
@@ -698,7 +700,7 @@ namespace Zek.Services
         /// <param name="transactionId"></param>
         /// <param name="amount"></param>
         /// <returns></returns>
-        public async Task<CreditDTO> CreditAsync(string transactionId, int? amount = null)
+        public async Task<Credit> CreditAsync(string transactionId, int? amount = null)
         {
             if (string.IsNullOrEmpty(transactionId))
                 throw new ArgumentException("TransactionId parameter is required", nameof(transactionId));
@@ -710,7 +712,7 @@ namespace Zek.Services
             var response = await PostAsync(sb.ToString());
             var result = Deserialize(response);
 
-            return new CreditDTO
+            return new Credit
             {
                 ResultText = result.ResultText,
                 Result = result.Result,
@@ -728,12 +730,12 @@ namespace Zek.Services
         /// End of business day / Завершение бизнес-дня
         /// </summary>
         /// <returns></returns>
-        public async Task<CloseDayDTO> CloseDayAsync()
+        public async Task<CloseDay> CloseDayAsync()
         {
             var response = await PostAsync("command=b");
             var result = Deserialize(response);
 
-            return new CloseDayDTO
+            return new CloseDay
             {
                 ResultText = result.ResultText,
                 Result = result.Result,
@@ -764,7 +766,7 @@ namespace Zek.Services
         /// <param name="overwriteExistingRecurring">If recurring payment for current client (card) is already defined for template, it needs to be overwritten. Overwriting recurring payments can be done by specifying additional parameter perspayee_overwrite=1. In this case all existing recurring payments for template defined for current client (card) will be deleted.</param>
         /// <param name="dms"></param>
         /// <returns></returns>
-        public async Task<RegisterRegularPaymentDTO> RegisterRegularPaymentAsync(int amount, ISO4217.ISO4217 currency, string clientIp, string description, string language, string regularPaymentId, DateTime expiry, bool overwriteExistingRecurring = false, bool dms = false)
+        public async Task<RegisterRegularPayment> RegisterRegularPaymentAsync(int amount, ISO4217.ISO4217 currency, string clientIp, string description, string language, string regularPaymentId, DateTime expiry, bool overwriteExistingRecurring = false, bool dms = false)
         {
             return await RegisterRegularPaymentAsync(amount, (int)currency, clientIp, description, language, regularPaymentId, expiry, overwriteExistingRecurring, dms);
         }
@@ -782,7 +784,7 @@ namespace Zek.Services
         /// <param name="overwriteExistingRecurring">If recurring payment for current client (card) is already defined for template, it needs to be overwritten. Overwriting recurring payments can be done by specifying additional parameter perspayee_overwrite=1. In this case all existing recurring payments for template defined for current client (card) will be deleted.</param>
         /// <param name="dms"></param>
         /// <returns></returns>
-        public async Task<RegisterRegularPaymentDTO> RegisterRegularPaymentAsync(int amount, int currency, string clientIp, string description, string language, string regularPaymentId, DateTime expiry, bool overwriteExistingRecurring = false, bool dms = false)
+        public async Task<RegisterRegularPayment> RegisterRegularPaymentAsync(int amount, int currency, string clientIp, string description, string language, string regularPaymentId, DateTime expiry, bool overwriteExistingRecurring = false, bool dms = false)
         {
             if (amount < 0)
                 throw new ArgumentException("Amount parameter is invalid", nameof(amount));
@@ -824,7 +826,7 @@ namespace Zek.Services
             var response = await PostAsync(sb.ToString());
             var result = Deserialize(response);
 
-            return new RegisterRegularPaymentDTO
+            return new RegisterRegularPayment
             {
                 RegularPaymentId = result.RegularPaymentId,
                 TransactionId = result.TransactionId,

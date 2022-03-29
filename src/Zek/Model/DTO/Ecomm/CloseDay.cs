@@ -1,9 +1,25 @@
 ﻿namespace Zek.Model.DTO.Ecomm
 {
-    public class CloseDayDTO
+    public class CloseDay
     {
+        public bool Success { get; private set; }
+
         public string ResultText { get; set; }
-        public EcommResult Result { get; set; }
+
+        private EcommResult result;
+        public EcommResult Result
+        {
+            get => result;
+            set
+            {
+                if (value != result)
+                {
+                    result = value;
+                    Success = value == EcommResult.Ok;
+                }
+            }
+        }
+
 
         /// <summary>
         /// transaction result code returned from Card Suite Processing RTPS (3 digits)

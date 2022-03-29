@@ -1,6 +1,6 @@
 ﻿namespace Zek.Model.DTO.Ecomm
 {
-    public class RegisterRegularPaymentDTO
+    public class RegisterRegularPayment
     {
         /// <summary>
         /// RECC_PMNT_ID: rec_pmnt_id, if specified, othervise TRANSACTION_ID
