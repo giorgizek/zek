@@ -2,7 +2,7 @@
 
 namespace Zek.Web
 {
-    public static class CssExtensions
+    public static class CssHelper
     {
         public static string ToCssValue(this decimal value)
         {

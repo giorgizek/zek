@@ -9,6 +9,7 @@ using System.Reflection.PortableExecutable;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using Novell.Directory.Ldap;
+using Zek.Cryptography;
 using Zek.Extensions;
 using Zek.Model;
 using Zek.Model.Config;
@@ -23,17 +24,14 @@ namespace Zek.Test
 
         static void Main(string[] args)
         {
-            const string zzzz = "გიორგიgiorgi а";
+            
 
-
-            zzzz.RemoveDiacritics();
 
             var sw = new Stopwatch();
-            var count = 10000000;
+            var count = 1000000;
             sw.Start();
             for (var i = 0; i < count; i++)
             {
-                zzzz.ToUpper(new CultureInfo("en-US"));
             }
             sw.Stop();
             Console.WriteLine(sw.ElapsedMilliseconds);
@@ -43,69 +41,9 @@ namespace Zek.Test
             sw.Start();
             for (var i = 0; i < count; i++)
             {
-                zzzz.SafeToUpper();
             }
             sw.Stop();
             Console.WriteLine(sw.ElapsedMilliseconds);
-
-            return;
-
-
-
-            //var x = (ISO4217.ISO4217?)z;
-
-            //var s = x.ToString();
-
-            //Console.WriteLine(s);
-
-            //var roles = new[] { "Admin", "Accountant", "Accountant1", "Accountant2" };
-
-            //var adminRoles = new[] { "Admin2222222222222222222", "Accountant222" };
-            ////var canEdit = roles.Any(x => adminRoles.Contains(x, StringComparer.OrdinalIgnoreCase));
-
-            //sw = new Stopwatch();
-            //sw.Start();
-            //for (int i = 0; i < 1000000; i++)
-            //{
-            //    var canEdit = roles.Any(x => adminRoles.Contains(x, StringComparer.OrdinalIgnoreCase));
-            //}
-            //sw.Stop();
-
-            //Console.WriteLine(sw.ElapsedMilliseconds);
-
-            //var sender = new EmailSender(new EmailSenderOptions
-            //{
-            //    Host = "10.60.37.2",
-            //    //Host = "10.60.40.117",
-            //    Port = 25,
-            //    UserName = "tagalogre@tstmailsrv.local",
-            //    Password = "123321aA",
-            //    EnableSsl = false
-            //});
-
-
-            //try
-            //{
-            //    sender.SendEmailAsync(new EmailDTO
-            //    {
-            //        From = new EmailAddressDTO
-            //        {
-            //            Address = "tagalogre@tstmailsrv.local",
-            //            Name = "Tako Golden Girl"
-            //        },
-            //        To = new List<EmailAddressDTO>()
-            //        {
-            //            new EmailAddressDTO { Address = "ia.javakhishvili@tstmailsrv.local" }
-            //        },
-
-            //        Subject = "Test",
-            //        Body = "Hello"
-            //    }).RunSync();
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine(e);
-            //}
 
 
             Console.ReadKey(false);

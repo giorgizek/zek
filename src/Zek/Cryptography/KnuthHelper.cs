@@ -17,20 +17,6 @@ namespace Zek.Cryptography
             return cypherText == knuth;
 
         }
-        //public static long CalculateHash(string plainText) => CalculateHash(Encoding.Default.GetBytes(plainText));
-        //public static long CalculateHash(byte[] bytes)
-        //{
-        //    unchecked
-        //    {
-        //        var hashedValue = 3074457345618258791UL;
-        //        foreach (var b in bytes)
-        //        {
-        //            hashedValue += b;
-        //            hashedValue *= 3074457345618258799UL;
-        //        }
-        //        return (long)hashedValue;
-        //    }
-        //}
 
         public static ulong CalculateHash(string plainText) => CalculateHash(Encoding.Default.GetBytes(plainText));
         public static ulong CalculateHash(byte[] bytes)
