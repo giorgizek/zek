@@ -13,16 +13,6 @@ namespace Zek.Model.Notification
         public int TryCount { get; set; }
         public int StatusId { get; set; }
         public DateTime? SentDate { get; set; }
-
-        #region Custom properties
-
-        public SmsStatus Status
-        {
-            get => (SmsStatus)StatusId;
-            set => StatusId = (int)value;
-        }
-
-        #endregion
     }
 
     public class SmsRecipientMap<TSmsRecipient> : EntityTypeMap<TSmsRecipient>
@@ -35,7 +25,6 @@ namespace Zek.Model.Notification
             Property(x => x.Id).ValueGeneratedOnAdd();
             Property(x => x.PhoneNumber).HasColumnTypePhoneNumber();
             Property(x => x.SentDate).HasColumnTypeDateTime();
-            Ignore(x => x.Status);
 
             HasIndex(x => x.SmsId);
             HasIndex(x => x.UserId);

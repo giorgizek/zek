@@ -23,16 +23,6 @@ namespace Zek.Model.Notification
         public string Body { get; set; }
         public int StatusId { get; set; }
         public DateTime CreateDate { get; set; }
-
-        #region Custom properties
-
-        public SmsStatus Status
-        {
-            get => (SmsStatus)StatusId;
-            set => StatusId = (int)value;
-        }
-
-        #endregion
     }
 
 
@@ -49,8 +39,6 @@ namespace Zek.Model.Notification
             Property(x => x.End).HasColumnTypeDateTime();
             Property(x => x.Body).IsRequired().HasMaxLength(1000);
             Property(x => x.CreateDate).HasColumnTypeDateTime();
-
-            Ignore(x => x.Status);
 
             HasIndex(x => new { x.Start, x.End });
             HasIndex(x => new { x.ApplicationId, x.TypeId, x.FkId });
