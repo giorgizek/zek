@@ -1662,47 +1662,47 @@
             Response from web request.
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.CloseDayDTO.ResultCode">
+        <member name="P:Zek.Model.DTO.Ecomm.CloseDay.ResultCode">
             <summary>
             transaction result code returned from Card Suite Processing RTPS (3 digits)
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.CloseDayDTO.Fld075">
+        <member name="P:Zek.Model.DTO.Ecomm.CloseDay.Fld075">
             <summary>
             the number of credit reversals (up to 10 digits), shown only if result_code begins with 5
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.CloseDayDTO.Fld076">
+        <member name="P:Zek.Model.DTO.Ecomm.CloseDay.Fld076">
             <summary>
             the number of debit transactions (up to 10 digits), shown only if result_code begins with 5
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.CloseDayDTO.Fld087">
+        <member name="P:Zek.Model.DTO.Ecomm.CloseDay.Fld087">
             <summary>
             total amount of credit reversals (up to 16 digits), shown only if result_code begins with 5
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.CloseDayDTO.Fld088">
+        <member name="P:Zek.Model.DTO.Ecomm.CloseDay.Fld088">
             <summary>
             total amount of debit transactions (up to 16 digits), shown only if result_code begins with 5
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.CreditDTO.ResultCode">
+        <member name="P:Zek.Model.DTO.Ecomm.Credit.ResultCode">
             <summary>
             transaction result code returned from Card Suite Processing RTPS (3 digits)
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.CreditDTO.RefundTransactionId">
+        <member name="P:Zek.Model.DTO.Ecomm.Credit.RefundTransactionId">
             <summary>
             refund transaction identifier – applicable for obtaining refund payment details or to request refund payment reversal.
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.CreditDTO.Error">
+        <member name="P:Zek.Model.DTO.Ecomm.Credit.Error">
             <summary>
             In case of an error, the returned string of symbols begins with ‘error:‘
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.CreditDTO.Warning">
+        <member name="P:Zek.Model.DTO.Ecomm.Credit.Warning">
             <summary>
             In case of a warning, the returned string of symbols begins with ‘warning:’ (reserved for future use).
             </summary>
@@ -2009,17 +2009,17 @@
             reserved for future use.
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.RegisterRegularPaymentDTO.RegularPaymentId">
+        <member name="P:Zek.Model.DTO.Ecomm.RegisterRegularPayment.RegularPaymentId">
             <summary>
             RECC_PMNT_ID: rec_pmnt_id, if specified, othervise TRANSACTION_ID
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.RegisterRegularPaymentDTO.TransactionId">
+        <member name="P:Zek.Model.DTO.Ecomm.RegisterRegularPayment.TransactionId">
             <summary>
             transaction identifier (28 characters in base64 encoding)
             </summary>
         </member>
-        <member name="P:Zek.Model.DTO.Ecomm.RegisterRegularPaymentDTO.RegularPaymentExpiry">
+        <member name="P:Zek.Model.DTO.Ecomm.RegisterRegularPayment.RegularPaymentExpiry">
             <summary>
             min (card expiry date, expiry parameters).
             </summary>
@@ -3137,7 +3137,9 @@
         </member>
         <member name="M:Zek.Services.EcommService.RegisterDmsAuthorizationAsync(System.Int32,System.Int32,System.String,System.String,System.String)">
             <summary>
-            Registering DMS authorization (block amount) / Регистрация DMS авторизации (Прошу учесть, что после этой команды необходимо выполнить процедуру 1.1.3 Transaction result, для выяснения результата.)
+            Registering DMS authorization (block amount) / Регистрация DMS авторизации (Прошу учесть, что после этой команды необходимо выполнить процедуру 1.1.3 Transaction result, для выяснения результата.) /
+            პრე-ავტორიზაცია წარმოადგენს ტრანზაქციის ისეთ ტიპს, სადაც კლიენტს ებლოკება თანხა ბარათზე და არ ეჭრება, სანამ მერჩანტი არ ჩამოაჭრის, ბლოკის შენახვის დრო სტანდარტულად არის 30 დღე, თუმცა შესაძლებელია ზოგიერთ ბანკს სხვა პარამეტრი ჰქონდეს განსაზღვრული, ასე რომ ეს პარამეტრი დამოკიდებულია ბარათის მწარმოებელ ბანკზე (იშუერ ბანკი).
+            ეს ფუნქცია განსაკუთრებით გამოსადეგი შეიძლება იყოს სასტუმროებისათვის, სადაც მერჩანტმა არ იცის თუ ზუსტად რა თანხა უნდა ჩამოაჭრას კლიენტს ან ნებისმიერი სერვისის გაწევისას როდესაც ანგარიშსწორების თანხა შეიძლება შეიცვალოს.
             </summary>
             <param name="amount"></param>
             <param name="currency"></param>

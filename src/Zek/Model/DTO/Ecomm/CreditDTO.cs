@@ -1,6 +1,6 @@
 ﻿namespace Zek.Model.DTO.Ecomm
 {
-    public class CreditDTO
+    public class Credit
     {
         public string ResultText { get; set; }
         public EcommResult Result { get; set; }
