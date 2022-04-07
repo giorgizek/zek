@@ -393,7 +393,7 @@ namespace Zek.Services
         /// <param name="currency"></param>
         /// <param name="clientIp"></param>
         /// <param name="description"></param>
-        /// <param name="language"></param>
+        /// <param name="language">Language EN or GE</param>
         /// <returns>transaction identifier (28 characters in base64 encoding). In case of an error, the returned string of symbols begins with ‘error:‘.</returns>
         public Task<TransactionResponse> RegisterDmsAuthorizationAsync(decimal amount, int currency, string clientIp, string description, string language)
             => RegisterDmsAuthorizationAsync(Convert.ToInt32(amount * 100M), currency, clientIp, description, language);
@@ -405,7 +405,7 @@ namespace Zek.Services
         /// <param name="currency"></param>
         /// <param name="clientIp"></param>
         /// <param name="description"></param>
-        /// <param name="language"></param>
+        /// <param name="language">Language EN or GE</param>
         /// <returns>transaction identifier (28 characters in base64 encoding). In case of an error, the returned string of symbols begins with ‘error:‘.</returns>
         public Task<TransactionResponse> RegisterDmsAuthorizationAsync(decimal amount, ISO4217.ISO4217 currency, string clientIp, string description, string language)
             => RegisterDmsAuthorizationAsync(Convert.ToInt32(amount * 100M), (int)currency, clientIp, description, language);
@@ -417,7 +417,7 @@ namespace Zek.Services
         /// <param name="currency"></param>
         /// <param name="clientIp"></param>
         /// <param name="description"></param>
-        /// <param name="language"></param>
+        /// <param name="language">Language EN or GE</param>
         /// <returns>transaction identifier (28 characters in base64 encoding). In case of an error, the returned string of symbols begins with ‘error:‘.</returns>
         public Task<TransactionResponse> RegisterDmsAuthorizationAsync(int amount, ISO4217.ISO4217 currency, string clientIp, string description, string language)
             => RegisterDmsAuthorizationAsync(amount, (int)currency, clientIp, description, language);
@@ -431,7 +431,7 @@ namespace Zek.Services
         /// <param name="currency"></param>
         /// <param name="clientIp"></param>
         /// <param name="description"></param>
-        /// <param name="language"></param>
+        /// <param name="language">Language EN or GE</param>
         /// <returns>transaction identifier (28 characters in base64 encoding). In case of an error, the returned string of symbols begins with ‘error:‘.</returns>
         public async Task<TransactionResponse> RegisterDmsAuthorizationAsync(int amount, int currency, string clientIp, string description, string language)
         {
@@ -471,7 +471,7 @@ namespace Zek.Services
         /// <param name="currency"></param>
         /// <param name="clientIp"></param>
         /// <param name="description"></param>
-        /// <param name="language"></param>
+        /// <param name="language">Language EN or GE</param>
         /// <returns>
         /// შედეგი:
         /// RESULT: OK
@@ -491,7 +491,7 @@ namespace Zek.Services
         /// <param name="currency"></param>
         /// <param name="clientIp"></param>
         /// <param name="description"></param>
-        /// <param name="language"></param>
+        /// <param name="language">Language EN or GE</param>
         /// <returns>
         /// შედეგი:
         /// RESULT: OK
@@ -511,7 +511,7 @@ namespace Zek.Services
         /// <param name="currency"></param>
         /// <param name="clientIp"></param>
         /// <param name="description"></param>
-        /// <param name="language"></param>
+        /// <param name="language">Language EN or GE</param>
         /// <returns>
         /// შედეგი:
         /// RESULT: OK
@@ -531,7 +531,7 @@ namespace Zek.Services
         /// <param name="currency"></param>
         /// <param name="clientIp"></param>
         /// <param name="description"></param>
-        /// <param name="language"></param>
+        /// <param name="language">Language EN or GE</param>
         /// <returns>
         /// შედეგი:
         /// RESULT: OK
@@ -554,7 +554,7 @@ namespace Zek.Services
                 throw new ArgumentException("Client IP parameter max length is 15", nameof(clientIp));
             //if (string.IsNullOrEmpty(description))
             //    throw new ArgumentException("Description parameter is required", nameof(description));
-            if (description.Length > 125)
+            if (description != null && description.Length > 125)
                 throw new ArgumentException("Description parameter max length is 125", nameof(description));
             if (string.IsNullOrEmpty(language))
                 throw new ArgumentException("Language parameter is required", nameof(language));
@@ -874,9 +874,5 @@ namespace Zek.Services
                 Response = response
             };
         }
-
-
     }
-
-
 }
