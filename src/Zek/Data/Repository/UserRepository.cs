@@ -29,83 +29,83 @@ namespace Zek.Data.Repository
         {
         }
 
-        public async Task<TEntity> FindByIdAsync(int id)
+        public Task<TEntity> FindByIdAsync(int id)
         {
             if (id <= 0)
                 return null;
-            return await Where(u => u.Id == id).SingleOrDefaultAsync();
+            return Where(u => u.Id == id).SingleOrDefaultAsync();
         }
 
-        public async Task<string> GetUserNameByIdAsync(int id)
+        public Task<string> GetUserNameByIdAsync(int id)
         {
             if (id <= 0)
                 return null;
 
-            return await Where(u => u.Id == id)
+            return Where(u => u.Id == id)
                 .Select(u => u.UserName)
                 .SingleOrDefaultAsync();
         }
 
-        public async Task<TEntity> FindByEmailAsync(string email)
+        public Task<TEntity> FindByEmailAsync(string email)
         {
             if (string.IsNullOrEmpty(email))
                 return null;
 
             var normalizedEmail = email.NormalizeKey();
-            return await Where(u => u.NormalizedEmail == normalizedEmail).FirstOrDefaultAsync();
+            return Where(u => u.NormalizedEmail == normalizedEmail).FirstOrDefaultAsync();
         }
 
-        public async Task<int?> FindIdByEmailAsync(string email)
+        public Task<int?> FindIdByEmailAsync(string email)
         {
             if (string.IsNullOrEmpty(email))
                 return null;
 
             var normalizedEmail = email.NormalizeKey();
-            return await Where(u => u.NormalizedEmail == normalizedEmail).Select(u => (int?)u.Id).FirstOrDefaultAsync();
+            return Where(u => u.NormalizedEmail == normalizedEmail).Select(u => (int?)u.Id).FirstOrDefaultAsync();
         }
 
-        public async Task<TEntity> FindByUserNameAsync(string userName)
+        public Task<TEntity> FindByUserNameAsync(string userName)
         {
             if (string.IsNullOrEmpty(userName))
                 return null;
 
             var normalizedUserName = userName.NormalizeKey();
-            return await Where(u => u.NormalizedUserName == normalizedUserName).FirstOrDefaultAsync();
+            return Where(u => u.NormalizedUserName == normalizedUserName).FirstOrDefaultAsync();
         }
 
-        public async Task<int?> FindIdByUserNameAsync(string userName)
+        public Task<int?> FindIdByUserNameAsync(string userName)
         {
             if (string.IsNullOrEmpty(userName))
                 return null;
 
             var normalizedUserName = userName.NormalizeKey();
-            return await Where(u => u.NormalizedUserName == normalizedUserName).Select(u => (int?)u.Id).FirstOrDefaultAsync();
+            return Where(u => u.NormalizedUserName == normalizedUserName).Select(u => (int?)u.Id).FirstOrDefaultAsync();
         }
 
-        public async Task<bool> IsDuplicatedUserNameAsync(int? id, string userName)
+        public Task<bool> IsDuplicatedUserNameAsync(int? id, string userName)
         {
             if (string.IsNullOrEmpty(userName))
-                return false;
+                return Task.FromResult(false);
 
             var normalizedUserName = userName.NormalizeKey();
-            return await Where(t => t.Id != id && t.NormalizedUserName == normalizedUserName).AnyAsync();
+            return Where(t => t.Id != id && t.NormalizedUserName == normalizedUserName).AnyAsync();
         }
 
-        public async Task<bool> IsDuplicatedEmailAsync(int? id, string email)
+        public Task<bool> IsDuplicatedEmailAsync(int? id, string email)
         {
             if (string.IsNullOrEmpty(email))
-                return false;
+                return Task.FromResult(false);
 
             var normalizedEmail = email.NormalizeKey();
-            return await Where(t => t.Id != id && t.NormalizedEmail == normalizedEmail).AnyAsync();
+            return Where(t => t.Id != id && t.NormalizedEmail == normalizedEmail).AnyAsync();
         }
 
-        public async Task<bool> IsExistsAsync(int id)
+        public Task<bool> IsExistsAsync(int id)
         {
             if (id == 0)
-                return false;
+                return Task.FromResult(false);
 
-            return await Where(t => t.Id == id).AnyAsync();
+            return Where(t => t.Id == id).AnyAsync();
         }
     }
 }

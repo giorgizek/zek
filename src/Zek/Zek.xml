@@ -3110,7 +3110,7 @@
             <param name="currency"></param>
             <param name="clientIp"></param>
             <param name="description"></param>
-            <param name="language"></param>
+            <param name="language">Language EN or GE</param>
             <returns>transaction identifier (28 characters in base64 encoding). In case of an error, the returned string of symbols begins with ‘error:‘.</returns>
         </member>
         <member name="M:Zek.Services.EcommService.RegisterDmsAuthorizationAsync(System.Decimal,Zek.ISO4217.ISO4217,System.String,System.String,System.String)">
@@ -3121,7 +3121,7 @@
             <param name="currency"></param>
             <param name="clientIp"></param>
             <param name="description"></param>
-            <param name="language"></param>
+            <param name="language">Language EN or GE</param>
             <returns>transaction identifier (28 characters in base64 encoding). In case of an error, the returned string of symbols begins with ‘error:‘.</returns>
         </member>
         <member name="M:Zek.Services.EcommService.RegisterDmsAuthorizationAsync(System.Int32,Zek.ISO4217.ISO4217,System.String,System.String,System.String)">
@@ -3132,7 +3132,7 @@
             <param name="currency"></param>
             <param name="clientIp"></param>
             <param name="description"></param>
-            <param name="language"></param>
+            <param name="language">Language EN or GE</param>
             <returns>transaction identifier (28 characters in base64 encoding). In case of an error, the returned string of symbols begins with ‘error:‘.</returns>
         </member>
         <member name="M:Zek.Services.EcommService.RegisterDmsAuthorizationAsync(System.Int32,System.Int32,System.String,System.String,System.String)">
@@ -3145,7 +3145,7 @@
             <param name="currency"></param>
             <param name="clientIp"></param>
             <param name="description"></param>
-            <param name="language"></param>
+            <param name="language">Language EN or GE</param>
             <returns>transaction identifier (28 characters in base64 encoding). In case of an error, the returned string of symbols begins with ‘error:‘.</returns>
         </member>
         <member name="M:Zek.Services.EcommService.ExecuteDmsTransactionAsync(System.String,System.Decimal,Zek.ISO4217.ISO4217,System.String,System.String,System.String)">
@@ -3157,7 +3157,7 @@
             <param name="currency"></param>
             <param name="clientIp"></param>
             <param name="description"></param>
-            <param name="language"></param>
+            <param name="language">Language EN or GE</param>
             <returns>
             შედეგი:
             RESULT: OK
@@ -3176,7 +3176,7 @@
             <param name="currency"></param>
             <param name="clientIp"></param>
             <param name="description"></param>
-            <param name="language"></param>
+            <param name="language">Language EN or GE</param>
             <returns>
             შედეგი:
             RESULT: OK
@@ -3195,7 +3195,7 @@
             <param name="currency"></param>
             <param name="clientIp"></param>
             <param name="description"></param>
-            <param name="language"></param>
+            <param name="language">Language EN or GE</param>
             <returns>
             შედეგი:
             RESULT: OK
@@ -3214,7 +3214,7 @@
             <param name="currency"></param>
             <param name="clientIp"></param>
             <param name="description"></param>
-            <param name="language"></param>
+            <param name="language">Language EN or GE</param>
             <returns>
             შედეგი:
             RESULT: OK
