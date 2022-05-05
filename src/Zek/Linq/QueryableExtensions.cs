@@ -33,7 +33,15 @@ namespace Zek.Linq
         }
         public static IQueryable<TSource> GreaterThan<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> selector, TKey value)
         {
-            var bound = Expression.GreaterThan(selector.Body, Expression.Constant(value));
+            Expression e1 = selector.Body;
+            Expression e2 = Expression.Constant(value);
+
+            if (IsNullableType(selector.Body.Type) && !IsNullableType(e2.Type))
+                e2 = Expression.Convert(e2, selector.Body.Type);
+            else if (!IsNullableType(e1.Type) && IsNullableType(e2.Type))
+                e1 = Expression.Convert(e1, e2.Type);
+
+            var bound = Expression.GreaterThan(e1, e2);
             var lambda = Expression.Lambda<Func<TSource, bool>>(bound, selector.Parameters);
             return source.Where(lambda);
         }
@@ -54,7 +62,16 @@ namespace Zek.Linq
         }
         public static IQueryable<TSource> LessThan<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> selector, TKey value)
         {
-            var bound = Expression.LessThan(selector.Body, Expression.Constant(value));
+            Expression e1 = selector.Body;
+            Expression e2 = Expression.Constant(value);
+
+            if (IsNullableType(selector.Body.Type) && !IsNullableType(e2.Type))
+                e2 = Expression.Convert(e2, selector.Body.Type);
+            else if (!IsNullableType(e1.Type) && IsNullableType(e2.Type))
+                e1 = Expression.Convert(e1, e2.Type);
+
+
+            var bound = Expression.LessThan(e1, e2);
             var lambda = Expression.Lambda<Func<TSource, bool>>(bound, selector.Parameters);
             return source.Where(lambda);
         }
