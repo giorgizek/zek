@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Zek.Utils
+﻿namespace Zek.Utils
 {
     public class Range<T>
     {
@@ -32,16 +30,5 @@ namespace Zek.Utils
         //    builder.Append(']');
         //    return builder.ToString();
         //}
-    }
-
-    public class DateRange : Range<DateTime>
-    {
-        public DateRange()
-        {
-        }
-
-        public DateRange(DateTime start, DateTime end) : base(start, end)
-        {
-        }
     }
 }

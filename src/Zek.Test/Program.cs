@@ -24,51 +24,138 @@ namespace Zek.Test
 
         static void Main(string[] args)
         {
+
+            var start = DateTime.Today.AddHours(9);
+            var end = DateTime.Today.AddHours(13);
+
+            var busySlots = new List<DateRange>()
+            {
+                new DateRange(DateTime.Today.AddHours(9), DateTime.Today.AddHours(9).AddMinutes(15)),
+                new DateRange(DateTime.Today.AddHours(9).AddMinutes(20), DateTime.Today.AddHours(9).AddMinutes(30)),
+                new DateRange(DateTime.Today.AddHours(10), DateTime.Today.AddHours(10).AddMinutes(15)),
+                new DateRange(DateTime.Today.AddHours(11), DateTime.Today.AddHours(11).AddMinutes(20)),
+                new DateRange(DateTime.Today.AddHours(11).AddMinutes(40), DateTime.Today.AddHours(12)),
+                new DateRange(DateTime.Today.AddHours(11).AddMinutes(40), DateTime.Today.AddHours(12).AddMinutes(13)),
+
+            };
+
+
+            var slots = DateRangeHelper.GetFreeSlots(start, end, busySlots, 30);
             
 
-
-            var sw = new Stopwatch();
-            var count = 1000000;
-            sw.Start();
-            for (var i = 0; i < count; i++)
+            /*Console.WriteLine("Work hours:");
+            var ranges = new List<DateRange>()
             {
-            }
-            sw.Stop();
-            Console.WriteLine(sw.ElapsedMilliseconds);
-            sw.Reset();
+                new DateRange(start, end)
+            };
+            foreach (var range in ranges)
+                Console.WriteLine($"{range.Start:HH:mm} - {range.End:HH:mm}");
+            Console.WriteLine();
 
+            Console.WriteLine("Busy slots:");
+            foreach (var range in busySlots)
+                Console.WriteLine($"{range.Start:HH:mm} - {range.End:HH:mm}");
+            Console.WriteLine();
 
-            sw.Start();
-            for (var i = 0; i < count; i++)
+            for (int i = 0; i < ranges.Count; i++)
             {
+                for (int j = 0; j < busySlots.Count; j++)
+                {
+                    var relation = DateTimeHelper.GetRelation(busySlots[j].Start, busySlots[j].End, ranges[i].Start, ranges[i].End);
+
+                    if (relation == PeriodRelation.EndInside || relation == PeriodRelation.InsideStartTouching)
+                    {
+                        ranges[i].Start = busySlots[j].End;
+                    }
+                    else
+                    if (relation == PeriodRelation.StartInside || relation == PeriodRelation.InsideEndTouching)
+                    {
+                        ranges[i].End = busySlots[j].Start;
+                    }
+                    else if (relation == PeriodRelation.Inside)
+                    {
+                        var tmp = new DateRange(busySlots[j].End, ranges[i].End);
+                        ranges[i].End = busySlots[j].Start;
+                        ranges.Insert(i + 1, tmp);
+                        i--;
+                        break;
+                    }
+                }
             }
-            sw.Stop();
-            Console.WriteLine(sw.ElapsedMilliseconds);
+
+            foreach (var range in ranges)
+            {
+                var overlap = busySlots.FirstOrDefault(x => DateTimeHelper.Overlaps(x.Start, x.End, range.Start, range.End));
+                if (overlap != null)
+                {
+
+                }
+                Console.WriteLine($"{range.Start:HH:mm} - {range.End:HH:mm}   overlap:{overlap != null}");
+            }
+
+
+
+            var allFreeSlots = ranges.SelectMany(x => DateTimeHelper.SplitDateRangeByMinutes(x.Start, x.End, 30));
+            Console.WriteLine();
+            Console.WriteLine("Free slots");
+            foreach (var slot in allFreeSlots)
+            {
+                Console.WriteLine($"{slot.Start:HH:mm} - {slot.End:HH:mm}");
+            }
+
+            var slots = ranges.SelectMany(x => DateTimeHelper.SplitDateRangeByMinutes(x.Start, x.End, 30).Where(x => (x.End - x.Start).TotalMinutes == 30));
+            Console.WriteLine();
+            Console.WriteLine("Free filtered slots");
+            foreach (var slot in slots)
+            {
+                Console.WriteLine($"{slot.Start:HH:mm} - {slot.End:HH:mm}");
+            }*/
+
+
+
+
+            //var sw = new Stopwatch();
+            //var count = 1000000;
+            //sw.Start();
+            //for (var i = 0; i < count; i++)
+            //{
+            //}
+            //sw.Stop();
+            //Console.WriteLine(sw.ElapsedMilliseconds);
+            //sw.Reset();
+
+
+            //sw.Start();
+            //for (var i = 0; i < count; i++)
+            //{
+            //}
+            //sw.Stop();
+            //Console.WriteLine(sw.ElapsedMilliseconds);
 
 
             Console.ReadKey(false);
         }
 
-        private static ILdapConnection _conn;
+        //private static ILdapConnection _conn;
 
-        static ILdapConnection GetConnection()
-        {
-            LdapConnection ldapConn = _conn as LdapConnection;
+        //static ILdapConnection GetConnection()
+        //{
+        //    LdapConnection ldapConn = _conn as LdapConnection;
 
-            if (ldapConn == null)
-            {
-                // Creating an LdapConnection instance 
-                ldapConn = new LdapConnection() { SecureSocketLayer = false };
+        //    if (ldapConn == null)
+        //    {
+        //        // Creating an LdapConnection instance 
+        //        ldapConn = new LdapConnection() { SecureSocketLayer = false };
 
-                //Connect function will create a socket connection to the server - Port 389 for insecure and 3269 for secure    
-                ldapConn.Connect("uadevdc", 389);
+        //        //Connect function will create a socket connection to the server - Port 389 for insecure and 3269 for secure    
+        //        ldapConn.Connect("uadevdc", 389);
 
-                //Bind function with null user dn and password value will perform anonymous bind to LDAP server 
-                ldapConn.Bind(@"uadev\ia.javakhishvili", "Zxcvbnm1!");
-            }
+        //        //Bind function with null user dn and password value will perform anonymous bind to LDAP server 
+        //        ldapConn.Bind(@"uadev\ia.javakhishvili", "Zxcvbnm1!");
+        //    }
 
-            return ldapConn;
-        }
+        //    return ldapConn;
+        //}
 
     }
 }
