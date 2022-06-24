@@ -97,12 +97,40 @@ namespace Zek.Web
 
         protected override void Dispose(bool disposing)
         {
+            base.Dispose(disposing);
+
             if (disposing)
             {
                 Service1?.Dispose();
                 Service2?.Dispose();
             }
+        }
+    }
+
+    [ApiController]
+    [ApiConventionType(typeof(DefaultApiConventions))]
+    [Produces("application/json")]
+    public class ApiControllerBase<TService1, TService2, TService3> : ApiControllerBase<TService1, TService2>
+        where TService1 : IDisposable
+        where TService2 : IDisposable
+        where TService3 : IDisposable
+    {
+        public ApiControllerBase(TService1 service1, TService2 service2, TService3 service3) : base(service1, service2)
+        {
+            Service3 = service3;
+        }
+
+        protected TService3 Service3 { get; set; }
+
+
+        protected override void Dispose(bool disposing)
+        {
             base.Dispose(disposing);
+
+            if (disposing)
+            {
+                Service3?.Dispose();
+            }
         }
     }
 
