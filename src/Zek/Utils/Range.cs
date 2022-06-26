@@ -1,4 +1,6 @@
-﻿namespace Zek.Utils
+﻿using System.Text;
+
+namespace Zek.Utils
 {
     public class Range<T>
     {
@@ -14,21 +16,21 @@
         public T Start { get; set; }
         public T End { get; set; }
 
-        //public override string ToString()
-        //{
-        //    var builder = new StringBuilder();
-        //    builder.Append('[');
-        //    if (Start != null)
-        //    {
-        //        builder.Append(Start);
-        //    }
-        //    builder.Append(", ");
-        //    if (End != null)
-        //    {
-        //        builder.Append(End);
-        //    }
-        //    builder.Append(']');
-        //    return builder.ToString();
-        //}
+        public override string ToString()
+        {
+            var builder = new StringBuilder();
+            builder.Append('[');
+            if (Start != null)
+            {
+                builder.Append(Start);
+            }
+            builder.Append(", ");
+            if (End != null)
+            {
+                builder.Append(End);
+            }
+            builder.Append(']');
+            return builder.ToString();
+        }
     }
 }

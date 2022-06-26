@@ -28,22 +28,60 @@ namespace Zek.Utils
                 {
                     var relation = DateTimeHelper.GetRelation(busySlot.Start, busySlot.End, ranges[i].Start, ranges[i].End);
 
-                    if (relation == PeriodRelation.EndInside || relation == PeriodRelation.InsideStartTouching)
+                    var @break = false;
+                    switch (relation)
                     {
-                        ranges[i].Start = busySlot.End;
+                        case PeriodRelation.EndInside:
+                        case PeriodRelation.InsideStartTouching:
+                            ranges[i].Start = busySlot.End;
+                            break;
+
+
+                        case PeriodRelation.StartInside:
+                        case PeriodRelation.InsideEndTouching:
+                            ranges[i].End = busySlot.Start;
+                            break;
+
+                        case PeriodRelation.Inside:
+                            var tmp = new DateRange(busySlot.End, ranges[i].End);
+                            ranges[i].End = busySlot.Start;
+                            ranges.Insert(i + 1, tmp);
+                            i--;
+                            @break = true;
+                            break;
+
+                        case PeriodRelation.Enclosing:
+                            ranges.Remove(ranges[i]);
+                            i--;
+                            @break = true;
+                            break;
                     }
-                    else if (relation == PeriodRelation.StartInside || relation == PeriodRelation.InsideEndTouching)
-                    {
-                        ranges[i].End = busySlot.Start;
-                    }
-                    else if (relation == PeriodRelation.Inside)
-                    {
-                        var tmp = new DateRange(busySlot.End, ranges[i].End);
-                        ranges[i].End = busySlot.Start;
-                        ranges.Insert(i + 1, tmp);
-                        i--;
+
+
+                    if (@break)
                         break;
-                    }
+                    //if (relation == PeriodRelation.EndInside || relation == PeriodRelation.InsideStartTouching)
+                    //{
+                    //    ranges[i].Start = busySlot.End;
+                    //}
+                    //else if (relation == PeriodRelation.StartInside || relation == PeriodRelation.InsideEndTouching)
+                    //{
+                    //    ranges[i].End = busySlot.Start;
+                    //}
+                    //else if (relation == PeriodRelation.Inside)
+                    //{
+                    //    var tmp = new DateRange(busySlot.End, ranges[i].End);
+                    //    ranges[i].End = busySlot.Start;
+                    //    ranges.Insert(i + 1, tmp);
+                    //    i--;
+                    //    break;
+                    //}
+                    //else if (relation == PeriodRelation.Enclosing)
+                    //{
+                    //    ranges.Remove(ranges[i]);
+                    //    i--;
+                    //    break;
+                    //}
                 }
             }
 

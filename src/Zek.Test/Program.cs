@@ -6,6 +6,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection.PortableExecutable;
+using System.Security.Cryptography.Xml;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using Novell.Directory.Ldap;
@@ -26,21 +27,35 @@ namespace Zek.Test
         {
 
             var start = DateTime.Today.AddHours(9);
-            var end = DateTime.Today.AddHours(13);
+            var end = DateTime.Today.AddHours(14);
 
             var busySlots = new List<DateRange>()
             {
-                new DateRange(DateTime.Today.AddHours(9), DateTime.Today.AddHours(9).AddMinutes(15)),
-                new DateRange(DateTime.Today.AddHours(9).AddMinutes(20), DateTime.Today.AddHours(9).AddMinutes(30)),
-                new DateRange(DateTime.Today.AddHours(10), DateTime.Today.AddHours(10).AddMinutes(15)),
-                new DateRange(DateTime.Today.AddHours(11), DateTime.Today.AddHours(11).AddMinutes(20)),
-                new DateRange(DateTime.Today.AddHours(11).AddMinutes(40), DateTime.Today.AddHours(12)),
-                new DateRange(DateTime.Today.AddHours(11).AddMinutes(40), DateTime.Today.AddHours(12).AddMinutes(13)),
+                new DateRange(DateTime.Today.AddHours(7), DateTime.Today.AddHours(9).AddMinutes(00)),
+                new DateRange(DateTime.Today.AddHours(7), DateTime.Today.AddHours(9).AddMinutes(10)),
+                new DateRange(DateTime.Today.AddHours(9), DateTime.Today.AddHours(9).AddMinutes(10)),
+                new DateRange(DateTime.Today.AddHours(10), DateTime.Today.AddHours(10).AddMinutes(10)),
+                new DateRange(DateTime.Today.AddHours(13).AddMinutes(50), DateTime.Today.AddHours(14)),
+                new DateRange(DateTime.Today.AddHours(13).AddMinutes(50), DateTime.Today.AddHours(18)),
+
+                new DateRange(DateTime.Today.AddHours(7), DateTime.Today.AddHours(22)),
+
+                new DateRange(DateTime.Today.AddHours(22), DateTime.Today.AddHours(23)),
+                //new DateRange(DateTime.Today.AddHours(9).AddMinutes(20), DateTime.Today.AddHours(9).AddMinutes(30)),
+                //new DateRange(DateTime.Today.AddHours(10), DateTime.Today.AddHours(10).AddMinutes(15)),
+                //new DateRange(DateTime.Today.AddHours(11), DateTime.Today.AddHours(11).AddMinutes(20)),
+                //new DateRange(DateTime.Today.AddHours(11).AddMinutes(40), DateTime.Today.AddHours(12)),
+                //new DateRange(DateTime.Today.AddHours(11).AddMinutes(40), DateTime.Today.AddHours(12).AddMinutes(13)),
 
             };
 
 
-            var slots = DateRangeHelper.GetFreeSlots(start, end, busySlots, 30);
+            foreach (var item in busySlots)
+            {
+                DateRangeHelper.GetFreeSlots(start, end, new[] { item }, 30);
+            }
+
+            //var slots = DateRangeHelper.GetFreeSlots(start, end, busySlots, 30);
             
 
             /*Console.WriteLine("Work hours:");
