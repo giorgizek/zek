@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace Zek.Utils
 {
-
     public static class DateTimeHelper
     {
         public static bool HasInside(DateTime start, DateTime end, DateTime date)

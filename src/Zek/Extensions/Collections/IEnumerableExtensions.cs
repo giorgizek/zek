@@ -21,6 +21,9 @@ namespace Zek.Extensions.Collections
 
         public static void ForEach<T>(this IEnumerable<T> source, Action<T> action)
         {
+            if (action == null)
+                throw new ArgumentNullException(nameof(action));
+
             foreach (T element in source)
             {
                 action(element);
@@ -30,6 +33,8 @@ namespace Zek.Extensions.Collections
 
         public static async Task ForEachAsync<T>(this IEnumerable<T> source, Func<T, Task> func)
         {
+            if (func == null)
+                throw new ArgumentNullException(nameof(func));
             foreach (var element in source)
             {
                 await func(element);

@@ -99,10 +99,10 @@ namespace Zek.Utils
         }
 
 
-        public static IEnumerable<DateRange> GetFreeSlots(DateTime start, DateTime end, IEnumerable<DateRange> busySlots, int slotMinutes)
+        public static IEnumerable<DateRange> GetFreeSlots(DateTime start, DateTime end, IEnumerable<DateRange> busySlots, int slotDurationMinutes)
         {
             var ranges = GetFreeRanges(start, end, busySlots);
-            var allFreeSlots = ranges.SelectMany(x => DateTimeHelper.SplitDateRangeByMinutes(x.Start, x.End, slotMinutes));
+            var allFreeSlots = ranges.SelectMany(x => DateTimeHelper.SplitDateRangeByMinutes(x.Start, x.End, slotDurationMinutes));
             //Console.WriteLine();
             //Console.WriteLine("Free slots");
             //foreach (var slot in allFreeSlots)
@@ -110,7 +110,9 @@ namespace Zek.Utils
             //    Console.WriteLine($"{slot.Start:HH:mm} - {slot.End:HH:mm} {(slot.End - slot.Start).TotalMinutes}");
             //}
 
-            var slots = ranges.SelectMany(x => DateTimeHelper.SplitDateRangeByMinutes(x.Start, x.End, 30).Where(x => (x.End - x.Start).TotalMinutes == 30));
+            var slots = ranges.SelectMany(x => DateTimeHelper.SplitDateRangeByMinutes(x.Start, x.End, slotDurationMinutes).Where(x => x.Start.AddMinutes(slotDurationMinutes) == x.End)
+            //.Where(x => (x.End - x.Start).TotalMinutes == 30)
+            );
             //Console.WriteLine();
             //Console.WriteLine("Free filtered slots");
             //foreach (var slot in slots)
