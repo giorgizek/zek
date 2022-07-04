@@ -50,6 +50,7 @@ namespace Zek.Utils
                             @break = true;
                             break;
 
+                        case PeriodRelation.ExactMatch:
                         case PeriodRelation.Enclosing:
                             ranges.Remove(ranges[i]);
                             i--;
