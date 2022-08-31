@@ -191,6 +191,9 @@ namespace Zek.Utils
 
         public static IEnumerable<DateRange> SplitDateRange(DateTime start, DateTime end, TimeSpan chunk)
         {
+            if (chunk <= TimeSpan.Zero)
+                throw new ArgumentOutOfRangeException(nameof(chunk), "chunk should be greater than zero");
+
             DateTime chunkEnd;
             while ((chunkEnd = start.Add(chunk)) < end)
             {
