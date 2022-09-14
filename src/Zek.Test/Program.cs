@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reflection.PortableExecutable;
 using System.Security.Cryptography.Xml;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Options;
 using Novell.Directory.Ldap;
 using Zek.Cryptography;
@@ -25,6 +26,25 @@ namespace Zek.Test
 
         static void Main(string[] args)
         {
+
+            var shorter = new ShortInt32(int.MinValue);
+
+            var shorter2 = new ShortInt32(shorter.Value);
+            if (shorter == shorter2)
+            {
+                Console.WriteLine("yes");
+            }
+           
+            Console.WriteLine(shorter.ToString());
+
+            
+
+            Console.ReadKey();
+            return;
+
+
+
+
 
             var start = DateTime.Today.AddHours(9);
             var end = DateTime.Today.AddHours(14);
