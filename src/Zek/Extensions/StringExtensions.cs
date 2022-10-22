@@ -652,12 +652,14 @@ namespace Zek.Extensions
             switch (str)
             {
                 case "TRUE":
+                case "Y":
                 case "YES":
                 case "1":
                 case "ON":
                     return true;
 
                 case "FALSE":
+                case "N":
                 case "NO":
                 case "0":
                 case "OFF":
