@@ -8,7 +8,7 @@ namespace Zek.Data.Repository
     public class UnitOfWork : IUnitOfWork
     {
         protected readonly IDbContext Context;
-        private Hashtable _repositories;
+        //private Hashtable _repositories;
 
         public UnitOfWork(IDbContext context)
         {
@@ -52,22 +52,22 @@ namespace Zek.Data.Repository
         //}
 
 
-        public IRepository<TEntity> Repository<TEntity>() where TEntity : class, IDisposable
-        {
-            if (_repositories == null)
-                _repositories = new Hashtable();
+        //public IRepository<TEntity> Repository<TEntity>() where TEntity : class, IDisposable
+        //{
+        //    if (_repositories == null)
+        //        _repositories = new Hashtable();
 
-            var type = typeof(TEntity).Name;
+        //    var type = typeof(TEntity).Name;
 
-            if (!_repositories.ContainsKey(type))
-            {
-                var repositoryType = typeof(Repository<>);
-                var repositoryInstance = Activator.CreateInstance(repositoryType.MakeGenericType(typeof(TEntity)), Context);
-                _repositories.Add(type, repositoryInstance);
-            }
+        //    if (!_repositories.ContainsKey(type))
+        //    {
+        //        var repositoryType = typeof(Repository<>);
+        //        var repositoryInstance = Activator.CreateInstance(repositoryType.MakeGenericType(typeof(TEntity)), Context);
+        //        _repositories.Add(type, repositoryInstance);
+        //    }
 
-            return (IRepository<TEntity>)_repositories[type];
-        }
+        //    return (IRepository<TEntity>)_repositories[type];
+        //}
 
 
         private bool _disposed;
@@ -78,7 +78,6 @@ namespace Zek.Data.Repository
                 if (disposing)
                 {
                     Context?.Dispose();
-
                 }
             }
             _disposed = true;

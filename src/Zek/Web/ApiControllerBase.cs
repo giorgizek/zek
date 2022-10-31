@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Linq;
-using Zek.Model;
 using Zek.Model.DTO;
 
 namespace Zek.Web
