@@ -48,7 +48,7 @@ namespace Zek.Web
             if (content?.Length > 0)
             {
                 var byteContent = new ByteArrayContent(content);
-                byteContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
+                byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
                 request.Content = byteContent;
             }
         }

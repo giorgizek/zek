@@ -4052,6 +4052,11 @@
             Static constructor of the HttpClientUtility
             </summary>
         </member>
+        <member name="M:Zek.Web.HttpClientUtility.GetAsync``1(System.String,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Send Http Get to the request uri and get the TResult from response content
+            </summary>
+        </member>
         <member name="M:Zek.Web.HttpClientUtility.GetAsync``1(System.Uri,System.Collections.Generic.IDictionary{System.String,System.String})">
             <summary>
             Send Http Get to the request uri and get the TResult from response content

@@ -32,7 +32,15 @@ namespace Zek.Web
         /// <summary>
         /// Send Http Get to the request uri and get the TResult from response content
         /// </summary>
-        public static async Task<TResult> GetAsync<TResult>(Uri requestUri, IDictionary<string, string> headers)
+        public static Task<TResult> GetAsync<TResult>(string requestUri, IDictionary<string, string> headers = default(Dictionary<string, string>))
+        {
+            return GetAsync<TResult>(new Uri(requestUri), headers);
+        }
+
+        /// <summary>
+        /// Send Http Get to the request uri and get the TResult from response content
+        /// </summary>
+        public static async Task<TResult> GetAsync<TResult>(Uri requestUri, IDictionary<string, string> headers = default(Dictionary<string, string>))
         {
             // Get response
             var response = await GetAsync(requestUri, headers);
@@ -48,7 +56,7 @@ namespace Zek.Web
         /// <summary>
         /// Send Http Get to the request uri and get HttpResponseMessage
         /// </summary>
-        public static async Task<HttpResponseMessage> GetAsync(Uri requestUri, IDictionary<string, string> headers)
+        public static async Task<HttpResponseMessage> GetAsync(Uri requestUri, IDictionary<string, string> headers = default(Dictionary<string, string>))
         {
             // Create new request function
             HttpRequestMessage createRequestMessage()
