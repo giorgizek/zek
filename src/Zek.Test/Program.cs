@@ -26,18 +26,57 @@ namespace Zek.Test
 
         static void Main(string[] args)
         {
-
-            var shorter = new ShortInt32(int.MinValue);
-
-            var shorter2 = new ShortInt32(shorter.Value);
-            if (shorter == shorter2)
+            for (int i = 0; i < 10000; i++)
             {
-                Console.WriteLine("yes");
-            }
-           
-            Console.WriteLine(shorter.ToString());
+                var s1 = Base62.Encode(i);
+                var i1 = Base62.Decode(s1);
+                if (i != i1)
+                {
 
-            
+                }
+            }
+
+            var sw = new Stopwatch();
+            sw.Start();
+            for (int i = 0; i < 10000000; i++)
+            {
+                var shorter = new Base62Int32(int.MaxValue);
+                var i1 = new Base62Int32(shorter.Value);
+                if (i != i1)
+                {
+
+                }
+            }
+            sw.Stop();
+            Console.WriteLine(sw.ElapsedMilliseconds);
+            sw.Reset();
+
+            sw.Start();
+            for (int i = 0; i < 10000000; i++)
+            {
+                var shorter = new ShortInt32(int.MaxValue);
+                var i1 = new ShortInt32(shorter.Value);
+                if (i != i1)
+                {
+
+                }
+            }
+            sw.Stop();
+            Console.WriteLine(sw.ElapsedMilliseconds);
+            sw.Reset();
+            //var shorter = new ShortInt32(int.MaxValue);
+
+
+
+            //var shorter2 = new ShortInt32(shorter.Value);
+            //if (shorter == shorter2)
+            //{
+            //    Console.WriteLine("yes");
+            //}
+
+            //Console.WriteLine(shorter.ToString());
+
+
 
             Console.ReadKey();
             return;

@@ -164,12 +164,12 @@ namespace Zek.Extensions
         */
 
         /// <summary>
-        /// იღებს ტექსტიდან ნაწილს.
+        /// Safe Substring.
         /// </summary>
-        /// <param name="str">ტექსტი.</param>
-        /// <param name="startIndex">დაწყების ინდექსი.</param>
-        /// <param name="length">სიმბოლოების ზომა.</param>
-        /// <returns>აბრუნებს ამოჭრილ ტექსტს</returns>
+        /// <param name="str">Source text.</param>
+        /// <param name="startIndex">Start index.</param>
+        /// <param name="length">Chars length.</param>
+        /// <returns>Substringed text</returns>
         public static string SafeSubstring(this string str, int startIndex, int? length = null)
         {
             if (string.IsNullOrEmpty(str))

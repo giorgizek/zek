@@ -19,12 +19,12 @@
             Processing
             </summary>
         </member>
-        <member name="F:Zek.Accounting.OrderStatus.Complete">
+        <member name="F:Zek.Accounting.OrderStatus.Completed">
             <summary>
             Complete
             </summary>
         </member>
-        <member name="F:Zek.Accounting.OrderStatus.Cancelled">
+        <member name="F:Zek.Accounting.OrderStatus.Canceled">
             <summary>
             Cancelled
             </summary>
@@ -454,12 +454,12 @@
         </member>
         <member name="M:Zek.Extensions.StringExtensions.SafeSubstring(System.String,System.Int32,System.Nullable{System.Int32})">
             <summary>
-            იღებს ტექსტიდან ნაწილს.
+            Safe Substring.
             </summary>
-            <param name="str">ტექსტი.</param>
-            <param name="startIndex">დაწყების ინდექსი.</param>
-            <param name="length">სიმბოლოების ზომა.</param>
-            <returns>აბრუნებს ამოჭრილ ტექსტს</returns>
+            <param name="str">Source text.</param>
+            <param name="startIndex">Start index.</param>
+            <param name="length">Chars length.</param>
+            <returns>Substringed text</returns>
         </member>
         <member name="M:Zek.Extensions.StringExtensions.Left(System.String,System.Int32)">
             <summary>
@@ -3984,6 +3984,70 @@
              </list>
              </summary>
              <param name="input">The ShortInt32 encoded string or string representation of a int.</param>
+             <param name="result">A new <see cref="T:System.Int32"/> instance from the parsed string.</param>
+             <returns>A boolean indicating if the parse was successful.</returns>
+        </member>
+        <member name="F:Zek.Utils.Base62Int32.Empty">
+            <summary>
+            A read-only instance of the Base62Int32 struct whose value is guaranteed to be all zeroes i.e. equivalent
+            to 0.
+            </summary>
+        </member>
+        <member name="M:Zek.Utils.Base62Int32.op_Implicit(System.String)~Zek.Utils.Base62Int32">
+            <summary>
+            Implicitly converts the string to a Base62Int32.
+            </summary>
+        </member>
+        <member name="M:Zek.Utils.Base62Int32.op_Implicit(System.Int32)~Zek.Utils.Base62Int32">
+            <summary>
+            Implicitly converts the <see cref="T:System.Int32"/> to a Base62Int32.
+            </summary>
+        </member>
+        <member name="M:Zek.Utils.Base62Int32.TryParse(System.String,Zek.Utils.Base62Int32@)">
+            <summary>
+            Tries to parse the value as a <see cref="T:Zek.Utils.Base62Int32"/> or <see cref="T:System.Int32"/> string, and outputs an actual <see cref="T:Zek.Utils.Base62Int32"/> instance.
+            
+            <para>The difference between TryParse and TryDecode:</para>
+            <list type="number">
+                <item>
+                    <term><see cref="M:Zek.Utils.Base62Int32.TryParse(System.String,Zek.Utils.Base62Int32@)"/></term>
+                    <description>Tries to parse as a <see cref="T:Zek.Utils.Base62Int32"/> before attempting parsing as a <see cref="T:System.Int32"/>, outputs the actual <see cref="T:Zek.Utils.Base62Int32"/> instance - this method.</description>
+                </item>
+                <item>
+                    <term><see cref="M:Zek.Utils.Base62Int32.TryParse(System.String,System.Int32@)"/></term>
+                    <description>Tries to parse as a <see cref="T:Zek.Utils.Base62Int32"/> before attempting parsing as a <see cref="T:System.Int32"/>, outputs the underlying <see cref="T:System.Int32"/>.</description>
+                </item>
+                <item>
+                    <term><see cref="M:Zek.Utils.Base62Int32.TryDecode(System.String,System.Int32@)"/></term>
+                    <description>Tries to parse as a <see cref="T:Zek.Utils.Base62Int32"/> only, but outputs the result as a <see cref="T:System.Int32"/>.</description>
+                </item>
+            </list>
+            </summary>
+            <param name="input">The Base62Int32 encoded string or string representation of a int.</param>
+            <param name="result">A new <see cref="T:Zek.Utils.Base62Int32"/> instance from the parsed string.</param>
+            <returns>A boolean indicating if the parse was successful.</returns>
+        </member>
+        <member name="M:Zek.Utils.Base62Int32.TryParse(System.String,System.Int32@)">
+             <summary>
+             Tries to parse the value as a <see cref="T:Zek.Utils.Base62Int32"/> or <see cref="T:System.Int32"/> string, and outputs the underlying <see cref="T:System.Int32"/> value.
+            
+             <para>The difference between TryParse and TryDecode:</para>
+             <list type="number">
+                 <item>
+                     <term><see cref="M:Zek.Utils.Base62Int32.TryParse(System.String,Zek.Utils.Base62Int32@)"/></term>
+                     <description>Tries to parse as a <see cref="T:Zek.Utils.Base62Int32"/> before attempting parsing as a <see cref="T:System.Int32"/>, outputs the actual <see cref="T:Zek.Utils.Base62Int32"/> instance.</description>
+                 </item>
+                 <item>
+                     <term><see cref="M:Zek.Utils.Base62Int32.TryParse(System.String,System.Int32@)"/></term>
+                     <description>Tries to parse as a <see cref="T:Zek.Utils.Base62Int32"/> before attempting parsing as a <see cref="T:System.Int32"/>, outputs the underlying <see cref="T:System.Int32"/> - this method.</description>
+                 </item>
+                 <item>
+                     <term><see cref="M:Zek.Utils.Base62Int32.TryDecode(System.String,System.Int32@)"/></term>
+                     <description>Tries to parse as a <see cref="T:Zek.Utils.Base62Int32"/> only, but outputs the result as a <see cref="T:System.Int32"/>.</description>
+                 </item>
+             </list>
+             </summary>
+             <param name="input">The Base62Int32 encoded string or string representation of a int.</param>
              <param name="result">A new <see cref="T:System.Int32"/> instance from the parsed string.</param>
              <returns>A boolean indicating if the parse was successful.</returns>
         </member>

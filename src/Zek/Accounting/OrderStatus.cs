@@ -16,10 +16,10 @@
         /// <summary>
         /// Complete
         /// </summary>
-        Complete = 30,
+        Completed = 30,
         /// <summary>
         /// Cancelled
         /// </summary>
-        Cancelled = 40
+        Canceled = 40
     }
 }
