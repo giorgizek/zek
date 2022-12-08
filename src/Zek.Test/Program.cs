@@ -26,25 +26,25 @@ namespace Zek.Test
 
         static void Main(string[] args)
         {
-            for (int i = 0; i < 10000; i++)
-            {
-                var s1 = Base62.Encode(i);
-                var i1 = Base62.Decode(s1);
-                if (i != i1)
-                {
+            //for (int i = 0; i < 10000; i++)
+            //{
+            //    var s1 = Base62Convert.Encode(i);
+            //    var i1 = Base62Convert.Decode(s1);
+            //    if (i != i1)
+            //    {
 
-                }
-            }
+            //    }
+            //}
 
             var sw = new Stopwatch();
             sw.Start();
-            for (int i = 0; i < 10000000; i++)
+            for (int i = 0; i < 50000000; i++)
             {
-                var shorter = new Base62Int32(int.MaxValue);
+                var shorter = new Base62Int32(i);
                 var i1 = new Base62Int32(shorter.Value);
                 if (i != i1)
                 {
-
+                    Console.WriteLine("wrong");
                 }
             }
             sw.Stop();
@@ -52,13 +52,13 @@ namespace Zek.Test
             sw.Reset();
 
             sw.Start();
-            for (int i = 0; i < 10000000; i++)
+            for (int i = 0; i < 50000000; i++)
             {
-                var shorter = new ShortInt32(int.MaxValue);
+                var shorter = new ShortInt32(i);
                 var i1 = new ShortInt32(shorter.Value);
                 if (i != i1)
                 {
-
+                    Console.WriteLine("wrong");
                 }
             }
             sw.Stop();
