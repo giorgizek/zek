@@ -1,11 +1,28 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
 using System.Text;
 
 namespace Zek.Utils
 {
     public class StringHelper
     {
+        public static string RemoveChars(string value, List<char> charsToRemove)
+        {
+            if (string.IsNullOrEmpty(value))
+                return value;
+
+            var sb = new StringBuilder();
+
+            foreach (var c in value)
+            {
+                if (!charsToRemove.Contains(c))
+                    sb.Append(c);
+            }
+
+            return sb.ToString();
+        }
+
+
         public static string Replace(string str, string[] from, string[] to)
         {
             if (string.IsNullOrEmpty(str) || from == null || from.Length == 0 || to == null || to.Length == 0)
@@ -89,25 +106,25 @@ namespace Zek.Utils
             // If we got here, then the value is a valid base64 string
             return true;
         }
-        private static bool IsInvalid(char value)
-        {
-            var intValue = (int)value;
+        //private static bool IsInvalid(char value)
+        //{
+        //    var intValue = (int)value;
 
-            // 1 - 9
-            if (intValue >= 48 && intValue <= 57)
-                return false;
+        //    // 1 - 9
+        //    if (intValue >= 48 && intValue <= 57)
+        //        return false;
             
-            // A - Z
-            if (intValue >= 65 && intValue <= 90)
-                return false;
+        //    // A - Z
+        //    if (intValue >= 65 && intValue <= 90)
+        //        return false;
             
-            // a - z   
-            if (intValue >= 97 && intValue <= 122)
-                return false;
+        //    // a - z   
+        //    if (intValue >= 97 && intValue <= 122)
+        //        return false;
 
-            // + or /
-            return intValue != 43 && intValue != 47;
-        }
+        //    // + or /
+        //    return intValue != 43 && intValue != 47;
+        //}
 
 
         public static string Join(string separator, params object[] values)

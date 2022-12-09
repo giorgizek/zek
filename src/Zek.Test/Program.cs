@@ -10,9 +10,11 @@ using System.Security.Cryptography.Xml;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json.Linq;
 using Novell.Directory.Ldap;
 using Zek.Cryptography;
 using Zek.Extensions;
+using Zek.Extensions.Collections;
 using Zek.Model;
 using Zek.Model.Config;
 using Zek.Model.DTO.Email;
@@ -26,44 +28,40 @@ namespace Zek.Test
 
         static void Main(string[] args)
         {
-            //for (int i = 0; i < 10000; i++)
+   
+
+
+
+            //var sw = new Stopwatch();
+            //sw.Start();
+            //for (int i = 0; i < 50000000; i++)
             //{
-            //    var s1 = Base62Convert.Encode(i);
-            //    var i1 = Base62Convert.Decode(s1);
+            //    var shorter = new Base62Int32(i);
+            //    var i1 = new Base62Int32(shorter.Value);
             //    if (i != i1)
             //    {
-
+            //        Console.WriteLine("wrong");
             //    }
             //}
+            //sw.Stop();
+            //Console.WriteLine(sw.ElapsedMilliseconds);
+            //sw.Reset();
 
-            var sw = new Stopwatch();
-            sw.Start();
-            for (int i = 0; i < 50000000; i++)
-            {
-                var shorter = new Base62Int32(i);
-                var i1 = new Base62Int32(shorter.Value);
-                if (i != i1)
-                {
-                    Console.WriteLine("wrong");
-                }
-            }
-            sw.Stop();
-            Console.WriteLine(sw.ElapsedMilliseconds);
-            sw.Reset();
+            //sw.Start();
+            //for (int i = 0; i < 50000000; i++)
+            //{
+            //    var shorter = new ShortInt32(i);
+            //    var i1 = new ShortInt32(shorter.Value);
+            //    if (i != i1)
+            //    {
+            //        Console.WriteLine("wrong");
+            //    }
+            //}
+            //sw.Stop();
+            //Console.WriteLine(sw.ElapsedMilliseconds);
+            //sw.Reset();
 
-            sw.Start();
-            for (int i = 0; i < 50000000; i++)
-            {
-                var shorter = new ShortInt32(i);
-                var i1 = new ShortInt32(shorter.Value);
-                if (i != i1)
-                {
-                    Console.WriteLine("wrong");
-                }
-            }
-            sw.Stop();
-            Console.WriteLine(sw.ElapsedMilliseconds);
-            sw.Reset();
+
             //var shorter = new ShortInt32(int.MaxValue);
 
 

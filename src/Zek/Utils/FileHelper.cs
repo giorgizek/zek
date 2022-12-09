@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace Zek.Utils
 {
@@ -20,6 +22,22 @@ namespace Zek.Utils
                 valor /= 1024.0;
             return $"{valor:#,###.00} {names[i]}";
         }
+
+
+
+        public static string ParseFileName(string folderName)
+        {
+            if (string.IsNullOrEmpty(folderName)) return folderName;
+
+            foreach (var c in Path.GetInvalidFileNameChars())
+                folderName = folderName.Replace(c.ToString(), string.Empty);
+
+            //foreach (var c in Path.GetInvalidPathChars())
+            //    folderName = folderName.Replace(c.ToString(), string.Empty);
+
+            return folderName;
+        }
+
 
         public static string GetAvailableFileName(string path)
         {
