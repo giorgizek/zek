@@ -51,7 +51,7 @@ namespace Zek.Utils
                 result += ch * (int)Math.Pow(62, length - i - 1);
             }
             return result;
-        }//13996
+        }
 
         //public static int Decode(string value)
         //{
