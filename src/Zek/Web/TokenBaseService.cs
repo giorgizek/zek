@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
+using Microsoft.IdentityModel.Tokens;
 using Zek.Extensions;
 using Zek.Extensions.Security.Claims;
 
@@ -10,6 +12,7 @@ namespace Zek.Web
     public interface ITokenBaseService
     {
         int GetUserId();
+        DateTime GetExpirationTime();
         IEnumerable<string> GetRoles();
     }
 
@@ -28,6 +31,18 @@ namespace Zek.Web
         {
             _userId ??= ContextAccessor.HttpContext.User.GetUserId().ToInt32();
             return _userId.Value;
+        }
+
+
+        private DateTime? _expirationTime;
+        public virtual DateTime GetExpirationTime()
+        {
+            //if (_expirationTime == null)
+            //{
+            //    _expirationTime = ContextAccessor.HttpContext.User.GetExpirationTime().GetValueOrDefault(EpochTime.UnixEpoch);
+            //}
+            _expirationTime ??= (ContextAccessor.HttpContext.User.GetExpirationTime().GetValueOrDefault(EpochTime.UnixEpoch));
+            return _expirationTime.Value;
         }
 
 

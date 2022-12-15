@@ -102,6 +102,10 @@ namespace Zek.Extensions.Security.Claims
 
         public static bool IsInAnyRole(this ClaimsPrincipal principal, params string[] roles)
         {
+            if (principal == null)
+            {
+                throw new ArgumentNullException(nameof(principal));
+            }
             return roles != null && roles.Any(principal.IsInRole);
         }
 

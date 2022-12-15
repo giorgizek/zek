@@ -1,22 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Zek.Extensions.Collections
 {
     public static class EnumerableExtensions
     {
-        public static bool IsEmpty<T>(this IEnumerable<T> collection)
+        /// <summary>
+        /// Checks whether <paramref name="enumerable"/> is null or empty.
+        /// </summary>
+        /// <typeparam name="T">The type of the <paramref name="enumerable"/>.</typeparam>
+        /// <param name="enumerable">The <see cref="IEnumerable{T}"/> to be checked.</param>
+        /// <returns>True if <paramref name="enumerable"/> is null or empty, false otherwise.</returns>
+        public static bool IsNullOrEmpty<T>(this IEnumerable<T> enumerable)
         {
-            foreach (var unused in collection)
-                return false;
-
-            return true;
-        }
-
-        public static bool IsNullOrEmpty<T>(this IEnumerable<T> collection)
-        {
-            return collection == null || collection.IsEmpty();
+            return enumerable == null || !enumerable.Any();
         }
 
         public static IEnumerable<T> NotNull<T>(this IEnumerable<T> collection) where T : class

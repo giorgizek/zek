@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -23,6 +24,27 @@ namespace Zek.Utils
             return $"{valor:#,###.00} {names[i]}";
         }
 
+        //public static string GetExtension(string path)
+        //{
+        //    if (path == null)
+        //        return null;
+
+        //    int length = path.Length;
+        //    for (int i = length; --i >= 0;)
+        //    {
+        //        char ch = path[i];
+        //        if (ch == '.')
+        //        {
+        //            if (i != length - 1)
+        //                return path.Substring(i, length - i);
+        //            else
+        //                return String.Empty;
+        //        }
+        //        if (ch == Path.DirectorySeparatorChar || ch == Path.AltDirectorySeparatorChar || ch == Path.VolumeSeparatorChar)
+        //            break;
+        //    }
+        //    return String.Empty;
+        //}
 
 
         public static string ParseFileName(string folderName)
