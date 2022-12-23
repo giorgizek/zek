@@ -36,12 +36,6 @@
 
 
   <ItemGroup>
-    <Folder Include="Extensions\Net\" />
-  </ItemGroup>
-
-
-
-  <ItemGroup>
     <None Update="Zek.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

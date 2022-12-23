@@ -1,9 +1,10 @@
 ﻿using System;
 
-namespace Zek.Model.ViewModel
+namespace Zek.Contracts
 {
     public class ConfirmBaseViewModel
     {
+        public string Application { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string UserName { get; set; }
