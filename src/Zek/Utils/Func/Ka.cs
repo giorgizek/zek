@@ -31,7 +31,16 @@ namespace Zek.Utils
             {
                 return $"{date.Day} {Months[date.Month - 1]} {date.Year}";
             }
+            public static string DateToMonth(DateTime date)
+            {
+                return Months[date.Month - 1];
+            }
 
+            //public static readonly string[] MonthsAbbr = { "იან", "თებ", "მარ", "აპრ", "მაი", "ივნ", "ივლ", "აგვ", "სექ", "ოქტ", "ნოე", "დეკ" };
+            //public static string DateToMonthAbbr(DateTime date)
+            //{
+            //    return MonthsAbbr[date.Month - 1];
+            //}
 
 
             public static readonly string[] DaysOfWeek = { "კვირა", "ორშაბათი", "სამშაბათი", "ოთხშაბათი", "ხუთშაბათი", "პარასკევი", "შაბათი" };

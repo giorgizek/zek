@@ -17,7 +17,15 @@ namespace Zek.Utils
                 }
                 return builder.ToString();
             }
-
+            public static string DateToMonthAbbr(DateTime date, bool uppercase = false)
+            {
+                var builder = new StringBuilder(MonthsAbbr[date.Month - 1]);
+                if (uppercase)
+                {
+                    builder[0] = char.ToUpper(builder[0]);
+                }
+                return builder.ToString();
+            }
 
 
             private static readonly string[] Months = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
