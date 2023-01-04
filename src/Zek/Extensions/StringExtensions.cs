@@ -175,6 +175,9 @@ namespace Zek.Extensions
             if (string.IsNullOrEmpty(str))
                 return str;
 
+            if (startIndex < 0)
+                startIndex = 0;
+
             switch (length)
             {
                 case null:
@@ -184,10 +187,11 @@ namespace Zek.Extensions
                     return string.Empty;
             }
 
-            if (startIndex < 0)
-                startIndex = 0;
-
-            return str.Length > startIndex ? str.Length > startIndex + length ? str.Substring(startIndex, length.Value) : str[startIndex..] : string.Empty;
+            return str.Length > startIndex
+                ? str.Length > startIndex + length
+                    ? str.Substring(startIndex, length.Value)
+                    : str[startIndex..]
+                : string.Empty;
         }
 
 
@@ -704,27 +708,7 @@ namespace Zek.Extensions
             return DateTime.TryParse(str, out var result) ? (DateTime?)result : null;
         }
 
-        public static int[] ToIntArray(this string str, char[] separator = null)
-        {
-            if (string.IsNullOrEmpty(str))
-                return null;
-
-            if (separator == null)
-                separator = new[] { ',', ';' };
-
-            var split = str.Split(separator);
-            var list = new List<int>();
-            foreach (var s in split)
-            {
-                if (int.TryParse(s, out var num))
-                {
-                    list.Add(num);
-                }
-            }
-            return list.ToArray();
-        }
-
-
+      
 
         /// <summary>
         /// Splits pascal case, so "FooBar" would become "Foo Bar"

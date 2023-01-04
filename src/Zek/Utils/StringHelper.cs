@@ -113,11 +113,11 @@ namespace Zek.Utils
         //    // 1 - 9
         //    if (intValue >= 48 && intValue <= 57)
         //        return false;
-            
+
         //    // A - Z
         //    if (intValue >= 65 && intValue <= 90)
         //        return false;
-            
+
         //    // a - z   
         //    if (intValue >= 97 && intValue <= 122)
         //        return false;
@@ -135,8 +135,31 @@ namespace Zek.Utils
                     sb.Append(value + separator);
 
             sb.Remove(sb.Length - separator.Length, separator.Length);
-            
+
             return sb.ToString();
+        }
+
+        public static string[] Split(string original, char[] separator = null)
+        {
+            separator ??= new[] { ',' };
+            return original?.Split(separator, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries) ?? Array.Empty<string>();
+        }
+
+        public static int[] ToIntArray(string str, char[] separator = null)
+        {
+            if (string.IsNullOrEmpty(str))
+                return null;
+
+            var split = Split(str, separator);
+            var list = new List<int>();
+            foreach (var s in split)
+            {
+                if (int.TryParse(s, out var num))
+                {
+                    list.Add(num);
+                }
+            }
+            return list.ToArray();
         }
     }
 }
