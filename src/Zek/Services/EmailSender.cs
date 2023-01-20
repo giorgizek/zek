@@ -52,79 +52,6 @@ namespace Zek.Services
             return SendEmailAsync(model);
         }
 
-        [Obsolete("Use Zek.Office.Email class instead")]
-        private static MailMessage ToMailMessage(EmailDTO model)
-        {
-            var message = new MailMessage
-            {
-                Subject = model.Subject,
-                SubjectEncoding = Encoding.UTF8,
-                Body = model.Body,
-                BodyEncoding = Encoding.UTF8,
-                IsBodyHtml = model.IsHtml,
-            };
-
-
-            if (!string.IsNullOrEmpty(model.From?.Address))
-                message.From = new MailAddress(model.From.Address, model.From.Name, Encoding.UTF8);
-
-            model.To?.ForEach(x => message.To.Add(new MailAddress(x.Address, x.Name, Encoding.UTF8)));
-            model.Cc?.ForEach(x => message.CC.Add(new MailAddress(x.Address, x.Name, Encoding.UTF8)));
-            model.Bcc?.ForEach(x => message.Bcc.Add(new MailAddress(x.Address, x.Name, Encoding.UTF8)));
-
-            model.Attachments?.ForEach(x =>
-            {
-                var attachment = new Attachment(new MemoryStream(x.FileData), x.FileName) { ContentId = x.ContentId };
-                message.Attachments.Add(attachment);
-            });
-
-
-
-
-            return message;
-        }
-
-        [Obsolete("Use Zek.Office.Email class instead")]
-        public virtual async Task SendEmailAsync(EmailDTO model)
-        {
-            using var client = new SmtpClient();
-            if (Options != null)
-            {
-                if (!string.IsNullOrEmpty(Options.Host))
-                    client.Host = Options.Host;
-                if (Options.Port != null)
-                    client.Port = Options.Port.Value;
-
-                if (Options.EnableSsl != null)
-                    client.EnableSsl = Options.EnableSsl.Value;
-
-                if (!string.IsNullOrEmpty(Options.UserName))
-                {
-                    client.UseDefaultCredentials = false;
-                    client.Credentials = new NetworkCredential(Options.UserName, Options.Password);
-                    //client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                }
-
-                model.From ??= new EmailAddressDTO();
-
-                if (string.IsNullOrEmpty(model.From.Address))
-                    model.From.Address = Options.FromEmail;
-                if (string.IsNullOrEmpty(model.From.Name))
-                    model.From.Name = Options.FromName;
-            }
-
-
-            using var message = ToMailMessage(model);
-            //client.SendCompleted += (sender, e) =>
-            //{
-            //    client.Dispose();
-            //    message.Dispose();
-            //};
-
-            await client.SendMailAsync(message);
-        }
-
-
         public virtual async Task SendEmailAsync(Email model)
         {
             using var client = new SmtpClient();
@@ -196,6 +123,18 @@ namespace Zek.Services
                 var calendarBytes = Encoding.UTF8.GetBytes(ics);
                 var attachment = new Attachment(new MemoryStream(calendarBytes), "event.ics", "text/calendar");
                 message.Attachments.Add(attachment);
+            }
+
+            if (!model.Calendars.IsNullOrEmpty())
+            {
+                var i = 1;
+                foreach (var cal in model.Calendars)
+                {
+                    var ics = cal.ToString();
+                    var calendarBytes = Encoding.UTF8.GetBytes(ics);
+                    var attachment = new Attachment(new MemoryStream(calendarBytes), $"event{i++}.ics", "text/calendar");
+                    message.Attachments.Add(attachment);
+                }
             }
 
             return message;

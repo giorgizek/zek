@@ -20,5 +20,6 @@ namespace Zek.Office
         public IEnumerable<EmailAddress> Bcc { get; set; }
 
         public iCalendar Calendar { get; set; }
+        public IEnumerable<iCalendar> Calendars { get; set; }
     }
 }

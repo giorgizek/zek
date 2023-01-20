@@ -12,6 +12,7 @@ namespace Zek.Contracts
         public string PhoneNumber { get; set; }
         public string Company { get; set; }
         public string Website { get; set; }
+        public string Url { get; set; }
         public string ConfirmUrl { get; set; }
         public string Code { get; set; }
         public int? ExpireMinutes { get; set; }
