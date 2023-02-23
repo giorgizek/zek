@@ -25,41 +25,27 @@ namespace Zek.Test
 {
     class Program
     {
-
         static void Main(string[] args)
         {
-   
-
-
-
             //var sw = new Stopwatch();
             //sw.Start();
-            //for (int i = 0; i < 50000000; i++)
+            //for (int i = 0; i < 5000000; i++)
             //{
-            //    var shorter = new Base62Int32(i);
-            //    var i1 = new Base62Int32(shorter.Value);
-            //    if (i != i1)
-            //    {
-            //        Console.WriteLine("wrong");
-            //    }
             //}
             //sw.Stop();
             //Console.WriteLine(sw.ElapsedMilliseconds);
             //sw.Reset();
 
             //sw.Start();
-            //for (int i = 0; i < 50000000; i++)
+            //for (int i = 0; i < 5000000; i++)
             //{
-            //    var shorter = new ShortInt32(i);
-            //    var i1 = new ShortInt32(shorter.Value);
-            //    if (i != i1)
-            //    {
-            //        Console.WriteLine("wrong");
-            //    }
             //}
             //sw.Stop();
             //Console.WriteLine(sw.ElapsedMilliseconds);
             //sw.Reset();
+
+
+
 
 
             //var shorter = new ShortInt32(int.MaxValue);

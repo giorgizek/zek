@@ -1,15 +1,14 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 
 namespace Zek.Cryptography
 {
     public static class KnuthHelper
     {
-        public static string KnuthHex(string plainText) => KnuthHex(Encoding.UTF8.GetBytes(plainText));
-        public static string KnuthHex(byte[] bytes)
+        public static string KnuthHex(ReadOnlySpan<char> key)
         {
-            return CalculateHash(bytes).ToString("X2");
+            return CalculateHash(key).ToString("X2");
         }
-
 
         public static bool VerifyKnuthHex(string cypherText, string plainText)
         {
@@ -18,13 +17,12 @@ namespace Zek.Cryptography
 
         }
 
-        public static ulong CalculateHash(string plainText) => CalculateHash(Encoding.Default.GetBytes(plainText));
-        public static ulong CalculateHash(byte[] bytes)
+        public static ulong CalculateHash(ReadOnlySpan<char> key)
         {
             var hashedValue = 3074457345618258791UL;
-            foreach (var b in bytes)
+            for (int i = 0; i < key.Length; i++)
             {
-                hashedValue += b;
+                hashedValue += key[i];
                 hashedValue *= 3074457345618258799UL;
             }
             return hashedValue;
