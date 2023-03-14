@@ -32,7 +32,7 @@ namespace Zek.Extensions
             var result = new StringBuilder();
             foreach (var c in str)
             {
-                if (IsGeorgianhLetter(c))
+                if (IsGeorgianLetter(c))
                     result.Append(c);
                 else
                     result.Append(char.ToUpper(c));
@@ -58,14 +58,14 @@ namespace Zek.Extensions
         }
         private static char InternalToUpper(char c)
         {
-            if (IsGeorgianhLetter(c))
+            if (IsGeorgianLetter(c))
                 return c;
             else
                 return char.ToUpper(c);
         }
         private static char InternalToUpperInvariant(char c)
         {
-            if (IsGeorgianhLetter(c))
+            if (IsGeorgianLetter(c))
                 return c;
             else
                 return char.ToUpperInvariant(c);
@@ -75,7 +75,7 @@ namespace Zek.Extensions
         {
             return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z');
         }*/
-        private static bool IsGeorgianhLetter(this char c)
+        private static bool IsGeorgianLetter(this char c)
         {
             return (c >= 'ა' && c <= 'ჰ');
         }
