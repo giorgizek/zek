@@ -6,12 +6,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Tokens;
 using Zek.Extensions;
 using Zek.Extensions.Security.Claims;
+using Zek.Security.Claims;
 
 namespace Zek.Web
 {
     public interface ITokenBaseService
     {
         int GetUserId();
+        string GetUserName();
         DateTime GetExpirationTime();
         IEnumerable<string> GetRoles();
     }
@@ -31,6 +33,13 @@ namespace Zek.Web
         {
             _userId ??= ContextAccessor.HttpContext.User.GetUserId().ToInt32();
             return _userId.Value;
+        }
+
+        private string _userName;
+        public virtual string GetUserName()
+        {
+            _userName ??= ContextAccessor.HttpContext.User.GetUserName();
+            return _userName;
         }
 
 
