@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
@@ -44,19 +45,19 @@ namespace Zek.PagedList
         /// <param name="pageSize">The maximum size of any individual subset.</param>
         /// <returns>A subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.</returns>
         /// <seealso cref="PagedList{T}"/>
-        public static async Task<PagedList<T>> ToPagedListAsync<T>(this IQueryable<T> superset, int pageNumber, int pageSize)
+        public static async Task<PagedList<T>> ToPagedListAsync<T>(this IQueryable<T> superset, int pageNumber, int pageSize, CancellationToken cancellationToken = default)
         {
             var subset = new List<T>();
             var totalCount = 0;
 
             if (superset != null)
             {
-                totalCount = await superset.CountAsync();
+                totalCount = await superset.CountAsync(cancellationToken);
 
                 subset.AddRange(
                     (pageNumber == 1)
-                        ? await superset.Skip(0).Take(pageSize).ToListAsync()
-                        : await superset.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync()
+                        ? await superset.Skip(0).Take(pageSize).ToListAsync(cancellationToken)
+                        : await superset.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync(cancellationToken)
                 );
             }
 
@@ -102,19 +103,19 @@ namespace Zek.PagedList
         /// <param name="pageSize">The maximum size of any individual subset.</param>
         /// <returns>A subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.</returns>
         /// <seealso cref="PagerListDTO{T}"/>
-        public static async Task<PagerListDTO<T>> ToPagerListDTOAsync<T>(this IQueryable<T> superset, int pageNumber, int pageSize)
+        public static async Task<PagerListDTO<T>> ToPagerListDTOAsync<T>(this IQueryable<T> superset, int pageNumber, int pageSize, CancellationToken cancellationToken = default)
         {
             var subset = new List<T>();
             var totalCount = 0;
 
             if ((superset != null))
             {
-                totalCount = await superset.CountAsync();
+                totalCount = await superset.CountAsync(cancellationToken);
                 if (totalCount > 0)
                 {
                     subset.AddRange(pageNumber == 1
-                        ? await superset.Skip(0).Take(pageSize).ToListAsync()
-                        : await superset.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync()
+                        ? await superset.Skip(0).Take(pageSize).ToListAsync(cancellationToken)
+                        : await superset.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync(cancellationToken)
                     );
                 }
             }
