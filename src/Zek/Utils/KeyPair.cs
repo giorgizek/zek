@@ -51,23 +51,26 @@ namespace Zek.Utils
         }
     }
 
-
-
     public class KeyPair : KeyPair<int, string>
     {
         public KeyPair()
         {
         }
-        public KeyPair(int key, string value)
+        public KeyPair(int key, string value) : base(key, value)
         {
-            Key = key;
-            Value = value;
         }
     }
 
 
     public class KeyPairCode : KeyPair
     {
+        public KeyPairCode()
+        {
+        }
+        public KeyPairCode(int key, string value, string code) : base(key, value)
+        {
+            Code = code;
+        }
         public string Code { get; set; }
     }
 }
