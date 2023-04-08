@@ -3387,6 +3387,12 @@
             <param name="sb"></param>
             <param name="value"></param>
         </member>
+        <member name="T:Zek.Utils.IdHash`1">
+            <summary>
+            Equals checked only Id property
+            </summary>
+            <typeparam name="TId"></typeparam>
+        </member>
         <member name="T:Zek.Utils.KeyPair`2">
             <summary>
             Equals checked only Key property
