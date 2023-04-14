@@ -15,6 +15,11 @@ namespace Zek.Extensions
         public static readonly DateTime MaxDbDate = new(9000, 12, 31);
 
 
+        /// <summary>
+        /// Converts date to string with format yyyy-MM-dd
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns>Returns date string (e.x. 1984-07-17).</returns>
         public static string ToUniversalDateString(this DateTime date) => date.ToString(UniversalDateFormat);
         public static string ToUniversalDateTimeString(this DateTime date) => date.ToString(UniversalDateTimeFormat);
 

@@ -31,9 +31,7 @@ namespace Zek.Web
         /// Send Http Get to the request uri and get the TResult from response content
         /// </summary>
         public static Task<TResult> GetAsync<TResult>(string requestUri, IDictionary<string, string> headers = default(Dictionary<string, string>))
-        {
-            return GetAsync<TResult>(new Uri(requestUri), headers);
-        }
+            => GetAsync<TResult>(new Uri(requestUri), headers);
 
         /// <summary>
         /// Send Http Get to the request uri and get the TResult from response content
