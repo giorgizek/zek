@@ -13,16 +13,16 @@ namespace Zek.Web
         public static readonly int RETRY_COUNT = 10;
         public static readonly int RETRY_DELAY = 500;
 
-        private static HttpClient Client;
+        private static readonly HttpClient сlient;
 
         /// <summary>
         /// Static constructor of the HttpClientUtility
         /// </summary>
         static HttpClientUtility()
         {
-            if (Client == null)
+            if (сlient == null)
             {
-                Client = new HttpClient();
+                сlient = new HttpClient();
             }
         }
 
@@ -66,7 +66,7 @@ namespace Zek.Web
             }
 
             // Send request and get response
-            var response = await ExecuteActionkWithAutoRetry(() => Client.SendAsync(createRequestMessage()));
+            var response = await ExecuteActionkWithAutoRetry(() => сlient.SendAsync(createRequestMessage()));
             return response;
         }
 
@@ -119,7 +119,7 @@ namespace Zek.Web
             };
 
             // Post request
-            HttpResponseMessage response = await ExecuteActionkWithAutoRetry(() => Client.SendAsync(createRequestMessage()));
+            HttpResponseMessage response = await ExecuteActionkWithAutoRetry(() => сlient.SendAsync(createRequestMessage()));
             return response;
         }
 
@@ -161,7 +161,7 @@ namespace Zek.Web
             }
 
             // Post request
-            var response = await ExecuteActionkWithAutoRetry(() => Client.SendAsync(createRequestMessage(), cancellationToken));
+            var response = await ExecuteActionkWithAutoRetry(() => сlient.SendAsync(createRequestMessage(), cancellationToken));
             return response;
         }
 
@@ -183,7 +183,7 @@ namespace Zek.Web
             };
 
             // Put request
-            var response = await ExecuteActionkWithAutoRetry(() => Client.SendAsync(createRequestMessage()));
+            var response = await ExecuteActionkWithAutoRetry(() => сlient.SendAsync(createRequestMessage()));
             return response;
         }
 
@@ -205,7 +205,7 @@ namespace Zek.Web
             };
 
             // Delete request
-            HttpResponseMessage response = await ExecuteActionkWithAutoRetry(() => Client.SendAsync(deleteRequestMessage()));
+            HttpResponseMessage response = await ExecuteActionkWithAutoRetry(() => сlient.SendAsync(deleteRequestMessage()));
             return response;
         }
 

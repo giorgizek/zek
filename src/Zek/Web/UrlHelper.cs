@@ -9,9 +9,9 @@
             if (string.IsNullOrEmpty(relativeUri))
                 return baseUri;
 
-            baseUri = baseUri.TrimEnd('/');
-            relativeUri = relativeUri.TrimStart('/');
-            return $"{baseUri}/{relativeUri}";
+            //baseUri = baseUri.TrimEnd('/');
+            //relativeUri = relativeUri.TrimStart('/');
+            return $"{baseUri.TrimEnd('/')}/{relativeUri.TrimStart('/')}";
         }
     }
 }
