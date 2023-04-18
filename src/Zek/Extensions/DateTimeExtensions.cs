@@ -19,8 +19,13 @@ namespace Zek.Extensions
         /// Converts date to string with format yyyy-MM-dd
         /// </summary>
         /// <param name="date"></param>
-        /// <returns>Returns date string (e.x. 1984-07-17).</returns>
+        /// <returns>Returns date string (e.x. 1984-09-17).</returns>
         public static string ToUniversalDateString(this DateTime date) => date.ToString(UniversalDateFormat);
+        /// <summary>
+        /// Converts date to string with format yyyy-MM-dd HH:mm:ss
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns>Returns date string (e.x. 1984-09-17 15:30:00).</returns>
         public static string ToUniversalDateTimeString(this DateTime date) => date.ToString(UniversalDateTimeFormat);
 
 

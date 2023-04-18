@@ -200,7 +200,14 @@
             Converts date to string with format yyyy-MM-dd
             </summary>
             <param name="date"></param>
-            <returns>Returns date string (e.x. 1984-07-17).</returns>
+            <returns>Returns date string (e.x. 1984-09-17).</returns>
+        </member>
+        <member name="M:Zek.Extensions.DateTimeExtensions.ToUniversalDateTimeString(System.DateTime)">
+            <summary>
+            Converts date to string with format yyyy-MM-dd HH:mm:ss
+            </summary>
+            <param name="date"></param>
+            <returns>Returns date string (e.x. 1984-09-17 15:30:00).</returns>
         </member>
         <member name="M:Zek.Extensions.DateTimeExtensions.SubtractMonth(System.DateTime,System.DateTime,System.Boolean)">
             <summary>
@@ -502,14 +509,14 @@
         </member>
         <member name="M:Zek.Extensions.StringExtensions.ToBoolean(System.String)">
             <summary>
-            იღებს Bool-ს ტექსტიდან
+            Parses an bool from a String. Returns false value if input is invalid.
             </summary>
             <param name="str"></param>
             <returns></returns>
         </member>
         <member name="M:Zek.Extensions.StringExtensions.ToByte(System.String,System.Byte)">
             <summary>
-            იღებს Byte-ს ტექსტიდან
+            Parses an byte from a String. Returns default value if input is invalid.
             </summary>
             <param name="str"></param>
             <param name="defaultValue"></param>
@@ -517,7 +524,7 @@
         </member>
         <member name="M:Zek.Extensions.StringExtensions.ToInt16(System.String,System.Int16)">
             <summary>
-            იღებს Int16-ს ტექსტიდან
+            Parses an short from a String. Returns default value if input is invalid.
             </summary>
             <param name="str"></param>
             <param name="defaultValue"></param>
@@ -525,7 +532,7 @@
         </member>
         <member name="M:Zek.Extensions.StringExtensions.ToInt32(System.String,System.Int32)">
             <summary>
-            იღებს Int32-ს ტექსტიდან
+             Parses an integer from a String. Returns default value if input is invalid.
             </summary>
             <param name="str"></param>
             <param name="defaultValue"></param>
@@ -533,7 +540,7 @@
         </member>
         <member name="M:Zek.Extensions.StringExtensions.ToInt64(System.String,System.Int64)">
             <summary>
-            Try parse int 64
+            Parses an long from a String. Returns default value if input is invalid.
             </summary>
             <param name="str"></param>
             <param name="defaultValue"></param>
@@ -541,7 +548,7 @@
         </member>
         <member name="M:Zek.Extensions.StringExtensions.ToUInt64(System.String,System.UInt64)">
             <summary>
-            Try parse ulong from string
+            Parses an ulong from a String. Returns default value if input is invalid.
             </summary>
             <param name="str"></param>
             <param name="defaultValue"></param>
@@ -549,7 +556,7 @@
         </member>
         <member name="M:Zek.Extensions.StringExtensions.ToUInt64Hex(System.String,System.UInt64)">
             <summary>
-            Try parse ulong from hex string
+            Parses an ulong from a Hex String. Returns default value if input is invalid.
             </summary>
             <param name="str"></param>
             <param name="defaultValue"></param>
