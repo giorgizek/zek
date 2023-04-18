@@ -421,7 +421,7 @@ namespace Zek.Extensions
         }
 
         /// <summary>
-        /// იღებს Bool-ს ტექსტიდან
+        /// Parses an bool from a String. Returns false value if input is invalid.
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
@@ -444,7 +444,7 @@ namespace Zek.Extensions
             }
         }
         /// <summary>
-        /// იღებს Byte-ს ტექსტიდან
+        /// Parses an byte from a String. Returns default value if input is invalid.
         /// </summary>
         /// <param name="str"></param>
         /// <param name="defaultValue"></param>
@@ -454,8 +454,9 @@ namespace Zek.Extensions
             //str = str.IfNullEmpty();
             return byte.TryParse(str, out var result) ? result : defaultValue;
         }
+
         /// <summary>
-        /// იღებს Int16-ს ტექსტიდან
+        /// Parses an short from a String. Returns default value if input is invalid.
         /// </summary>
         /// <param name="str"></param>
         /// <param name="defaultValue"></param>
@@ -466,7 +467,7 @@ namespace Zek.Extensions
             return short.TryParse(str, out var result) ? result : defaultValue;
         }
         /// <summary>
-        /// იღებს Int32-ს ტექსტიდან
+        ///  Parses an integer from a String. Returns default value if input is invalid.
         /// </summary>
         /// <param name="str"></param>
         /// <param name="defaultValue"></param>
@@ -478,7 +479,7 @@ namespace Zek.Extensions
         }
 
         /// <summary>
-        /// Try parse int 64
+        /// Parses an long from a String. Returns default value if input is invalid.
         /// </summary>
         /// <param name="str"></param>
         /// <param name="defaultValue"></param>
@@ -490,7 +491,7 @@ namespace Zek.Extensions
         }
 
         /// <summary>
-        /// Try parse ulong from string
+        /// Parses an ulong from a String. Returns default value if input is invalid.
         /// </summary>
         /// <param name="str"></param>
         /// <param name="defaultValue"></param>
@@ -501,7 +502,7 @@ namespace Zek.Extensions
         }
 
         /// <summary>
-        /// Try parse ulong from hex string
+        /// Parses an ulong from a Hex String. Returns default value if input is invalid.
         /// </summary>
         /// <param name="str"></param>
         /// <param name="defaultValue"></param>
