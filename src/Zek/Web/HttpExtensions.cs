@@ -4,10 +4,10 @@ using Newtonsoft.Json.Serialization;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 
 namespace Zek.Web
 {
+
     public static class HttpExtensions
     {
         /// <summary>
@@ -66,7 +66,7 @@ namespace Zek.Web
                     settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
                 var jsonContent = JsonConvert.SerializeObject(content, Formatting.None, settings);
-                request.Content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+                request.Content = new StringContentNoCharset(jsonContent, "application/json");
             }
         }
 
