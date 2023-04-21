@@ -89,24 +89,9 @@ namespace Zek.Extensions
         {
             return str ?? string.Empty;
         }
-        /// <summary>
-        /// იღებს String-ს ტექსტიდან. თუ ტექსტი == null ან "" მაშინ აბრუნებს null
-        /// </summary>
-        /// <param name="str"></param>
-        /// <returns></returns>
-        public static string IfEmptyNull(this string str)
+        public static string NullIfEmpty(this string str)
         {
             return string.IsNullOrEmpty(str) ? null : str;
-        }
-
-        /// <summary>
-        /// იღებს String-ს ტექსტიდან. თუ ტექსტი == null ან "" მაშინ აბრუნებს null
-        /// </summary>
-        /// <param name="str"></param>
-        /// <returns></returns>
-        public static string IfWhiteSpaceNull(this string str)
-        {
-            return string.IsNullOrWhiteSpace(str) ? null : str;
         }
 
 

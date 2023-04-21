@@ -453,20 +453,6 @@
             <param name="str"></param>
             <returns></returns>
         </member>
-        <member name="M:Zek.Extensions.StringExtensions.IfEmptyNull(System.String)">
-            <summary>
-            იღებს String-ს ტექსტიდან. თუ ტექსტი == null ან "" მაშინ აბრუნებს null
-            </summary>
-            <param name="str"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Zek.Extensions.StringExtensions.IfWhiteSpaceNull(System.String)">
-            <summary>
-            იღებს String-ს ტექსტიდან. თუ ტექსტი == null ან "" მაშინ აბრუნებს null
-            </summary>
-            <param name="str"></param>
-            <returns></returns>
-        </member>
         <member name="M:Zek.Extensions.StringExtensions.ToDigitOnly(System.String)">
             <summary>
             Ensures that a string only contains numeric values
