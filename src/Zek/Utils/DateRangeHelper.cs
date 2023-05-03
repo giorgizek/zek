@@ -61,7 +61,6 @@ namespace Zek.Utils
                             break;
                     }
 
-
                     if (@break)
                         break;
                     //if (relation == PeriodRelation.EndInside || relation == PeriodRelation.InsideStartTouching)
