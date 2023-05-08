@@ -7,7 +7,8 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace Zek.Data.Entity
 {
 
-    public class EntityTypeMap<TEntity> where TEntity : class
+    public class EntityTypeMap<TEntity>
+        where TEntity : class
     {
         public EntityTypeMap(ModelBuilder builder)
         {
