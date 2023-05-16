@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Zek.PagedList
 {
+    [Obsolete("Please use PagerList")]
     public class PagerListDTO<T>
     {
         public PagerListDTO(Pager pager, List<T> data)
@@ -15,6 +17,7 @@ namespace Zek.PagedList
         public List<T> Data { get; }
     }
 
+    [Obsolete("Please use PagerList")]
     public class Pager
     {
         public int TotalItemCount { get; set; }

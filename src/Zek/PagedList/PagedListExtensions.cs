@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -74,6 +75,7 @@ namespace Zek.PagedList
         /// <param name="pageSize">The maximum size of any individual subset.</param>
         /// <returns>A subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.</returns>
         /// <seealso cref="PagerListDTO{T}"/>
+        [Obsolete("Please use ToPagedList")]
         public static PagerListDTO<T> ToPagerListDTO<T>(this IQueryable<T> superset, int pageNumber, int pageSize)
         {
             var subset = new List<T>();
@@ -103,6 +105,7 @@ namespace Zek.PagedList
         /// <param name="pageSize">The maximum size of any individual subset.</param>
         /// <returns>A subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.</returns>
         /// <seealso cref="PagerListDTO{T}"/>
+        [Obsolete("Please use ToPagedListAsync")]
         public static async Task<PagerListDTO<T>> ToPagerListDTOAsync<T>(this IQueryable<T> superset, int pageNumber, int pageSize, CancellationToken cancellationToken = default)
         {
             var subset = new List<T>();

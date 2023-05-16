@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace Zek.PagedList
 {
-    public class BasePagedList<T> : IEnumerable<T>
+    public class BasePagedList<T>//: IEnumerable<T>
     {
-        protected readonly List<T> Subset = new();
+        public List<T> Data { get; set; } = new();
 
         /// <summary>
         /// 	Total number of objects contained within the superset.
@@ -33,7 +33,7 @@ namespace Zek.PagedList
         public int PageSize { get; protected set; }
 
 
-
+/*
 
         /// <summary>
         /// 	Returns an enumerator that iterates through the BasePagedList&lt;T&gt;.
@@ -43,15 +43,19 @@ namespace Zek.PagedList
         {
             return Subset.GetEnumerator();
         }
+        
 
-        /// <summary>
-        /// 	Returns an enumerator that iterates through the BasePagedList&lt;T&gt;.
-        /// </summary>
-        /// <returns>A BasePagedList&lt;T&gt;.Enumerator for the BasePagedList&lt;T&gt;.</returns>
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+                /// <summary>
+                /// 	Returns an enumerator that iterates through the BasePagedList&lt;T&gt;.
+                /// </summary>
+                /// <returns>A BasePagedList&lt;T&gt;.Enumerator for the BasePagedList&lt;T&gt;.</returns>
+                IEnumerator IEnumerable.GetEnumerator()
+                {
+                    return GetEnumerator();
+                }
+        
+         
+
 
 
         ///<summary>
@@ -59,11 +63,13 @@ namespace Zek.PagedList
         ///</summary>
         ///<param name = "index">The zero-based index of the element to get.</param>
         public T this[int index] => Subset[index];
+*/
+
 
         /// <summary>
         /// 	Gets the number of elements contained on this page.
         /// </summary>
-        public virtual int Count => Subset.Count;
+        public virtual int Count => Data.Count;
     }
 
     public class PagedList<T> : BasePagedList<T>
@@ -107,7 +113,7 @@ namespace Zek.PagedList
                 ? TotalItemCount
                 : numberOfLastItemOnPage;
 
-            Subset.AddRange(subset);
+            Data.AddRange(subset);
         }
 
 
