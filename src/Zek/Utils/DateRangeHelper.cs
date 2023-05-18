@@ -105,7 +105,7 @@ namespace Zek.Utils
         public static IEnumerable<DateRange> GetFreeSlots(DateTime start, DateTime end, IEnumerable<DateRange> busySlots, int slotDurationMinutes)
         {
             var ranges = GetFreeRanges(start, end, busySlots);
-            var allFreeSlots = ranges.SelectMany(x => DateTimeHelper.SplitDateRangeByMinutes(x.Start, x.End, slotDurationMinutes));
+            //var allFreeSlots = ranges.SelectMany(x => DateTimeHelper.SplitDateRangeByMinutes(x.Start, x.End, slotDurationMinutes));
             //Console.WriteLine();
             //Console.WriteLine("Free slots");
             //foreach (var slot in allFreeSlots)
@@ -113,8 +113,8 @@ namespace Zek.Utils
             //    Console.WriteLine($"{slot.Start:HH:mm} - {slot.End:HH:mm} {(slot.End - slot.Start).TotalMinutes}");
             //}
 
-            var slots = ranges.SelectMany(x => DateTimeHelper.SplitDateRangeByMinutes(x.Start, x.End, slotDurationMinutes).Where(x => x.Start.AddMinutes(slotDurationMinutes) == x.End)
-            //.Where(x => (x.End - x.Start).TotalMinutes == 30)
+            var slots = ranges.SelectMany(x => DateTimeHelper.SplitDateRangeByMinutes(x.Start, x.End, slotDurationMinutes)
+            .Where(x => x.Start.AddMinutes(slotDurationMinutes) == x.End)
             );
             //Console.WriteLine();
             //Console.WriteLine("Free filtered slots");
@@ -124,6 +124,24 @@ namespace Zek.Utils
             //}
 
             return slots;
+        }
+        public static IEnumerable<DateRange> GetFreeSlotsFixedStart(DateTime start, DateTime end, IEnumerable<DateRange> busySlots, int slotDurationMinutes)
+        {
+            var allSlots = DateTimeHelper.SplitDateRangeByMinutes(start, end, slotDurationMinutes)
+                .Where(x => x.Start.AddMinutes(slotDurationMinutes) == x.End);
+
+            //var freeSlots = new List<DateRange>();
+            foreach (var slot in allSlots)
+            {
+                //if not overlap
+                if (!busySlots.Any(x => DateTimeHelper.Overlaps(slot.Start, slot.End, x.Start, x.End)))
+                {
+                    yield return slot;
+                    //freeSlots.Add(slot);
+                }
+            }
+
+            //return freeSlots;
         }
     }
 }
