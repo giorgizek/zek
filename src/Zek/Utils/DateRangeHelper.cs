@@ -130,14 +130,12 @@ namespace Zek.Utils
             var allSlots = DateTimeHelper.SplitDateRangeByMinutes(start, end, slotDurationMinutes)
                 .Where(x => x.Start.AddMinutes(slotDurationMinutes) == x.End);
 
-            //var freeSlots = new List<DateRange>();
             foreach (var slot in allSlots)
             {
                 //if not overlap
                 if (!busySlots.Any(x => DateTimeHelper.Overlaps(slot.Start, slot.End, x.Start, x.End)))
                 {
                     yield return slot;
-                    //freeSlots.Add(slot);
                 }
             }
 
