@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 
 namespace Zek.Utils
 {
@@ -47,17 +44,17 @@ namespace Zek.Utils
         //}
 
 
-        public static string ParseFileName(string folderName)
+        public static string ParseFileName(string fileName)
         {
-            if (string.IsNullOrEmpty(folderName)) return folderName;
+            if (string.IsNullOrEmpty(fileName)) return fileName;
 
             foreach (var c in Path.GetInvalidFileNameChars())
-                folderName = folderName.Replace(c.ToString(), string.Empty);
+                fileName = fileName.Replace(c.ToString(), string.Empty);
 
             //foreach (var c in Path.GetInvalidPathChars())
             //    folderName = folderName.Replace(c.ToString(), string.Empty);
 
-            return folderName;
+            return fileName;
         }
 
 
