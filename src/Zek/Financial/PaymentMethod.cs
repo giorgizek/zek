@@ -10,7 +10,14 @@
 
         Cheque = 4,
 
-        Other = 5
-        //RevenueLoss,
+        PayPal = 5,
+
+        Google = 6,
+
+        Apple = 7,
+
+        Crypto = 8,
+
+        Other = 100
     }
 }
