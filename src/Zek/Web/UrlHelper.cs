@@ -1,17 +1,29 @@
-﻿namespace Zek.Web
+﻿using System;
+
+namespace Zek.Web
 {
     public static class UrlHelper
     {
-        public static string Combine(string baseUri, string relativeUri)
+        public static string Combine(params string[] parts)
         {
-            if (string.IsNullOrEmpty(baseUri))
-                return relativeUri;
-            if (string.IsNullOrEmpty(relativeUri))
-                return baseUri;
+            string result = string.Empty;
+            foreach (string part in parts)
+            {
+                if (string.IsNullOrEmpty(part))
+                    continue;
 
-            //baseUri = baseUri.TrimEnd('/');
-            //relativeUri = relativeUri.TrimStart('/');
-            return $"{baseUri.TrimEnd('/')}/{relativeUri.TrimStart('/')}";
+                result = CombineEnsureSingleSeparator(result, part, '/');
+            }
+
+            return result;
+        }
+
+
+        private static string CombineEnsureSingleSeparator(string a, string b, char separator)
+        {
+            if (string.IsNullOrEmpty(a)) return b;
+            if (string.IsNullOrEmpty(b)) return a;
+            return a.TrimEnd(separator) + separator + b.TrimStart(separator);
         }
     }
 }
