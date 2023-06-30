@@ -85,7 +85,7 @@ namespace Zek.Extensions
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        public static string IfNullEmpty(this string str)
+        public static string EmptyIfNull(this string str)
         {
             return str ?? string.Empty;
         }

@@ -16,6 +16,7 @@ namespace Zek.Web
         string GetUserName();
         DateTime GetExpirationTime();
         IEnumerable<string> GetRoles();
+        string GetIpAddress();
     }
 
     public class TokenBaseService : ITokenBaseService
