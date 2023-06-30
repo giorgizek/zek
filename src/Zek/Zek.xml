@@ -454,7 +454,7 @@
             <param name="processed"></param>
             <returns></returns>
         </member>
-        <member name="M:Zek.Extensions.StringExtensions.IfNullEmpty(System.String)">
+        <member name="M:Zek.Extensions.StringExtensions.EmptyIfNull(System.String)">
             <summary>
             Checks if string is null and return string.Empty otherwise returns string
             </summary>
