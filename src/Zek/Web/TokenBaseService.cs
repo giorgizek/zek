@@ -64,5 +64,11 @@ namespace Zek.Web
         protected IEnumerable<string> FindAll(string type) => ContextAccessor.HttpContext.User.FindAll(type).Select(i => i.Value);
 
         protected string FindFirstValue(string type) => ContextAccessor.HttpContext.User.FindFirstValue(type);
+
+
+        public virtual string GetIpAddress()
+        {
+            return ContextAccessor.HttpContext?.Connection.RemoteIpAddress?.ToString();
+        }
     }
 }
