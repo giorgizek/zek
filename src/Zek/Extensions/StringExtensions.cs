@@ -617,7 +617,7 @@ namespace Zek.Extensions
         }
         public static Guid ToGuid(this string str, string error)
         {
-            str = str.IfNullEmpty();
+            str = str.EmptyIfNull();
 
             if (Guid.TryParse(str, out var result))
                 return result;
@@ -626,7 +626,7 @@ namespace Zek.Extensions
         }
         public static DateTime ToDateTime(this string str, string error)
         {
-            str = str.IfNullEmpty();
+            str = str.EmptyIfNull();
 
             if (DateTime.TryParse(str, out var result))
                 return result;
@@ -638,7 +638,7 @@ namespace Zek.Extensions
 
         public static bool? ToNullableBoolean(this string str)
         {
-            str = str.IfNullEmpty().ToUpperInvariant();
+            str = str.EmptyIfNull().ToUpperInvariant();
             switch (str)
             {
                 case "TRUE":
