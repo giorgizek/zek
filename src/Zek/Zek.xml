@@ -4120,57 +4120,57 @@
             Static constructor of the HttpClientUtility
             </summary>
         </member>
-        <member name="M:Zek.Web.HttpClientUtility.GetAsync``1(System.String,System.Collections.Generic.IDictionary{System.String,System.String},System.Threading.CancellationToken)">
+        <member name="M:Zek.Web.HttpClientUtility.GetAsync``1(System.String,System.Collections.Generic.IDictionary{System.String,System.String},System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Send Http Get to the request uri and get the TResult from response content
             </summary>
         </member>
-        <member name="M:Zek.Web.HttpClientUtility.GetAsync``1(System.Uri,System.Collections.Generic.IDictionary{System.String,System.String},System.Threading.CancellationToken)">
+        <member name="M:Zek.Web.HttpClientUtility.GetAsync``1(System.Uri,System.Collections.Generic.IDictionary{System.String,System.String},System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Send Http Get to the request uri and get the TResult from response content
             </summary>
         </member>
-        <member name="M:Zek.Web.HttpClientUtility.GetAsync(System.Uri,System.Collections.Generic.IDictionary{System.String,System.String},System.Threading.CancellationToken)">
+        <member name="M:Zek.Web.HttpClientUtility.GetAsync(System.Uri,System.Collections.Generic.IDictionary{System.String,System.String},System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Send Http Get to the request uri and get HttpResponseMessage
             </summary>
         </member>
-        <member name="M:Zek.Web.HttpClientUtility.GetBytesAsync(System.Uri,System.Collections.Generic.IDictionary{System.String,System.String},System.Threading.CancellationToken)">
+        <member name="M:Zek.Web.HttpClientUtility.GetBytesAsync(System.Uri,System.Collections.Generic.IDictionary{System.String,System.String},System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Send Http Get to the request uri and get the byte array from response content
             </summary>
         </member>
-        <member name="M:Zek.Web.HttpClientUtility.PostAsBytesAsync``1(System.Uri,System.Collections.Generic.IDictionary{System.String,System.String},System.Byte[],System.Threading.CancellationToken)">
+        <member name="M:Zek.Web.HttpClientUtility.PostAsBytesAsync``1(System.Uri,System.Collections.Generic.IDictionary{System.String,System.String},System.Byte[],System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Send Http Post to request uri and get TResult from response content 
             </summary>
         </member>
-        <member name="M:Zek.Web.HttpClientUtility.PostAsBytesAsync(System.Uri,System.Collections.Generic.IDictionary{System.String,System.String},System.Byte[],System.Threading.CancellationToken)">
+        <member name="M:Zek.Web.HttpClientUtility.PostAsBytesAsync(System.Uri,System.Collections.Generic.IDictionary{System.String,System.String},System.Byte[],System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Send Http Post to request uri and get HttpResponseMessage
             </summary>
         </member>
-        <member name="M:Zek.Web.HttpClientUtility.PostAsJsonAsync(System.String,System.Collections.Generic.IDictionary{System.String,System.String},System.Object,System.Boolean,System.Threading.CancellationToken)">
+        <member name="M:Zek.Web.HttpClientUtility.PostAsJsonAsync(System.String,System.Collections.Generic.IDictionary{System.String,System.String},System.Object,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Send Http Post to request uri and get HttpResponseMessage
             </summary>
         </member>
-        <member name="M:Zek.Web.HttpClientUtility.PostAsJsonAsync(System.Uri,System.Collections.Generic.IDictionary{System.String,System.String},System.Object,System.Boolean,System.Threading.CancellationToken)">
+        <member name="M:Zek.Web.HttpClientUtility.PostAsJsonAsync(System.Uri,System.Collections.Generic.IDictionary{System.String,System.String},System.Object,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Send Http Post to request uri and get HttpResponseMessage
             </summary>
         </member>
-        <member name="M:Zek.Web.HttpClientUtility.DeleteAsync(System.String,System.Collections.Generic.IDictionary{System.String,System.String},System.Threading.CancellationToken)">
+        <member name="M:Zek.Web.HttpClientUtility.DeleteAsync(System.String,System.Collections.Generic.IDictionary{System.String,System.String},System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Send Http Delete to request uri and get HttpResponseMessage
             </summary>
         </member>
-        <member name="M:Zek.Web.HttpClientUtility.DeleteAsync(System.Uri,System.Collections.Generic.IDictionary{System.String,System.String},System.Threading.CancellationToken)">
+        <member name="M:Zek.Web.HttpClientUtility.DeleteAsync(System.Uri,System.Collections.Generic.IDictionary{System.String,System.String},System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Send Http Delete to request uri and get HttpResponseMessage
             </summary>
         </member>
-        <member name="M:Zek.Web.HttpClientUtility.ExecuteActionkWithAutoRetry(System.Func{System.Threading.Tasks.Task{System.Net.Http.HttpResponseMessage}},System.Threading.CancellationToken)">
+        <member name="M:Zek.Web.HttpClientUtility.ExecuteActionkWithAutoRetry(System.Func{System.Threading.Tasks.Task{System.Net.Http.HttpResponseMessage}},System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Execute the action which returns HttpResponseMessage with auto retry
             </summary>

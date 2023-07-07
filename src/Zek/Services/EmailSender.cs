@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Mail;
@@ -8,14 +7,12 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using Zek.Extensions.Collections;
 using Zek.Model.Config;
-using Zek.Model.DTO.Email;
 using Zek.Office;
 
 namespace Zek.Services
 {
     public interface IEmailSender
     {
-        Task SendEmailAsync(string email, string subject, string message);
         Task SendEmailAsync(Email model);
     }
 
@@ -36,20 +33,6 @@ namespace Zek.Services
         public void Config(EmailSenderOptions options)
         {
             Options = options ?? throw new ArgumentNullException(nameof(options));
-        }
-
-        public virtual Task SendEmailAsync(string email, string subject, string message)
-        {
-            var model = new Email
-            {
-                Subject = subject,
-                Body = message,
-                To = new List<EmailAddress>
-                {
-                    new() { Address = email }
-                },
-            };
-            return SendEmailAsync(model);
         }
 
         public virtual async Task SendEmailAsync(Email model)
