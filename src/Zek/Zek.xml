@@ -4135,6 +4135,12 @@
             Send Http Get to the request uri and get HttpResponseMessage
             </summary>
         </member>
+        <member name="M:Zek.Web.HttpClientUtility.GetBytesAsync(System.String,System.Collections.Generic.IDictionary{System.String,System.String},System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Send Http Get to the request uri and get the byte array from response content
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Zek.Web.HttpClientUtility.GetBytesAsync(System.Uri,System.Collections.Generic.IDictionary{System.String,System.String},System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Send Http Get to the request uri and get the byte array from response content
