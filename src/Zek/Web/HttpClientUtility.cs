@@ -80,7 +80,14 @@ namespace Zek.Web
             return response;
         }
 
-
+        /// <summary>
+        /// Send Http Get to the request uri and get the byte array from response content
+        /// </summary>
+        /// <returns></returns>
+        public static Task<byte[]> GetBytesAsync(string requestUri, IDictionary<string, string> headers = default(Dictionary<string, string>), bool checkSuccessStatusCode = true, CancellationToken cancellationToken = default)
+        {
+            return GetBytesAsync(new Uri(requestUri), headers, checkSuccessStatusCode, cancellationToken);
+        }
         /// <summary>
         /// Send Http Get to the request uri and get the byte array from response content
         /// </summary>
