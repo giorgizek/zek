@@ -242,10 +242,10 @@ namespace Zek.Extensions
             return !string.IsNullOrEmpty(str) ? str : defaultText;
         }
 
-        public static bool Contains(this string str, string value, StringComparison comparisonType)
-        {
-            return str.IndexOf(value, comparisonType) != -1;
-        }
+        //public static bool Contains(this string str, string value, StringComparison comparisonType)
+        //{
+        //    return str.IndexOf(value, comparisonType) != -1;
+        //}
 
         public static string Add(this string str, string separator, string part)
         {
