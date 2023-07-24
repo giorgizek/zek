@@ -5,9 +5,9 @@ namespace Zek.OTP
     [Flags]
     public enum OtpStatus
     {
-        Generated = 1,
-        Sent = 2,
-        Success = 4,
-        LockedOut = 8
+        Active = 1,
+        Verified = 2,
+        Expired = 3,
+        TooManyAttempts = 4
     }
 }
