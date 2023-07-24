@@ -22,7 +22,6 @@ namespace Zek.Utils
         public DateTime? ValidTo { get; set; }
     }
 
-
     public static class IdLinkHelper
     {
         public static string Encode(object value, string key)
