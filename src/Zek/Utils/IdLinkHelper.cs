@@ -25,6 +25,49 @@ namespace Zek.Utils
 
     public static class IdLinkHelper
     {
+        public static string Encode(object value, string key)
+        {
+            if (value == null)
+                throw new ArgumentNullException(nameof(value));
+            if (string.IsNullOrEmpty(key))
+                throw new ArgumentNullException(nameof(value));
+
+            var json = JsonConvert.SerializeObject(value, Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return AesHelper.Encrypt(json, key);
+        }
+
+        public static T Decode<T>(string idLink, string key)
+        {
+            if (idLink == null)
+                throw new ArgumentNullException(nameof(idLink));
+
+            byte[] array;
+            try
+            {
+                array = Convert.FromBase64String(idLink);
+            }
+            catch
+            {
+                return default;
+            }
+
+            try
+            {
+                return JsonConvert.DeserializeObject<T>(AesHelper.Decrypt(array, key));
+            }
+            catch
+            {
+                return default;
+            }
+
+        }
+
+
+
+
+
+
+        [Obsolete]
         public static string Encode(IEnumerable<string> values, string key = null, IdLinkMode mode = IdLinkMode.SHA1)
         {
             if (values == null)
@@ -50,6 +93,7 @@ namespace Zek.Utils
             }
         }
 
+        [Obsolete]
         public static string[] Decode(string idLink, string key = null, IdLinkMode mode = IdLinkMode.SHA1)
         {
             if (idLink == null)
@@ -139,6 +183,7 @@ namespace Zek.Utils
         }
 
 
+        [Obsolete]
         public static string EncodeObject(object value, string key = null, IdLinkMode mode = IdLinkMode.SHA1)
         {
             if (value == null)
@@ -163,6 +208,8 @@ namespace Zek.Utils
                     return Convert.ToBase64String(Encoding.UTF8.GetBytes(json));
             }
         }
+
+        [Obsolete]
         public static T DecodeObject<T>(string idLink, string key = null, IdLinkMode mode = IdLinkMode.SHA1)
         {
             if (idLink == null)
