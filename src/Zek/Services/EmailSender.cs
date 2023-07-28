@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using Zek.Extensions.Collections;
@@ -13,7 +14,7 @@ namespace Zek.Services
 {
     public interface IEmailSender
     {
-        Task SendEmailAsync(Email model);
+        Task SendEmailAsync(Email model, CancellationToken cancellationToken = default);
     }
 
     public class EmailSender : IEmailSender
@@ -35,7 +36,7 @@ namespace Zek.Services
             Options = options ?? throw new ArgumentNullException(nameof(options));
         }
 
-        public virtual async Task SendEmailAsync(Email model)
+        public virtual async Task SendEmailAsync(Email model, CancellationToken cancellationToken = default)
         {
             using var client = new SmtpClient();
             if (Options != null)
@@ -71,7 +72,7 @@ namespace Zek.Services
             //    message.Dispose();
             //};
 
-            await client.SendMailAsync(message);
+            await client.SendMailAsync(message, cancellationToken);
         }
         public static MailMessage ToMailMessage(Email model)
         {
