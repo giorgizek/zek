@@ -136,17 +136,17 @@ namespace Zek.Utils
         private const string ExtensionAbbreviationX = "x";
 
 
-        public static bool IsValidPhone(string phone)
+        public static bool IsValidPhone(string phoneNumber)
         {
-            if (string.IsNullOrEmpty(phone))
+            if (string.IsNullOrEmpty(phoneNumber))
                 return false;
 
 
-            phone = phone.Replace("+", string.Empty).TrimEnd();
-            phone = RemoveExtension(phone);
+            phoneNumber = phoneNumber.Replace("+", string.Empty).TrimEnd();
+            phoneNumber = RemoveExtension(phoneNumber);
 
             var digitFound = false;
-            foreach (var c in phone)
+            foreach (var c in phoneNumber)
             {
                 if (char.IsDigit(c))
                 {
@@ -160,7 +160,7 @@ namespace Zek.Utils
                 return false;
             }
 
-            foreach (var c in phone)
+            foreach (var c in phoneNumber)
             {
                 if (!(char.IsDigit(c)
                     || char.IsWhiteSpace(c)
