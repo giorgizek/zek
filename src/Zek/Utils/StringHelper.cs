@@ -139,9 +139,14 @@ namespace Zek.Utils
             return sb.ToString();
         }
 
-        public static string[] Split(string original, char[] separator = null)
+        public static string[] Split(string original, params char[] separator)
         {
             separator ??= new[] { ',' };
+            return original?.Split(separator, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries) ?? Array.Empty<string>();
+        }
+        public static string[] Split(string original, params string[] separator)
+        {
+            separator ??= new[] { "," };
             return original?.Split(separator, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries) ?? Array.Empty<string>();
         }
 
