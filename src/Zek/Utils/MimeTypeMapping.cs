@@ -54,7 +54,7 @@ namespace Zek.Utils
 
 
 
-        private static readonly IDictionary<string, string> Mappings = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+        public static readonly IDictionary<string, string> Mappings = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
             #region Big freaking list of mime types
             // combination of values from Windows 7 Registry and 
