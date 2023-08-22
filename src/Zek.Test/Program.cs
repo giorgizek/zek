@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
-using Novell.Directory.Ldap;
 using Zek.Cryptography;
 using Zek.Extensions;
 using Zek.Extensions.Collections;

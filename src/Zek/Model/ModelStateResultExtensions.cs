@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
-using Zek.Extensions;
-
-namespace Zek.Model
+﻿namespace Zek.Model
 {
     public static class ModelStateResultExtensions
     {

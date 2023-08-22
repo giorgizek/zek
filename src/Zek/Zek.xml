@@ -415,6 +415,11 @@
             <exception cref="T:System.ArgumentNullException">The <paramref name="principal" /> is <c>null</c>.</exception>
             <returns>A collection that including all the roles for the <paramref name="principal" />. If the user has no roles, this method will return a empty collection.</returns>
         </member>
+        <member name="F:Zek.Extensions.Security.Claims.IdentityConstants.ApplicationScheme">
+            <summary>
+            The scheme used to identify application authentication cookies.
+            </summary>
+        </member>
         <member name="M:Zek.Extensions.Sql.SqlExtensions.ToDbValue(System.Object)">
             <summary>
             აკონვერტირებს მნიშვნელობას პარამეტრისთვის გადასაცემ მნიშვნელობად.

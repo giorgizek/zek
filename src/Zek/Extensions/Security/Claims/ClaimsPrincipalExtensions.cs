@@ -1,13 +1,12 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Reflection;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using Zek.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Zek.Extensions.Security.Claims
 {
@@ -17,6 +16,15 @@ namespace Zek.Extensions.Security.Claims
         {
             AuthenticationType = IdentityConstants.ApplicationScheme;//"Identity.Application";
         }
+
+
+        //public static string? FindFirstValue(this ClaimsPrincipal principal, string claimType)
+        //{
+        //    if (principal is null)
+        //        throw new ArgumentNullException(nameof(principal));
+        //    var claim = principal.FindFirst(claimType);
+        //    return claim?.Value;
+        //}
 
 
         //private static readonly string CookiePrefix = "Identity";

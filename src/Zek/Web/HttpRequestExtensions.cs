@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
-using System.Net;
-
-namespace Zek.Web
+﻿namespace Zek.Web
 {
     /*public static class HttpRequestExtensions
     {
