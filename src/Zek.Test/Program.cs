@@ -26,6 +26,9 @@ namespace Zek.Test
     {
         static void Main(string[] args)
         {
+
+           
+
             //var sw = new Stopwatch();
             //sw.Start();
             //for (int i = 0; i < 5000000; i++)
