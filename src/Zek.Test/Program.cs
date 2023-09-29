@@ -22,12 +22,49 @@ using Zek.Utils;
 
 namespace Zek.Test
 {
+    public static class FormulaHelper
+    {
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="numberOfYears">Number of years</param>
+        /// <param name="totalNumberofShares">Sum of all the bought shares</param>
+        /// <param name="nominalPriceOfShare">Nominal value of a share</param>
+        /// <param name="sumOfAllSoldShare">Sum of all the bought shares</param>
+        /// <param name="annualRentalNetIncome">Projected rental net income annually</param>
+        /// <param name="capitalGain">Projected capital appreciation</param>
+        /// <returns></returns>
+        public static decimal Calc(int numberOfYears,
+            decimal totalNumberofShares, decimal nominalPriceOfShare, decimal sumOfAllSoldShare,
+            decimal annualRentalNetIncome, decimal capitalGain
+
+            )
+        {
+            var totalInvestment = totalNumberofShares * nominalPriceOfShare;
+
+            var capitalGain1Year = totalInvestment * capitalGain / 100M;
+
+            var capitalGainXYears = capitalGain1Year * numberOfYears;
+
+            var rentaReturnXYears = annualRentalNetIncome * numberOfYears;
+
+            var roiXYears = capitalGainXYears + rentaReturnXYears;
+
+            var royPercent = roiXYears / totalInvestment * 100;
+
+            var totalInvestmentReturn = rentaReturnXYears + capitalGainXYears / numberOfYears;
+
+            return 0;
+        }
+    }
+
     class Program
     {
         static void Main(string[] args)
         {
 
-           
+            var calc = FormulaHelper.Calc(5,100, 50, 0, 10, 14);
 
             //var sw = new Stopwatch();
             //sw.Start();
@@ -101,7 +138,7 @@ namespace Zek.Test
             }
 
             //var slots = DateRangeHelper.GetFreeSlots(start, end, busySlots, 30);
-            
+
 
             /*Console.WriteLine("Work hours:");
             var ranges = new List<DateRange>()
