@@ -5,6 +5,15 @@ namespace Zek.Utils
 {
     public static class DateTimeHelper
     {
+        public const string UniversalDateFormat = "yyyy-MM-dd";
+        public const string UniversalDateTimeFormat = "yyyy-MM-dd HH:mm:ss";
+        public const string Rfc3339Format = "yyyy-MM-dd'T'HH:mm:ss.fffK";
+
+        //public const string UniversalDateTimeMillisecondFormat = "yyyy-MM-dd HH:mm:ss.fff";
+        public static readonly DateTime MinDbDate = new(1900, 1, 1);
+        public static readonly DateTime MaxDbDate = new(9000, 12, 31);
+
+
         /// <summary>
         /// Add a DateTime and a TimeSpan.
         /// The maximum time is DateTime.MaxTime.  It is not an error if time + timespan > MaxTime.

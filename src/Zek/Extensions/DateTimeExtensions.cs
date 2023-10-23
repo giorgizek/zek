@@ -7,12 +7,17 @@ namespace Zek.Extensions
 {
     public static class DateTimeExtensions
     {
+        [Obsolete("Moved to DateTimeHelper class")]
         public const string UniversalDateFormat = "yyyy-MM-dd";
+        [Obsolete("Moved to DateTimeHelper class")]
         public const string UniversalDateTimeFormat = "yyyy-MM-dd HH:mm:ss";
+        [Obsolete("Moved to DateTimeHelper class")]
         public const string Rfc3339Format = "yyyy-MM-dd'T'HH:mm:ss.fffK";
 
         //public const string UniversalDateTimeMillisecondFormat = "yyyy-MM-dd HH:mm:ss.fff";
+        [Obsolete("Moved to DateTimeHelper class")] 
         public static readonly DateTime MinDbDate = new(1900, 1, 1);
+        [Obsolete("Moved to DateTimeHelper class")]
         public static readonly DateTime MaxDbDate = new(9000, 12, 31);
 
 
