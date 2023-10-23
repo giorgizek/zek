@@ -3363,11 +3363,64 @@
              <param name="result">A new <see cref="T:System.Int32"/> instance from the parsed string.</param>
              <returns>A boolean indicating if the parse was successful.</returns>
         </member>
+        <member name="M:Zek.Utils.DateTimeHelper.Add(System.DateTime,System.TimeSpan)">
+            <summary>
+            Add a DateTime and a TimeSpan.
+            The maximum time is DateTime.MaxTime.  It is not an error if time + timespan > MaxTime.
+            Just return MaxTime.
+            </summary>
+            <param name="time">Initial <see cref="T:System.DateTime"/> value.</param>
+            <param name="timespan"><see cref="T:System.TimeSpan"/> to add.</param>
+            <returns><see cref="T:System.DateTime"/> as the sum of time and timespan.</returns>
+        </member>
+        <member name="M:Zek.Utils.DateTimeHelper.GetMaxValue(System.DateTimeKind)">
+            <summary>
+            Gets the Maximum value for a DateTime specifying kind.
+            </summary>
+            <param name="kind">DateTimeKind to use.</param>
+            <returns>DateTime of specified kind.</returns>
+        </member>
+        <member name="M:Zek.Utils.DateTimeHelper.GetMinValue(System.DateTimeKind)">
+            <summary>
+            Gets the Minimum value for a DateTime specifying kind.
+            </summary>
+            <param name="kind">DateTimeKind to use.</param>
+            <returns>DateTime of specified kind.</returns>
+        </member>
+        <member name="M:Zek.Utils.DateTimeHelper.ToUniversalTime(System.Nullable{System.DateTime})">
+            <summary>
+            Ensures that DataTime is UTC.
+            </summary>
+            <param name="value"><see cref="T:System.DateTime"/>to convert.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Zek.Utils.DateTimeHelper.ToUniversalTime(System.DateTime)">
+            <summary>
+            Ensures that DateTime is UTC.
+            </summary>
+            <param name="value"><see cref="T:System.DateTime"/>to convert.</param>
+            <returns></returns>
+        </member>
         <member name="M:Zek.Utils.DisposableObject.ThrowIfDisposed">
             <summary>
             Throws if this class has been disposed.
             </summary>
         </member>
+        <member name="F:Zek.Utils.EpochTime.UnixEpoch">
+            <summary>
+            DateTime as UTV for UnixEpoch
+            </summary>
+        </member>
+        <member name="M:Zek.Utils.EpochTime.GetIntDate(System.DateTime)">
+            <summary>
+            Per JWT spec:
+            Gets the number of seconds from 1970-01-01T0:0:0Z as measured in UTC until the desired date/time.
+            </summary>
+            <param name="datetime">The DateTime to convert to seconds.</param>
+            <remarks>if dateTimeUtc less than UnixEpoch, return 0</remarks>
+            <returns>the number of seconds since Unix Epoch.</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Zek.Utils.EpochTime.DateTime(System.Int64)" -->
         <member name="M:Zek.Utils.Func.Ka.NumToStr(System.Int64)">
             <summary>
             Converts the specified value to its equivalent string representation.

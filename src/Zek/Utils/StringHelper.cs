@@ -139,6 +139,23 @@ namespace Zek.Utils
             return sb.ToString();
         }
 
+
+        // for old net core
+        //public static string[] Split(string original, params char[] separator)
+        //{
+        //    if (separator == null)
+        //        separator = new[] { ',' };
+
+        //    if (original == null)
+        //        return Array.Empty<string>();
+
+
+        //    var split = from piece in original.Split(separator)
+        //                let trimmed = piece.Trim()
+        //                where !string.IsNullOrEmpty(trimmed)
+        //                select trimmed;
+        //    return split.ToArray();
+        //}
         public static string[] Split(string original, params char[] separator)
         {
             separator ??= new[] { ',' };
@@ -152,7 +169,7 @@ namespace Zek.Utils
 
         public static int[] ToIntArray(string str, char[] separator = null)
         {
-            if (string.IsNullOrEmpty(str))
+            if (str is null)
                 return null;
 
             var split = Split(str, separator);

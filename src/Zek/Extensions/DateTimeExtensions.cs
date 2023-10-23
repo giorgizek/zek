@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 
@@ -43,7 +44,7 @@ namespace Zek.Extensions
             return date.ToString(Rfc3339Format, DateTimeFormatInfo.InvariantInfo);
         }
 
-        public static long ToJavaScriptMilliseconds(this DateTime date) => (long)date.ToUniversalTime().Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds;
+        public static long ToJavaScriptMilliseconds(this DateTime date) => (long)date.ToUniversalTime().Subtract(EpochTime.UnixEpoch).TotalMilliseconds;
 
         public static DateTime GetStartOfSecond(this DateTime date) => new(date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second);
 
