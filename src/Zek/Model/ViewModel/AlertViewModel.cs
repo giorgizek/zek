@@ -2,17 +2,20 @@
 {
     public enum AlertType
     {
-        Info,
+        Primary = 1,
+        Secondary,
         Success,
+        Danger = 4,
         Warning,
-        Danger
+        Info,
+        Light,
+        Dark
     }
     public class AlertViewModel
     {
         public AlertViewModel()
         {
-            _alertType = AlertType.Info;
-            Css = "info";
+            AlertType = AlertType.Info;
         }
         private AlertType _alertType;
         public AlertType AlertType
@@ -23,7 +26,7 @@
                 if (value != _alertType)
                 {
                     _alertType = value;
-                    Css = value.ToString().ToLowerInvariant();
+                    Css = $"alert-{value.ToString().ToLowerInvariant()}";
                 }
             }
         }
