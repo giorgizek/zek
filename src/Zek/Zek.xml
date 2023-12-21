@@ -221,8 +221,8 @@
             <summary>
             აბრუნებს თარიღებს შორის თვეების რაოდენობას
             </summary>
-            <param name="date1"></param>
-            <param name="date2"></param>
+            <param name="endDate"></param>
+            <param name="startDate"></param>
             <param name="round">(დამრგვალებულს: თუ დღეების რაოდენობა 28 ან მეტია მაშინ 1 თვეს კიდე ამატებს).</param>
             <returns></returns>
         </member>

@@ -104,15 +104,15 @@ namespace Zek.Extensions
         /// <summary>
         /// აბრუნებს თარიღებს შორის თვეების რაოდენობას
         /// </summary>
-        /// <param name="date1"></param>
-        /// <param name="date2"></param>
+        /// <param name="endDate"></param>
+        /// <param name="startDate"></param>
         /// <param name="round">(დამრგვალებულს: თუ დღეების რაოდენობა 28 ან მეტია მაშინ 1 თვეს კიდე ამატებს).</param>
         /// <returns></returns>
-        public static int SubtractMonth(this DateTime date1, DateTime date2, bool round = false)
+        public static int SubtractMonth(this DateTime endDate, DateTime startDate, bool round = false)
         {
-            return 12 * (date1.Year - date2.Year) + date1.Month - date2.Month
+            return 12 * (endDate.Year - startDate.Year) + endDate.Month - startDate.Month
                 + (round
-                ? date1.Day - date2.Day >= 27 ? 1 : date2.Day - date1.Day >= 27 ? -1 : 0
+                ? endDate.Day - startDate.Day >= 27 ? 1 : startDate.Day - endDate.Day >= 27 ? -1 : 0
                 : 0);
         }
 
