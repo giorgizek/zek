@@ -13,22 +13,22 @@ namespace Zek.Web
         public static readonly int RETRY_COUNT = 10;
         public static readonly int RETRY_DELAY = 500;
 
-        private static readonly HttpClient сlient;
-        private static readonly JsonSerializerSettings jsonSerializerSettings;
+        private static readonly HttpClient _сlient;
+        private static readonly JsonSerializerSettings _jsonSerializerSettings;
 
         /// <summary>
         /// Static constructor of the HttpClientUtility
         /// </summary>
         static HttpClientUtility()
         {
-            if (сlient == null)
+            if (_сlient == null)
             {
-                сlient = new HttpClient();
+                _сlient = new HttpClient();
             }
 
-            if (jsonSerializerSettings == null)
+            if (_jsonSerializerSettings == null)
             {
-                jsonSerializerSettings = new JsonSerializerSettings
+                _jsonSerializerSettings = new JsonSerializerSettings
                 {
                     NullValueHandling = NullValueHandling.Ignore,
                     MissingMemberHandling = MissingMemberHandling.Ignore,
@@ -55,7 +55,7 @@ namespace Zek.Web
             var responseContent = await response.Content.ReadAsStringAsync(cancellationToken);
 
             // Get result
-            var result = JsonConvert.DeserializeObject<TResult>(responseContent, jsonSerializerSettings);
+            var result = JsonConvert.DeserializeObject<TResult>(responseContent, _jsonSerializerSettings);
             return result;
         }
 
@@ -76,7 +76,7 @@ namespace Zek.Web
             }
 
             // Send request and get response
-            var response = await ExecuteActionkWithAutoRetry(() => сlient.SendAsync(createRequestMessage(), cancellationToken), checkSuccessStatusCode, cancellationToken);
+            var response = await ExecuteActionkWithAutoRetry(() => _сlient.SendAsync(createRequestMessage(), cancellationToken), checkSuccessStatusCode, cancellationToken);
             return response;
         }
 
@@ -112,7 +112,7 @@ namespace Zek.Web
             // Read response
             var responseContent = await response.Content.ReadAsStringAsync(cancellationToken);
 
-            return JsonConvert.DeserializeObject<TResult>(responseContent, jsonSerializerSettings);
+            return JsonConvert.DeserializeObject<TResult>(responseContent, _jsonSerializerSettings);
         }
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace Zek.Web
             };
 
             // Post request
-            var response = await ExecuteActionkWithAutoRetry(() => сlient.SendAsync(createRequestMessage(), cancellationToken), checkSuccessStatusCode, cancellationToken);
+            var response = await ExecuteActionkWithAutoRetry(() => _сlient.SendAsync(createRequestMessage(), cancellationToken), checkSuccessStatusCode, cancellationToken);
             return response;
         }
 
@@ -150,7 +150,7 @@ namespace Zek.Web
             // Read response
             var responseContent = await response.Content.ReadAsStringAsync(cancellationToken);
 
-            return JsonConvert.DeserializeObject<TResult>(responseContent, jsonSerializerSettings);
+            return JsonConvert.DeserializeObject<TResult>(responseContent, _jsonSerializerSettings);
         }
 
        
@@ -183,7 +183,7 @@ namespace Zek.Web
             }
 
             // Post request
-            var response = await ExecuteActionkWithAutoRetry(() => сlient.SendAsync(createRequestMessage(), cancellationToken), checkSuccessStatusCode, cancellationToken);
+            var response = await ExecuteActionkWithAutoRetry(() => _сlient.SendAsync(createRequestMessage(), cancellationToken), checkSuccessStatusCode, cancellationToken);
             return response;
         }
 
@@ -209,7 +209,7 @@ namespace Zek.Web
             };
 
             // Put request
-            var response = await ExecuteActionkWithAutoRetry(() => сlient.SendAsync(createRequestMessage(), cancellationToken), checkSuccessStatusCode, cancellationToken);
+            var response = await ExecuteActionkWithAutoRetry(() => _сlient.SendAsync(createRequestMessage(), cancellationToken), checkSuccessStatusCode, cancellationToken);
             return response;
         }
 
@@ -223,7 +223,7 @@ namespace Zek.Web
 
             var responseContent = await response.Content.ReadAsStringAsync(cancellationToken);
 
-            return JsonConvert.DeserializeObject<TResult>(responseContent, jsonSerializerSettings);
+            return JsonConvert.DeserializeObject<TResult>(responseContent, _jsonSerializerSettings);
         }
 
 
@@ -252,7 +252,7 @@ namespace Zek.Web
             };
 
             // Delete request
-            var response = await ExecuteActionkWithAutoRetry(() => сlient.SendAsync(deleteRequestMessage(), cancellationToken), checkSuccessStatusCode, cancellationToken);
+            var response = await ExecuteActionkWithAutoRetry(() => _сlient.SendAsync(deleteRequestMessage(), cancellationToken), checkSuccessStatusCode, cancellationToken);
             return response;
         }
 
