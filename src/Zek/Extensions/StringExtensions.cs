@@ -659,39 +659,39 @@ namespace Zek.Extensions
         }
         public static byte? ToNullableByte(this string str)
         {
-            return byte.TryParse(str, out var result) ? (byte?)result : null;
+            return byte.TryParse(str, out var result) ? result : null;
         }
         public static short? ToNullableInt16(this string str)
         {
-            return short.TryParse(str, out var result) ? (short?)result : null;
+            return short.TryParse(str, out var result) ? result : null;
         }
         public static int? ToNullableInt32(this string str)
         {
-            return int.TryParse(str, out var result) ? (int?)result : null;
+            return int.TryParse(str, out var result) ? result : null;
         }
         public static long? ToNullableInt64(this string str)
         {
-            return long.TryParse(str, out var result) ? (long?)result : null;
+            return long.TryParse(str, out var result) ? result : null;
         }
         public static float? ToNullableSingle(this string str)
         {
-            return float.TryParse(str, out var result) ? (float?)result : null;
+            return float.TryParse(str, out var result) ? result : null;
         }
         public static double? ToNullableDouble(this string str)
         {
-            return double.TryParse(str, out var result) ? (double?)result : null;
+            return double.TryParse(str, out var result) ? result : null;
         }
         public static decimal? ToNullableDecimal(this string str)
         {
-            return decimal.TryParse(str, out var result) ? (decimal?)result : null;
+            return decimal.TryParse(str, out var result) ? result : null;
         }
         public static Guid? ToNullableGuid(this string str)
         {
-            return Guid.TryParse(str, out var result) ? (Guid?)result : null;
+            return Guid.TryParse(str, out var result) ? result : null;
         }
         public static DateTime? ToNullableDateTime(this string str)
         {
-            return DateTime.TryParse(str, out var result) ? (DateTime?)result : null;
+            return DateTime.TryParse(str, out var result) ? result : null;
         }
 
       
