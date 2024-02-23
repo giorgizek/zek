@@ -2887,43 +2887,38 @@
         <member name="F:Zek.Office.Sensitivity.Confidential">
             <summary>Confidential</summary>
         </member>
-        <member name="P:Zek.PagedList.BasePagedList`1.TotalItemCount">
-            <summary>
-            	Total number of objects contained within the superset.
-            </summary>
-            <value>
-            	Total number of objects contained within the superset.
-            </value>
-        </member>
-        <member name="P:Zek.PagedList.BasePagedList`1.PageNumber">
-            <summary>
-            	One-based index of this subset within the superset.
-            </summary>
-            <value>
-            	One-based index of this subset within the superset.
-            </value>
-        </member>
-        <member name="P:Zek.PagedList.BasePagedList`1.PageSize">
-            <summary>
-            	Maximum size any individual subset.
-            </summary>
-            <value>
-            	Maximum size any individual subset.
-            </value>
-        </member>
-        <member name="P:Zek.PagedList.BasePagedList`1.Count">
-            <summary>
-            	Gets the number of elements contained on this page.
-            </summary>
-        </member>
         <member name="M:Zek.PagedList.PagedList`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Int32,System.Int32,System.Int32)">
             <summary>
-            Initializes a new instance of a type deriving from <see cref = "T:Zek.PagedList.BasePagedList`1" /> and sets properties needed to calculate position and size data on the subset and superset.
+            Initializes a new instance of a type <see cref = "T:Zek.PagedList.PagedList`1" /> and sets properties needed to calculate position and size data on the subset and superset.
             </summary>
             <param name="subset">The single subset this collection should represent.</param>
             <param name = "pageNumber">The one-based index of the subset of objects contained by this instance.</param>
             <param name = "pageSize">The maximum size of any individual subset.</param>
             <param name = "totalItemCount">The size of the superset.</param>
+        </member>
+        <member name="P:Zek.PagedList.PagedList`1.TotalItemCount">
+            <summary>
+            	Total number of objects contained within the superset.
+            </summary>
+            <value>
+            	Total number of objects contained within the superset.
+            </value>
+        </member>
+        <member name="P:Zek.PagedList.PagedList`1.PageNumber">
+            <summary>
+            	One-based index of this subset within the superset.
+            </summary>
+            <value>
+            	One-based index of this subset within the superset.
+            </value>
+        </member>
+        <member name="P:Zek.PagedList.PagedList`1.PageSize">
+            <summary>
+            	Maximum size any individual subset.
+            </summary>
+            <value>
+            	Maximum size any individual subset.
+            </value>
         </member>
         <member name="P:Zek.PagedList.PagedList`1.PageCount">
             <summary>
