@@ -2887,6 +2887,86 @@
         <member name="F:Zek.Office.Sensitivity.Confidential">
             <summary>Confidential</summary>
         </member>
+        <member name="P:Zek.PagedList.IPagedList.PageCount">
+            <summary>
+            Total number of subsets within the superset.
+            </summary>
+            <value>
+            Total number of subsets within the superset.
+            </value>
+        </member>
+        <member name="P:Zek.PagedList.IPagedList.TotalItemCount">
+            <summary>
+            Total number of objects contained within the superset.
+            </summary>
+            <value>
+            Total number of objects contained within the superset.
+            </value>
+        </member>
+        <member name="P:Zek.PagedList.IPagedList.PageNumber">
+            <summary>
+            One-based index of this subset within the superset.
+            </summary>
+            <value>
+            One-based index of this subset within the superset.
+            </value>
+        </member>
+        <member name="P:Zek.PagedList.IPagedList.PageSize">
+            <summary>
+            Maximum size any individual subset.
+            </summary>
+            <value>
+            Maximum size any individual subset.
+            </value>
+        </member>
+        <member name="P:Zek.PagedList.IPagedList.HasPreviousPage">
+            <summary>
+            Returns true if this is NOT the first subset within the superset.
+            </summary>
+            <value>
+            Returns true if this is NOT the first subset within the superset.
+            </value>
+        </member>
+        <member name="P:Zek.PagedList.IPagedList.HasNextPage">
+            <summary>
+            Returns true if this is NOT the last subset within the superset.
+            </summary>
+            <value>
+            Returns true if this is NOT the last subset within the superset.
+            </value>
+        </member>
+        <member name="P:Zek.PagedList.IPagedList.IsFirstPage">
+            <summary>
+            Returns true if this is the first subset within the superset.
+            </summary>
+            <value>
+            Returns true if this is the first subset within the superset.
+            </value>
+        </member>
+        <member name="P:Zek.PagedList.IPagedList.IsLastPage">
+            <summary>
+            Returns true if this is the last subset within the superset.
+            </summary>
+            <value>
+            Returns true if this is the last subset within the superset.
+            </value>
+        </member>
+        <member name="P:Zek.PagedList.IPagedList.FirstItemOnPage">
+            <summary>
+            One-based index of the first item in the paged subset.
+            </summary>
+            <value>
+            One-based index of the first item in the paged subset.
+            </value>
+        </member>
+        <member name="P:Zek.PagedList.IPagedList.LastItemOnPage">
+            <summary>
+            One-based index of the last item in the paged subset.
+            </summary>
+            <value>
+            One-based index of the last item in the paged subset.
+            </value>
+        </member>
         <member name="M:Zek.PagedList.PagedList`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Int32,System.Int32,System.Int32)">
             <summary>
             Initializes a new instance of a type <see cref = "T:Zek.PagedList.PagedList`1" /> and sets properties needed to calculate position and size data on the subset and superset.
