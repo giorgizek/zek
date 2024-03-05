@@ -4,78 +4,10 @@ using System.Collections.Generic;
 
 namespace Zek.PagedList
 {
-    public class BasePagedList<T>//: IEnumerable<T>
-    {
-        public List<T> Data { get; set; } = new();
-
-        /// <summary>
-        /// 	Total number of objects contained within the superset.
-        /// </summary>
-        /// <value>
-        /// 	Total number of objects contained within the superset.
-        /// </value>
-        public int TotalItemCount { get; protected set; }
-
-        /// <summary>
-        /// 	One-based index of this subset within the superset.
-        /// </summary>
-        /// <value>
-        /// 	One-based index of this subset within the superset.
-        /// </value>
-        public int PageNumber { get; protected set; }
-
-        /// <summary>
-        /// 	Maximum size any individual subset.
-        /// </summary>
-        /// <value>
-        /// 	Maximum size any individual subset.
-        /// </value>
-        public int PageSize { get; protected set; }
-
-
-/*
-
-        /// <summary>
-        /// 	Returns an enumerator that iterates through the BasePagedList&lt;T&gt;.
-        /// </summary>
-        /// <returns>A BasePagedList&lt;T&gt;.Enumerator for the BasePagedList&lt;T&gt;.</returns>
-        public IEnumerator<T> GetEnumerator()
-        {
-            return Subset.GetEnumerator();
-        }
-        
-
-                /// <summary>
-                /// 	Returns an enumerator that iterates through the BasePagedList&lt;T&gt;.
-                /// </summary>
-                /// <returns>A BasePagedList&lt;T&gt;.Enumerator for the BasePagedList&lt;T&gt;.</returns>
-                IEnumerator IEnumerable.GetEnumerator()
-                {
-                    return GetEnumerator();
-                }
-        
-         
-
-
-
-        ///<summary>
-        ///	Gets the element at the specified index.
-        ///</summary>
-        ///<param name = "index">The zero-based index of the element to get.</param>
-        public T this[int index] => Subset[index];
-*/
-
-
-        /// <summary>
-        /// 	Gets the number of elements contained on this page.
-        /// </summary>
-        public virtual int Count => Data.Count;
-    }
-
-    public class PagedList<T> : BasePagedList<T>
+    public class PagedList<T> : IPagedList
     {
         /// <summary>
-        /// Initializes a new instance of a type deriving from <see cref = "BasePagedList{T}" /> and sets properties needed to calculate position and size data on the subset and superset.
+        /// Initializes a new instance of a type and sets properties needed to calculate position and size data on the subset and superset.
         /// </summary>
         /// <param name="subset">The single subset this collection should represent.</param>
         /// <param name = "pageNumber">The one-based index of the subset of objects contained by this instance.</param>
@@ -115,6 +47,73 @@ namespace Zek.PagedList
 
             Data.AddRange(subset);
         }
+
+        public List<T> Data { get; set; } = new();
+
+        /// <summary>
+        /// 	Total number of objects contained within the superset.
+        /// </summary>
+        /// <value>
+        /// 	Total number of objects contained within the superset.
+        /// </value>
+        public int TotalItemCount { get; protected set; }
+
+        /// <summary>
+        /// 	One-based index of this subset within the superset.
+        /// </summary>
+        /// <value>
+        /// 	One-based index of this subset within the superset.
+        /// </value>
+        public int PageNumber { get; protected set; }
+
+        /// <summary>
+        /// 	Maximum size any individual subset.
+        /// </summary>
+        /// <value>
+        /// 	Maximum size any individual subset.
+        /// </value>
+        public int PageSize { get; protected set; }
+
+
+        /*
+
+                /// <summary>
+                /// 	Returns an enumerator that iterates through the BasePagedList&lt;T&gt;.
+                /// </summary>
+                /// <returns>A BasePagedList&lt;T&gt;.Enumerator for the BasePagedList&lt;T&gt;.</returns>
+                public IEnumerator<T> GetEnumerator()
+                {
+                    return Subset.GetEnumerator();
+                }
+
+
+                        /// <summary>
+                        /// 	Returns an enumerator that iterates through the BasePagedList&lt;T&gt;.
+                        /// </summary>
+                        /// <returns>A BasePagedList&lt;T&gt;.Enumerator for the BasePagedList&lt;T&gt;.</returns>
+                        IEnumerator IEnumerable.GetEnumerator()
+                        {
+                            return GetEnumerator();
+                        }
+
+
+
+
+
+                ///<summary>
+                ///	Gets the element at the specified index.
+                ///</summary>
+                ///<param name = "index">The zero-based index of the element to get.</param>
+                public T this[int index] => Subset[index];
+        */
+
+
+        /// <summary>
+        /// 	Gets the number of elements contained on this page.
+        /// </summary>
+        public virtual int Count => Data.Count;
+
+
 
 
         /// <summary>
@@ -172,6 +171,6 @@ namespace Zek.PagedList
         /// 	One-based index of the last item in the paged subset.
         /// </value>
         public int LastItemOnPage { get; protected set; }
-
+        
     }
 }
