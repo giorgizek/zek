@@ -82,9 +82,4 @@
         /// </value>
         int LastItemOnPage { get; }
     }
-
-
-    public interface IPagedList<out T> : IPagedList
-    {
-    }
 }
