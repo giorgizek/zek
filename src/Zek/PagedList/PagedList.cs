@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Zek.PagedList
 {
-    public class PagedList<T> : IPagedList<T>
+    public class PagedList<T> : IPagedList
     {
         /// <summary>
         /// Initializes a new instance of a type <see cref = "PagedList{T}" /> and sets properties needed to calculate position and size data on the subset and superset.
