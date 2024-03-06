@@ -35,7 +35,7 @@ namespace Zek.Extensions.Caching.Memory
             cache.RemoveIfBypass(key, bypass);
             if (!cache.TryGetValue(key, out var result))
             {
-                var entry = cache.CreateEntry(key);
+                using ICacheEntry entry = cache.CreateEntry(key);
 
                 //entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(durationInSeconds);
                 entry.AbsoluteExpiration = DateTimeOffset.Now + TimeSpan.FromSeconds(durationInSeconds);
@@ -43,12 +43,8 @@ namespace Zek.Extensions.Caching.Memory
                 if (slidingInSeconds != null)
                     entry.SlidingExpiration = TimeSpan.FromSeconds(slidingInSeconds.Value);
 
-                result = await factory(entry);
-                entry.SetValue(result);
-                // need to manually call dispose instead of having a using
-                // in case the factory passed in throws, in which case we
-                // do not want to add the entry to the cache
-                entry.Dispose();
+                result = await factory(entry).ConfigureAwait(false);
+                entry.Value = result;
             }
 
             return (TItem)result;
