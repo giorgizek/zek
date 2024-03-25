@@ -560,82 +560,6 @@ namespace Zek.Extensions
         }
 
 
-        public static bool ToBoolean(this string str, string error)
-        {
-            var result = ToNullableBoolean(str);
-            if (result.HasValue) return result.Value;
-            throw new FormatException(error);
-        }
-        public static byte ToByte(this string str, string error)
-        {
-            if (byte.TryParse(str, out var result))
-                return result;
-
-            throw new FormatException(error);
-        }
-        public static short ToInt16(this string str, string error)
-        {
-            if (short.TryParse(str, out var result))
-                return result;
-
-            throw new FormatException(error);
-        }
-        public static int ToInt32(this string str, string error)
-        {
-            if (int.TryParse(str, out var result))
-                return result;
-
-            throw new FormatException(error);
-        }
-        public static long ToInt64(this string str, string error)
-        {
-            if (long.TryParse(str, out var result))
-                return result;
-
-            throw new FormatException(error);
-        }
-        public static float ToSingle(this string str, string error)
-        {
-            if (float.TryParse(str, out var result))
-                return result;
-
-            throw new FormatException(error);
-        }
-        public static double ToDouble(this string str, string error)
-        {
-            if (double.TryParse(str, out var result))
-                return result;
-
-            throw new FormatException(error);
-        }
-        public static decimal ToDecimal(this string str, string error)
-        {
-            if (decimal.TryParse(str, out var result))
-                return result;
-
-            throw new FormatException(error);
-        }
-        public static Guid ToGuid(this string str, string error)
-        {
-            str = str.EmptyIfNull();
-
-            if (Guid.TryParse(str, out var result))
-                return result;
-
-            throw new FormatException(error);
-        }
-        public static DateTime ToDateTime(this string str, string error)
-        {
-            str = str.EmptyIfNull();
-
-            if (DateTime.TryParse(str, out var result))
-                return result;
-
-            throw new FormatException(error);
-        }
-
-
-
         public static bool? ToNullableBoolean(this string str)
         {
             str = str.EmptyIfNull().ToUpperInvariant();
@@ -657,6 +581,7 @@ namespace Zek.Extensions
             }
             return null;
         }
+     
         public static byte? ToNullableByte(this string str)
         {
             return byte.TryParse(str, out var result) ? result : null;
