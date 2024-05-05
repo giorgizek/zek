@@ -1,27 +1,18 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Zek.Data.Entity;
+using Zek.Domain.Entities;
 
 namespace Zek.Model.Base
 {
-    public class PocoModel : PocoModel<int> { }
-    public class PocoModel<TId> : CreateModel<TId>
-    {
-        public int? ModifierId { get; set; }
-        public DateTime? ModifiedDate { get; set; }
-    }
-
-
-
     public class PocoModelMap<TEntity> : PocoModelMap<TEntity, int>
-        where TEntity : PocoModel
+        where TEntity : PocoEntity
     {
         public PocoModelMap(ModelBuilder builder, bool? valueGeneratedOnAdd = null) : base(builder, valueGeneratedOnAdd)
         {
         }
     }
     public class PocoModelMap<TEntity, TId> : CreateModelMap<TEntity, TId>
-        where TEntity : PocoModel<TId>
+        where TEntity : PocoEntity<TId>
     {
         public PocoModelMap(ModelBuilder builder, bool? valueGeneratedOnAdd = null) : base(builder, valueGeneratedOnAdd)
         {

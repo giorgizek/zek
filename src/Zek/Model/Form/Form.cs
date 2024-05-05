@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Zek.Domain.Entities;
 using Zek.Model.Base;
 
 namespace Zek.Model.Form
 {
-    public class Form : PocoModel
+    public class Form : PocoEntity
     {
         public string Name { get; set; }
         public List<Field> Fields { get; set; }

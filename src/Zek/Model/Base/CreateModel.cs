@@ -1,30 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
 using Zek.Data.Entity;
+using Zek.Domain.Entities;
 
 namespace Zek.Model.Base
 {
-    public class CreateModel : CreateModel<int> { }
-    public class CreateModel<TId>
-    {
-        public TId Id { get; set; }
-
-        public bool IsDeleted { get; set; }
-
-        public int CreatorId { get; set; }
-        public DateTime CreateDate { get; set; }
-    }
-
-
     public class CreateModelMap<TEntity> : CreateModelMap<TEntity, int>
-        where TEntity : CreateModel
+        where TEntity : CreateEntity
     {
         public CreateModelMap(ModelBuilder builder, bool? valueGeneratedOnAdd = null) : base(builder, valueGeneratedOnAdd)
         {
         }
     }
     public class CreateModelMap<TEntity, TId> : EntityTypeMap<TEntity>
-        where TEntity : CreateModel<TId>
+        where TEntity : CreateEntity<TId>
     {
         public CreateModelMap(ModelBuilder builder, bool? valueGeneratedOnAdd = null) : base(builder)
         {

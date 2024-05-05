@@ -1,12 +1,13 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Zek.Data.Entity;
+using Zek.Domain.Entities;
 using Zek.Model.Base;
 using Zek.Model.DTO.Ecomm;
 
 namespace Zek.Model.Accounting
 {
-    public class Ecomm : PocoModel<int>
+    public class Ecomm : PocoEntity<int>
     {
         public int MerchantId { get; set; }
         public string TransactionId { get; set; }

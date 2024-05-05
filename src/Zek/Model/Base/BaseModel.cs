@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Zek.Domain.Entities;
 using Zek.Model.Identity;
 
 namespace Zek.Model.Base
@@ -7,7 +8,7 @@ namespace Zek.Model.Base
     {
     }
 
-    public class BaseModel<TId, TUser> : PocoModel<TId>
+    public class BaseModel<TId, TUser> : PocoEntity<TId>
         where TUser : User
     {
         public TUser Creator { get; set; }

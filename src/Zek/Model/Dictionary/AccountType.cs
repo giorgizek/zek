@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Zek.Domain.Entities;
 using Zek.Model.Base;
 
 namespace Zek.Model.Dictionary
 {
-    public class AccountType : PocoModel<int>
+    public class AccountType : PocoEntity<int>
     {
         public List<AccountType> Children { get; set; }
 

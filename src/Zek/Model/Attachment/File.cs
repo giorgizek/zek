@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Zek.Domain.Entities;
 using Zek.Model.Base;
 
 namespace Zek.Model.Attachment
@@ -31,7 +32,7 @@ namespace Zek.Model.Attachment
     //}
 
 
-    public class FilePoco : PocoModel
+    public class FilePoco : PocoEntity
     {
         public int ApplicationId { get; set; }
         /// <summary>

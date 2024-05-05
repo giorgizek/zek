@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Zek.Domain.Entities;
 using Zek.Model.Base;
 
 namespace Zek.Model.Dictionary
 {
-    public class TransactionType : PocoModel<int>
+    public class TransactionType : PocoEntity<int>
     {
         //public string Code { get; set; }
     }

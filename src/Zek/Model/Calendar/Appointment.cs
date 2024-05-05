@@ -1,11 +1,12 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Zek.Data.Entity;
+using Zek.Domain.Entities;
 using Zek.Model.Base;
 
 namespace Zek.Model.Calendar
 {
-    public class Appointment : PocoModel
+    public class Appointment : PocoEntity
     {
         public int Type { get; set; }
         public DateTime StartDate { get; set; }

@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Zek.Data.Entity;
+using Zek.Domain.Entities;
 using Zek.Model.Base;
 using Zek.Model.Contact;
 
@@ -18,7 +19,7 @@ namespace Zek.Model.Person
     {
     }
 
-    public class PersonPoco : PocoModel
+    public class PersonPoco : PocoEntity
     {
         public bool IsLegal { get; set; }
 
