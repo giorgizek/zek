@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 
 namespace Zek.PagedList
@@ -131,5 +132,13 @@ namespace Zek.PagedList
         /// </value>
         public int LastItemOnPage { get; protected set; }
 
+
+        /// <summary>
+		/// 	Gets the number of elements contained on this page.
+		/// </summary>
+		public int Count
+        {
+            get { return Data.Count; }
+        }
     }
 }

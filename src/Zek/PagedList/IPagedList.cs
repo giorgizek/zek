@@ -18,6 +18,11 @@
         /// </value>
         int TotalItemCount { get; }
 
+        	///<summary>
+		/// Gets the number of elements contained on this page.
+		///</summary>
+		int Count { get; }
+
         /// <summary>
         /// One-based index of this subset within the superset.
         /// </summary>
