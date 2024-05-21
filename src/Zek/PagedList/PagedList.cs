@@ -1,10 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Zek.PagedList
 {
-    public class PagedList<T> : IPagedList
+    public class PagedList<T> : IPagedList<T>
     {
         /// <summary>
         /// Initializes a new instance of a type <see cref = "PagedList{T}" /> and sets properties needed to calculate position and size data on the subset and superset.
@@ -45,11 +44,13 @@ namespace Zek.PagedList
                 ? TotalItemCount
                 : numberOfLastItemOnPage;
 
-            Data.AddRange(subset);
+            _items.AddRange(subset);
+            Count = _items.Count;
         }
 
 
-        public List<T> Data { get; set; } = new();
+        [Obsolete("Use items instead")]
+        public List<T> Data => _items;
 
         /// <summary>
         /// 	Total number of objects contained within the superset.
@@ -136,9 +137,10 @@ namespace Zek.PagedList
         /// <summary>
 		/// 	Gets the number of elements contained on this page.
 		/// </summary>
-		public int Count
-        {
-            get { return Data.Count; }
-        }
+		public int Count { get; protected set; }
+
+
+        private List<T> _items = [];
+        public IEnumerable<T> Items { get => _items; }
     }
 }

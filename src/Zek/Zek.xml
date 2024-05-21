@@ -2887,6 +2887,21 @@
         <member name="F:Zek.Office.Sensitivity.Confidential">
             <summary>Confidential</summary>
         </member>
+        <member name="T:Zek.PagedList.IPagedList`1">
+            <summary>
+            Represents a subset of a collection of objects that can be individually accessed by index and containing metadata about the superset collection of objects this subset was created from.
+            </summary>
+            <remarks>
+            Represents a subset of a collection of objects that can be individually accessed by index and containing metadata about the superset collection of objects this subset was created from.
+            </remarks>
+            <typeparam name="T">The type of object the collection should contain.</typeparam>
+            <seealso cref="T:System.Collections.Generic.IEnumerable`1"/>
+        </member>
+        <member name="P:Zek.PagedList.IPagedList`1.Count">
+            <summary>
+             Gets the number of elements contained on this page.
+            </summary>
+        </member>
         <member name="P:Zek.PagedList.IPagedList.PageCount">
             <summary>
             Total number of subsets within the superset.
@@ -2902,11 +2917,6 @@
             <value>
             Total number of objects contained within the superset.
             </value>
-        </member>
-        <member name="P:Zek.PagedList.IPagedList.Count">
-            <summary>
-             Gets the number of elements contained on this page.
-            </summary>
         </member>
         <member name="P:Zek.PagedList.IPagedList.PageNumber">
             <summary>
