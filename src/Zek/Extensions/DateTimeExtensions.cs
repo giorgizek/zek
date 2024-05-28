@@ -112,7 +112,11 @@ namespace Zek.Extensions
         {
             return 12 * (endDate.Year - startDate.Year) + endDate.Month - startDate.Month
                 + (round
-                ? endDate.Day - startDate.Day >= 27 ? 1 : startDate.Day - endDate.Day >= 27 ? -1 : 0
+                ? endDate.Day - startDate.Day >= 27
+                    ? 1
+                    : startDate.Day - endDate.Day >= 27
+                        ? -1
+                        : 0
                 : 0);
         }
 
