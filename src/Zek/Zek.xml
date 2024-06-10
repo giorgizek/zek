@@ -3095,6 +3095,7 @@
             <param name="superset">The collection of objects to be divided into subsets. If the collection implements <see cref="T:System.Linq.IQueryable`1"/>, it will be treated as such.</param>
             <param name="pageNumber">The one-based index of the subset of objects to be contained by this instance.</param>
             <param name="pageSize">The maximum size of any individual subset.</param>
+            <param name="cancellationToken"></param>
             <returns>A subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.</returns>
             <seealso cref="T:Zek.PagedList.PagedList`1"/>
         </member>
@@ -3117,6 +3118,7 @@
             <param name="superset">The collection of objects to be divided into subsets. If the collection implements <see cref="T:System.Linq.IQueryable`1"/>, it will be treated as such.</param>
             <param name="pageNumber">The one-based index of the subset of objects to be contained by this instance.</param>
             <param name="pageSize">The maximum size of any individual subset.</param>
+            <param name="cancellationToken"></param>
             <returns>A subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.</returns>
             <seealso cref="T:Zek.PagedList.PagerListDTO`1"/>
         </member>
