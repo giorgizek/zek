@@ -1,4 +1,4 @@
-﻿namespace Zek.Accounting
+﻿namespace Zek.Domain.Enums
 {
     /// <summary>
     /// Represents a return status

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -7,12 +6,12 @@ namespace Zek.Data.Repository
 {
     public class UnitOfWork : IUnitOfWork
     {
-        protected readonly IDbContext Context;
+        protected readonly IDbContext Db;
         //private Hashtable _repositories;
 
         public UnitOfWork(IDbContext context)
         {
-            Context = context;
+            Db = context;
         }
 
         public UnitOfWork()
@@ -21,12 +20,12 @@ namespace Zek.Data.Repository
 
         public void Save()
         {
-            Context.SaveChanges();
+            Db.SaveChanges();
         }
 
         public Task<int> SaveAsync(CancellationToken cancellationToken = default)
         {
-            return Context.SaveChangesAsync(cancellationToken);
+            return Db.SaveChangesAsync(cancellationToken);
         }
 
         //todo public ICollection<ValidationResult> Commit()
@@ -77,7 +76,7 @@ namespace Zek.Data.Repository
             {
                 if (disposing)
                 {
-                    Context?.Dispose();
+                    Db?.Dispose();
                 }
             }
             _disposed = true;

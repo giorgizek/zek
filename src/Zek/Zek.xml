@@ -4,104 +4,44 @@
         <name>Zek</name>
     </assembly>
     <members>
-        <member name="T:Zek.Accounting.OrderStatus">
+        <member name="T:Zek.Contracts.FilterBaseDto">
             <summary>
-            Represents an order status enumeration
+            Filter Base DTO
             </summary>
         </member>
-        <member name="F:Zek.Accounting.OrderStatus.Pending">
+        <member name="M:Zek.Contracts.FilterBaseDto.#ctor">
             <summary>
-            Pending
+            Constructor FilterDTO
             </summary>
         </member>
-        <member name="F:Zek.Accounting.OrderStatus.Processing">
+        <member name="P:Zek.Contracts.FilterBaseDto.Page">
             <summary>
-            Processing
+            Page number
             </summary>
         </member>
-        <member name="F:Zek.Accounting.OrderStatus.Completed">
+        <member name="P:Zek.Contracts.FilterBaseDto.PageSize">
             <summary>
-            Complete
+            Page size
             </summary>
         </member>
-        <member name="F:Zek.Accounting.OrderStatus.Canceled">
+        <member name="P:Zek.Contracts.FilterBaseDto.Sort">
             <summary>
-            Cancelled
+            Sort column name
             </summary>
         </member>
-        <member name="T:Zek.Accounting.PaymentStatus">
+        <member name="P:Zek.Contracts.FilterBaseDto.Asc">
             <summary>
-            Represents a payment status enumeration
+            Asc = null or true, Desc = false
             </summary>
         </member>
-        <member name="F:Zek.Accounting.PaymentStatus.Pending">
+        <member name="P:Zek.Contracts.FilterBaseDto.MaxPageSize">
             <summary>
-            Pending
+            Max page size
             </summary>
         </member>
-        <member name="F:Zek.Accounting.PaymentStatus.Authorized">
+        <member name="P:Zek.Contracts.FilterBaseDto.QuickSearch">
             <summary>
-            Authorized
-            </summary>
-        </member>
-        <member name="F:Zek.Accounting.PaymentStatus.Paid">
-            <summary>
-            Paid
-            </summary>
-        </member>
-        <member name="F:Zek.Accounting.PaymentStatus.PartiallyRefunded">
-            <summary>
-            Partially Refunded
-            </summary>
-        </member>
-        <member name="F:Zek.Accounting.PaymentStatus.Refunded">
-            <summary>
-            Refunded
-            </summary>
-        </member>
-        <member name="F:Zek.Accounting.PaymentStatus.Voided">
-            <summary>
-            Voided
-            </summary>
-        </member>
-        <member name="T:Zek.Accounting.ReturnRequestStatus">
-            <summary>
-            Represents a return status
-            </summary>
-        </member>
-        <member name="F:Zek.Accounting.ReturnRequestStatus.Pending">
-            <summary>
-            Pending
-            </summary>
-        </member>
-        <member name="F:Zek.Accounting.ReturnRequestStatus.Received">
-            <summary>
-            Received
-            </summary>
-        </member>
-        <member name="F:Zek.Accounting.ReturnRequestStatus.ReturnAuthorized">
-            <summary>
-            Return authorized
-            </summary>
-        </member>
-        <member name="F:Zek.Accounting.ReturnRequestStatus.ItemsRepaired">
-            <summary>
-            Item(s) repaired
-            </summary>
-        </member>
-        <member name="F:Zek.Accounting.ReturnRequestStatus.ItemsRefunded">
-            <summary>
-            Item(s) refunded
-            </summary>
-        </member>
-        <member name="F:Zek.Accounting.ReturnRequestStatus.RequestRejected">
-            <summary>
-            Request rejected
-            </summary>
-        </member>
-        <member name="F:Zek.Accounting.ReturnRequestStatus.Cancelled">
-            <summary>
-            Cancelled
+            Quick Search Field
             </summary>
         </member>
         <member name="T:Zek.Cryptography.Crc32">
@@ -132,6 +72,106 @@
             <typeparam name="TValue"></typeparam>
             <param name="dr"></param>
             <returns></returns>
+        </member>
+        <member name="T:Zek.Domain.Enums.OrderStatus">
+            <summary>
+            Represents an order status enumeration
+            </summary>
+        </member>
+        <member name="F:Zek.Domain.Enums.OrderStatus.Pending">
+            <summary>
+            Pending
+            </summary>
+        </member>
+        <member name="F:Zek.Domain.Enums.OrderStatus.Processing">
+            <summary>
+            Processing
+            </summary>
+        </member>
+        <member name="F:Zek.Domain.Enums.OrderStatus.Completed">
+            <summary>
+            Complete
+            </summary>
+        </member>
+        <member name="F:Zek.Domain.Enums.OrderStatus.Canceled">
+            <summary>
+            Cancelled
+            </summary>
+        </member>
+        <member name="T:Zek.Domain.Enums.PaymentStatus">
+            <summary>
+            Represents a payment status enumeration
+            </summary>
+        </member>
+        <member name="F:Zek.Domain.Enums.PaymentStatus.Pending">
+            <summary>
+            Pending
+            </summary>
+        </member>
+        <member name="F:Zek.Domain.Enums.PaymentStatus.Authorized">
+            <summary>
+            Authorized
+            </summary>
+        </member>
+        <member name="F:Zek.Domain.Enums.PaymentStatus.Paid">
+            <summary>
+            Paid
+            </summary>
+        </member>
+        <member name="F:Zek.Domain.Enums.PaymentStatus.PartiallyRefunded">
+            <summary>
+            Partially Refunded
+            </summary>
+        </member>
+        <member name="F:Zek.Domain.Enums.PaymentStatus.Refunded">
+            <summary>
+            Refunded
+            </summary>
+        </member>
+        <member name="F:Zek.Domain.Enums.PaymentStatus.Voided">
+            <summary>
+            Voided
+            </summary>
+        </member>
+        <member name="T:Zek.Domain.Enums.ReturnRequestStatus">
+            <summary>
+            Represents a return status
+            </summary>
+        </member>
+        <member name="F:Zek.Domain.Enums.ReturnRequestStatus.Pending">
+            <summary>
+            Pending
+            </summary>
+        </member>
+        <member name="F:Zek.Domain.Enums.ReturnRequestStatus.Received">
+            <summary>
+            Received
+            </summary>
+        </member>
+        <member name="F:Zek.Domain.Enums.ReturnRequestStatus.ReturnAuthorized">
+            <summary>
+            Return authorized
+            </summary>
+        </member>
+        <member name="F:Zek.Domain.Enums.ReturnRequestStatus.ItemsRepaired">
+            <summary>
+            Item(s) repaired
+            </summary>
+        </member>
+        <member name="F:Zek.Domain.Enums.ReturnRequestStatus.ItemsRefunded">
+            <summary>
+            Item(s) refunded
+            </summary>
+        </member>
+        <member name="F:Zek.Domain.Enums.ReturnRequestStatus.RequestRejected">
+            <summary>
+            Request rejected
+            </summary>
+        </member>
+        <member name="F:Zek.Domain.Enums.ReturnRequestStatus.Cancelled">
+            <summary>
+            Cancelled
+            </summary>
         </member>
         <member name="M:Zek.Extensions.Collections.DictionaryExtensions.RemoveWhere``2(System.Collections.Generic.Dictionary{``0,``1},Zek.Extensions.Collections.DictionaryExtensions.Predicate{``0,``1})">
             <summary>
@@ -2122,46 +2162,6 @@
         <member name="P:Zek.Model.DTO.EditBaseDTO`1.IsDeleted">
             <summary>
             Set is deleted if entity is deleted
-            </summary>
-        </member>
-        <member name="T:Zek.Model.DTO.FilterBaseDTO">
-            <summary>
-            Filter Base DTO
-            </summary>
-        </member>
-        <member name="M:Zek.Model.DTO.FilterBaseDTO.#ctor">
-            <summary>
-            Constructor FilterDTO
-            </summary>
-        </member>
-        <member name="P:Zek.Model.DTO.FilterBaseDTO.Page">
-            <summary>
-            Page number
-            </summary>
-        </member>
-        <member name="P:Zek.Model.DTO.FilterBaseDTO.PageSize">
-            <summary>
-            Page size
-            </summary>
-        </member>
-        <member name="P:Zek.Model.DTO.FilterBaseDTO.Sort">
-            <summary>
-            Sort column name
-            </summary>
-        </member>
-        <member name="P:Zek.Model.DTO.FilterBaseDTO.Asc">
-            <summary>
-            Asc = null or true, Desc = false
-            </summary>
-        </member>
-        <member name="P:Zek.Model.DTO.FilterBaseDTO.MaxPageSize">
-            <summary>
-            Max page size
-            </summary>
-        </member>
-        <member name="P:Zek.Model.DTO.FilterBaseDTO.QuickSearch">
-            <summary>
-            Quick Search Field
             </summary>
         </member>
         <member name="T:Zek.Model.Form.FieldBase">

@@ -1,4 +1,4 @@
-﻿namespace Zek.Financial
+﻿namespace Zek.Domain.Enums
 {
     public enum PaymentMethod
     {

@@ -1,19 +1,18 @@
-﻿namespace Zek.Model.DTO
+﻿namespace Zek.Contracts
 {
     /// <summary>
     /// Filter Base DTO
     /// </summary>
-    public class FilterBaseDTO
+    public class FilterBaseDto
     {
         /// <summary>
         /// Constructor FilterDTO
         /// </summary>
-        public FilterBaseDTO()
+        public FilterBaseDto()
         {
             Page = 1;
             PageSize = 10;
         }
-
 
         private int _page;
         /// <summary>
