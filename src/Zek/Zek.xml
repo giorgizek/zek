@@ -3517,7 +3517,13 @@
             <remarks>if dateTimeUtc less than UnixEpoch, return 0</remarks>
             <returns>the number of seconds since Unix Epoch.</returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Zek.Utils.EpochTime.DateTime(System.Int64)" -->
+        <member name="M:Zek.Utils.EpochTime.DateTime(System.Int64)">
+            <summary>
+            Creates a DateTime from epoch time.
+            </summary>
+            <param name="secondsSinceUnixEpoch">Number of seconds.</param>
+            <returns>The DateTime in UTC.</returns>
+        </member>
         <member name="M:Zek.Utils.Func.Ka.NumToStr(System.Int64)">
             <summary>
             Converts the specified value to its equivalent string representation.

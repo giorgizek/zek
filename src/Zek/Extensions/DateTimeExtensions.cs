@@ -1,24 +1,24 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using Zek.Utils;
 
 namespace Zek.Extensions
 {
     public static class DateTimeExtensions
     {
         [Obsolete("Moved to DateTimeHelper class")]
-        public const string UniversalDateFormat = "yyyy-MM-dd";
+        public const string UniversalDateFormat = DateTimeHelper.UniversalDateFormat;
         [Obsolete("Moved to DateTimeHelper class")]
-        public const string UniversalDateTimeFormat = "yyyy-MM-dd HH:mm:ss";
+        public const string UniversalDateTimeFormat = DateTimeHelper.UniversalDateTimeFormat;
         [Obsolete("Moved to DateTimeHelper class")]
-        public const string Rfc3339Format = "yyyy-MM-dd'T'HH:mm:ss.fffK";
+        public const string Rfc3339Format = DateTimeHelper.Rfc3339Format;
 
         //public const string UniversalDateTimeMillisecondFormat = "yyyy-MM-dd HH:mm:ss.fff";
-        [Obsolete("Moved to DateTimeHelper class")] 
-        public static readonly DateTime MinDbDate = new(1900, 1, 1);
         [Obsolete("Moved to DateTimeHelper class")]
-        public static readonly DateTime MaxDbDate = new(9000, 12, 31);
+        public static readonly DateTime MinDbDate = DateTimeHelper.MinDbDate;
+        [Obsolete("Moved to DateTimeHelper class")]
+        public static readonly DateTime MaxDbDate = DateTimeHelper.MaxDbDate;
 
 
         /// <summary>
@@ -26,13 +26,13 @@ namespace Zek.Extensions
         /// </summary>
         /// <param name="date"></param>
         /// <returns>Returns date string (e.x. 1984-09-17).</returns>
-        public static string ToUniversalDateString(this DateTime date) => date.ToString(UniversalDateFormat);
+        public static string ToUniversalDateString(this DateTime date) => date.ToString(DateTimeHelper.UniversalDateFormat);
         /// <summary>
         /// Converts date to string with format yyyy-MM-dd HH:mm:ss
         /// </summary>
         /// <param name="date"></param>
         /// <returns>Returns date string (e.x. 1984-09-17 15:30:00).</returns>
-        public static string ToUniversalDateTimeString(this DateTime date) => date.ToString(UniversalDateTimeFormat);
+        public static string ToUniversalDateTimeString(this DateTime date) => date.ToString(DateTimeHelper.UniversalDateTimeFormat);
 
 
         public static string ToRfc3339String(this DateTime? date)
@@ -46,7 +46,7 @@ namespace Zek.Extensions
             {
                 date = date.ToUniversalTime();
             }
-            return date.ToString(Rfc3339Format, DateTimeFormatInfo.InvariantInfo);
+            return date.ToString(DateTimeHelper.Rfc3339Format, DateTimeFormatInfo.InvariantInfo);
         }
 
         public static long ToJavaScriptMilliseconds(this DateTime date) => (long)date.ToUniversalTime().Subtract(EpochTime.UnixEpoch).TotalMilliseconds;

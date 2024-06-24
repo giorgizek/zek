@@ -48,7 +48,7 @@ namespace Zek.Services
             var result = await response.Content.ReadFromJsonAsync<ReCaptchaVerifyResponseDTO>(new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true,
-                IgnoreNullValues = true,
+                DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull
             });
 
             return result;

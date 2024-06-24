@@ -4,8 +4,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
+using Zek.Contracts;
 using Zek.Model.Config;
-using Zek.Model.DTO;
 
 namespace Zek.Services
 {

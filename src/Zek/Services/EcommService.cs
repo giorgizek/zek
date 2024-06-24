@@ -106,7 +106,7 @@ namespace Zek.Services
                 response.EnsureSuccessStatusCode();
                 return await response.Content.ReadAsStringAsync();
             }
-            catch (Exception e)
+            catch// (Exception e)
             {
                 throw;
             }

@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Zek.Model.DTO
+namespace Zek.Contracts
 {
-    [Obsolete]
     public interface IApiResponse
     {
         bool Success { get; set; }
         Dictionary<string, List<string>> Errors { get; set; }
     }
 
-    [Obsolete]
     public class ApiResponse : IApiResponse
     {
         public bool Success { get; set; }
@@ -84,13 +82,12 @@ namespace Zek.Model.DTO
     }
 
 
-    [Obsolete]
+
     public interface IApiResponse<T> : IApiResponse
     {
         public T Value { get; set; }
     }
 
-    [Obsolete]
     public class ApiResponse<T> : ApiResponse, IApiResponse<T>
     {
         public ApiResponse() { }

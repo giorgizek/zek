@@ -35,7 +35,7 @@ namespace Zek.Utils
 
 
 
-        // <summary>
+        /// <summary>
         /// Creates a DateTime from epoch time.
         /// </summary>
         /// <param name="secondsSinceUnixEpoch">Number of seconds.</param>

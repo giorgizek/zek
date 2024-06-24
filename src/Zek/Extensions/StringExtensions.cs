@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
+using Zek.Utils;
 
 namespace Zek.Extensions
 {
@@ -556,7 +557,7 @@ namespace Zek.Extensions
         {
             defaultValue ??= DateTime.MinValue;
 
-            return DateTime.TryParseExact(str, DateTimeExtensions.UniversalDateTimeFormat, null, DateTimeStyles.None, out var result) ? result : defaultValue.Value;
+            return DateTime.TryParseExact(str, DateTimeHelper.UniversalDateTimeFormat, null, DateTimeStyles.None, out var result) ? result : defaultValue.Value;
         }
 
 

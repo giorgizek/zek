@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using Zek.Model.DTO;
+using Zek.Contracts;
 
 namespace Zek.Web
 {
