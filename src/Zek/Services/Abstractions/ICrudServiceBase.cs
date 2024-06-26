@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Zek.Contracts;
 using Zek.PagedList;
@@ -10,7 +11,7 @@ namespace Zek.Services.Abstractions
     {
     }
     public interface ICrudServiceBase<TId, TFilter, TListItem, TItem>
-        : ICrudServiceBase<TId, TFilter, TListItem, TItem, IApiResponse, IApiResponse>
+        : ICrudServiceBase<TId, TFilter, TListItem, TItem, IApiResponse<TId?>, IApiResponse<TId>>
     {
     }
 
