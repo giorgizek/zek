@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
@@ -70,6 +71,20 @@ namespace Zek.Extensions
                 return c;
             else
                 return char.ToUpperInvariant(c);
+        }
+        public static string? TryToUpper(this string str)
+        {
+            if (string.IsNullOrEmpty(str))
+                return str;
+
+            return str.ToUpper();
+        }
+        public static string? TryToLower(this string str)
+        {
+            if (string.IsNullOrEmpty(str))
+                return str;
+
+            return str.ToLower();
         }
 
         /*private static bool IsEnglishLetter(this char c)

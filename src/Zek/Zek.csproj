@@ -8,7 +8,7 @@
 		<Company>Zek</Company>
 		<RepositoryUrl>https://github.com/giorgizek/zek</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<VersionPrefix>8.0.19</VersionPrefix>
+		<VersionPrefix>8.0.20</VersionPrefix>
 		<PackageId>Zek.Utils</PackageId>
 		<Copyright>2023</Copyright>
 		<PackageReleaseNotes>Use this library to help you</PackageReleaseNotes>
@@ -47,12 +47,12 @@
 
 	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
-		<PackageReference Include="Microsoft.AspNetCore.Authorization" Version="8.0.6" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.6" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.6" />
+		<PackageReference Include="Microsoft.AspNetCore.Authorization" Version="8.0.7" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.7" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.7" />
 		<PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="8.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.6.2" />
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.6.3" />
 	</ItemGroup>
 
 
