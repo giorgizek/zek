@@ -134,7 +134,8 @@ namespace Zek.Utils
                 if (value != null)
                     sb.Append(value + separator);
 
-            sb.Remove(sb.Length - separator.Length, separator.Length);
+            if (sb.Length >= separator.Length)
+                sb.Remove(sb.Length - separator.Length, separator.Length);
 
             return sb.ToString();
         }
