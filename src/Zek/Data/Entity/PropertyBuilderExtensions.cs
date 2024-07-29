@@ -17,9 +17,8 @@ namespace Zek.Data.Entity
 
         public static PropertyBuilder<TProperty> HasColumnTypeIpAddress<TProperty>([NotNull] this PropertyBuilder<TProperty> propertyBuilder) => propertyBuilder.HasMaxLength(46);
         public static PropertyBuilder<TProperty> HasColumnTypePhoneNumber<TProperty>([NotNull] this PropertyBuilder<TProperty> propertyBuilder) => propertyBuilder.HasMaxLength(50);
-
+        public static PropertyBuilder<TProperty> HasColumnTypeEmail<TProperty>([NotNull] this PropertyBuilder<TProperty> propertyBuilder) => propertyBuilder.HasMaxLength(320);
         public static PropertyBuilder<TProperty> HasColumnTypeCreditCard<TProperty>([NotNull] this PropertyBuilder<TProperty> propertyBuilder) => propertyBuilder.HasMaxLength(25);
-
         public static PropertyBuilder<TProperty> HasColumnTypeTemperature<TProperty>([NotNull] this PropertyBuilder<TProperty> propertyBuilder) => propertyBuilder.HasPrecision(4, 1);
         public static PropertyBuilder<TProperty> HasColumnTypeWeight<TProperty>([NotNull] this PropertyBuilder<TProperty> propertyBuilder) => propertyBuilder.HasPrecision(4, 1);
     }

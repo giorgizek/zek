@@ -48,10 +48,6 @@ namespace Zek.PagedList
             Count = _items.Count;
         }
 
-
-        [Obsolete("Use items instead")]
-        public List<T> Data => _items;
-
         /// <summary>
         /// 	Total number of objects contained within the superset.
         /// </summary>

@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-namespace Zek.Utils
+﻿namespace Zek.Utils
 {
     public static class ArrayHelper
     {
