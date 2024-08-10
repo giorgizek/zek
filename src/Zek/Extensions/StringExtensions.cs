@@ -1,6 +1,4 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Globalization;
 using System.Text;
 using Zek.Utils;
@@ -50,27 +48,13 @@ namespace Zek.Extensions
             var result = new StringBuilder();
             foreach (var c in str)
             {
-                //if (IsGeorgianhLetter(c))
-                //    result.Append(c);
-                //else
+                if (IsGeorgianLetter(c))
+                    result.Append(c);
+                else
                     result.Append(char.ToUpperInvariant(c));
             }
 
             return result.ToString();
-        }
-        private static char InternalToUpper(char c)
-        {
-            if (IsGeorgianLetter(c))
-                return c;
-            else
-                return char.ToUpper(c);
-        }
-        private static char InternalToUpperInvariant(char c)
-        {
-            if (IsGeorgianLetter(c))
-                return c;
-            else
-                return char.ToUpperInvariant(c);
         }
         public static string? TryToUpper(this string str)
         {
@@ -308,6 +292,10 @@ namespace Zek.Extensions
         }
 
 
+        public static string NormalizeName(this string key)
+        {
+            return key?.Normalize().SafeToUpperInvariant();
+        }
         public static string NormalizeKey(this string key)
         {
             return key?.Normalize().ToUpperInvariant();
