@@ -22,7 +22,6 @@ namespace Zek.Utils
             return sb.ToString();
         }
 
-
         public static string Replace(string str, string[] from, string[] to)
         {
             if (string.IsNullOrEmpty(str) || from == null || from.Length == 0 || to == null || to.Length == 0)
@@ -159,13 +158,13 @@ namespace Zek.Utils
         //}
         public static string[] Split(string original, params char[] separator)
         {
-            separator ??= new[] { ',' };
-            return original?.Split(separator, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries) ?? Array.Empty<string>();
+            separator ??= [','];
+            return original?.Split(separator, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries) ?? [];
         }
         public static string[] Split(string original, params string[] separator)
         {
-            separator ??= new[] { "," };
-            return original?.Split(separator, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries) ?? Array.Empty<string>();
+            separator ??= [","];
+            return original?.Split(separator, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries) ?? [];
         }
 
         public static int[] ToIntArray(string str, char[] separator = null)
@@ -182,7 +181,8 @@ namespace Zek.Utils
                     list.Add(num);
                 }
             }
-            return list.ToArray();
+            return [.. list];
         }
+
     }
 }

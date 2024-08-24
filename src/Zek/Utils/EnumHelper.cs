@@ -9,6 +9,25 @@ namespace Zek.Utils
 {
     public static class EnumHelper
     {
+        public static T[] ToEnumArray<T>(string str, char[] separator = null)
+        where T : Enum
+        {
+            if (str is null)
+                return null;
+
+            var split = StringHelper.Split(str, separator);
+            var list = new List<T>();
+            foreach (var s in split)
+            {
+                if (int.TryParse(s, out var num))
+                {
+                    list.Add((T)(object)num);
+                }
+            }
+            return [.. list];
+        }
+
+
 
         public static Dictionary<TEnum, string> GetDisplayDictionary<TEnum>()
         {
@@ -104,7 +123,7 @@ namespace Zek.Utils
                     lock (Lock)
                     {
                         if (_cache == null)
-                            _cache = new Dictionary<Type, HashSet<long>>();
+                            _cache = [];
                     }
                 }
 
@@ -112,7 +131,7 @@ namespace Zek.Utils
                 {
                     lock (Lock)
                     {
-                        hash = new HashSet<long>();
+                        hash = [];
                         foreach (var enumValue in Enum.GetValues(enumType))
                         {
                             hash.Add(Convert.ToInt64(enumValue));

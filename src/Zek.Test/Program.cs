@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
 using Zek.Cryptography;
+using Zek.Domain.Enums;
 using Zek.Extensions;
 using Zek.Extensions.Collections;
 using Zek.Model;
@@ -22,6 +23,9 @@ using Zek.Utils;
 
 namespace Zek.Test
 {
+
+
+
     public static class FormulaHelper
     {
 
@@ -64,7 +68,9 @@ namespace Zek.Test
         static void Main(string[] args)
         {
 
-            var calc = FormulaHelper.Calc(5,100, 50, 0, 10, 14);
+
+
+            var calc = FormulaHelper.Calc(5, 100, 50, 0, 10, 14);
 
             //var sw = new Stopwatch();
             //sw.Start();
