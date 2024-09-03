@@ -3,11 +3,13 @@
     public class FileDto<TId, TContent>
     {
         public TId Id { get; set; }
+        public string Key { get; set; }
         public string FileName { get; set; }
         public long? FileSize { get; set; }
         public string Extension { get; set; }
         public string MediaType { get; set; }
         public TContent Content { get; set; }
+        public string Hash { get; set; }
         public bool? IsDeleted { get; set; }
     }
 
