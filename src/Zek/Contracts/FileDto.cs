@@ -1,4 +1,6 @@
-﻿namespace Zek.Contracts
+﻿using System;
+
+namespace Zek.Contracts
 {
     public class FileDto<TId, TContent>
     {
@@ -10,6 +12,7 @@
         public string MediaType { get; set; }
         public TContent Content { get; set; }
         public string Hash { get; set; }
+        public DateTime? CreateDate { get; set; }
         public bool? IsDeleted { get; set; }
     }
 
