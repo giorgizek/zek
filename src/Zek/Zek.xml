@@ -4216,6 +4216,70 @@
              <param name="result">A new <see cref="T:System.Int32"/> instance from the parsed string.</param>
              <returns>A boolean indicating if the parse was successful.</returns>
         </member>
+        <member name="F:Zek.Utils.ShortInt64.Empty">
+            <summary>
+            A read-only instance of the ShortInt64 struct whose value is guaranteed to be all zeroes i.e. equivalent
+            to 0.
+            </summary>
+        </member>
+        <member name="M:Zek.Utils.ShortInt64.op_Implicit(System.String)~Zek.Utils.ShortInt64">
+            <summary>
+            Implicitly converts the string to a ShortInt64.
+            </summary>
+        </member>
+        <member name="M:Zek.Utils.ShortInt64.op_Implicit(System.Int64)~Zek.Utils.ShortInt64">
+            <summary>
+            Implicitly converts the <see cref="T:System.Int64"/> to a ShortInt64.
+            </summary>
+        </member>
+        <member name="M:Zek.Utils.ShortInt64.TryParse(System.String,Zek.Utils.ShortInt64@)">
+            <summary>
+            Tries to parse the value as a <see cref="T:Zek.Utils.ShortInt64"/> or <see cref="T:System.Int64"/> string, and outputs an actual <see cref="T:Zek.Utils.ShortInt64"/> instance.
+            
+            <para>The difference between TryParse and TryDecode:</para>
+            <list type="number">
+                <item>
+                    <term><see cref="M:Zek.Utils.ShortInt64.TryParse(System.String,Zek.Utils.ShortInt64@)"/></term>
+                    <description>Tries to parse as a <see cref="T:Zek.Utils.ShortInt64"/> before attempting parsing as a <see cref="T:System.Int64"/>, outputs the actual <see cref="T:Zek.Utils.ShortInt64"/> instance - this method.</description>
+                </item>
+                <item>
+                    <term><see cref="M:Zek.Utils.ShortInt64.TryParse(System.String,System.Int64@)"/></term>
+                    <description>Tries to parse as a <see cref="T:Zek.Utils.ShortInt64"/> before attempting parsing as a <see cref="T:System.Int64"/>, outputs the underlying <see cref="T:System.Int64"/>.</description>
+                </item>
+                <item>
+                    <term><see cref="M:Zek.Utils.ShortInt64.TryDecode(System.String,System.Int64@)"/></term>
+                    <description>Tries to parse as a <see cref="T:Zek.Utils.ShortInt64"/> only, but outputs the result as a <see cref="T:System.Int64"/>.</description>
+                </item>
+            </list>
+            </summary>
+            <param name="input">The ShortInt64 encoded string or string representation of a int.</param>
+            <param name="result">A new <see cref="T:Zek.Utils.ShortInt64"/> instance from the parsed string.</param>
+            <returns>A boolean indicating if the parse was successful.</returns>
+        </member>
+        <member name="M:Zek.Utils.ShortInt64.TryParse(System.String,System.Int64@)">
+             <summary>
+             Tries to parse the value as a <see cref="T:Zek.Utils.ShortInt64"/> or <see cref="T:System.Int64"/> string, and outputs the underlying <see cref="T:System.Int64"/> value.
+            
+             <para>The difference between TryParse and TryDecode:</para>
+             <list type="number">
+                 <item>
+                     <term><see cref="M:Zek.Utils.ShortInt64.TryParse(System.String,Zek.Utils.ShortInt64@)"/></term>
+                     <description>Tries to parse as a <see cref="T:Zek.Utils.ShortInt64"/> before attempting parsing as a <see cref="T:System.Int64"/>, outputs the actual <see cref="T:Zek.Utils.ShortInt64"/> instance.</description>
+                 </item>
+                 <item>
+                     <term><see cref="M:Zek.Utils.ShortInt64.TryParse(System.String,System.Int64@)"/></term>
+                     <description>Tries to parse as a <see cref="T:Zek.Utils.ShortInt64"/> before attempting parsing as a <see cref="T:System.Int64"/>, outputs the underlying <see cref="T:System.Int64"/> - this method.</description>
+                 </item>
+                 <item>
+                     <term><see cref="M:Zek.Utils.ShortInt64.TryDecode(System.String,System.Int64@)"/></term>
+                     <description>Tries to parse as a <see cref="T:Zek.Utils.ShortInt64"/> only, but outputs the result as a <see cref="T:System.Int64"/>.</description>
+                 </item>
+             </list>
+             </summary>
+             <param name="input">The ShortInt64 encoded string or string representation of a int.</param>
+             <param name="result">A new <see cref="T:System.Int32"/> instance from the parsed string.</param>
+             <returns>A boolean indicating if the parse was successful.</returns>
+        </member>
         <member name="M:Zek.Utils.StringHelper.FindCount(System.String,System.String)">
             <summary>
             Finds char array count from text.

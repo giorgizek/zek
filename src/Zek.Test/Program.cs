@@ -1,24 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Reflection.PortableExecutable;
-using System.Security.Cryptography.Xml;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.Extensions.Options;
-using Newtonsoft.Json.Linq;
-using Zek.Cryptography;
-using Zek.Domain.Enums;
-using Zek.Extensions;
-using Zek.Extensions.Collections;
-using Zek.Model;
-using Zek.Model.Config;
-using Zek.Model.DTO.Email;
-using Zek.Services;
 using Zek.Utils;
 
 namespace Zek.Test
@@ -68,7 +49,29 @@ namespace Zek.Test
         static void Main(string[] args)
         {
 
+            //var rand = RandomHelper.GetRandom().Next(100000, 999999999);
+            var rand = 99000000;
+            Console.WriteLine(rand);
 
+
+
+            var shortInt32 = new ShortInt32(rand);
+            Console.WriteLine("ShortInt32: " + shortInt32.ToString());
+
+            var encoded = UrlEncoder.Encode(shortInt32.ToString());
+          
+            Console.WriteLine(encoded);
+
+            var decoded = UrlEncoder.Decode(encoded);
+            Console.WriteLine("decoded:" + decoded);
+
+            var decodedInt32 = new ShortInt32(decoded);
+            Console.WriteLine("ShortInt32: " + decodedInt32.ToString());
+
+            Console.WriteLine(decodedInt32.Int32Value);
+
+            Console.ReadKey();
+            return;
 
             var calc = FormulaHelper.Calc(5, 100, 50, 0, 10, 14);
 
