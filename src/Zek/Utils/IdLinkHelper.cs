@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Newtonsoft.Json;
 using Zek.Cryptography;
+using Zek.Extensions;
 // ReSharper disable InconsistentNaming
 
 namespace Zek.Utils
@@ -140,7 +141,7 @@ namespace Zek.Utils
                 //    break;
 
                 case IdLinkMode.SHA1:
-                    values = Encoding.UTF8.GetString(array).Split(new[] { "||" }, StringSplitOptions.None);
+                    values = Encoding.UTF8.GetString(array).Split(["||"], StringSplitOptions.None);
                     if (values.Length == 1)
                         return null;
 

@@ -50,7 +50,7 @@ namespace Zek.Test
         {
 
             //var rand = RandomHelper.GetRandom().Next(100000, 999999999);
-            var rand = 99000000;
+            var rand = 209;
             Console.WriteLine(rand);
 
 

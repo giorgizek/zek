@@ -82,12 +82,12 @@ namespace Zek.Services
             using var httpClient = new HttpClient();
             //result.Content = await httpClient.GetStringAsync(url);
 
-            var content = new FormUrlEncodedContent(new[]
-            {
+            var content = new FormUrlEncodedContent(
+            [
                 new KeyValuePair<string, string>("src", merchantId),
                 new KeyValuePair<string, string>("dst", ParseMobile(number)),
                 new KeyValuePair<string, string>("txt", message)
-            });
+            ]);
 
             var response = await httpClient.PostAsync(url, content);
             result.Value = await response.Content.ReadAsStringAsync();
