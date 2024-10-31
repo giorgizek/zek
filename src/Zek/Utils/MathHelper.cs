@@ -29,6 +29,19 @@ namespace Zek.Utils
         }
 
 
+        /// <summary>
+        /// Returns value between min and max. if out of range returns min/max
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
+        /// <returns></returns>
+        public static decimal Clamp(decimal value, decimal min, decimal max)
+        {
+            return Math.Max(min, Math.Min(max, value));
+        }
+
+
 
         /// <summary>
         /// Converts the specified value to its equivalent string representation.

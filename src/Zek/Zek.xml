@@ -3575,6 +3575,15 @@
             <param name="secondList"></param>
             <returns>აბრუნებს მხოლოდ უნიკალურ ჩანაწერებს.</returns>
         </member>
+        <member name="M:Zek.Utils.MathHelper.Clamp(System.Decimal,System.Decimal,System.Decimal)">
+            <summary>
+            Returns value between min and max. if out of range returns min/max
+            </summary>
+            <param name="value"></param>
+            <param name="min"></param>
+            <param name="max"></param>
+            <returns></returns>
+        </member>
         <member name="M:Zek.Utils.MathHelper.NumToStr(System.Decimal,System.Int32)">
             <summary>
             Converts the specified value to its equivalent string representation.
