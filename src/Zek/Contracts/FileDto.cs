@@ -14,6 +14,7 @@ namespace Zek.Contracts
         public string Hash { get; set; }
         public DateTime? CreateDate { get; set; }
         public bool? IsDeleted { get; set; }
+        public string Url { get; set; }
     }
 
     public class FileDto<TId> : FileDto<TId, byte[]>
