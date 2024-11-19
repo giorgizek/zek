@@ -110,11 +110,9 @@ namespace Zek.Extensions.Security.Claims
 
         public static bool IsInAnyRole(this ClaimsPrincipal principal, params string[] roles)
         {
-            if (principal == null)
-            {
-                throw new ArgumentNullException(nameof(principal));
-            }
-            return roles != null && roles.Any(principal.IsInRole);
+            return principal == null
+                ? throw new ArgumentNullException(nameof(principal))
+                : roles != null && roles.Any(principal.IsInRole);
         }
 
         public static DateTime? GetExpirationTime(this ClaimsPrincipal principal)
@@ -156,6 +154,8 @@ namespace Zek.Extensions.Security.Claims
             return true;
         }
 
-        private static string[] GetRoles(AuthorizeAttribute attr) => attr.Roles?.Length > 0 ? attr.Roles.Split(',') : null;
+        private static string[] GetRoles(AuthorizeAttribute attr) => attr.Roles?.Length > 0
+            ? attr.Roles.Split(',')
+            : null;
     }
 }

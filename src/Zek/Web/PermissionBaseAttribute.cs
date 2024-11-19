@@ -30,7 +30,7 @@ namespace Zek.Web
         }
 
 
-        private static readonly string[] EmptyArray = Array.Empty<string>();
+        private static readonly string[] EmptyArray = [];
 
         /// <summary>
         /// List of claim types in token
