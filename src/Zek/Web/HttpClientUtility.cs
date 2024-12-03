@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 
 namespace Zek.Web
 {
+
     public static class HttpClientUtility
     {
         public static readonly int RETRY_COUNT = 10;
         public static readonly int RETRY_DELAY = 500;
 
+        private static readonly InsecureHttpClientHandler handler;
         private static readonly HttpClient _сlient;
         private static readonly JsonSerializerSettings _jsonSerializerSettings;
 
@@ -23,7 +25,8 @@ namespace Zek.Web
         {
             if (_сlient == null)
             {
-                _сlient = new HttpClient();
+                handler = new InsecureHttpClientHandler();
+                _сlient = new HttpClient(handler);
             }
 
             if (_jsonSerializerSettings == null)
