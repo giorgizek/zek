@@ -16,13 +16,11 @@ namespace Zek.Linq
                 return source;
             }
 
-            switch (whereOperator)
+            return whereOperator switch
             {
-                case WhereOperator.In:
-                    return source.In(selector, value1);
-            }
-
-            return source;
+                WhereOperator.In => source.In(selector, value1),
+                _ => source,
+            };
         }
         public static IQueryable<TSource> Filter<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> selector, WhereOperator whereOperator, TKey[] value1, TKey[] value2 = null, bool filterIfDefault = false)
         {
@@ -83,43 +81,21 @@ namespace Zek.Linq
                 return source;
             }
 
-            switch (whereOperator)
+            return whereOperator switch
             {
-                case WhereOperator.Equals:
-                    return source.Equal(selector, value1);
-
-                case WhereOperator.NotEquals:
-                    return source.NotEqual(selector, value1);
-
-                case WhereOperator.GreaterThan:
-                    return source.GreaterThan(selector, value1);
-
-                case WhereOperator.GreaterThanOrEquals:
-                    return source.GreaterThanOrEqual(selector, value1);
-
-                case WhereOperator.LessThan:
-                    return source.LessThan(selector, value1);
-
-                case WhereOperator.LessThanOrEquals:
-                    return source.LessThanOrEqual(selector, value1);
-
-                case WhereOperator.Between:
-                    return source.Between(selector, value1, value2);
-
-                case WhereOperator.Contains:
-                    return source.Contains(selector, value1);
-
-                case WhereOperator.NotContains:
-                    return source.NotContains(selector, value1);
-
-                case WhereOperator.Begins:
-                    return source.Begins(selector, value1);
-
-                case WhereOperator.Ends:
-                    return source.Ends(selector, value1);
-            }
-
-            return source;
+                WhereOperator.Equals => source.Equal(selector, value1),
+                WhereOperator.NotEquals => source.NotEqual(selector, value1),
+                WhereOperator.GreaterThan => source.GreaterThan(selector, value1),
+                WhereOperator.GreaterThanOrEquals => source.GreaterThanOrEqual(selector, value1),
+                WhereOperator.LessThan => source.LessThan(selector, value1),
+                WhereOperator.LessThanOrEquals => source.LessThanOrEqual(selector, value1),
+                WhereOperator.Between => source.Between(selector, value1, value2),
+                WhereOperator.Contains => source.Contains(selector, value1),
+                WhereOperator.NotContains => source.NotContains(selector, value1),
+                WhereOperator.Begins => source.Begins(selector, value1),
+                WhereOperator.Ends => source.Ends(selector, value1),
+                _ => source,
+            };
         }
 
 
