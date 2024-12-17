@@ -44,6 +44,16 @@
             Quick Search Field
             </summary>
         </member>
+        <member name="P:Zek.Contracts.LoginTokenDto`1.AccessToken">
+            <summary>
+            Access Token Expiration: Access tokens should have a short lifespan (e.g., 15 minutes to 1 hour).
+            </summary>
+        </member>
+        <member name="P:Zek.Contracts.LoginTokenDto`1.RefreshToken">
+            <summary>
+            Refresh Token Expiration: Refresh tokens should have a longer lifespan, such as 1 week, 1 month, or more.
+            </summary>
+        </member>
         <member name="T:Zek.Cryptography.Crc32">
             <summary>
             Implements a 32-bit CRC hash algorithm compatible with Zip etc.

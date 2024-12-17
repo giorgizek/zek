@@ -25,14 +25,10 @@ namespace Zek.Utils
 
         private static IEnumerable<TSource> InternalSelectTree<TSource, TKey>(IEnumerable<TSource> source, Func<TSource, TKey> keySelector, Func<TSource, TKey> parentKeySelector, Func<TSource, ICollection<TSource>> childrenSelector, TKey key = default)
         {
-            if (source == null)
-                throw new ArgumentNullException(nameof(source));
-            if (keySelector == null)
-                throw new ArgumentNullException(nameof(keySelector));
-            if (parentKeySelector == null)
-                throw new ArgumentNullException(nameof(parentKeySelector));
-            if (childrenSelector == null)
-                throw new ArgumentNullException(nameof(parentKeySelector));
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(keySelector);
+            ArgumentNullException.ThrowIfNull(parentKeySelector);
+            ArgumentNullException.ThrowIfNull(childrenSelector);
             if (keySelector == parentKeySelector)
                 throw new ArgumentException("keySelector equals parentKeySelector");
 

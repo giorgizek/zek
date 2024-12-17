@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Zek.Utils;
 
 namespace Zek.Model.DTO.Identity
 {
