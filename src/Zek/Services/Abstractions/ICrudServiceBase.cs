@@ -6,7 +6,7 @@ using Zek.PagedList;
 namespace Zek.Services.Abstractions
 {
     public interface ICrudServiceBase<TFilter, TListItem, TItem>
-        : ICrudServiceBase<int?, TFilter, TListItem, TItem>
+        : ICrudServiceBase<int, TFilter, TListItem, TItem, IApiResponse<int?>, IApiResponse<int>>
     {
     }
     public interface ICrudServiceBase<TId, TFilter, TListItem, TItem>
