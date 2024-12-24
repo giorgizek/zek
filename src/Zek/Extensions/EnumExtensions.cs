@@ -72,11 +72,16 @@ namespace Zek.Extensions
                 return [];
             }
 
+           return flags.Value.ToStringArray();
+        }
+        public static string[] ToStringArray<T>(this T flags)
+            where T : struct, Enum
+        {
             var result = new List<string>();
             // Iterate through all possible values of the enum and check if each is set
             foreach (Enum value in Enum.GetValues(typeof(T)))
             {
-                if (flags.Value.HasFlag(value))
+                if (flags.HasFlag(value))
                 {
                     result.Add(value.ToString());
                 }
