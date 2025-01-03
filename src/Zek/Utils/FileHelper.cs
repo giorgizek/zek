@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Text;
 
 namespace Zek.Utils
 {
@@ -44,17 +45,36 @@ namespace Zek.Utils
         //}
 
 
-        public static string ParseFileName(string fileName)
+        public static string GetValidFileName(string fileName)
         {
             if (string.IsNullOrEmpty(fileName)) return fileName;
 
+            // Create a StringBuilder for efficient string modification
+            var validFileName = new StringBuilder(fileName);
+
+            // Get invalid characters for file name
             foreach (var c in Path.GetInvalidFileNameChars())
-                fileName = fileName.Replace(c.ToString(), string.Empty);
+            {
+                validFileName.Replace(c.ToString(), string.Empty);
+            }
 
-            //foreach (var c in Path.GetInvalidPathChars())
-            //    folderName = folderName.Replace(c.ToString(), string.Empty);
+            return validFileName.ToString();
+        }
+        
+        public static string GetValidFolderName(string folderName)
+        {
+            if (string.IsNullOrEmpty(folderName)) return folderName;
 
-            return fileName;
+            // Create a StringBuilder for efficient string modification
+            var validFolderName = new StringBuilder(folderName);
+
+            // Get invalid characters for folder name
+            foreach (var c in Path.GetInvalidPathChars())
+            {
+                validFolderName.Replace(c.ToString(), string.Empty);
+            }
+
+            return validFolderName.ToString();
         }
 
 
