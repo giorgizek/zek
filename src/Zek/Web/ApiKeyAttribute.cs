@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Zek.Web
@@ -35,13 +33,20 @@ namespace Zek.Web
                 && !context.HttpContext.Request.Query.TryGetValue(ApiKeyQueryParamName, out key)
                 )
             {
-                context.Result = new UnauthorizedObjectResult(nameof(ApiKeyStatus.MissingKey));
+                context.Result = new ObjectResult(nameof(ApiKeyStatus.MissingKey))
+                {
+                    StatusCode = 401
+                };
                 return;
             }
 
             if (string.IsNullOrEmpty(key))
             {
-                context.Result = new UnauthorizedObjectResult(nameof(ApiKeyStatus.MissingKey));
+                //context.Result = new UnauthorizedObjectResult(nameof(ApiKeyStatus.MissingKey));
+                context.Result = new ObjectResult(nameof(ApiKeyStatus.MissingKey))
+                {
+                    StatusCode = 401
+                };
                 return;
             }
 
