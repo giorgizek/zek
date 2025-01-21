@@ -1,9 +1,8 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Zek.Data.Entity;
+﻿using Microsoft.EntityFrameworkCore;
 using Zek.Domain.Entities;
 using Zek.Model.Base;
 using Zek.Model.DTO.Ecomm;
+using Zek.Persistence.Configurations;
 
 namespace Zek.Model.Accounting
 {

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Zek.Contracts
+﻿namespace Zek.Contracts
 {
     public class ConfirmBaseViewModel
     {

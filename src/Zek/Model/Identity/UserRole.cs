@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Zek.Model.Identity
+﻿namespace Zek.Model.Identity
 {
     /// <summary>
     /// Represents the link between a user and a role.

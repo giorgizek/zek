@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Zek.Utils
+﻿namespace Zek.Utils
 {
     public static class DateTimeHelper
     {

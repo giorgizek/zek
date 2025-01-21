@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Zek.OTP
+﻿namespace Zek.OTP
 {
     [Flags]
     public enum OtpStatus

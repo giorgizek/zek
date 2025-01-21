@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 
 namespace Zek.Cryptography
 {
@@ -8,11 +6,6 @@ namespace Zek.Cryptography
     {
         public static byte[] EncryptToByteArray(string plainText, string key)
         {
-            if (string.IsNullOrEmpty(plainText))
-                throw new ArgumentNullException(nameof(plainText));
-            if (string.IsNullOrEmpty(key))
-                throw new ArgumentNullException(nameof(key));
-
             using var aesAlg = Aes.Create();
             aesAlg.Key = aesAlg.GetLegalKey(key);
 
@@ -40,10 +33,8 @@ namespace Zek.Cryptography
 
         public static string Decrypt(byte[] cipherBytes, string key)
         {
-            if (cipherBytes == null || cipherBytes.Length == 0)
+            if (cipherBytes.Length == 0)
                 throw new ArgumentNullException(nameof(cipherBytes));
-            if (string.IsNullOrEmpty(key))
-                throw new ArgumentNullException(nameof(key));
 
             using var aesAlg = Aes.Create();
             var iv = new byte[aesAlg.IV.Length];
@@ -62,11 +53,6 @@ namespace Zek.Cryptography
 
         public static string Decrypt(string cipherText, string key)
         {
-            if (string.IsNullOrEmpty(cipherText))
-                throw new ArgumentNullException(nameof(cipherText));
-            if (string.IsNullOrEmpty(key))
-                throw new ArgumentNullException(nameof(key));
-
             return Decrypt(Convert.FromBase64String(cipherText), key);
         }
     }

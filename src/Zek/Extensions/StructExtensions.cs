@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Zek.Extensions
+﻿namespace Zek.Extensions
 {
     public static class StructExtensions
     {

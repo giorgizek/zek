@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Zek.Cryptography
+﻿namespace Zek.Cryptography
 {
     public static class KnuthHelper
     {

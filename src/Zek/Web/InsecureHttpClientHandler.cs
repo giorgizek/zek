@@ -1,6 +1,4 @@
-﻿using System.Net.Http;
-
-namespace Zek.Web
+﻿namespace Zek.Web
 {
     public class InsecureHttpClientHandler : HttpClientHandler
     {

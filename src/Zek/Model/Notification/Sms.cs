@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
 using Zek.Data.Entity;
+using Zek.Persistence.Configurations;
 
 namespace Zek.Model.Notification
 {

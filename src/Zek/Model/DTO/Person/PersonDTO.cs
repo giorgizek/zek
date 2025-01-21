@@ -1,5 +1,4 @@
-﻿using System;
-using Zek.Model.Dictionary;
+﻿using Zek.Model.Dictionary;
 
 namespace Zek.Model.DTO.Person
 {

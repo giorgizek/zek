@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Zek.Model.WS
+﻿namespace Zek.Model.WS
 {
     public class Response
     {

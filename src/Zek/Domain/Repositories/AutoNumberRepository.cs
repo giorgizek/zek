@@ -1,9 +1,8 @@
-﻿using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
-using Zek.Model.Dictionary;
+﻿using Microsoft.EntityFrameworkCore;
+using Zek.Domain.Entities;
+using Zek.Persistence;
 
-namespace Zek.Data.Repository
+namespace Zek.Domain.Repositories
 {
     public interface IAutoNumberRepository : IRepository<AutoNumber>
     {

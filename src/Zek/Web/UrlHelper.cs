@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Zek.Web
+﻿namespace Zek.Web
 {
     public static class UrlHelper
     {

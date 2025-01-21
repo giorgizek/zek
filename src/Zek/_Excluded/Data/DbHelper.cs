@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
+﻿using System.Data;
 using Zek.Utils;
 
 namespace Zek.Data
@@ -14,7 +11,7 @@ namespace Zek.Data
         /// <typeparam name="T"></typeparam>
         /// <param name="dr"></param>
         /// <returns></returns>
-        public static List<T> DataReaderMapToList<T>(IDataReader dr)// where T : new()
+        public static List<T>? DataReaderMapToList<T>(IDataReader dr)// where T : new()
         {
             if (dr == null) return null;
 
@@ -79,44 +76,7 @@ namespace Zek.Data
 
 
 
-            //var columns = new List<string>();
-            //foreach (var p in typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(prop => prop.CanWrite))
-            //{
-            //    if (!dr.ContainsColumn(p.Name) || columns.Contains(p.Name)) continue;
-
-            //    columns.Add(p.Name);
-            //}
-
-
-            //try
-            //{
-            //    while (dr.Read())
-            //    {
-            //        var obj = Activator.CreateInstance<T>();
-            //        if (columns.Count > 0)
-            //        {
-            //            foreach (var prop in obj.GetType().GetProperties())
-            //            {
-            //                if (!columns.Contains(prop.Name)) continue;
-
-            //                if (!Equals(dr[prop.Name], DBNull.Value))
-            //                    prop.SetValue(obj, dr[prop.Name], null);
-            //            }
-            //        }
-            //        else//if it struct list (ex: List<int>);
-            //        {
-            //            obj = (T)dr[0];
-            //        }
-            //        result.Add(obj);
-            //    }
-            //}
-            //finally
-            //{
-            //    if (dr != null)
-            //        dr.Close();
-            //}
-            //return result;
-        }
+          
 
 
 

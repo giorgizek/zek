@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Zek.Extensions
+﻿namespace Zek.Extensions
 {
     public static class RandomExtensions
     {

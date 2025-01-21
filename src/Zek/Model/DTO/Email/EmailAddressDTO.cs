@@ -1,5 +1,4 @@
-﻿using System;
-using Zek.Office;
+﻿using Zek.Office;
 
 namespace Zek.Model.DTO.Email
 {

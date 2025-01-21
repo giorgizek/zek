@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Zek.Data.Filtering;
+﻿using Zek.Data.Filtering;
 
 namespace Zek.Data.Sql
 {

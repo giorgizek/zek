@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Zek.Data.Filtering
+﻿namespace Zek.Data.Filtering
 {
     [Flags]
     public enum WhereOperator

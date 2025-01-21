@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Zek.Model.ViewModel
+﻿namespace Zek.Model.ViewModel
 {
     public interface IPagedIndexViewModel
     {

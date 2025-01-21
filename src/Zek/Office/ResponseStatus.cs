@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Zek.Office
+﻿namespace Zek.Office
 {
     public class ResponseStatus
     {

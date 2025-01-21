@@ -1,8 +1,4 @@
-﻿using System;
-using Microsoft.Extensions.Options;
-using Timer = System.Threading.Timer;
-
-namespace Zek.Services
+﻿namespace Zek.Services
 {
     //public class SchedulerOptions
     //{

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Zek.Model.DTO.Identity
+﻿namespace Zek.Model.DTO.Identity
 {
     public class LoginTokenDTO : LoginTokenDTO<int> { }
     public class LoginTokenDTO<TKey>

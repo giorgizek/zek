@@ -1,5 +1,4 @@
-﻿using System;
-using Zek.Extensions;
+﻿using Zek.Extensions;
 
 namespace Zek.Utils
 {

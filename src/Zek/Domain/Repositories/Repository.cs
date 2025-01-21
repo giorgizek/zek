@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
+﻿using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
+using Zek.Persistence;
 
-namespace Zek.Data.Repository
+namespace Zek.Domain.Repositories
 {
-    public class Repository// : IDisposable
+    public class Repository
     {
         public Repository(IDbContext context)
         {

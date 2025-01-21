@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Zek.Model.DTO
+﻿namespace Zek.Model.DTO
 {
     public static class AddressExtensions
     {

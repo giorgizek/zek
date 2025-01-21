@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Zek.Domain.Entities
+﻿namespace Zek.Domain.Entities
 {
     public class PocoEntity : PocoEntity<int> { }
     public class PocoEntity<TId> : CreateEntity<TId>

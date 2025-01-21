@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Zek.PagedList
+﻿namespace Zek.PagedList
 {
     public class PagedList<T> : IPagedList<T>
     {

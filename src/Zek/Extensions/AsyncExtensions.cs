@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace Zek.Extensions
+﻿namespace Zek.Extensions
 {
     public static class AsyncExtensions
     {

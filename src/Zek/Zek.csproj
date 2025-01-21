@@ -24,6 +24,7 @@
 	  <None Remove="_Excluded\**" />
 	</ItemGroup>
 
+
 	<ItemGroup>
 		<None Include="..\..\LICENSE.txt">
 			<Pack>True</Pack>

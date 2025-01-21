@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Zek.Model.DTO.Ecomm
+﻿namespace Zek.Model.DTO.Ecomm
 {
     public class EcommDTO
     {

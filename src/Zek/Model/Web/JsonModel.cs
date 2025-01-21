@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Zek.Model.Web
+﻿namespace Zek.Model.Web
 {
     public class JsonModel
     {

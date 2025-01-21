@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Zek.Office
+﻿namespace Zek.Office
 {
     public class Event : Event<int, DateTimeTimeZone, EventType?, int>
     {

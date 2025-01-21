@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Zek.Model.DTO.Person
+﻿namespace Zek.Model.DTO.Person
 {
     public class PersonsDTO
     {

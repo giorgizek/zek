@@ -1,8 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Runtime.Intrinsics.Arm;
-
-namespace Zek.Utils
+﻿namespace Zek.Utils
 {
     public static class Base62Convert
     {

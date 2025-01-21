@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Zek.Data.Entity
+namespace Zek.Persistence.Configurations
 {
     public static class PropertyBuilderExtensions
     {

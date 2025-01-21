@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Zek.Model.Identity;
+﻿using Zek.Model.Identity;
 
 namespace Zek.Model.Dictionary
 {

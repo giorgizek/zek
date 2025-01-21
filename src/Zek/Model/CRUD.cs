@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Zek.Model
+﻿namespace Zek.Model
 {
     [Flags]
     public enum CRUD

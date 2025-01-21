@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Zek.Utils
+﻿namespace Zek.Utils
 {
     public class DateRange : Range<DateTime>
     {

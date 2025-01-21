@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Zek.Extensions.Collections.Recursive
+﻿namespace Zek.Extensions.Collections.Recursive
 {
     public static class RecursiveJoinExtensions
     {

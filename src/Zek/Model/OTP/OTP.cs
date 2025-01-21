@@ -1,7 +1,7 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Zek.Data.Entity;
 using Zek.OTP;
+using Zek.Persistence.Configurations;
 
 namespace Zek.Model.OTP
 {

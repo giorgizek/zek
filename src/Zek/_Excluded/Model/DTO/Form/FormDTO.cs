@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Zek.Model.DTO.Form
+﻿namespace Zek.Model.DTO.Form
 {
     public class FormDTO : EditBaseDTO
     {

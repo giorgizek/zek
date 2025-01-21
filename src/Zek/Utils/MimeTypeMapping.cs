@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-
-namespace Zek.Utils
+﻿namespace Zek.Utils
 {
     public static class MimeTypeMapping
     {

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Zek.Extensions.Collections
+﻿namespace Zek.Extensions.Collections
 {
     public static class IListExtensions
     {

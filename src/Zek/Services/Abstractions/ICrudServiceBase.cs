@@ -1,6 +1,4 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using Zek.Contracts;
+﻿using Zek.Contracts;
 using Zek.PagedList;
 
 namespace Zek.Services.Abstractions

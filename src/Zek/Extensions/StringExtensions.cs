@@ -1,5 +1,4 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Text;
 using Zek.Utils;
 
@@ -299,7 +298,7 @@ namespace Zek.Extensions
         {
             return key?.Normalize().SafeToUpperInvariant();
         }
-        public static string? NormalizeKey(this string key)
+        public static string? NormalizeKey(this string? key)
         {
             return key?.Normalize().ToUpperInvariant();
         }

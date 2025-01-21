@@ -1,7 +1,6 @@
-﻿using System.Linq;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace Zek.Data.Entity
+namespace Zek.Persistence.Configurations
 {
     public static class ModelBuilderExtensions
     {

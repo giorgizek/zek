@@ -1,9 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Zek.Data.Entity;
 using Zek.Domain.Entities;
 
-namespace Zek.Persistance.Configurations
+namespace Zek.Persistence.Configurations
 {
     public class CreateEntityTypeConfiguration<T> : CreateEntityTypeConfiguration<T, int>
         where T : CreateEntity

@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
 using Zek.Data.Entity;
 
 namespace Zek.Model.Identity

@@ -1,5 +1,4 @@
-﻿using System;
-using Zek.Utils;
+﻿using Zek.Utils;
 
 namespace Zek.Model.DTO
 {

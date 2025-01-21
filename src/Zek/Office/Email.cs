@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Zek.Model.DTO.Attachment;
+﻿using Zek.Model.DTO.Attachment;
 
 namespace Zek.Office
 {

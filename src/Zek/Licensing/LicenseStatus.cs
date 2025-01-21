@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Zek.Licensing
+﻿namespace Zek.Licensing
 {
     [Flags]
     public enum LicenseStatus

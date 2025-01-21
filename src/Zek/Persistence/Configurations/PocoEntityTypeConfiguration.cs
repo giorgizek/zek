@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Zek.Data.Entity;
 using Zek.Domain.Entities;
 
-namespace Zek.Persistance.Configurations
+namespace Zek.Persistence.Configurations
 {
     public class PocoEntityTypeConfiguration<TEntity> : PocoEntityTypeConfiguration<TEntity, int>
         where TEntity : PocoEntity<int>

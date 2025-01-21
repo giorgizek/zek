@@ -1,9 +1,6 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace Zek.Data.Repository
+namespace Zek.Persistence
 {
     public interface IDbContext
     {

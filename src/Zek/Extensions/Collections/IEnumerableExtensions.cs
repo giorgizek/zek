@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Zek.Extensions.Collections
+﻿namespace Zek.Extensions.Collections
 {
     public static class IEnumerableExtensions
     {
