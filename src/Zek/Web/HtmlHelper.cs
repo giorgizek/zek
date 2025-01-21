@@ -5,7 +5,7 @@ namespace Zek.Web
 {
     public static class HtmlHelper
     {
-        public static string ToPlainText(string html)
+        public static string? ToPlainText(string? html)
         {
             if (string.IsNullOrEmpty(html))//<.*?>
                 return html;

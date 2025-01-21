@@ -5,16 +5,7 @@
     /// </summary>
     public class FilterBaseDto
     {
-        /// <summary>
-        /// Constructor FilterDTO
-        /// </summary>
-        public FilterBaseDto()
-        {
-            Page = 1;
-            PageSize = 10;
-        }
-
-        private int _page;
+        private int _page = 1;
         /// <summary>
         /// Page number
         /// </summary>
@@ -29,7 +20,7 @@
             }
         }
 
-        private int _pageSize;
+        private int _pageSize = 10;
         /// <summary>
         /// Page size
         /// </summary>
@@ -50,7 +41,7 @@
         /// <summary>
         /// Sort column name
         /// </summary>
-        public string Sort { get; set; }
+        public string? Sort { get; set; }
 
         /// <summary>
         /// Asc = null or true, Desc = false
@@ -65,6 +56,6 @@
         /// <summary>
         /// Quick Search Field
         /// </summary>
-        public string QuickSearch { get; set; }
+        public string? QuickSearch { get; set; }
     }
 }

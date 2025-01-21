@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Zek.Contracts
+﻿namespace Zek.Contracts
 {
     public interface IApiResponse
     {
         bool Success { get; set; }
-        Dictionary<string, List<string>> Errors { get; set; }
+        Dictionary<string, List<string>>? Errors { get; set; }
     }
 
     public class ApiResponse : IApiResponse
     {
         public bool Success { get; set; }
 
-        public Dictionary<string, List<string>> Errors { get; set; }
+        public Dictionary<string, List<string>>? Errors { get; set; }
 
 
         public void AddError(Enum @enum) => AddError(string.Empty, @enum.ToString());
@@ -21,25 +18,15 @@ namespace Zek.Contracts
         public void AddError(string key, Enum @enum) => AddError(key, @enum.ToString());
         public void AddError(string key, string errorMessage)
         {
-            if (key == null)
-            {
-                throw new ArgumentNullException(nameof(key));
-            }
-
-            if (errorMessage == null)
-            {
-                throw new ArgumentNullException(nameof(errorMessage));
-            }
+            ArgumentNullException.ThrowIfNull(key);
+            ArgumentNullException.ThrowIfNull(errorMessage);
 
             var list = GetOrAddNode(key);
             list.Add(errorMessage);
         }
         public bool Remove(string key)
         {
-            if (key == null)
-            {
-                throw new ArgumentNullException(nameof(key));
-            }
+            ArgumentNullException.ThrowIfNull(key);
 
             if (Errors != null)
             {
@@ -59,10 +46,10 @@ namespace Zek.Contracts
 
         private List<string> GetOrAddNode(string key)
         {
-            Errors ??= new Dictionary<string, List<string>>();
+            Errors ??= [];
             if (!Errors.TryGetValue(key, out var list))
             {
-                list = new List<string>();
+                list = [];
                 Errors.Add(key, list);
             }
 

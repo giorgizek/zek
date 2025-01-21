@@ -7,8 +7,11 @@ namespace Zek.Extensions
 {
     public static class StringExtensions
     {
-        public static string RemoveDiacritics(this string text)
+        public static string? RemoveDiacritics(this string? text)
         {
+            if (string.IsNullOrEmpty(text))
+                return text;
+
             var normalizedString = text.Normalize(NormalizationForm.FormD);
             var stringBuilder = new StringBuilder();
 
@@ -24,7 +27,7 @@ namespace Zek.Extensions
             return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
         }
 
-        public static string SafeToUpper(this string str)
+        public static string? SafeToUpper(this string? str)
         {
             if (string.IsNullOrEmpty(str))
                 return str;
@@ -40,7 +43,7 @@ namespace Zek.Extensions
 
             return result.ToString();
         }
-        public static string SafeToUpperInvariant(this string str)
+        public static string? SafeToUpperInvariant(this string? str)
         {
             if (string.IsNullOrEmpty(str))
                 return str;
@@ -56,14 +59,14 @@ namespace Zek.Extensions
 
             return result.ToString();
         }
-        public static string? TryToUpper(this string str)
+        public static string? TryToUpper(this string? str)
         {
             if (string.IsNullOrEmpty(str))
                 return str;
 
             return str.ToUpper();
         }
-        public static string? TryToLower(this string str)
+        public static string? TryToLower(this string? str)
         {
             if (string.IsNullOrEmpty(str))
                 return str;
@@ -85,11 +88,11 @@ namespace Zek.Extensions
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        public static string EmptyIfNull(this string str)
+        public static string EmptyIfNull(this string? str)
         {
             return str ?? string.Empty;
         }
-        public static string NullIfEmpty(this string str)
+        public static string? NullIfEmpty(this string? str)
         {
             return string.IsNullOrEmpty(str) ? null : str;
         }
@@ -100,7 +103,7 @@ namespace Zek.Extensions
         /// </summary>
         /// <param name="str">Input string</param>
         /// <returns>Input string with only numeric values, empty string if str is null/empty</returns>
-        public static string ToDigitOnly(this string str)
+        public static string? ToDigitOnly(this string? str)
         {
             if (string.IsNullOrEmpty(str))
                 return str;
@@ -115,7 +118,7 @@ namespace Zek.Extensions
             return result.ToString();
         }
 
-        public static string ToAlphanumeric(this string str)
+        public static string? ToAlphanumeric(this string? str)
         {
             if (string.IsNullOrEmpty(str))
                 return str;
@@ -132,7 +135,7 @@ namespace Zek.Extensions
 
         public static string[] Split(this string str, string seperator, StringSplitOptions options = StringSplitOptions.None)
         {
-            return str.Split(new[] { seperator }, options);
+            return str.Split([seperator], options);
         }
 
         /*
@@ -142,7 +145,7 @@ namespace Zek.Extensions
         /// </summary>
         /// <param name="key">The key to normalize.</param>
         /// <returns>A normalized representation of the specified <paramref name="key"/>.</returns>
-        public static string Normalize(this string key)
+        public static string Normalize(this string?key)
         {
             return key?.Normalize().ToUpperInvariant();
         }
@@ -155,7 +158,7 @@ namespace Zek.Extensions
         /// <param name="startIndex">Start index.</param>
         /// <param name="length">Chars length.</param>
         /// <returns>Substringed text</returns>
-        public static string SafeSubstring(this string str, int startIndex, int? length = null)
+        public static string? SafeSubstring(this string? str, int startIndex, int? length = null)
         {
             if (string.IsNullOrEmpty(str))
                 return str;
@@ -187,7 +190,7 @@ namespace Zek.Extensions
         /// <param name="str">Required. String expression from which the leftmost characters are returned</param>
         /// <param name="length">Required. Integer expression. Numeric expression indicating how many characters to return. If 0, a zero-length string ("") is returned. If greater than or equal to the number of characters in str, the entire string is returned.</param>
         /// <returns>Returns a string containing a specified number of characters from the left side of a string.</returns>
-        public static string Left(this string str, int length)
+        public static string? Left(this string? str, int length)
         {
             if (string.IsNullOrEmpty(str) || length >= str.Length || length < 0)
                 return str;
@@ -201,7 +204,7 @@ namespace Zek.Extensions
         /// <param name="str">Required. String expression from which the rightmost characters are returned.</param>
         /// <param name="length">Required. Integer. Numeric expression indicating how many characters to return. If 0, a zero-length string ("") is returned. If greater than or equal to the number of characters in str, the entire string is returned.</param>
         /// <returns>Returns a string containing a specified number of characters from the right side of a string.</returns>
-        public static string Right(this string str, int length)
+        public static string? Right(this string? str, int length)
         {
             if (string.IsNullOrEmpty(str) || length >= str.Length || length < 0)
                 return str;
@@ -211,20 +214,20 @@ namespace Zek.Extensions
 
 
 
-        public static string TryTrim(this string str)
+        public static string? TryTrim(this string? str)
         {
             return str?.Trim();
         }
-        public static string TryTrim(this string str, params char[] trimChars)
+        public static string? TryTrim(this string? str, params char[] trimChars)
         {
             return str?.Trim(trimChars);
         }
 
-        public static string TryTrimStart(this string str)
+        public static string? TryTrimStart(this string? str)
         {
             return str?.TrimStart();
         }
-        public static string TryTrimStart(this string str, params char[] trimChars)
+        public static string? TryTrimStart(this string? str, params char[] trimChars)
         {
             return str?.TrimStart(trimChars);
         }
@@ -237,17 +240,17 @@ namespace Zek.Extensions
         /// <param name="str"></param>
         /// <param name="defaultText"></param>
         /// <returns></returns>
-        public static string DefaultText(this string str, string defaultText)
+        public static string DefaultText(this string? str, string defaultText)
         {
             return !string.IsNullOrEmpty(str) ? str : defaultText;
         }
 
-        //public static bool Contains(this string str, string value, StringComparison comparisonType)
+        //public static bool Contains(this string?str, string value, StringComparison comparisonType)
         //{
         //    return str.IndexOf(value, comparisonType) != -1;
         //}
 
-        public static string Add(this string str, string separator, string part)
+        public static string? Add(this string? str, string separator, string? part)
         {
             if (!string.IsNullOrEmpty(str))
             {
@@ -258,31 +261,31 @@ namespace Zek.Extensions
             return part;
         }
 
-        public static string AddLine(this string str, string part)
+        public static string? AddLine(this string? str, string? part)
         {
             return Add(str, Environment.NewLine, part);
         }
 
-        public static string[] Lines(this string str)
+        public static string[] Lines(this string? str)
         {
             return !string.IsNullOrEmpty(str)
-                ? str.Split(new[] { Environment.NewLine }, StringSplitOptions.None)
-                : new string[0];
+                ? str.Split([Environment.NewLine], StringSplitOptions.None)
+                : [];
         }
 
-        public static string Etc(this string str, int max, string etcString = "(...)")
+        public static string? Etc(this string? str, int max, string etcString = "(...)")
         {
             if (!string.IsNullOrEmpty(str) && str.Length > max)
                 return str.Left(max - (!string.IsNullOrEmpty(etcString) ? etcString.Length : 0)) + etcString;
             return str;
         }
 
-        public static string FirstUpperInvariant(this string str)
+        public static string? FirstUpperInvariant(this string? str)
         {
             if (string.IsNullOrEmpty(str)) return str;
             return char.ToUpperInvariant(str[0]) + str[1..];
         }
-        public static string FirstUpper(this string value)
+        public static string? FirstUpper(this string? value)
         {
             if (value == null) { return value; }
             if (value.Length < 2) { return value.ToUpper(); }
@@ -292,21 +295,23 @@ namespace Zek.Extensions
         }
 
 
-        public static string NormalizeName(this string key)
+        public static string? NormalizeName(this string? key)
         {
             return key?.Normalize().SafeToUpperInvariant();
         }
-        public static string NormalizeKey(this string key)
+        public static string? NormalizeKey(this string key)
         {
             return key?.Normalize().ToUpperInvariant();
         }
-        public static string NormalizeTag(this string tag)
+        public static string? NormalizeTag(this string? tag)
         {
-            return tag?.Normalize().RemoveWhiteSpace().RemoveSpecialChars().ToUpperInvariant();
+            return tag?.Normalize().RemoveWhiteSpace().RemoveSpecialChars()?.ToUpperInvariant();
         }
 
-        public static string RemoveWhiteSpace(this string str)
+        public static string? RemoveWhiteSpace(this string? str)
         {
+            if (string.IsNullOrEmpty(str))
+                return str;
 
             var len = str.Length;
             var src = str.ToCharArray();
@@ -354,8 +359,10 @@ namespace Zek.Extensions
         }
 
 
-        public static string RemoveSpecialChars(this string str)
+        public static string? RemoveSpecialChars(this string? str)
         {
+            if (string.IsNullOrEmpty(str))
+                return str;
 
             var len = str.Length;
             var src = str.ToCharArray();
@@ -414,23 +421,16 @@ namespace Zek.Extensions
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        public static bool ToBoolean(this string str)
+        public static bool ToBoolean(this string? str)
         {
             if (string.IsNullOrEmpty(str))
                 return false;
 
-            switch (str.ToUpperInvariant())
+            return str.ToUpperInvariant() switch
             {
-                case "TRUE":
-                case "Y":
-                case "YES":
-                case "1":
-                case "ON":
-                    return true;
-
-                default:
-                    return false;
-            }
+                "TRUE" or "Y" or "YES" or "1" or "ON" => true,
+                _ => false,
+            };
         }
         /// <summary>
         /// Parses an byte from a String. Returns default value if input is invalid.
@@ -438,7 +438,7 @@ namespace Zek.Extensions
         /// <param name="str"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public static byte ToByte(this string str, byte defaultValue = 0)
+        public static byte ToByte(this string? str, byte defaultValue = 0)
         {
             //str = str.IfNullEmpty();
             return byte.TryParse(str, out var result) ? result : defaultValue;
@@ -450,7 +450,7 @@ namespace Zek.Extensions
         /// <param name="str"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public static short ToInt16(this string str, short defaultValue = 0)
+        public static short ToInt16(this string? str, short defaultValue = 0)
         {
             //str = str.IfNullEmpty();
             return short.TryParse(str, out var result) ? result : defaultValue;
@@ -461,7 +461,7 @@ namespace Zek.Extensions
         /// <param name="str"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public static int ToInt32(this string str, int defaultValue = 0)
+        public static int ToInt32(this string? str, int defaultValue = 0)
         {
             //str = str.IfNullEmpty();
             return int.TryParse(str, out var result) ? result : defaultValue;
@@ -473,7 +473,7 @@ namespace Zek.Extensions
         /// <param name="str"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public static long ToInt64(this string str, long defaultValue = 0)
+        public static long ToInt64(this string? str, long defaultValue = 0)
         {
             //str = str.IfNullEmpty();
             return long.TryParse(str, out var result) ? result : defaultValue;
@@ -485,7 +485,7 @@ namespace Zek.Extensions
         /// <param name="str"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public static ulong ToUInt64(this string str, ulong defaultValue = 0)
+        public static ulong ToUInt64(this string? str, ulong defaultValue = 0)
         {
             return ulong.TryParse(str, out var result) ? result : defaultValue;
         }
@@ -496,7 +496,7 @@ namespace Zek.Extensions
         /// <param name="str"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public static ulong ToUInt64Hex(this string str, ulong defaultValue = 0)
+        public static ulong ToUInt64Hex(this string? str, ulong defaultValue = 0)
         {
             return ulong.TryParse(str, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out var result) ? result : defaultValue;
         }
@@ -509,7 +509,7 @@ namespace Zek.Extensions
         /// <param name="str"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public static decimal ToDecimal(this string str, decimal defaultValue = decimal.Zero)
+        public static decimal ToDecimal(this string? str, decimal defaultValue = decimal.Zero)
         {
             //str = str.IfNullEmpty();
             return decimal.TryParse(str, out var result) ? result : defaultValue;
@@ -520,7 +520,7 @@ namespace Zek.Extensions
         /// <param name="str"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public static double ToDouble(this string str, double defaultValue = 0D)
+        public static double ToDouble(this string? str, double defaultValue = 0D)
         {
             //str = str.IfNullEmpty();
             return double.TryParse(str, out var result) ? result : defaultValue;
@@ -532,7 +532,7 @@ namespace Zek.Extensions
         /// <param name="str"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public static Guid ToGuid(this string str, Guid defaultValue = default)
+        public static Guid ToGuid(this string? str, Guid defaultValue = default)
         {
             //str = str.IfNullEmpty();
             return Guid.TryParse(str, out var result) ? result : defaultValue;
@@ -544,19 +544,21 @@ namespace Zek.Extensions
             //catch { }
             //return result;
         }
+
         /// <summary>
         ///  Gets DateTime value from string
         /// </summary>
         /// <param name="str"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public static DateTime ToDateTime(this string str, DateTime? defaultValue = null)
+        public static DateTime ToDateTime(this string? str, DateTime? defaultValue = null)
         {
             defaultValue ??= DateTime.MinValue;
 
             return DateTime.TryParse(str, out var result) ? result : defaultValue.Value;
         }
-        public static DateTime ParseUniversalDateTime(this string str, DateTime? defaultValue = null)
+
+        public static DateTime ParseUniversalDateTime(this string? str, DateTime? defaultValue = null)
         {
             defaultValue ??= DateTime.MinValue;
 
@@ -564,71 +566,60 @@ namespace Zek.Extensions
         }
 
 
-        public static bool? ToNullableBoolean(this string str)
+        public static bool? ToNullableBoolean(this string? str)
         {
             str = str.EmptyIfNull().ToUpperInvariant();
-            switch (str)
+            return str switch
             {
-                case "TRUE":
-                case "Y":
-                case "YES":
-                case "1":
-                case "ON":
-                    return true;
-
-                case "FALSE":
-                case "N":
-                case "NO":
-                case "0":
-                case "OFF":
-                    return false;
-            }
-            return null;
+                "TRUE" or "Y" or "YES" or "1" or "ON" => true,
+                "FALSE" or "N" or "NO" or "0" or "OFF" => false,
+                _ => null,
+            };
         }
-     
-        public static byte? ToNullableByte(this string str)
+
+        public static byte? ToNullableByte(this string? str)
         {
             return byte.TryParse(str, out var result) ? result : null;
         }
-        public static short? ToNullableInt16(this string str)
+        public static short? ToNullableInt16(this string? str)
         {
             return short.TryParse(str, out var result) ? result : null;
         }
-        public static int? ToNullableInt32(this string str)
+        public static int? ToNullableInt32(this string? str)
         {
             return int.TryParse(str, out var result) ? result : null;
         }
-        public static long? ToNullableInt64(this string str)
+        public static long? ToNullableInt64(this string? str)
         {
             return long.TryParse(str, out var result) ? result : null;
         }
-        public static float? ToNullableSingle(this string str)
+        public static float? ToNullableSingle(this string? str)
         {
             return float.TryParse(str, out var result) ? result : null;
         }
-        public static double? ToNullableDouble(this string str)
+        public static double? ToNullableDouble(this string? str)
         {
             return double.TryParse(str, out var result) ? result : null;
         }
-        public static decimal? ToNullableDecimal(this string str)
+        public static decimal? ToNullableDecimal(this string? str)
         {
             return decimal.TryParse(str, out var result) ? result : null;
         }
-        public static Guid? ToNullableGuid(this string str)
+        public static Guid? ToNullableGuid(this string? str)
         {
             return Guid.TryParse(str, out var result) ? result : null;
         }
-        public static DateTime? ToNullableDateTime(this string str)
+        public static DateTime? ToNullableDateTime(this string? str)
         {
             return DateTime.TryParse(str, out var result) ? result : null;
         }
 
-      
+
 
         /// <summary>
         /// Splits pascal case, so "FooBar" would become "Foo Bar"
         /// </summary>
-        public static string SplitPascalCase(this string str)
+        public static string? SplitPascalCase(this string? str)
         {
             if (string.IsNullOrEmpty(str))
                 return str;
@@ -659,7 +650,7 @@ namespace Zek.Extensions
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        private static string PrepareNumber(this string str)
+        private static string PrepareNumber(this string?str)
         {
             str = str.Replace(" ", string.Empty).Replace(" ", string.Empty);//Remove chars: 32 and 160
             return str.Contains(",") && !str.Contains(".") ? str.Replace(",", ".") : str;
@@ -670,7 +661,7 @@ namespace Zek.Extensions
         /// <param name="str"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public static decimal ParseDecimal(this string str, decimal defaultValue = decimal.Zero)
+        public static decimal ParseDecimal(this string?str, decimal defaultValue = decimal.Zero)
         {
             if (string.IsNullOrWhiteSpace(str)) return defaultValue;
 
@@ -698,7 +689,7 @@ namespace Zek.Extensions
         /// <param name="str"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public static double ParseDouble(this string str, double defaultValue = 0D)
+        public static double ParseDouble(this string?str, double defaultValue = 0D)
         {
             if (string.IsNullOrWhiteSpace(str)) return defaultValue;
 
@@ -726,7 +717,7 @@ namespace Zek.Extensions
         /// <param name="str"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public static float ParseSingle(this string str, float defaultValue = 0F)
+        public static float ParseSingle(this string?str, float defaultValue = 0F)
         {
             if (string.IsNullOrWhiteSpace(str)) return defaultValue;
 
@@ -754,7 +745,7 @@ namespace Zek.Extensions
         /// <param name="str"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public static DateTime ParseDateTime(this string str, DateTime defaultValue = new DateTime())
+        public static DateTime ParseDateTime(this string?str, DateTime defaultValue = new DateTime())
         {
             if (string.IsNullOrWhiteSpace(str)) return defaultValue;
 
@@ -780,7 +771,7 @@ namespace Zek.Extensions
         /// <param name="str">yyyy-MM-dd HH:mm:ss.fff, yyyy-MM-dd HH:mm:ss, yyyy-MM-dd HH:mm, yyyy-MM-dd</param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public static DateTime ParseUniversalDateTime(this string str, DateTime defaultValue = new DateTime())
+        public static DateTime ParseUniversalDateTime(this string?str, DateTime defaultValue = new DateTime())
         {
             if (string.IsNullOrWhiteSpace(str)) return defaultValue;
 

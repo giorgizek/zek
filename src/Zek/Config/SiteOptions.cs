@@ -2,7 +2,7 @@
 {
     public class SiteOptions
     {
-        public string Application { get; set; }
-        public string SiteUrl { get; set; }
+        public string? Application { get; set; }
+        public string? SiteUrl { get; set; }
     }
 }

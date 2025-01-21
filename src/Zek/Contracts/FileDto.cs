@@ -1,20 +1,18 @@
-﻿using System;
-
-namespace Zek.Contracts
+﻿namespace Zek.Contracts
 {
     public class FileDto<TId, TContent>
     {
-        public TId Id { get; set; }
-        public string Key { get; set; }
-        public string FileName { get; set; }
+        public TId? Id { get; set; }
+        public string? Key { get; set; }
+        public string? FileName { get; set; }
         public long? FileSize { get; set; }
-        public string Extension { get; set; }
-        public string MediaType { get; set; }
-        public TContent Content { get; set; }
-        public string Hash { get; set; }
+        public string? Extension { get; set; }
+        public string? MediaType { get; set; }
+        public TContent? Content { get; set; }
+        public string? Hash { get; set; }
         public DateTime? CreateDate { get; set; }
         public bool? IsDeleted { get; set; }
-        public string Url { get; set; }
+        public string? Url { get; set; }
     }
 
     public class FileDto<TId> : FileDto<TId, byte[]>

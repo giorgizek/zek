@@ -6,8 +6,8 @@
 
     public class IdName<TId, TName>
     {
-        public TId Id { get; set; }
+        public TId? Id { get; set; }
 
-        public TName Name { get; set; }
+        public TName? Name { get; set; }
     }
 }
