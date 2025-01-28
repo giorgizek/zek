@@ -1,4 +1,4 @@
-﻿namespace Zek.Model.Dictionary
+﻿namespace Zek.Domain.Enums
 {
     /// <summary>
     /// Gender
@@ -14,13 +14,5 @@
         /// Female
         /// </summary>
         Female = 2,
-    }
-
-    public enum MaritalStatus
-    {
-        Single = 1,
-        Married = 2,
-        Divorced = 3,
-        Widowed = 4
     }
 }

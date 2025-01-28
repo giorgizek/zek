@@ -5,20 +5,6 @@ namespace Zek.Extensions
 {
     public static class DateTimeExtensions
     {
-        [Obsolete("Moved to DateTimeHelper class")]
-        public const string UniversalDateFormat = DateTimeHelper.UniversalDateFormat;
-        [Obsolete("Moved to DateTimeHelper class")]
-        public const string UniversalDateTimeFormat = DateTimeHelper.UniversalDateTimeFormat;
-        [Obsolete("Moved to DateTimeHelper class")]
-        public const string Rfc3339Format = DateTimeHelper.Rfc3339Format;
-
-        //public const string UniversalDateTimeMillisecondFormat = "yyyy-MM-dd HH:mm:ss.fff";
-        [Obsolete("Moved to DateTimeHelper class")]
-        public static readonly DateTime MinDbDate = DateTimeHelper.MinDbDate;
-        [Obsolete("Moved to DateTimeHelper class")]
-        public static readonly DateTime MaxDbDate = DateTimeHelper.MaxDbDate;
-
-
         /// <summary>
         /// Converts date to string with format yyyy-MM-dd
         /// </summary>
@@ -33,7 +19,7 @@ namespace Zek.Extensions
         public static string ToUniversalDateTimeString(this DateTime date) => date.ToString(DateTimeHelper.UniversalDateTimeFormat);
 
 
-        public static string ToRfc3339String(this DateTime? date)
+        public static string? ToRfc3339String(this DateTime? date)
         {
             return date?.ToRfc3339String();
         }
@@ -188,15 +174,11 @@ namespace Zek.Extensions
         /// <returns></returns>
         public static bool IsWeekEnd(this DateTime date)
         {
-            switch (date.DayOfWeek)
+            return date.DayOfWeek switch
             {
-                case DayOfWeek.Sunday:
-                case DayOfWeek.Saturday:
-                    return true;
-
-                default:
-                    return false;
-            }
+                DayOfWeek.Sunday or DayOfWeek.Saturday => true,
+                _ => false,
+            };
         }
 
 
@@ -359,7 +341,7 @@ namespace Zek.Extensions
                     weekEndDates.Add(start);
             }
 
-            return weekEndDates.ToArray();
+            return [.. weekEndDates];
         }
         #endregion
     }

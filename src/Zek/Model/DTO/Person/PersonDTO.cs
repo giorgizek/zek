@@ -1,4 +1,4 @@
-﻿using Zek.Model.Dictionary;
+﻿using Zek.Domain.Enums;
 
 namespace Zek.Model.DTO.Person
 {

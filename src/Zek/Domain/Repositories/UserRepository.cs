@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Threading;
+using Zek.Domain.Entities;
 using Zek.Extensions;
-using Zek.Model.Identity;
 using Zek.Persistence;
 
 namespace Zek.Domain.Repositories

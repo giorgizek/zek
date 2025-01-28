@@ -2,167 +2,167 @@
 using System.Globalization;
 using System.Text;
 
-namespace Zek.Extensions.Sql
+namespace Zek.Utils
 {
-    public static class SqlExtensions
+    public static class SqlHelper
     {
         /// <summary>
         /// აკონვერტირებს მნიშვნელობას პარამეტრისთვის გადასაცემ მნიშვნელობად.
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static object ToDbValue(this object value)
+        public static object ToDbValue(object value)
         {
             return value ?? DBNull.Value;
         }
 
-        public static string ToSqlValue(this DBNull value)
+        public static string ToSqlValue(DBNull value)
         {
             return "NULL";
         }
 
-        public static string ToSqlValue(this DateTime? value)
+        public static string ToSqlValue(DateTime? value)
         {
             return value == null ? "NULL" : ToSqlValue(value.Value);
         }
-        public static string ToSqlValue(this DateTime value)
+        public static string ToSqlValue(DateTime value)
         {
             return "'" + value.ToString("yyyy-MM-ddTHH:mm:ss.fff") + "'";
         }
 
-        public static string ToSqlDateValue(this DateTime? value)
+        public static string ToSqlDateValue(DateTime? value)
         {
             return value == null ? "NULL" : ToSqlDateValue(value.Value);
         }
-        public static string ToSqlDateValue(this DateTime value)
+        public static string ToSqlDateValue(DateTime value)
         {
             return "'" + value.ToString("yyyy-MM-dd") + "'";
         }
-        public static string ToSqlDateTime2Value(this DateTime? value)
+        public static string ToSqlDateTime2Value(DateTime? value)
         {
             return value == null ? "NULL" : ToSqlDateTime2Value(value.Value);
         }
-        public static string ToSqlDateTime2Value(this DateTime value)
+        public static string ToSqlDateTime2Value(DateTime value)
         {
             return "'" + value.ToString("yyyy-MM-dd HH:mm:ss.fff") + "'";
         }
 
-        public static string ToSqlValue(this char? value)
+        public static string ToSqlValue(char? value)
         {
             return value == null ? "NULL" : ToSqlValue(value.Value);
         }
-        public static string ToSqlValue(this char value)
+        public static string ToSqlValue(char value)
         {
             return "N'" + value.ToString().Replace("'", "''") + "'";
         }
-        public static string ToSqlValue(this string value)
+        public static string ToSqlValue(string value)
         {
             return value == null ? "NULL" : "N'" + value.Replace("'", "''") + "'";
         }
 
-        public static string ToSqlValue(this Guid? value)
+        public static string ToSqlValue(Guid? value)
         {
             return value == null ? "NULL" : ToSqlValue(value.Value);
         }
-        public static string ToSqlValue(this Guid value)
+        public static string ToSqlValue(Guid value)
         {
             return "'" + value + "'";
         }
 
-        public static string ToSqlValue(this bool? value)
+        public static string ToSqlValue(bool? value)
         {
             return value == null ? "NULL" : ToSqlValue(value.Value);
         }
-        public static string ToSqlValue(this bool value)
+        public static string ToSqlValue(bool value)
         {
             return value ? "1" : "0";
         }
 
-        public static string ToSqlValue(this byte? value)
+        public static string ToSqlValue(byte? value)
         {
             return value == null ? "NULL" : ToSqlValue(value.Value);
         }
-        public static string ToSqlValue(this byte value)
+        public static string ToSqlValue(byte value)
         {
             return value.ToString(null, NumberFormatInfo.InvariantInfo);
         }
-        public static string ToSqlValue(this sbyte? value)
+        public static string ToSqlValue(sbyte? value)
         {
             return value == null ? "NULL" : ToSqlValue(value.Value);
         }
-        public static string ToSqlValue(this sbyte value)
+        public static string ToSqlValue(sbyte value)
         {
             return value.ToString(null, NumberFormatInfo.InvariantInfo);
         }
-        public static string ToSqlValue(this short? value)
+        public static string ToSqlValue(short? value)
         {
             return value == null ? "NULL" : ToSqlValue(value.Value);
         }
-        public static string ToSqlValue(this short value)
+        public static string ToSqlValue(short value)
         {
             return value.ToString(null, NumberFormatInfo.InvariantInfo);
         }
-        public static string ToSqlValue(this ushort? value)
+        public static string ToSqlValue(ushort? value)
         {
             return value == null ? "NULL" : ToSqlValue(value.Value);
         }
-        public static string ToSqlValue(this ushort value)
+        public static string ToSqlValue(ushort value)
         {
             return value.ToString(null, NumberFormatInfo.InvariantInfo);
         }
-        public static string ToSqlValue(this int? value)
+        public static string ToSqlValue(int? value)
         {
             return value == null ? "NULL" : ToSqlValue(value.Value);
         }
-        public static string ToSqlValue(this int value)
+        public static string ToSqlValue(int value)
         {
             return value.ToString(null, NumberFormatInfo.InvariantInfo);
         }
-        public static string ToSqlValue(this uint? value)
+        public static string ToSqlValue(uint? value)
         {
             return value == null ? "NULL" : ToSqlValue(value.Value);
         }
-        public static string ToSqlValue(this uint value)
+        public static string ToSqlValue(uint value)
         {
             return value.ToString(null, NumberFormatInfo.InvariantInfo);
         }
-        public static string ToSqlValue(this long? value)
+        public static string ToSqlValue(long? value)
         {
             return value == null ? "NULL" : ToSqlValue(value.Value);
         }
-        public static string ToSqlValue(this long value)
+        public static string ToSqlValue(long value)
         {
             return value.ToString(null, NumberFormatInfo.InvariantInfo);
         }
-        public static string ToSqlValue(this ulong? value)
+        public static string ToSqlValue(ulong? value)
         {
             return value == null ? "NULL" : ToSqlValue(value.Value);
         }
-        public static string ToSqlValue(this ulong value)
+        public static string ToSqlValue(ulong value)
         {
             return value.ToString(null, NumberFormatInfo.InvariantInfo);
         }
-        public static string ToSqlValue(this decimal? value)
+        public static string ToSqlValue(decimal? value)
         {
             return value == null ? "NULL" : ToSqlValue(value.Value);
         }
-        public static string ToSqlValue(this decimal value)
+        public static string ToSqlValue(decimal value)
         {
             return value.ToString(null, NumberFormatInfo.InvariantInfo);
         }
-        public static string ToSqlValue(this double? value)
+        public static string ToSqlValue(double? value)
         {
             return value == null ? "NULL" : ToSqlValue(value.Value);
         }
-        public static string ToSqlValue(this double value)
+        public static string ToSqlValue(double value)
         {
             return value.ToString("R", NumberFormatInfo.InvariantInfo);
         }
-        public static string ToSqlValue(this float? value)
+        public static string ToSqlValue(float? value)
         {
             return value == null ? "NULL" : ToSqlValue(value.Value);
         }
-        public static string ToSqlValue(this float value)
+        public static string ToSqlValue(float value)
         {
             return value.ToString("R", NumberFormatInfo.InvariantInfo);
         }
@@ -174,7 +174,7 @@ namespace Zek.Extensions.Sql
         /// </summary>
         /// <param name="value">მნიშვნელობა, რომლის დაფორმატირებაც გვინდა.</param>
         /// <returns>დაფორმატირებული String.</returns>
-        public static string ToSqlValue(this object value)
+        public static string ToSqlValue(object value)
         {
             if (value == null || value == DBNull.Value)
             {
@@ -277,7 +277,7 @@ namespace Zek.Extensions.Sql
         /// </summary>
         /// <param name="value">მნიშვნელობა, რომლის დაფორმატირებაც გვინდა.</param>
         /// <returns>დაფორმატირებული String.</returns>
-        public static string ToEntitySqlValue(this object value)
+        public static string ToEntitySqlValue(object value)
         {
             var formattedValue = string.Empty;
             //string StringType = Type.GetType("string").Name;
@@ -369,7 +369,7 @@ namespace Zek.Extensions.Sql
                     case "Int64[]":
                         foreach (var item in (Array)value)
                         {
-                            formattedValue += item.ToEntitySqlValue() + ", ";
+                            formattedValue += ToEntitySqlValue(item) + ", ";
                         }
                         formattedValue = formattedValue.Remove(formattedValue.Length - ", ".Length);
                         break;
@@ -379,7 +379,7 @@ namespace Zek.Extensions.Sql
                         break;
                 }
             }
-            return formattedValue;
+            return formattedValue ?? string.Empty;
         }
 
     }

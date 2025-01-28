@@ -75,7 +75,7 @@ namespace Zek.Extensions
         {
             var result = new List<string>();
             // Iterate through all possible values of the enum and check if each is set
-            foreach (Enum value in Enum.GetValues(typeof(T)))
+            foreach (Enum value in Enum.GetValues<T>())
             {
                 if (flags.HasFlag(value))
                 {
@@ -104,7 +104,7 @@ namespace Zek.Extensions
         //    return Convert.ToInt64(value);
         //}
 
-        public static string GetDisplayName(this Enum value)
+        public static string? GetDisplayName(this Enum value)
         {
             var field = value.GetType().GetField(value.ToString());
 

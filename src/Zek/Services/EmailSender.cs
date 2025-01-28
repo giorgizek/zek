@@ -87,15 +87,26 @@ namespace Zek.Services
                 message.From = new MailAddress(model.From.Address, model.From.Name, Encoding.UTF8);
             }
 
-            model.To?.ForEach(x => message.To.Add(new MailAddress(x.Address, x.Name, Encoding.UTF8)));
-            model.Cc?.ForEach(x => message.CC.Add(new MailAddress(x.Address, x.Name, Encoding.UTF8)));
-            model.Bcc?.ForEach(x => message.Bcc.Add(new MailAddress(x.Address, x.Name, Encoding.UTF8)));
-
-            model.Attachments?.ForEach(x =>
+            foreach (var to in model.To ?? [])
             {
-                var attachment = new Attachment(new MemoryStream(x.FileData), x.FileName) { ContentId = x.ContentId };
+                message.To.Add(new MailAddress(to.Address, to.Name, Encoding.UTF8));
+            }
+
+            foreach (var cc in model.Cc ?? [])
+            {
+                message.CC.Add(new MailAddress(cc.Address, cc.Name, Encoding.UTF8));
+            }
+
+            foreach (var bcc in model.Bcc ?? [])
+            {
+                message.Bcc.Add(new MailAddress(bcc.Address, bcc.Name, Encoding.UTF8));
+            }
+
+            foreach (var item in model.Attachments ?? [])
+            {
+                var attachment = new Attachment(new MemoryStream(item.FileData), item.FileName) { ContentId = item.ContentId };
                 message.Attachments.Add(attachment);
-            });
+            }
 
             if (model.Calendar != null)
             {

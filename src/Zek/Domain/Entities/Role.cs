@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Zek.Data.Entity;
-
-namespace Zek.Model.Identity
+﻿namespace Zek.Domain.Entities
 {
     /// <summary>
     /// Represents a role in the identity system
@@ -28,17 +25,17 @@ namespace Zek.Model.Identity
         /// <summary>
         /// Gets or sets the primary key for this role.
         /// </summary>
-        public virtual TKey Id { get; set; }
+        public virtual TKey Id { get; set; } = default!;
 
         /// <summary>
         /// Gets or sets the name for this role.
         /// </summary>
-        public virtual string Name { get; set; }
+        public virtual string Name { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the normalized name for this role.
         /// </summary>
-        public virtual string NormalizedName { get; set; }
+        public virtual string NormalizedName { get; set; } = string.Empty;
 
         /// <summary>
         /// A random value that should change whenever a role is persisted to the store
@@ -64,34 +61,6 @@ namespace Zek.Model.Identity
         public Role(string roleName)
         {
             Name = roleName;
-        }
-    }
-
-
-    public class RoleMap : RoleMap<Role, int>
-    {
-        public RoleMap(ModelBuilder builder) : base(builder)
-        {
-        }
-    }
-
-    public class RoleMap<TEntity, TKey> : EntityTypeMap<TEntity>
-        where TEntity : Role<TKey>
-        where TKey : IEquatable<TKey>
-    {
-        public RoleMap(ModelBuilder builder, bool unique = true) : base(builder)
-        {
-            ToTable("Roles", nameof(Schema.Identity));
-            
-            Property(t => t.Id).ValueGeneratedOnAdd();
-            Property(r => r.ConcurrencyStamp).HasMaxLength(50).IsConcurrencyToken();
-            Property(u => u.Name).HasMaxLength(256);
-            Property(u => u.NormalizedName).HasMaxLength(256);
-
-            HasKey(r => r.Id);
-
-            if (unique)
-                HasIndex(r => r.NormalizedName).IsUnique();
         }
     }
 }

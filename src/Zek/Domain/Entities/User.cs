@@ -1,14 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Zek.Data.Entity;
-using Zek.Persistence.Configurations;
-
-namespace Zek.Model.Identity
+﻿namespace Zek.Domain.Entities
 {
-    public class Schema
-    {
-        public bool Identity { get; set; }
-    }
-
     public class User : User<int>
     {
     }
@@ -32,22 +23,22 @@ namespace Zek.Model.Identity
         /// <summary>
         /// Gets or sets the user name for this user.
         /// </summary>
-        public virtual string UserName { get; set; }
+        public virtual string UserName { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the normalized user name for this user.
         /// </summary>
-        public virtual string NormalizedUserName { get; set; }
+        public virtual string NormalizedUserName { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the email address for this user.
         /// </summary>
-        public virtual string Email { get; set; }
+        public virtual string Email { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the normalized email address for this user.
         /// </summary>
-        public virtual string NormalizedEmail { get; set; }
+        public virtual string NormalizedEmail { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets a flag indicating if a user has confirmed their email address.
@@ -58,7 +49,7 @@ namespace Zek.Model.Identity
         /// <summary>
         /// Gets or sets a salted and hashed representation of the password for this user.
         /// </summary>
-        public virtual string PasswordHash { get; set; }
+        public virtual string PasswordHash { get; set; } = string.Empty;
 
         /// <summary>
         /// A random value that must change whenever a users credentials change (password changed, login removed)
@@ -73,7 +64,7 @@ namespace Zek.Model.Identity
         /// <summary>
         /// Gets or sets a telephone number for the user.
         /// </summary>
-        public virtual string PhoneNumber { get; set; }
+        public virtual string? PhoneNumber { get; set; }
 
         /// <summary>
         /// Gets or sets a flag indicating if a user has confirmed their telephone address.
@@ -122,57 +113,5 @@ namespace Zek.Model.Identity
 
         public int? ModifierId { get; set; }
         public DateTime? ModifiedDate { get; set; }
-    }
-
-
-
-    public class UserMap : UserMap<User, int>
-    {
-        public UserMap(ModelBuilder builder, bool unique = true) : base(builder, unique)
-        {
-        }
-    }
-
-    public class UserMap<TEntity> : UserMap<TEntity, int>
-        where TEntity : User
-    {
-        public UserMap(ModelBuilder builder, bool unique = true) : base(builder, unique)
-        {
-        }
-    }
-
-    public class UserMap<TEntity, TKey> : EntityTypeMap<TEntity>
-        where TEntity : User<TKey>
-        where TKey : IEquatable<TKey>
-    {
-        public UserMap(ModelBuilder builder, bool unique = true) : this(builder, unique, unique)
-        {
-        }
-        public UserMap(ModelBuilder builder, bool uniqueUserName, bool uniqueEmail) : base(builder)
-        {
-            ToTable("Users", nameof(Schema.Identity));
-
-            Property(t => t.Id).ValueGeneratedOnAdd();
-            Property(u => u.UserName).HasMaxLength(256);
-            Property(u => u.NormalizedUserName).HasMaxLength(256);
-            Property(u => u.Email).HasMaxLength(256);
-            Property(u => u.NormalizedEmail).HasMaxLength(256);
-            Property(u => u.ConcurrencyStamp).HasMaxLength(50).IsConcurrencyToken();
-            Property(u => u.SecurityStamp).HasMaxLength(50).IsConcurrencyToken();
-            Property(u => u.PhoneNumber).HasMaxLength(50);
-            Property(u => u.LockoutEnd).HasColumnTypeDateTime();
-            Property(t => t.CreateDate).HasColumnTypeDateTime();
-            Property(t => t.ModifiedDate).HasColumnTypeDateTime();
-
-            HasKey(u => u.Id);
-            if (uniqueUserName)
-                HasIndex(u => u.NormalizedUserName).IsUnique();
-            if (uniqueEmail)
-                HasIndex(u => u.NormalizedEmail).IsUnique();
-
-            HasIndex(x => x.IsActive);
-            HasIndex(t => t.CreatorId);
-            HasIndex(t => t.ModifierId);
-        }
     }
 }

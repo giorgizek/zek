@@ -9,24 +9,7 @@ namespace Zek.Extensions.Security.Claims
 {
     public static class ClaimsPrincipalExtensions
     {
-        static ClaimsPrincipalExtensions()
-        {
-            AuthenticationType = IdentityConstants.ApplicationScheme;//"Identity.Application";
-        }
-
-
-        //public static string? FindFirstValue(this ClaimsPrincipal principal, string claimType)
-        //{
-        //    if (principal is null)
-        //        throw new ArgumentNullException(nameof(principal));
-        //    var claim = principal.FindFirst(claimType);
-        //    return claim?.Value;
-        //}
-
-
-        //private static readonly string CookiePrefix = "Identity";
-        //private static readonly string DefaultApplicationScheme = CookiePrefix + ".Application";
-        public static string AuthenticationType { get; set; }
+        public static string AuthenticationType { get; set; } = IdentityConstants.ApplicationScheme;
 
         /// <summary>
         /// Returns the User ID claim value if present otherwise returns null.
@@ -34,7 +17,7 @@ namespace Zek.Extensions.Security.Claims
         /// <param name="principal">The <see cref="ClaimsPrincipal"/> instance.</param>
         /// <returns>The User ID claim value, or null if the claim is not present.</returns>
         /// <remarks>The User ID claim is identified by <see cref="CustomClaimTypes.UserId"/>.</remarks>
-        public static string GetUserId(this ClaimsPrincipal principal)
+        public static string? GetUserId(this ClaimsPrincipal principal)
         {
             if (principal == null)
             {
@@ -50,7 +33,7 @@ namespace Zek.Extensions.Security.Claims
         /// <param name="principal">The <see cref="ClaimsPrincipal"/> instance.</param>
         /// <returns>The Name claim value, or null if the claim is not present.</returns>
         /// <remarks>The Name claim is identified by <see cref="CustomClaimTypes.UserName"/>.</remarks>
-        public static string GetUserName(this ClaimsPrincipal principal)
+        public static string? GetUserName(this ClaimsPrincipal principal)
         {
             if (principal == null)
             {
@@ -65,7 +48,7 @@ namespace Zek.Extensions.Security.Claims
         /// <param name="principal">The <see cref="ClaimsPrincipal"/> instance.</param>
         /// <returns>The Email claim value, or null if the claim is not present.</returns>
         /// <remarks>The Email claim is identified by <see cref="CustomClaimTypes.Email"/>.</remarks>
-        public static string GetEmail(this ClaimsPrincipal principal)
+        public static string? GetEmail(this ClaimsPrincipal principal)
         {
             if (principal == null)
             {
@@ -81,10 +64,7 @@ namespace Zek.Extensions.Security.Claims
         /// <returns>True if the user is logged in with identity.</returns>
         public static bool IsSignedIn(this ClaimsPrincipal principal)
         {
-            if (principal == null)
-            {
-                throw new ArgumentNullException(nameof(principal));
-            }
+            ArgumentNullException.ThrowIfNull(principal);
             return principal.Identities != null && principal.Identities.Any(i => i.AuthenticationType == AuthenticationType);
         }
 
@@ -96,10 +76,7 @@ namespace Zek.Extensions.Security.Claims
 		/// <returns>A collection that including all the roles for the <paramref name="principal" />. If the user has no roles, this method will return a empty collection.</returns>
         public static IEnumerable<string> GetRoles(this ClaimsPrincipal principal)
         {
-            if (principal == null)
-            {
-                throw new ArgumentNullException(nameof(principal));
-            }
+            ArgumentNullException.ThrowIfNull(principal);
 
             return principal.FindAll(CustomClaimTypes.Role).Select(i => i.Value);
             //return principal.FindAll(ClaimsIdentity.DefaultRoleClaimType).Select(i => i.Value);
@@ -107,17 +84,13 @@ namespace Zek.Extensions.Security.Claims
 
         public static bool IsInAnyRole(this ClaimsPrincipal principal, params string[] roles)
         {
-            return principal == null
-                ? throw new ArgumentNullException(nameof(principal))
-                : roles != null && roles.Any(principal.IsInRole);
+            ArgumentNullException.ThrowIfNull(principal);
+            return roles != null && roles.Any(principal.IsInRole);
         }
 
         public static DateTime? GetExpirationTime(this ClaimsPrincipal principal)
         {
-            if (principal == null)
-            {
-                throw new ArgumentNullException(nameof(principal));
-            }
+            ArgumentNullException.ThrowIfNull(principal);
 
             //this[JwtRegisteredClaimNames.Exp] = EpochTime.GetIntDate(expires.Value.ToUniversalTime());
             var exp = principal.FindFirstValue(JwtRegisteredClaimNames.Exp);
@@ -126,7 +99,7 @@ namespace Zek.Extensions.Security.Claims
             if (!long.TryParse(exp, out var secondsSinceUnixEpoch)) return null;
             return EpochTime.DateTime(secondsSinceUnixEpoch);
         }
-        
+
         public static bool IsAuthorized<TController>(this ClaimsPrincipal user)
         {
             if (user == null)
@@ -153,6 +126,6 @@ namespace Zek.Extensions.Security.Claims
 
         private static string[] GetRoles(AuthorizeAttribute attr) => attr.Roles?.Length > 0
             ? attr.Roles.Split(',')
-            : null;
+            : [];
     }
 }

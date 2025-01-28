@@ -2,6 +2,7 @@
 {
     public static class AsyncExtensions
     {
+        [Obsolete("use native methods")]
         public static async Task<bool> Invert(this Task<bool> task)
         {
             return !await task;

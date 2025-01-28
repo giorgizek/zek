@@ -1,4 +1,4 @@
-﻿using Zek.Model.Identity;
+﻿using Zek.Domain.Entities;
 
 namespace Zek.Domain.Repositories
 {

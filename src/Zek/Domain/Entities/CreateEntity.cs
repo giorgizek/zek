@@ -3,7 +3,7 @@
     public class CreateEntity : CreateEntity<int> { }
     public class CreateEntity<TId>
     {
-        public TId Id { get; set; }
+        public TId Id { get; set; } = default!;
 
         public bool IsDeleted { get; set; }
 

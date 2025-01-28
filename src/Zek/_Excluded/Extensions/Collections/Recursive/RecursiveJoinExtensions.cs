@@ -57,9 +57,8 @@
 
             childSelector = (parent, depth) =>
             {
-                LinkedList<TSource> innerChildren;
 
-                if (children.TryGetValue(parentKeySelector(parent), out innerChildren))
+                if (children.TryGetValue(parentKeySelector(parent), out LinkedList<TSource> innerChildren))
                 {
                     return innerChildren.Select((child, index) => resultSelector(child, index, depth, childSelector(child, depth + 1)));
                 }

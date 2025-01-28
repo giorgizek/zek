@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Zek.Domain.Entities;
-using Zek.Model.Identity;
 
 namespace Zek.Model.Base
 {

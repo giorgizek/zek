@@ -4,7 +4,7 @@ namespace Zek.Extensions
 {
     public static class ExceptionExtensions
     {
-        public static string ToExceptionString(this Exception ex, string title = null, string customerExplanation = null, DateTime? date = null, bool throwException = false)
+        public static string ToExceptionString(this Exception ex, string? title = null, string? customerExplanation = null, DateTime? date = null, bool throwException = false)
         {
             try
             {
