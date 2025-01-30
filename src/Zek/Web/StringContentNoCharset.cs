@@ -10,17 +10,20 @@ namespace Zek.Web
 
         public StringContentNoCharset(string content, Encoding encoding) : base(content, encoding)
         {
-            Headers.ContentType.CharSet = null;
+            if (Headers.ContentType is not null)
+                Headers.ContentType.CharSet = null;
         }
 
         public StringContentNoCharset(string content, Encoding encoding, string mediaType) : base(content, encoding, mediaType)
         {
-            Headers.ContentType.CharSet = null;
+            if (Headers.ContentType is not null)
+                Headers.ContentType.CharSet = null;
         }
 
         public StringContentNoCharset(string content, string mediaType) : base(content, Encoding.UTF8, mediaType)
         {
-            Headers.ContentType.CharSet = null;
+            if (Headers.ContentType is not null)
+                Headers.ContentType.CharSet = null;
         }
 
     }

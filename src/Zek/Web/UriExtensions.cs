@@ -13,7 +13,7 @@ namespace Zek.Web
         /// <param name="paramName">Name of the parameter to add.</param>
         /// <param name="paramValue">Value for the parameter to add.</param>
         /// <returns>Url with added parameter.</returns>
-        public static Uri AddParameter(this Uri url, string paramName, string paramValue)
+        public static Uri AddParameter(this Uri url, string paramName, string? paramValue)
         {
             var uriBuilder = new UriBuilder(url);
             var query = HttpUtility.ParseQueryString(uriBuilder.Query);
@@ -29,7 +29,7 @@ namespace Zek.Web
         /// <param name="url"></param>
         /// <param name="parameters">Name and value collection of the parameters to add</param>
         /// <returns>Url with added parameter.</returns>
-        public static Uri AddParameters(this Uri url, params KeyPair<string, string>[] parameters)
+        public static Uri AddParameters(this Uri url, params KeyPair<string, string?>[] parameters)
         {
             var uriBuilder = new UriBuilder(url);
             var query = HttpUtility.ParseQueryString(uriBuilder.Query);

@@ -17,7 +17,7 @@ namespace Zek.Web
                     key => $"{HttpUtility.UrlEncode(key)}={HttpUtility.UrlEncode(nvc[key])}"));
         }
 
-        public static string ToQueryString(IDictionary<string, string> dictionary)
+        public static string ToQueryString(IDictionary<string, string?> dictionary)
         {
             return string.Join("&",
                 dictionary.Select(item => $"{HttpUtility.UrlEncode(item.Key)}={HttpUtility.UrlEncode(item.Value)}"));

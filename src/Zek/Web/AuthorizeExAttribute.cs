@@ -2,6 +2,7 @@
 
 namespace Zek.Web
 {
+    [Obsolete]
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
     public class AuthorizeExAttribute : AuthorizeAttribute
     {

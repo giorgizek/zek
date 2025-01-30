@@ -5,16 +5,15 @@ using System.Net.Http.Headers;
 
 namespace Zek.Web
 {
-
     public static class HttpExtensions
     {
         /// <summary>
         /// Add headers to request
         /// </summary>
-        public static void AddHeaders(this HttpRequestMessage request, IDictionary<string, string> headers)
+        public static void AddHeaders(this HttpRequestMessage request, IDictionary<string, string?>? headers)
         {
             // Add headers to request
-            if (headers != null)
+            if (headers is not null)
             {
                 foreach (string key in headers.Keys)
                 {
@@ -26,10 +25,10 @@ namespace Zek.Web
         /// <summary>
         /// Add headers to request
         /// </summary>
-        public static void AddHeaders(this HttpRequestHeaders httpRequestHeaders, IDictionary<string, string> headers)
+        public static void AddHeaders(this HttpRequestHeaders httpRequestHeaders, IDictionary<string, string?>? headers)
         {
             // Add headers to request
-            if (headers != null)
+            if (headers is not null)
             {
                 foreach (string key in headers.Keys)
                 {
@@ -41,7 +40,7 @@ namespace Zek.Web
         /// <summary>
         /// Add content to request as byte array
         /// </summary>
-        public static void AddContentAsBytes(this HttpRequestMessage request, byte[] content)
+        public static void AddContentAsBytes(this HttpRequestMessage request, byte[]? content)
         {
             if (content?.Length > 0)
             {
@@ -54,9 +53,9 @@ namespace Zek.Web
         /// <summary>
         /// Add content to request as json
         /// </summary>
-        public static void AddContentAsJson(this HttpRequestMessage request, object content, bool camelCasePropertyNames = true)
+        public static void AddContentAsJson(this HttpRequestMessage request, object? content, bool camelCasePropertyNames = true)
         {
-            if (content != null)
+            if (content is not null)
             {
                 //var jsonContent = JsonConvert.SerializeObject(content);
                 var settings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore };

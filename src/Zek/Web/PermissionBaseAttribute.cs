@@ -14,12 +14,7 @@ namespace Zek.Web
         {
 
         }
-        //public PermissionBaseAttribute(int? permission, int? action)
-        //    : this()
-        //{
-        //    Permission = permission;
-        //    Action = action;
-        //}
+
         public PermissionBaseAttribute(int[] permissions, int? action)
             : this()
         {
@@ -35,19 +30,8 @@ namespace Zek.Web
         /// </summary>
         private string[] _claimTypes = EmptyArray;
 
-        //private int? _permission;
-        //public int? Permission
-        //{
-        //    get => _permission;
-        //    set
-        //    {
-        //        _permission = value;
-        //        Permissions = value != null ? new[] { (int)value } : null;
-        //    }
-        //}
 
-
-        private int[] _permissions;
+        private int[] _permissions = [];
         public int[] Permissions
         {
             get => _permissions;
@@ -110,23 +94,6 @@ namespace Zek.Web
 
                 context.Result = new ForbidResult();
             }
-
-            //if (Permission != null)
-            //{
-            //    var claim = user.FindFirst(_claimType);
-
-            //    if (claim == null)
-            //    {
-            //        context.Result = new ForbidResult();
-            //    }
-            //    else if (Action != null)
-            //    {
-            //        if (string.IsNullOrEmpty(claim.Value) || !int.TryParse(claim.Value, out var permission) || !BitwiseHelper.HasFlag(permission, Permission.Value))
-            //        {
-            //            context.Result = new ForbidResult();
-            //        }
-            //    }
-            //}
         }
 
 

@@ -18,13 +18,13 @@ namespace Zek.Web
 
     public class ApiKeyAttribute : IAsyncAuthorizationFilter
     {
-        private readonly IApiKeyService _apiKeyService;
+        //private readonly IApiKeyService _apiKeyService;
         private const string ApiKeyHeaderName = "X-API-Key";
         private const string ApiKeyQueryParamName = "api_key";
 
         public ApiKeyAttribute(IApiKeyService apiKeyService)
         {
-            _apiKeyService = apiKeyService;
+            //_apiKeyService = apiKeyService;
         }
 
         public async Task OnAuthorizationAsync(AuthorizationFilterContext context)

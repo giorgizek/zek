@@ -2,10 +2,10 @@
 {
     public static class UrlHelper
     {
-        public static string Combine(params string[] parts)
+        public static string Combine(params string?[] parts)
         {
-            string result = string.Empty;
-            foreach (string part in parts)
+            string? result = string.Empty;
+            foreach (var part in parts)
             {
                 if (string.IsNullOrEmpty(part))
                     continue;
@@ -13,11 +13,11 @@
                 result = CombineEnsureSingleSeparator(result, part, '/');
             }
 
-            return result;
+            return result ?? string.Empty;
         }
 
 
-        private static string CombineEnsureSingleSeparator(string a, string b, char separator)
+        private static string? CombineEnsureSingleSeparator(string? a, string? b, char separator)
         {
             if (string.IsNullOrEmpty(a)) return b;
             if (string.IsNullOrEmpty(b)) return a;
