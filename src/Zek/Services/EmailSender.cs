@@ -15,9 +15,9 @@ namespace Zek.Services
 
     public class EmailSender : IEmailSender
     {
-        protected EmailSenderOptions Options;
+        protected EmailSenderOptions Options = new();
 
-        public EmailSender(IOptions<EmailSenderOptions> optionsAccessor)
+        public EmailSender(IOptions<EmailSenderOptions>? optionsAccessor)
         {
             if (optionsAccessor != null)
                 Config(optionsAccessor.Value);
@@ -55,9 +55,9 @@ namespace Zek.Services
                 model.From ??= new EmailAddress();
 
                 if (string.IsNullOrEmpty(model.From.Address))
-                    model.From.Address = Options.FromEmail;
+                    model.From.Address = Options.FromEmail ?? string.Empty;
                 if (string.IsNullOrEmpty(model.From.Name))
-                    model.From.Name = Options.FromName;
+                    model.From.Name = Options.FromName ?? string.Empty;
             }
 
 
@@ -104,6 +104,8 @@ namespace Zek.Services
 
             foreach (var item in model.Attachments ?? [])
             {
+                if (item.FileData is null) continue;
+
                 var attachment = new Attachment(new MemoryStream(item.FileData), item.FileName) { ContentId = item.ContentId };
                 message.Attachments.Add(attachment);
             }
@@ -116,7 +118,7 @@ namespace Zek.Services
                 message.Attachments.Add(attachment);
             }
 
-            if (!model.Calendars.IsNullOrEmpty())
+            if (model.Calendars is not null)
             {
                 var i = 1;
                 foreach (var cal in model.Calendars)

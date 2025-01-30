@@ -28,7 +28,7 @@ namespace Zek.Services
 
         }
 
-        public EcommService(string certificateFile, string certificatePassword, string serverUrl, string clientUrl = null)
+        public EcommService(string? certificateFile, string certificatePassword, string serverUrl, string? clientUrl = null)
         {
             if (string.IsNullOrEmpty(certificateFile))
                 throw new ArgumentException("Certificate file is required", nameof(certificateFile));
@@ -51,7 +51,7 @@ namespace Zek.Services
         }
 
         private readonly string _serverUrl;
-        private readonly string _clientUrl;
+        private readonly string? _clientUrl;
         private readonly string _certificateFile;
         private readonly string _certificatePassword;
 
