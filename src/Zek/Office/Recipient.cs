@@ -2,7 +2,7 @@
 {
     public class Recipient
     {
-        public string Id { get; set; }
-        public EmailAddress EmailAddress { get; set; }
+        public string? Id { get; set; }
+        public EmailAddress? EmailAddress { get; set; }
     }
 }

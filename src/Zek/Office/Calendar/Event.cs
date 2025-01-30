@@ -18,7 +18,7 @@
         /// Gets or sets calendar.
         /// The calendar that contains the event. Navigation property. Read-only.
         /// </summary>
-        public Calendar Calendar { get; set; }
+        public Calendar? Calendar { get; set; }
     }
 
 
@@ -31,25 +31,25 @@
     /// <typeparam name="TStatus"></typeparam>
     public class EventBase<TId, TDate, TEventType, TStatus>
     {
-         public TId Id { get; set; }
+        public TId Id { get; set; } = default!;
 
         /// <summary>
         /// Gets or sets type.
         /// The event type. The possible values are: singleInstance, occurrence, exception, seriesMaster. Read-only.
         /// </summary>
-        public TEventType Type { get; set; }
+        public TEventType Type { get; set; } = default!;
 
         /// <summary>
         /// Gets or sets start.
         /// The date, time, and time zone that the event starts. By default, the start time is in UTC.
         /// </summary>
-        public TDate Start { get; set; }
+        public TDate Start { get; set; } = default!;
 
         /// <summary>
         /// Gets or sets end.
         /// The date, time, and time zone that the event ends. By default, the end time is in UTC.
         /// </summary>
-        public TDate End { get; set; }
+        public TDate End { get; set; } = default!;
 
         /// <summary>
         /// Gets or sets is all day.
@@ -61,31 +61,31 @@
         /// Gets or sets subject.
         /// The text of the event's subject line.
         /// </summary>
-        public string Subject { get; set; }
+        public string? Subject { get; set; }
 
         /// <summary>
         /// Gets or sets location.
         /// The location of the event.
         /// </summary>
-        public Location Location { get; set; }
+        public Location? Location { get; set; }
 
         /// <summary>
         /// Gets or sets locations.
         /// The locations where the event is held or attended from. The location and locations properties always correspond with each other. If you update the location property, any prior locations in the locations collection would be removed and replaced by the new location value.
         /// </summary>
-        public IEnumerable<Location> Locations { get; set; }
+        public IEnumerable<Location>? Locations { get; set; }
 
         /// <summary>
         /// Gets or sets body preview.
         /// The preview of the message associated with the event. It is in text format.
         /// </summary>
-        public string BodyPreview { get; set; }
+        public string? BodyPreview { get; set; }
 
         /// <summary>
         /// Gets or sets body.
         /// The body of the message associated with the event. It can be in HTML or text format.
         /// </summary>
-        public ItemBody Body { get; set; }
+        public ItemBody? Body { get; set; }
 
         /// <summary>
         /// Gets or sets importance.
@@ -108,12 +108,12 @@
         /// <summary>
         /// Event status
         /// </summary>
-        public TStatus Status { get; set; }
+        public TStatus Status { get; set; } = default!;
 
         /// <summary>
         /// Event color
         /// </summary>
-        public string Color { get; set; }
+        public string? Color { get; set; }
 
 
         /// <summary>
@@ -166,7 +166,7 @@
         /// Gets or sets organizer.
         /// The organizer of the event.
         /// </summary>
-        public Recipient Organizer { get; set; }
+        public Recipient? Organizer { get; set; }
 
 
 
@@ -182,14 +182,14 @@
         /// Gets or sets response status.
         /// Indicates the type of response sent in response to an event message.
         /// </summary>
-        public ResponseStatus ResponseStatus { get; set; }
+        public ResponseStatus? ResponseStatus { get; set; }
 
 
         /// <summary>
         /// Gets or sets attendees.
         /// The collection of attendees for the event.
         /// </summary>
-        public virtual IEnumerable<Attendee> Attendees { get; set; }
+        public virtual IEnumerable<Attendee>? Attendees { get; set; }
 
         ///<summary>Gets or sets hide attendees.</summary>
         public bool? HideAttendees { get; set; }
@@ -202,14 +202,14 @@
         /// Gets or sets web link.
         /// The URL to open the event in Outlook on the web.Outlook on the web opens the event in the browser if you are signed in to your mailbox. Otherwise, Outlook on the web prompts you to sign in.This URL cannot be accessed from within an iFrame.
         /// </summary>
-        public string WebLink { get; set; }
+        public string? WebLink { get; set; }
 
         /// <summary>
         /// Gets or sets i cal uid.
         /// A unique identifier for an event across calendars. This ID is different for each occurrence in a recurring series. Read-only.
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public string ICalUId { get; set; }
+        public string? ICalUId { get; set; }
 
 
         #region Online Meeting
@@ -225,7 +225,7 @@
         /// Gets or sets online meeting.
         /// Details for an attendee to join the meeting online. Read-only.
         /// </summary>
-        public OnlineMeetingInfo OnlineMeeting { get; set; }
+        public OnlineMeetingInfo? OnlineMeeting { get; set; }
 
         /// <summary>
         /// Gets or sets online meeting provider.
@@ -237,7 +237,7 @@
         /// Gets or sets online meeting url.
         /// A URL for an online meeting. The property is set only when an organizer specifies an event as an online meeting such as a Skype meeting. Read-only.
         /// </summary>
-        public string OnlineMeetingUrl { get; set; }
+        public string? OnlineMeetingUrl { get; set; }
 
 
         #endregion
@@ -246,6 +246,6 @@
         /// Gets or sets transaction id.
         /// A custom identifier specified by a client app for the server to avoid redundant POST operations in case of client retries to create the same event. This is useful when low network connectivity causes the client to time out before receiving a response from the server for the client's prior create-event request. After you set transactionId when creating an event, you cannot change transactionId in a subsequent update. This property is only returned in a response payload if an app has set it. Optional.
         /// </summary>
-        public string TransactionId { get; set; }
+        public string? TransactionId { get; set; }
     }
 }

@@ -6,7 +6,7 @@
         /// Gets or sets content.
         /// The content of the item.
         /// </summary>
-        public string Content { get; set; }
+        public string? Content { get; set; }
 
         /// <summary>
         /// Gets or sets contentType.

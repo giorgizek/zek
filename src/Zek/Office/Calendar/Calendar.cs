@@ -2,7 +2,7 @@
 {
     public class Calendar
     {
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// Gets or sets can edit.
@@ -15,7 +15,7 @@
         /// Gets or sets allowed online meeting providers.
         /// Represent the online meeting service providers that can be used to create online meetings in this calendar. Possible values are: unknown, skypeForBusiness, skypeForConsumer, teamsForBusiness.
         /// </summary>
-        public IEnumerable<OnlineMeetingProviderType> AllowedOnlineMeetingProviders { get; set; }
+        public IEnumerable<OnlineMeetingProviderType>? AllowedOnlineMeetingProviders { get; set; }
 
         /// <summary>
         /// Gets or sets can share.
@@ -33,7 +33,7 @@
         /// Gets or sets change key.
         /// Identifies the version of the calendar object. Every time the calendar is changed, changeKey changes as well. This allows Exchange to apply changes to the correct version of the object. Read-only.
         /// </summary>
-        public string ChangeKey { get; set; }
+        public string? ChangeKey { get; set; }
 
         /// <summary>
         /// Gets or sets color.
@@ -48,7 +48,7 @@
         public OnlineMeetingProviderType? DefaultOnlineMeetingProvider { get; set; }
 
         /// <summary>Gets or sets hex color.</summary>
-        public string HexColor { get; set; }
+        public string? HexColor { get; set; }
 
         /// <summary>Gets or sets is default calendar.</summary>
         public bool? IsDefaultCalendar { get; set; }
@@ -69,16 +69,16 @@
         /// Gets or sets name.
         /// The calendar name.
         /// </summary>
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         /// <summary>
         /// Gets or sets owner.
         /// If set, this represents the user who created or added the calendar. For a calendar that the user created or added, the owner property is set to the user. For a calendar shared with the user, the owner property is set to the person who shared that calendar with the user.
         /// </summary>
-        public EmailAddress Owner { get; set; }
+        public EmailAddress? Owner { get; set; }
 
 
-        public IEnumerable<Event> Events { get; set; }
+        public IEnumerable<Event>? Events { get; set; }
 
     }
 }

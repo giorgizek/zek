@@ -3,11 +3,10 @@ using System.Text;
 
 namespace Zek.Office
 {
-    // ReSharper disable once InconsistentNaming
     public class iCalendar
     {
-        private EventCollection _events;
-        public EventCollection Events => _events ??= new EventCollection();
+        private EventCollection? _events;
+        public EventCollection Events => _events ??= [];
 
 
         public override string ToString()
@@ -49,27 +48,26 @@ namespace Zek.Office
             public DateTime Start { get; set; }
             public DateTime End { get; set; }
             public DateTime TimeStamp { get; set; }
-            public EmailAddress Organizer { get; set; }
+            public EmailAddress? Organizer { get; set; }
             public DateTime Created { get; set; }
             public DateTime LastModified { get; set; }
-            // ReSharper disable once InconsistentNaming
-            public string UID { get; set; }
+            public string? UID { get; set; }
             /// <summary>
             /// @&quot;&lt;!DOCTYPE HTML PUBLIC &quot;&quot;-//W3C//DTD HTML 3.2//EN&quot;&quot;&gt;&lt;HTML&gt;&lt;BODY&gt;html goes here&lt;/BODY&gt;&lt;/HTML&gt;&quot;
             /// </summary>
-            public string XAltDescription { get; set; }
-            public string Description { get; set; }
-            public string Location { get; set; }
-            public string Summary { get; set; }
-            public string Url { get; set; }
+            public string? XAltDescription { get; set; }
+            public string? Description { get; set; }
+            public string? Location { get; set; }
+            public string? Summary { get; set; }
+            public string? Url { get; set; }
 
 
 
-            private AlarmCollection _alarms;
-            public AlarmCollection Alarms => _alarms ??= new AlarmCollection();
+            private AlarmCollection? _alarms;
+            public AlarmCollection Alarms => _alarms ??= [];
 
-            private AttendeeCollection _atendees;
-            public AttendeeCollection Atendees => _atendees ??= new AttendeeCollection();
+            private AttendeeCollection? _atendees;
+            public AttendeeCollection Atendees => _atendees ??= [];
 
             public override string ToString()
             {
@@ -162,7 +160,7 @@ namespace Zek.Office
             /// <summary>
             ///  Action to take to notify user of alarm
             /// </summary>
-            public string Action;
+            public string? Action;
 
             public int? Repeat { get; set; }
 
@@ -171,7 +169,7 @@ namespace Zek.Office
             /// <summary>
             /// Description of the alarm
             /// </summary>
-            public string Description { get; set; }
+            public string? Description { get; set; }
 
             public override string ToString()
             {

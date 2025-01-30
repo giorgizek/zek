@@ -6,7 +6,7 @@ namespace Zek.Office
     public class DateTimeTimeZone
     {
         [JsonProperty("dateTime")]
-        public virtual string DateTimeRaw { get; set; }
+        public virtual string? DateTimeRaw { get; set; }
 
         [JsonIgnore]
         public virtual DateTime? DateTime
@@ -15,7 +15,7 @@ namespace Zek.Office
             set => DateTimeRaw = value.ToRfc3339String();
         }
 
-        public virtual string TimeZone { get; set; }
+        public virtual string? TimeZone { get; set; }
 
       
         /// <summary>
