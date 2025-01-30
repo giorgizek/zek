@@ -35,7 +35,7 @@ namespace Zek.Linq
 
             private ParameterRebinder(Dictionary<ParameterExpression, ParameterExpression> map)
             {
-                _map = map ?? new Dictionary<ParameterExpression, ParameterExpression>();
+                _map = map ?? [];
             }
 
             public static Expression ReplaceParameters(Dictionary<ParameterExpression, ParameterExpression> map, Expression exp)
@@ -45,8 +45,7 @@ namespace Zek.Linq
 
             protected override Expression VisitParameter(ParameterExpression p)
             {
-                ParameterExpression replacement;
-                if (_map.TryGetValue(p, out replacement))
+                if (_map.TryGetValue(p, out var replacement))
                 {
                     p = replacement;
                 }

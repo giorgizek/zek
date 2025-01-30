@@ -2,12 +2,12 @@
 {
     public class TransactionResponse : BaseEcommResponse
     {
-        private string _transactionId;
+        private string? _transactionId;
 
         /// <summary>
         /// transaction identifier (28 characters in base64 encoding)
         /// </summary>
-        public string TransactionId
+        public string? TransactionId
         {
             get => _transactionId;
             set

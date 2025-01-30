@@ -3,21 +3,23 @@ using Zek.Data.Entity;
 
 namespace Zek.Model.Contact
 {
+    [Obsolete]
     public class Address
     {
         public int Id { get; set; }
 
         public int? CountryId { get; set; }
-        public string City { get; set; }
+        public string? City { get; set; }
 
-        public string Address1 { get; set; }
+        public string? Address1 { get; set; }
 
-        public string PostalCode { get; set; }
+        public string? PostalCode { get; set; }
 
         public decimal? Latitude { get; set; }
         public decimal? Longitude { get; set; }
     }
 
+    [Obsolete]
     public class AddressMap : AddressMap<Address>
     {
         public AddressMap(ModelBuilder builder) : base(builder)
@@ -26,6 +28,7 @@ namespace Zek.Model.Contact
         }
     }
 
+    [Obsolete]
     public class AddressMap<TAddress> : EntityTypeMap<TAddress>
         where TAddress : Address
     {

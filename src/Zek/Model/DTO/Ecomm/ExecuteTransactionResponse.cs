@@ -2,11 +2,11 @@
 {
     public class ExecuteTransactionResponse : BaseEcommResponse
     {
-        private string _resultText;
+        private string? _resultText;
         /// <summary>
         /// transaction results: OK – successful transaction, FAILED – failed transaction
         /// </summary>
-        public string ResultText
+        public string? ResultText
         {
             get => _resultText;
             set
@@ -30,17 +30,17 @@
         /// 180 – Cardholder ended cooperation.Regular payment has been deleted;
         /// 2xx – Regular payment has been deleted.
         /// </summary>
-        public string ResultCode { get; set; }
+        public string? ResultCode { get; set; }
 
 
         /// <summary>
         /// retrieval reference number returned from Card Suite Processing RTPS (12 characters)
         /// </summary>
-        public string Rrn { get; set; }
+        public string? Rrn { get; set; }
 
         /// <summary>
         /// approval code returned from Card Suite Processing RTPS (max 6 characters) 
         /// </summary>
-        public string ApprovalCode { get; set; }
+        public string? ApprovalCode { get; set; }
     }
 }

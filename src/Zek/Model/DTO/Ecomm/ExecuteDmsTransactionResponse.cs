@@ -5,7 +5,7 @@
         /// <summary>
         /// Masked card number
         /// </summary>
-        public string CardNumber { get; set; }
+        public string? CardNumber { get; set; }
 
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Zek.Model
+﻿namespace Zek.Domain.Enums
 {
     public enum StatusCode
     {

@@ -5,19 +5,21 @@ using Zek.Persistence.Configurations;
 
 namespace Zek.Model.OTP
 {
+    [Obsolete]
     public class Otp
     {
         public int Id { get; set; }
         public int ApplicationId { get; set; }
         public int? UserId { get; set; }
-        public string Code { get; set; }
+        public string? Code { get; set; }
         public OtpStatus Status { get; set; }
         public int AccessFailedCount { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime ExpireDate { get; set; }
-        public string IpAddress { get; set; }
+        public string? IpAddress { get; set; }
     }
 
+    [Obsolete]
     public class OtpMap : EntityTypeMap<Otp>
     {
         public OtpMap(ModelBuilder builder) : base(builder)

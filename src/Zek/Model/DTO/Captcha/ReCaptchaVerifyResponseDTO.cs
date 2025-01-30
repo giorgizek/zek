@@ -2,6 +2,7 @@
 
 namespace Zek.Model.DTO.Google
 {
+    [Obsolete]
     public class ReCaptchaVerifyResponseDTO
     {
         public bool? Success { get; set; }

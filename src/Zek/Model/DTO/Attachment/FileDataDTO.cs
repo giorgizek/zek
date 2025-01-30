@@ -1,5 +1,6 @@
 ﻿namespace Zek.Model.DTO.Attachment
 {
+    [Obsolete]
     public class FileDataDTO
     {
         public int? Id { get; set; }

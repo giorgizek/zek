@@ -2,7 +2,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Zek.Model.Config;
+using Zek.Options;
 
 namespace Zek.Utils
 {

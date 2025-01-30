@@ -1,6 +1,6 @@
 ﻿using Zek.Utils;
 
-namespace Zek.Model.Config
+namespace Zek.Options
 {
     public class OtpOptions
     {

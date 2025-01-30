@@ -1,8 +1,8 @@
 ﻿using System.Net.Http.Json;
 using System.Text.Json;
 using Microsoft.Extensions.Options;
-using Zek.Model.Config;
 using Zek.Model.DTO.Google;
+using Zek.Options;
 using Zek.Utils;
 
 namespace Zek.Services

@@ -1,4 +1,4 @@
-﻿namespace Zek.Model.Notification
+﻿namespace Zek.Domain.Enums
 {
     public enum SmsStatus
     {

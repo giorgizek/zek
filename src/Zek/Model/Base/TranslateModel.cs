@@ -3,17 +3,18 @@ using Zek.Data.Entity;
 
 namespace Zek.Model.Base
 {
+    [Obsolete]
     public class TranslateModel<TDictionary, TId> where TDictionary : class
     {
-        public TId Id { get; set; }
-        public TDictionary Dictionary { get; set; }
+        public TId Id { get; set; } = default!;
+        public TDictionary? Dictionary { get; set; }
 
         public int CultureId { get; set; }
 
-        public string Text { get; set; }
+        public string Text { get; set; } = string.Empty;
     }
 
-
+    [Obsolete]
     public class TranslateModelMap<TTranslateEntity, TDictionary, TId> : EntityTypeMap<TTranslateEntity>
         where TTranslateEntity : TranslateModel<TDictionary, TId>
         where TDictionary : class

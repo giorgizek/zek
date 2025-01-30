@@ -6,7 +6,7 @@ namespace Zek.Linq
 {
     public static class QueryableFilterExtensions
     {
-        public static IQueryable<TSource> Filter<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> selector, WhereOperator whereOperator, IList<TKey> value1, IList<TKey> value2 = null, bool filterIfDefault = false)
+        public static IQueryable<TSource> Filter<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> selector, WhereOperator whereOperator, IList<TKey> value1, IList<TKey>? value2 = null, bool filterIfDefault = false)
         {
             if (!filterIfDefault && value1.IsNullOrEmpty())
             {
@@ -19,7 +19,7 @@ namespace Zek.Linq
                 _ => source,
             };
         }
-        public static IQueryable<TSource> Filter<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> selector, WhereOperator whereOperator, TKey[] value1, TKey[] value2 = null, bool filterIfDefault = false)
+        public static IQueryable<TSource> Filter<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> selector, WhereOperator whereOperator, TKey[]? value1, TKey[]? value2 = null, bool filterIfDefault = false)
         {
             if (!filterIfDefault && value1.IsNullOrEmpty())
             {
@@ -35,9 +35,7 @@ namespace Zek.Linq
 
 
 
-
-
-        public static IQueryable<TSource> Filter<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> selector, WhereOperator whereOperator, TKey value1, TKey value2 = default, bool filterIfDefault = false)
+        public static IQueryable<TSource> Filter<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> selector, WhereOperator whereOperator, TKey? value1, TKey? value2 = default, bool filterIfDefault = false)
         {
             if (!filterIfDefault && value1 is null)// Equals(value1, default(TKey)))
             {
@@ -71,7 +69,7 @@ namespace Zek.Linq
         }
 
 
-        public static IQueryable<TSource> Filter2<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> selector, WhereOperator whereOperator, TKey value1, TKey value2 = default, bool filterIfDefault = false)
+        public static IQueryable<TSource> Filter2<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> selector, WhereOperator whereOperator, TKey value1, TKey? value2 = default, bool filterIfDefault = false)
         {
             if (!filterIfDefault && Equals(value1, default(TKey)))
             {
@@ -103,7 +101,7 @@ namespace Zek.Linq
         //    source.OrderByOrdinal()
         //}
 
-        public static IQueryable<TSource> AutoFilter<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, string>> selector, string value)
+        public static IQueryable<TSource> AutoFilter<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, string>> selector, string? value)
         {
             if (string.IsNullOrEmpty(value))
             {
@@ -127,6 +125,5 @@ namespace Zek.Linq
 
             return source.Filter(selector, whereOperator, value, null, false);
         }
-
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Zek.Model.DTO
 {
+    [Obsolete]
     public class AreaDTO
     {
         /// <summary>
@@ -14,7 +15,7 @@ namespace Zek.Model.DTO
         /// Area name / არეას დასახელება (მაგ Account, Attachment, Faq, Chat....)
         /// </summary>
         [Required]
-        public string Area { get; set; }
+        public string? Area { get; set; }
 
         /// <summary>
         /// Area ID / არეას იდენთიფიკატორი (მაგ AccountId, AttachmentId, FaqId, ChatId...)

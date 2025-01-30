@@ -13,7 +13,7 @@ namespace Zek.ISO3166
         /// </summary>
         /// <param name="alpha2"></param>
         /// <returns></returns>
-        public static ISO3166Country FromAlpha2(string alpha2)
+        public static ISO3166Country? FromAlpha2(string alpha2)
         {
             if (string.IsNullOrEmpty(alpha2))
                 return null;
@@ -26,7 +26,7 @@ namespace Zek.ISO3166
         /// </summary>
         /// <param name="alpha3"></param>
         /// <returns></returns>
-        public static ISO3166Country FromAlpha3(string alpha3)
+        public static ISO3166Country? FromAlpha3(string alpha3)
         {
             if (string.IsNullOrEmpty(alpha3))
                 return null;
@@ -39,7 +39,7 @@ namespace Zek.ISO3166
         /// </summary>
         /// <param name="numericCode"></param>
         /// <returns></returns>
-        public static ISO3166Country FromNumericCode(int numericCode)
+        public static ISO3166Country? FromNumericCode(int numericCode)
         {
             return Countries.FirstOrDefault(p => p.NumericCode == numericCode);
         }
@@ -49,8 +49,8 @@ namespace Zek.ISO3166
         /// <summary>
         /// This collection built from Wikipedia entry on ISO3166-1 on 9th Feb 2016
         /// </summary>
-        public static readonly Collection<ISO3166Country> Countries = new()
-        {
+        public static readonly Collection<ISO3166Country> Countries =
+        [
             new ISO3166Country("Afghanistan", "AF", "AFG", 4),
             new ISO3166Country("Åland Islands", "AX", "ALA", 248),
             new ISO3166Country("Albania", "AL", "ALB", 8),
@@ -300,7 +300,7 @@ namespace Zek.ISO3166
             new ISO3166Country("Yemen", "YE", "YEM", 887),
             new ISO3166Country("Zambia", "ZM", "ZMB", 894),
             new ISO3166Country("Zimbabwe", "ZW", "ZWE", 716)
-        };
+        ];
 
         #endregion
     }

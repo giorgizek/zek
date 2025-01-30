@@ -4,6 +4,7 @@ using Zek.Persistence.Configurations;
 
 namespace Zek.Model.Notification
 {
+    [Obsolete]
     public class Sms
     {
         public int Id { get; set; }
@@ -20,12 +21,12 @@ namespace Zek.Model.Notification
         public int? FkId { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
-        public string Body { get; set; }
+        public string Body { get; set; } = string.Empty;
         public int StatusId { get; set; }
         public DateTime CreateDate { get; set; }
     }
 
-
+    [Obsolete]
     public class SmsMap<TSms> : EntityTypeMap<TSms>
         where TSms : Sms
     {

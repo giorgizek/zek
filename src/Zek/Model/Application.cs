@@ -1,5 +1,6 @@
 ﻿namespace Zek.Model
 {
+    [Obsolete]
     public class Application
     {
         public int Id { get; set; }

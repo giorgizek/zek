@@ -1,5 +1,6 @@
 ﻿namespace Zek.Model.DTO
 {
+    [Obsolete]
     /// <summary>
     /// Edit base (Id field is nullable int)
     /// </summary>
@@ -8,6 +9,7 @@
         
     }
 
+    [Obsolete]
     /// <summary>
     /// Edit base (Id field is generic)
     /// </summary>

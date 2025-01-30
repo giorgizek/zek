@@ -1,4 +1,4 @@
-﻿namespace Zek.Identity
+﻿namespace Zek.Domain.Enums
 {
     public enum ErrorCode
     {

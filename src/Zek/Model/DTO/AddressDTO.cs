@@ -1,8 +1,9 @@
 ﻿namespace Zek.Model.DTO
 {
+    [Obsolete]
     public static class AddressExtensions
     {
-        public static void Assign(this AddressDTO model, Contact.Address address)
+        public static void Assign(this AddressDTO? model, Contact.Address? address)
         {
             if (address == null)
                 throw new ArgumentNullException(nameof(address));
@@ -18,7 +19,7 @@
         }
     }
 
-
+    [Obsolete]
     public class AddressDTO
     {
         public int? Id { get; set; }
@@ -27,13 +28,13 @@
         /// Country ID (ISO 3166)
         /// </summary>
         public int? CountryId { get; set; }
-        public string Country { get; set; }
+        public string? Country { get; set; }
 
-        public string City { get; set; }
+        public string? City { get; set; }
 
 
-        public string Address1 { get; set; }
+        public string? Address1 { get; set; }
 
-        public string PostalCode { get; set; }
+        public string? PostalCode { get; set; }
     }
 }

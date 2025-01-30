@@ -4,17 +4,19 @@ using Zek.Persistence.Configurations;
 
 namespace Zek.Model.Notification
 {
+    [Obsolete]
     public class SmsRecipient
     {
         public int Id { get; set; }
         public int SmsId { get; set; }
         public int? UserId { get; set; }
-        public string PhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; }
         public int TryCount { get; set; }
         public int StatusId { get; set; }
         public DateTime? SentDate { get; set; }
     }
 
+    [Obsolete]
     public class SmsRecipientMap<TSmsRecipient> : EntityTypeMap<TSmsRecipient>
         where TSmsRecipient : SmsRecipient
     {

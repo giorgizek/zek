@@ -5,17 +5,17 @@
         /// <summary>
         /// transaction identifier (28 characters in base64 encoding)
         /// </summary>
-        public string TransactionId { get; set; }
+        public string? TransactionId { get; set; }
 
         /// <summary>
         /// In case of an error, the returned string of symbols begins with ‘error:‘
         /// </summary>
-        public string Error { get; set; }
+        public string? Error { get; set; }
 
         /// <summary>
         /// In case of a warning, the returned string of symbols begins with ‘warning:’ (reserved for future use).
         /// </summary>
-        public string Warning { get; set; }
+        public string? Warning { get; set; }
 
 
         private string _resultText;
@@ -70,7 +70,7 @@
         /// <summary>
         /// transaction result code returned from Card Suite Processing RTPS (3 digits)
         /// </summary>
-        public string ResultCode { get; set; }
+        public string? ResultCode { get; set; }
 
         private string _resultPaymentServerText;
 
@@ -177,17 +177,17 @@
         /// <summary>
         /// Reoccurring payment (if available) identification in Payment Server.
         /// </summary>
-        public string RegularPaymentId { get; set; }
+        public string? RegularPaymentId { get; set; }
 
         /// <summary>
         /// Reoccurring payment (if available) expiry date in Payment Server in form of YYMM
         /// </summary>
-        public string RegularPaymentExpiry { get; set; }
+        public string? RegularPaymentExpiry { get; set; }
 
         /// <summary>
         /// Merchant Transaction Identifier (if available) for Payment – shown if it was sent as additional parameter with name “mrch_transaction_id” on Payment registration.
         /// </summary>
-        public string MerchantTransactionId { get; set; }
+        public string? MerchantTransactionId { get; set; }
 
 
 
@@ -195,7 +195,7 @@
         /// the results of the verification of hash value in AAV merchant name (only if failed):
         /// FAILED – hash value fails to match
         /// </summary>
-        public string Aav { get; set; }
+        public string? Aav { get; set; }
 
 
 
@@ -203,47 +203,47 @@
         /// <summary>
         /// retrieval reference number returned from Card Suite Processing RTPS (12 characters)
         /// </summary>
-        public string Rrn { get; set; }
+        public string? Rrn { get; set; }
 
         /// <summary>
         /// approval code returned from Card Suite Processing RTPS (max 6 characters) 
         /// </summary>
-        public string ApprovalCode { get; set; }
+        public string? ApprovalCode { get; set; }
 
         /// <summary>
         /// masked card number
         /// </summary>
-        public string CardNumber { get; set; }
+        public string? CardNumber { get; set; }
 
 
         /// <summary>
         /// refund transaction identifier – applicable for obtaining refund payment details or to request refund payment reversal.
         /// </summary>
-        public string RefundTransactionId { get; set; }
+        public string? RefundTransactionId { get; set; }
 
         /// <summary>
         /// the number of credit reversals (up to 10 digits), shown only if result_code begins with 5
         /// </summary>
-        public string Fld075 { get; set; }
+        public string? Fld075 { get; set; }
         public int CreditReversalCount { get; set; }
 
 
         /// <summary>
         /// the number of debit transactions (up to 10 digits), shown only if result_code begins with 5
         /// </summary>
-        public string Fld076 { get; set; }
+        public string? Fld076 { get; set; }
         public int DebitTransactionCount { get; set; }
 
         /// <summary>
         /// total amount of credit reversals (up to 16 digits), shown only if result_code begins with 5
         /// </summary>
-        public string Fld087 { get; set; }
+        public string? Fld087 { get; set; }
         public long CreditReversalTotal { get; set; }
 
         /// <summary>
         /// total amount of debit transactions (up to 16 digits), shown only if result_code begins with 5
         /// </summary>
-        public string Fld088 { get; set; }
+        public string? Fld088 { get; set; }
         public long DebitTransactionTotal { get; set; }
     }
 }

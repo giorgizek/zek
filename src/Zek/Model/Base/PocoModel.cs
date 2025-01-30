@@ -4,6 +4,7 @@ using Zek.Persistence.Configurations;
 
 namespace Zek.Model.Base
 {
+    [Obsolete]
     public class PocoModelMap<TEntity> : PocoModelMap<TEntity, int>
         where TEntity : PocoEntity
     {
@@ -11,6 +12,7 @@ namespace Zek.Model.Base
         {
         }
     }
+    [Obsolete]
     public class PocoModelMap<TEntity, TId> : CreateModelMap<TEntity, TId>
         where TEntity : PocoEntity<TId>
     {

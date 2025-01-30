@@ -31,7 +31,7 @@ namespace Zek.Model.Attachment
     //    }
     //}
 
-
+    [Obsolete]
     public class FilePoco : PocoEntity
     {
         public int ApplicationId { get; set; }

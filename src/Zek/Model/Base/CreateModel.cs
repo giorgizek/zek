@@ -5,6 +5,7 @@ using Zek.Persistence.Configurations;
 
 namespace Zek.Model.Base
 {
+    [Obsolete]
     public class CreateModelMap<TEntity> : CreateModelMap<TEntity, int>
         where TEntity : CreateEntity
     {
@@ -12,6 +13,8 @@ namespace Zek.Model.Base
         {
         }
     }
+
+    [Obsolete]
     public class CreateModelMap<TEntity, TId> : EntityTypeMap<TEntity>
         where TEntity : CreateEntity<TId>
     {

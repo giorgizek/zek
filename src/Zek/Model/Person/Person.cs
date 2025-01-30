@@ -6,30 +6,33 @@ using Zek.Persistence.Configurations;
 
 namespace Zek.Model.Person
 {
+    [Obsolete]
     public class Person<TAddress, TContact> : PersonPoco
         where TAddress : Address
         where TContact : Contact.Contact
     {
-        public TAddress Address { get; set; }
-        public TContact Contact { get; set; }
+        public TAddress? Address { get; set; }
+        public TContact? Contact { get; set; }
     }
 
+    [Obsolete]
     public class Person : Person<Address, Contact.Contact>
     {
     }
 
+    [Obsolete]
     public class PersonPoco : PocoEntity
     {
         public bool IsLegal { get; set; }
 
         public int? TitleId { get; set; }
 
-        public string FirstName { get; set; }
-        public string MiddleName { get; set; }
-        public string LastName { get; set; }
+        public string? FirstName { get; set; }
+        public string? MiddleName { get; set; }
+        public string? LastName { get; set; }
         public string FullName { get; set; }
-        public string FirstNameEn { get; set; }
-        public string LastNameEn { get; set; }
+        public string? FirstNameEn { get; set; }
+        public string? LastNameEn { get; set; }
         public string FullNameEn { get; set; }
 
         public string PersonalNumber { get; set; }
@@ -44,14 +47,14 @@ namespace Zek.Model.Person
         public int AddressId { get; set; }
         public int ContactId { get; set; }
     }
-
+    [Obsolete]
     public class PersonMap : PersonMap<Person, Address, Contact.Contact>
     {
         public PersonMap(ModelBuilder builder) : base(builder)
         {
         }
     }
-
+    [Obsolete]
     public class PersonMap<TPerson> : PersonMap<TPerson, Address, Contact.Contact>
         where TPerson : Person<Address, Contact.Contact>
     {
@@ -59,7 +62,7 @@ namespace Zek.Model.Person
         {
         }
     }
-
+    [Obsolete]
     public class PersonMap<TEntity, TAddress, TContact> : PersonPocoMap<TEntity>
         where TEntity : Person<TAddress, TContact>
         where TAddress : Address
@@ -74,6 +77,7 @@ namespace Zek.Model.Person
         }
     }
 
+    [Obsolete]
     public class PersonPocoMap<TEntity> : PocoModelMap<TEntity, int> where TEntity : PersonPoco
     {
         public PersonPocoMap(ModelBuilder builder, bool? valueGeneratedOnAdd = null) : base(builder, valueGeneratedOnAdd)

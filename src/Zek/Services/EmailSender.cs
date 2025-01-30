@@ -3,8 +3,8 @@ using System.Net.Mail;
 using System.Text;
 using Microsoft.Extensions.Options;
 using Zek.Extensions.Collections;
-using Zek.Model.Config;
 using Zek.Office;
+using Zek.Options;
 
 namespace Zek.Services
 {

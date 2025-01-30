@@ -5,9 +5,9 @@ namespace Zek.Linq
 {
     public static class QueryableExtensions
     {
-        private static readonly MethodInfo ContainsMethod = typeof(string).GetMethod("Contains", new[] { typeof(string) });
-        private static readonly MethodInfo StartsWithMethod = typeof(string).GetMethod("StartsWith", new[] { typeof(string) });
-        private static readonly MethodInfo EndsWithMethod = typeof(string).GetMethod("EndsWith", new[] { typeof(string) });
+        private static readonly MethodInfo ContainsMethod = typeof(string).GetMethod("Contains", [typeof(string)]);
+        private static readonly MethodInfo StartsWithMethod = typeof(string).GetMethod("StartsWith", [typeof(string)]);
+        private static readonly MethodInfo EndsWithMethod = typeof(string).GetMethod("EndsWith", [typeof(string)]);
 
         private static bool IsNullableType(Type t)
         {
@@ -239,14 +239,14 @@ namespace Zek.Linq
             return Overlaps(source, lowSelector, highSelector, low, high);
         }
 
-        public static IQueryable<TSource> In<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> selector, IEnumerable<TKey> value)
+        public static IQueryable<TSource> In<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> selector, IEnumerable<TKey>? value)
         {
             var prop = (PropertyInfo)((MemberExpression)selector.Body).Member;
 
             var pe = Expression.Parameter(typeof(TSource));
             var me = Expression.Property(pe, prop.Name);
             var ce = Expression.Constant(value);
-            var call = Expression.Call(typeof(Enumerable), "Contains", new[] { me.Type }, ce, me);
+            var call = Expression.Call(typeof(Enumerable), "Contains", [me.Type], ce, me);
             var lambda = Expression.Lambda<Func<TSource, bool>>(call, pe);
             return source.Where(lambda);
         }

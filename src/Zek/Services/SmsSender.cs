@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
 using Zek.Contracts;
-using Zek.Model.Config;
+using Zek.Options;
 
 namespace Zek.Services
 {

@@ -13,9 +13,9 @@ namespace Zek.Licensing
 
         public int Id { get; set; }
 
-        public string LicenseCode { get; set; }
+        public string? LicenseCode { get; set; }
 
-        public string SerialCode { get; set; }
+        public string? SerialCode { get; set; }
 
         #region Evaluation
 
@@ -44,7 +44,7 @@ namespace Zek.Licensing
         #region Hardware Locking
 
         //public byte[] MachineCode { get; set; }
-        public string MachineCodeAsString { get; set; }
+        public string? MachineCodeAsString { get; set; }
         public bool UseHashedMachineCode { get; set; }
 
         #endregion
@@ -65,7 +65,7 @@ namespace Zek.Licensing
 
 
         //public byte[] LicenseServerMachineCode { get; set; }
-        public string LicenseServerMachineCodeAsString { get; set; }
+        public string? LicenseServerMachineCodeAsString { get; set; }
         //public bool HasLicenseServerMachineCode { get; }
 
         public bool NotifyServiceOnValidation { get; set; }
@@ -76,7 +76,7 @@ namespace Zek.Licensing
         #region .Net Specific
 
         //public AssemblyName HostAssemblyName { get; set; }
-        public string HostAssemblyName { get; set; }
+        public string? HostAssemblyName { get; set; }
         //public bool HasHostAssemblyName { get; }
 
         public bool PerformHostAssemblyStrongNameVerification { get; set; }
@@ -86,8 +86,8 @@ namespace Zek.Licensing
         public bool ValidAtRunTime { get; set; }
         public bool ValidAtDesignTime { get; set; }
         public bool HasSeparateRuntimeLicense { get; set; }
-        public string ExplicitRunTimeLicenseCode { get; set; }
-        public string AllowedDomains { get; set; }
+        public string? ExplicitRunTimeLicenseCode { get; set; }
+        public string? AllowedDomains { get; set; }
 
         public bool HasAllowedDomains => !string.IsNullOrWhiteSpace(AllowedDomains);
 
@@ -95,7 +95,7 @@ namespace Zek.Licensing
 
         #region Miscellanous
 
-        public string UserData { get; set; }
+        public string? UserData { get; set; }
 
         public bool HasUserData => !string.IsNullOrEmpty(UserData);
 
@@ -111,9 +111,9 @@ namespace Zek.Licensing
         //public DateTime DateAdded { get; set; }
         public bool DisallowInRemoteSession { get; set; }
 
-        public string ProjectName { get; set; }
-        public string KeyName { get; set; }
-        public string ProfileName { get; set; }
+        public string? ProjectName { get; set; }
+        public string? KeyName { get; set; }
+        public string? ProfileName { get; set; }
 
         #endregion
 
@@ -125,10 +125,10 @@ namespace Zek.Licensing
 
 
 
-        public string ActivationContext { get; set; }
+        public string? ActivationContext { get; set; }
 
 
-        public string AssemblyStoragePath { get; set; }
+        public string? AssemblyStoragePath { get; set; }
         public short CurrentCumulativeRuntime { get; set; }
         public short CurrentExecutions { get; set; }
         //public short CurrentRuntime { get; }
@@ -138,7 +138,7 @@ namespace Zek.Licensing
         public DateTime DateLastUsed { get; set; }
 
         public LicenseFeatures Features { get; set; }
-        public string FileStoragePath { get; set; }
+        public string? FileStoragePath { get; set; }
 
 
         //public bool HasDateExpires { get; }
@@ -154,10 +154,10 @@ namespace Zek.Licensing
 
         public DateTime LeaseExpires { get; set; }
 
-        public string LicenseServiceSettingsFilePath { get; set; }
-        public string LicenseServiceUrl { get; set; }
+        public string? LicenseServiceSettingsFilePath { get; set; }
+        public string? LicenseServiceUrl { get; set; }
 
-        public string RegistryStoragePath { get; set; }
+        public string? RegistryStoragePath { get; set; }
         //public short RemainingCumulativeRuntime { get; }
         //public short RemainingExecutions { get; }
         //public short RemainingRuntime { get; }
@@ -209,61 +209,57 @@ namespace Zek.Licensing
 
 
 
-        public string ValidationKey { get; set; }
-
-
-
-
+        public string? ValidationKey { get; set; }
     }
 
-    public class LicenseMap : EntityTypeMap<License>
-    {
-        public LicenseMap(ModelBuilder builder) : base(builder)
-        {
-            ToTable("Licenses", "Licensing");
-            HasKey(t => t.Id);
-            Property(t => t.Id).ValueGeneratedOnAdd();
+    //public class LicenseMap : EntityTypeMap<License>
+    //{
+    //    public LicenseMap(ModelBuilder builder) : base(builder)
+    //    {
+    //        ToTable("Licenses", "Licensing");
+    //        HasKey(t => t.Id);
+    //        Property(t => t.Id).ValueGeneratedOnAdd();
 
-            //Property(t => t.HotelId).IsRequired().HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("IX_Hotel.T_HotelRoomType_HotelId_RoomTypeId") { IsUnique = true, Order = 1 }));
-            //HasRequired(t => t.Hotel).WithMany().HasForeignKey(t => t.HotelId).WillCascadeOnDelete(false);
+    //        //Property(t => t.HotelId).IsRequired().HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("IX_Hotel.T_HotelRoomType_HotelId_RoomTypeId") { IsUnique = true, Order = 1 }));
+    //        //HasRequired(t => t.Hotel).WithMany().HasForeignKey(t => t.HotelId).WillCascadeOnDelete(false);
 
-            //Property(t => t.RoomTypeId).IsRequired().HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("IX_Hotel.T_HotelRoomType_HotelId_RoomTypeId") { IsUnique = true, Order = 2 }));
-            //HasRequired(t => t.RoomType).WithMany().HasForeignKey(t => t.RoomTypeId).WillCascadeOnDelete(false);
-
-
-
-            Property(t => t.LicenseCode)/*.IsUnicode(false)*/.HasMaxLength(2500);
-            Property(t => t.MachineCodeAsString)/*.IsUnicode(false)*/.HasMaxLength(200);
-            Property(t => t.HostAssemblyName)/*.IsUnicode(false)*/.HasMaxLength(200);
-            Property(t => t.ExplicitRunTimeLicenseCode)/*.IsUnicode(false)*/.HasMaxLength(2500);
-            Property(t => t.AllowedDomains)/*.IsUnicode(false)*/.HasMaxLength(300);
-            Property(t => t.UserData)/*.IsUnicode(false)*/.HasMaxLength(5000);
-
-
-            Property(t => t.ProjectName)/*.IsUnicode(false)*/.HasMaxLength(200);
-            Property(t => t.KeyName)/*.IsUnicode(false)*/.HasMaxLength(200);
-            Property(t => t.ProfileName)/*.IsUnicode(false)*/.HasMaxLength(200);
-            Property(t => t.SerialCode)/*.IsUnicode(false)*/.HasMaxLength(50);
+    //        //Property(t => t.RoomTypeId).IsRequired().HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("IX_Hotel.T_HotelRoomType_HotelId_RoomTypeId") { IsUnique = true, Order = 2 }));
+    //        //HasRequired(t => t.RoomType).WithMany().HasForeignKey(t => t.RoomTypeId).WillCascadeOnDelete(false);
 
 
 
-            Property(t => t.DateExpires).HasColumnTypeDateTime();
-            Property(t => t.DateGenerated).HasColumnTypeDateTime();
-            Property(t => t.DateLastUsed).HasColumnTypeDateTime();
-
-            Property(t => t.FloatingLeasePeriod).HasColumnType("time");
-
-
-            //Property(t => t.IsDeleted).IsRequired().HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("IX_Dictionary.DD_HotelType_IsDeleted")));
-
-            //HasRequired(t => t.Creator).WithMany().HasForeignKey(t => t.CreatorId).WillCascadeOnDelete(false);
-            //Property(t => t.CreatorId).IsRequired().HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("IX_Dictionary.DD_HotelType_CreatorId")));
-            //Property(t => t.CreateDate).IsRequired().HasPrecision(0).HasColumnType("datetime2");
+    //        Property(t => t.LicenseCode)/*.IsUnicode(false)*/.HasMaxLength(2500);
+    //        Property(t => t.MachineCodeAsString)/*.IsUnicode(false)*/.HasMaxLength(200);
+    //        Property(t => t.HostAssemblyName)/*.IsUnicode(false)*/.HasMaxLength(200);
+    //        Property(t => t.ExplicitRunTimeLicenseCode)/*.IsUnicode(false)*/.HasMaxLength(2500);
+    //        Property(t => t.AllowedDomains)/*.IsUnicode(false)*/.HasMaxLength(300);
+    //        Property(t => t.UserData)/*.IsUnicode(false)*/.HasMaxLength(5000);
 
 
-            //HasOptional(t => t.Modifier).WithMany().HasForeignKey(t => t.ModifierId).WillCascadeOnDelete(false);
-            //Property(t => t.ModifierId).HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("IX_Dictionary.DD_HotelType_ModifierId")));
-            //Property(t => t.ModifidDate).HasPrecision(0).HasColumnType("datetime2");
-        }
-    }
+    //        Property(t => t.ProjectName)/*.IsUnicode(false)*/.HasMaxLength(200);
+    //        Property(t => t.KeyName)/*.IsUnicode(false)*/.HasMaxLength(200);
+    //        Property(t => t.ProfileName)/*.IsUnicode(false)*/.HasMaxLength(200);
+    //        Property(t => t.SerialCode)/*.IsUnicode(false)*/.HasMaxLength(50);
+
+
+
+    //        Property(t => t.DateExpires).HasColumnTypeDateTime();
+    //        Property(t => t.DateGenerated).HasColumnTypeDateTime();
+    //        Property(t => t.DateLastUsed).HasColumnTypeDateTime();
+
+    //        Property(t => t.FloatingLeasePeriod).HasColumnType("time");
+
+
+    //        //Property(t => t.IsDeleted).IsRequired().HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("IX_Dictionary.DD_HotelType_IsDeleted")));
+
+    //        //HasRequired(t => t.Creator).WithMany().HasForeignKey(t => t.CreatorId).WillCascadeOnDelete(false);
+    //        //Property(t => t.CreatorId).IsRequired().HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("IX_Dictionary.DD_HotelType_CreatorId")));
+    //        //Property(t => t.CreateDate).IsRequired().HasPrecision(0).HasColumnType("datetime2");
+
+
+    //        //HasOptional(t => t.Modifier).WithMany().HasForeignKey(t => t.ModifierId).WillCascadeOnDelete(false);
+    //        //Property(t => t.ModifierId).HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("IX_Dictionary.DD_HotelType_ModifierId")));
+    //        //Property(t => t.ModifidDate).HasPrecision(0).HasColumnType("datetime2");
+    //    }
+    //}
 }

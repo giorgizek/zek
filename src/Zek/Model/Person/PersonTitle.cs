@@ -1,5 +1,6 @@
 ﻿namespace Zek.Model.Person
 {
+    [Obsolete]
     public enum PersonTitle
     {
         Mr = 1,

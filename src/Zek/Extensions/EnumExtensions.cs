@@ -92,7 +92,7 @@ namespace Zek.Extensions
         {
             return Convert.ToInt32(value);
         }
-        public static int? ToNullableInt32([CanBeNull] this Enum value)
+        public static int? ToNullableInt32(this Enum value)
         {
             if (value == null) return null;
 

@@ -5,25 +5,26 @@ using Zek.Persistence.Configurations;
 
 namespace Zek.Model.Calendar
 {
+    [Obsolete]
     public class Appointment : PocoEntity
     {
         public int Type { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public bool? AllDay { get; set; }
-        public string Subject { get; set; }
-        public string Location { get; set; }
-        public string Description { get; set; }
+        public string? Subject { get; set; }
+        public string? Location { get; set; }
+        public string? Description { get; set; }
         public int Status { get; set; }
         public int Label { get; set; }
         public int? ResourceId { get; set; }
-        public string ResourceIds { get; set; }
-        public string ReminderInfo { get; set; }
-        public string RecurrenceInfo { get; set; }
+        public string? ResourceIds { get; set; }
+        public string? ReminderInfo { get; set; }
+        public string? RecurrenceInfo { get; set; }
         public string ConcurrencyStamp { get; set; } = Guid.NewGuid().ToString();
     }
 
-
+    [Obsolete]
     public class AppointmentMap : AppointmentMap<Appointment>
     {
         public AppointmentMap(ModelBuilder builder) : base(builder)
@@ -31,6 +32,7 @@ namespace Zek.Model.Calendar
         }
     }
 
+    [Obsolete]
     public class AppointmentMap<TAppointment> : PocoModelMap<TAppointment>
         where TAppointment : Appointment
     {

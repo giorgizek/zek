@@ -1,8 +1,10 @@
 ﻿namespace Zek.Model.DTO
 {
+    [Obsolete]
     public static class ContactExtensions
     {
-        public static void Assign(this ContactDTO model, Model.Contact.Contact contact)
+        [Obsolete]
+        public static void Assign(this ContactDTO? model, Model.Contact.Contact? contact)
         {
             if (contact == null)
                 throw new ArgumentNullException(nameof(contact));

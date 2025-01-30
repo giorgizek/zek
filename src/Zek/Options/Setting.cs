@@ -1,14 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Zek.Data.Entity;
 
-namespace Zek.Model.Config
+namespace Zek.Options
 {
     public class Setting
     {
-        public string Id { get; set; }
-        public string Value { get; set; }
+        public string? Id { get; set; }
+        public string? Value { get; set; }
     }
 
+    [Obsolete]
     public class SettingMap : EntityTypeMap<Setting>
     {
         public SettingMap(ModelBuilder builder) : base(builder)

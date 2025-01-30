@@ -6,6 +6,7 @@ using Zek.Persistence.Configurations;
 
 namespace Zek.Model.Accounting
 {
+    [Obsolete]
     public class Ecomm : PocoEntity<int>
     {
         public int MerchantId { get; set; }

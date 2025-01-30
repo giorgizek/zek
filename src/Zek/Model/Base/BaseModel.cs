@@ -3,18 +3,21 @@ using Zek.Domain.Entities;
 
 namespace Zek.Model.Base
 {
+    [Obsolete]
     public class BaseModel<TId> : BaseModel<TId, User>
     {
     }
 
+    [Obsolete]
     public class BaseModel<TId, TUser> : PocoEntity<TId>
         where TUser : User
     {
-        public TUser Creator { get; set; }
+        public TUser? Creator { get; set; }
 
-        public TUser Modifier { get; set; }
+        public TUser? Modifier { get; set; }
     }
 
+    [Obsolete]
     public class BaseModelMap<TEntity, TId> : BaseModelMap<TEntity, TId, User>
         where TEntity : BaseModel<TId>
     {
@@ -23,6 +26,7 @@ namespace Zek.Model.Base
         }
     }
 
+    [Obsolete]
     public class BaseModelMap<TEntity, TId, TUser> : PocoModelMap<TEntity, TId>
         where TEntity : BaseModel<TId, TUser>
         where TUser : User
