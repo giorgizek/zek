@@ -9,7 +9,7 @@
         /// <param name = "pageNumber">The one-based index of the subset of objects contained by this instance.</param>
         /// <param name = "pageSize">The maximum size of any individual subset.</param>
         /// <param name = "totalItemCount">The size of the superset.</param>
-        protected internal PagedList(IEnumerable<T> subset, int pageNumber, int pageSize, int totalItemCount)
+        public PagedList(IEnumerable<T> subset, int pageNumber, int pageSize, int totalItemCount)
         {
             if (pageNumber < 1)
             {
