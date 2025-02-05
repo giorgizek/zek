@@ -156,14 +156,8 @@ namespace Zek.Utils
         /// <remarks>Implementations of this method should be time consistent.</remarks>
         public virtual PasswordVerificationResult VerifyHashedPassword(string hashedPassword, string providedPassword)
         {
-            if (hashedPassword == null)
-            {
-                throw new ArgumentNullException(nameof(hashedPassword));
-            }
-            if (providedPassword == null)
-            {
-                throw new ArgumentNullException(nameof(providedPassword));
-            }
+            ArgumentNullException.ThrowIfNull(hashedPassword);
+            ArgumentNullException.ThrowIfNull(providedPassword);
 
             byte[] decodedHashedPassword = Convert.FromBase64String(hashedPassword);
 

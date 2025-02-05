@@ -65,7 +65,7 @@ namespace Zek.Utils
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj is ShortGuid shortGuid)
             {
@@ -171,7 +171,7 @@ namespace Zek.Utils
         /// <param name="input">The ShortGuid encoded string to decode.</param>
         /// <param name="result">A new <see cref="System.Guid"/> instance from the parsed string.</param>
         /// <returns>A boolean indicating if the decode was successful.</returns>
-        public static bool TryDecode(string input, out Guid result)
+        public static bool TryDecode(string? input, out Guid result)
         {
             if (input == null)
             {
@@ -300,7 +300,7 @@ namespace Zek.Utils
         /// <param name="input">The ShortGuid encoded string or string representation of a Guid.</param>
         /// <param name="result">A new <see cref="ShortGuid"/> instance from the parsed string.</param>
         /// <returns>A boolean indicating if the parse was successful.</returns>
-        public static bool TryParse(string input, out ShortGuid result)
+        public static bool TryParse(string? input, out ShortGuid result)
         {
             // Try a ShortGuid string.
             if (TryDecode(input, out var guid))

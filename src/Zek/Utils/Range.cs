@@ -13,8 +13,8 @@ namespace Zek.Utils
             Start = start;
             End = end;
         }
-        public T Start { get; set; }
-        public T End { get; set; }
+        public T Start { get; set; } = default!;
+        public T End { get; set; } = default!;
 
         public override string ToString()
         {

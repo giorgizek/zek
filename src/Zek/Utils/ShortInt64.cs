@@ -31,7 +31,7 @@ namespace Zek.Utils
         public override string ToString() => _encodedString;
 
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj is ShortInt64 shortInt)
             {
@@ -72,7 +72,7 @@ namespace Zek.Utils
             return BitConverter.ToInt64(WebEncoders.Base64UrlDecode(value));
         }
 
-        public static bool TryDecode(string input, out long result)
+        public static bool TryDecode(string? input, out long result)
         {
             if (input == null)
             {

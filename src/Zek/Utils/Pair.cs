@@ -4,8 +4,8 @@ namespace Zek.Utils
 {
     public class Pair<TFirst, TSecond>
     {
-        public TFirst First { get; set; }
-        public TSecond Second { get; set; }
+        public TFirst First { get; set; } = default!;
+        public TSecond Second { get; set; } = default!;
 
         public Pair()
         {
@@ -38,7 +38,7 @@ namespace Zek.Utils
             return builder.ToString();
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             var pair = obj as Pair<TFirst, TSecond>;
             if (pair == null)
@@ -61,7 +61,7 @@ namespace Zek.Utils
             Third = third;
         }
 
-        public TThird Third { get; set; }
+        public TThird Third { get; set; } = default!;
 
         public override string ToString()
         {
@@ -87,7 +87,7 @@ namespace Zek.Utils
 
 
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             var pair = obj as Pair<TFirst, TSecond, TThird>;
             if (pair == null)
@@ -110,7 +110,7 @@ namespace Zek.Utils
             Fourth = fourth;
         }
 
-        public TFourth Fourth { get; set; }
+        public TFourth Fourth { get; set; } = default!;
 
         public override string ToString()
         {
@@ -141,7 +141,7 @@ namespace Zek.Utils
 
 
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             var pair = obj as Pair<TFirst, TSecond, TThird, TFourth>;
             if (pair == null)

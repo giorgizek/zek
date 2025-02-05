@@ -65,36 +65,16 @@ namespace Zek.Utils
                 var length = FractionLength(value);
                 if (length > 0)
                 {
-                    string fraction;
-                    switch (length)
+                    string fraction = length switch
                     {
-                        case 1:
-                            fraction = "მეათედი";
-                            break;
-
-                        case 2:
-                            fraction = "მეასედი";
-                            break;
-
-                        case 3:
-                            fraction = "მეათასედი";
-                            break;
-
-                        case 4:
-                            fraction = "მეათიათასედი";
-                            break;
-
-                        case 5:
-                            fraction = "მეასიათასედი";
-                            break;
-
-                        case 6:
-                            fraction = "მემილიონედი";
-                            break;
-
-                        default:
-                            throw new Exception("fraction არის 6-ზე მეტი.");
-                    }
+                        1 => "მეათედი",
+                        2 => "მეასედი",
+                        3 => "მეათასედი",
+                        4 => "მეათიათასედი",
+                        5 => "მეასიათასედი",
+                        6 => "მემილიონედი",
+                        _ => throw new Exception("fraction არის 6-ზე მეტი."),
+                    };
                     str += $" მთელი {FracToInt32(value)} {fraction}";
                 }
             }

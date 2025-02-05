@@ -2,31 +2,6 @@
 {
     public static class MimeTypeMapping
     {
-        //private static readonly char[] PathSeparatorChars = { Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar, Path.VolumeSeparatorChar };
-        //private static string GetFileName(string path)
-        //{
-        //    var startIndex = path.LastIndexOfAny(PathSeparatorChars);
-        //    if (startIndex < 0)
-        //    {
-        //        return path;
-        //    }
-        //    return path.Substring(startIndex);
-        //}
-
-        //public static string GetFileMimeType(string fileName)
-        //{
-        //fileName = GetFileName(fileName);
-        //for (var i = 0; i < fileName.Length; i++)
-        //{
-        //    string str;
-        //    if ((fileName[i] == '.') && Mappings.TryGetValue(fileName.Substring(i), out str))
-        //    {
-        //        return str;
-        //    }
-        //}
-        //return Mappings[".*"];
-        //}
-
         public static string GetFileMimeType(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName))
@@ -37,8 +12,7 @@
 
         public static string GetMimeType(string extension)
         {
-            if (extension == null)
-                throw new ArgumentNullException(nameof(extension));
+            ArgumentNullException.ThrowIfNull(extension);
 
             if (!extension.StartsWith("."))
                 extension = "." + extension;
@@ -633,48 +607,5 @@
             #endregion
         };
 
-        //public static string GetMimeTypeFromFile(string fileName)
-        //{
-        //    if (string.IsNullOrWhiteSpace(fileName))
-        //    {
-        //        throw new ArgumentNullException("filename must contain a filename");
-        //    }
-        //    var extension = Path.GetExtension(fileName).ToLower();
-
-        //    if (!extension.StartsWith("."))
-        //    {
-        //        extension = "." + extension;
-        //    }
-
-
-        //    string mime;
-
-        //    if (Mappings.TryGetValue(extension, out mime))
-        //        return mime;
-
-        //    if (GetWindowsMimeType(extension, out mime))
-        //        return mime;
-        //    return "application/octet-stream";
-        //}
-        //public static bool GetWindowsMimeType(string ext, out string mime)
-        //{
-        //    mime = "application/octet-stream";
-        //    var regKey = Registry.ClassesRoot.OpenSubKey(ext);
-
-        //    if (regKey != null)
-        //    {
-        //        var val = regKey.GetValue("Content Type");
-        //        if (val != null)
-        //        {
-        //            var strval = val.ToString();
-        //            if (!(string.IsNullOrEmpty(strval) || string.IsNullOrWhiteSpace(strval)))
-        //            {
-        //                mime = strval;
-        //                return true;
-        //            }
-        //        }
-        //    }
-        //    return false;
-        //}
     }
 }
