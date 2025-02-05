@@ -4,7 +4,7 @@ namespace Zek.Utils
 {
     public static class CheckHelper
     {
-        public static bool IsNullOrDefault(object obj)
+        public static bool IsNullOrDefault(object? obj)
         {
             return (obj == null) ||
                    (obj == DBNull.Value) ||

@@ -7,12 +7,12 @@ namespace Zek.Utils
     {
         public static List<Claim> Create(
             string userId,
-            string userName = null,
+            string? userName = null,
             //string email = null,
             //string givenName = null,
             //string surname = null,
-            IEnumerable<string> roles = null,
-            IEnumerable<KeyPair<string, string>> claimCollection = null)
+            IEnumerable<string>? roles = null,
+            IEnumerable<KeyPair<string, string>>? claimCollection = null)
         {
             if (string.IsNullOrEmpty(userId))
                 throw new ArgumentException("User ID parameter is required.", nameof(userId));

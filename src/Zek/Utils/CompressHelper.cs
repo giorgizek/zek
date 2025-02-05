@@ -13,14 +13,11 @@ namespace Zek.Utils
     {
         public static byte[] Compress(byte[] buffer, CompressionType? compressionType = null)
         {
-            switch (compressionType)
+            return compressionType switch
             {
-                case CompressionType.GZip:
-                    return GZipHelper.Compress(buffer);
-
-                default:
-                    return buffer;
-            }
+                CompressionType.GZip => GZipHelper.Compress(buffer),
+                _ => buffer,
+            };
         }
 
 
@@ -68,7 +65,7 @@ namespace Zek.Utils
 
     public class GZipHelper
     {
-        public static byte[] Compress(byte[] buffer)
+        public static byte[]? Compress(byte[]? buffer)
         {
             if (buffer == null) return null;
 
@@ -81,7 +78,7 @@ namespace Zek.Utils
                 return memStream.ToArray();
             }
         }
-        public static byte[] Decompress(byte[] gzip)
+        public static byte[]? Decompress(byte[]? gzip)
         {
             if (gzip == null) return null;
 

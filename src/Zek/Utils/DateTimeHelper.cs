@@ -260,7 +260,7 @@
 
 
 
-        [Obsolete("Use Overlaps or Intersects instead")]
+        [Obsolete("Use Overlaps or Intersects instead", true)]
         public static bool Overlap(DateTime start1, DateTime end1, DateTime start2, DateTime end2)
         {
             return (start1 >= start2 && start1 <= end2)
@@ -268,7 +268,7 @@
                 || (start1 <= start2 && end1 >= end2);
         }
 
-        [Obsolete("Use !Overlaps instead")]
+        [Obsolete("Use !Overlaps instead", true)]
         public static bool NotOverlaps(DateTime start1, DateTime end1, DateTime start2, DateTime end2)
         {
             return (start1 > end2) || (end1 < start2);

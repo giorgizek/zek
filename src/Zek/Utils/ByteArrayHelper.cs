@@ -33,7 +33,7 @@ namespace Zek.Utils
         }
 
 
-        public static bool ByteArraysEqual(byte[] a, byte[] b)
+        public static bool ByteArraysEqual(byte[]? a, byte[]? b)
         {
             if (a == null && b == null)
             {

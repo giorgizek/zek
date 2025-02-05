@@ -29,7 +29,7 @@
         public override string ToString() => _encodedString;
 
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj is Base62Int32 shortInt)
             {
@@ -70,7 +70,7 @@
             return Base62Convert.Decode(value);// BitConverter.ToInt32(WebEncoders.Base64UrlDecode(value));
         }
 
-        public static bool TryDecode(string input, out int result)
+        public static bool TryDecode(string? input, out int result)
         {
             if (input == null)
             {
@@ -221,7 +221,7 @@
         /// <param name="input">The Base62Int32 encoded string or string representation of a int.</param>
         /// <param name="result">A new <see cref="int"/> instance from the parsed string.</param>
         /// <returns>A boolean indicating if the parse was successful.</returns>
-        public static bool TryParse(string input, out int result)
+        public static bool TryParse(string? input, out int result)
         {
             // Try a Base62Int32 string.
             if (TryDecode(input, out result))
