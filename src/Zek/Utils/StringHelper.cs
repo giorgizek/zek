@@ -4,7 +4,7 @@ namespace Zek.Utils
 {
     public class StringHelper
     {
-        public static string RemoveChars(string value, List<char> charsToRemove)
+        public static string? RemoveChars(string? value, List<char> charsToRemove)
         {
             if (string.IsNullOrEmpty(value))
                 return value;
@@ -20,7 +20,7 @@ namespace Zek.Utils
             return sb.ToString();
         }
 
-        public static string Replace(string str, string[] from, string[] to)
+        public static string? Replace(string? str, string[] from, string[] to)
         {
             if (string.IsNullOrEmpty(str) || from == null || from.Length == 0 || to == null || to.Length == 0)
                 return str;
@@ -44,7 +44,7 @@ namespace Zek.Utils
         /// <param name="str"></param>
         /// <param name="searchChars"></param>
         /// <returns></returns>
-        public static int FindCount(string str, string searchChars)
+        public static int FindCount(string? str, string searchChars)
         {
             if (string.IsNullOrEmpty(str))
                 return 0;
@@ -154,18 +154,18 @@ namespace Zek.Utils
         //                select trimmed;
         //    return split.ToArray();
         //}
-        public static string[] Split(string original, params char[]? separator)
+        public static string[] Split(string? original, params char[]? separator)
         {
             separator ??= [','];
             return original?.Split(separator, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries) ?? [];
         }
-        public static string[] Split(string original, params string[] separator)
+        public static string[] Split(string? original, params string[] separator)
         {
             separator ??= [","];
             return original?.Split(separator, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries) ?? [];
         }
 
-        public static int[]? ToIntArray(string str, char[]? separator = null)
+        public static int[]? ToIntArray(string? str, char[]? separator = null)
         {
             if (str is null)
                 return null;

@@ -22,7 +22,7 @@ namespace Zek.Utils
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static bool IsNumeric(string value)
+        public static bool IsNumeric(string? value)
         {
             if (string.IsNullOrEmpty(value)) return false;
 
@@ -83,7 +83,7 @@ namespace Zek.Utils
 #endif
         }
 
-        public static bool IsValidEmail(string email)
+        public static bool IsValidEmail(string? email)
         {
             if (string.IsNullOrWhiteSpace(email))
                 return false;
@@ -109,7 +109,7 @@ namespace Zek.Utils
         /// <param name="maxLength"></param>
         /// <param name="allowedUserNameCharacters"></param>
         /// <returns></returns>
-        public static bool IsValidUserName(string userName, int minLength = 3, int maxLength = 256, string allowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+")
+        public static bool IsValidUserName(string? userName, int minLength = 3, int maxLength = 256, string allowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+")
         {
             if (userName == null || userName.Length < minLength || userName.Length > maxLength)
                 return false;
@@ -131,7 +131,7 @@ namespace Zek.Utils
         private const string ExtensionAbbreviationX = "x";
 
 
-        public static bool IsValidPhone(string phoneNumber)
+        public static bool IsValidPhone(string? phoneNumber)
         {
             if (string.IsNullOrEmpty(phoneNumber))
                 return false;

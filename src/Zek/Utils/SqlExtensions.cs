@@ -11,7 +11,7 @@ namespace Zek.Utils
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static object ToDbValue(object value)
+        public static object ToDbValue(object? value)
         {
             return value ?? DBNull.Value;
         }
@@ -55,7 +55,7 @@ namespace Zek.Utils
         {
             return "N'" + value.ToString().Replace("'", "''") + "'";
         }
-        public static string ToSqlValue(string value)
+        public static string ToSqlValue(string? value)
         {
             return value == null ? "NULL" : "N'" + value.Replace("'", "''") + "'";
         }
@@ -174,7 +174,7 @@ namespace Zek.Utils
         /// </summary>
         /// <param name="value">მნიშვნელობა, რომლის დაფორმატირებაც გვინდა.</param>
         /// <returns>დაფორმატირებული String.</returns>
-        public static string ToSqlValue(object value)
+        public static string ToSqlValue(object? value)
         {
             if (value == null || value == DBNull.Value)
             {
@@ -277,7 +277,7 @@ namespace Zek.Utils
         /// </summary>
         /// <param name="value">მნიშვნელობა, რომლის დაფორმატირებაც გვინდა.</param>
         /// <returns>დაფორმატირებული String.</returns>
-        public static string ToEntitySqlValue(object value)
+        public static string ToEntitySqlValue(object? value)
         {
             var formattedValue = string.Empty;
             //string StringType = Type.GetType("string").Name;
