@@ -8,10 +8,11 @@ namespace Zek.Utils
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
     public class KeyPair<TKey, TValue>
+        where TKey : notnull
     {
-        public TKey Key { get; set; }
+        public TKey Key { get; set; } = default!;
 
-        public TValue Value { get; set; }
+        public TValue Value { get; set; } = default!;
 
         public KeyPair()
         {
@@ -41,7 +42,7 @@ namespace Zek.Utils
             builder.Append(']');
             return builder.ToString();
         }
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return obj is KeyPair<TKey, TValue> pair && Equals(Key, pair.Key);
         }
@@ -51,12 +52,12 @@ namespace Zek.Utils
         }
     }
 
-    public class KeyPair : KeyPair<int, string>
+    public class KeyPair : KeyPair<int, string?>
     {
         public KeyPair()
         {
         }
-        public KeyPair(int key, string value) : base(key, value)
+        public KeyPair(int key, string? value) : base(key, value)
         {
         }
     }
@@ -67,10 +68,10 @@ namespace Zek.Utils
         public KeyPairCode()
         {
         }
-        public KeyPairCode(int key, string value, string code) : base(key, value)
+        public KeyPairCode(int key, string? value, string? code) : base(key, value)
         {
             Code = code;
         }
-        public string Code { get; set; }
+        public string? Code { get; set; }
     }
 }

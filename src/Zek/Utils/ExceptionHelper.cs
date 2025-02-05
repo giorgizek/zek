@@ -5,13 +5,13 @@ namespace Zek.Utils
 {
     public class ExceptionHelper
     {
-        public static void WriteConsole(Exception ex, string fileName = null)
+        public static void WriteConsole(Exception ex, string? fileName = null)
         {
             ConsoleHelper.WriteException(ex);
             WriteWin(ex, fileName);
         }
 
-        public static void WriteWin(Exception ex, string fileName = null)
+        public static void WriteWin(Exception ex, string? fileName = null)
         {
             try
             {

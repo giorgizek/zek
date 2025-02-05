@@ -24,7 +24,7 @@ namespace Zek.Utils
                 expires,
                 options.IssuerSigningKey);
 
-        private static string Create(string issuer, string audience, IEnumerable<Claim> claims, DateTime? expires, string key)
+        private static string Create(string? issuer, string? audience, IEnumerable<Claim>? claims, DateTime? expires, string key)
         {
             var symKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
             var creds = new SigningCredentials(symKey, SecurityAlgorithms.HmacSha256);

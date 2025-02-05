@@ -13,9 +13,9 @@ namespace Zek.Utils
         {
             double valor = fileSize;
             long i;
-            var names = useAbbreviations
-                ? new[] { "Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB" }
-                : new[] { "Bytes", "KBytes", "MBytes", "GBytes", "TBytes", "PBytes", "EBytes", "ZBytes", "YBytes" };
+            string[] names = useAbbreviations
+                ? ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"]
+                : ["Bytes", "KBytes", "MBytes", "GBytes", "TBytes", "PBytes", "EBytes", "ZBytes", "YBytes"];
             for (i = 0; i < names.Length && valor >= 1024; i++)
                 valor /= 1024.0;
             return $"{valor:#,###.00} {names[i]}";
@@ -44,7 +44,7 @@ namespace Zek.Utils
         //}
 
 
-        public static string GetValidFileName(string fileName)
+        public static string? GetValidFileName(string? fileName)
         {
             if (string.IsNullOrEmpty(fileName)) return fileName;
 
@@ -60,7 +60,7 @@ namespace Zek.Utils
             return validFileName.ToString();
         }
         
-        public static string GetValidFolderName(string folderName)
+        public static string? GetValidFolderName(string? folderName)
         {
             if (string.IsNullOrEmpty(folderName)) return folderName;
 

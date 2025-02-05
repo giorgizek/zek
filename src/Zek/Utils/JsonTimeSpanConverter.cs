@@ -10,7 +10,7 @@ namespace Zek.Utils
         public override TimeSpan Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             var value = reader.GetString();
-            return TimeSpan.Parse(value);
+            return TimeSpan.Parse(value ?? string.Empty);
         }
 
         public override void Write(Utf8JsonWriter writer, TimeSpan value, JsonSerializerOptions options)

@@ -154,7 +154,7 @@ namespace Zek.Utils
         //                select trimmed;
         //    return split.ToArray();
         //}
-        public static string[] Split(string original, params char[] separator)
+        public static string[] Split(string original, params char[]? separator)
         {
             separator ??= [','];
             return original?.Split(separator, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries) ?? [];
@@ -165,7 +165,7 @@ namespace Zek.Utils
             return original?.Split(separator, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries) ?? [];
         }
 
-        public static int[] ToIntArray(string str, char[] separator = null)
+        public static int[]? ToIntArray(string str, char[]? separator = null)
         {
             if (str is null)
                 return null;

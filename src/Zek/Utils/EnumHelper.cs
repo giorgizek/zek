@@ -6,7 +6,7 @@ namespace Zek.Utils
 {
     public static class EnumHelper
     {
-        public static T[] ToEnumArray<T>(string str, char[] separator = null)
+        public static T[]? ToEnumArray<T>(string? str, char[]? separator = null)
         where T : Enum
         {
             if (str is null)
@@ -27,6 +27,7 @@ namespace Zek.Utils
 
 
         public static Dictionary<TEnum, string> GetDisplayDictionary<TEnum>()
+            where TEnum : notnull
         {
             var values = Enum.GetValues(typeof(TEnum));
             var result = new Dictionary<TEnum, string>();
@@ -36,7 +37,7 @@ namespace Zek.Utils
             {
                 var field = value.GetType().GetField(value.ToString());
                 if (field == null) continue;
-                var attribute = (DisplayAttribute)field.GetCustomAttributes(displayAttributeType, false).FirstOrDefault();
+                var attribute = (DisplayAttribute?)field.GetCustomAttributes(displayAttributeType, false).FirstOrDefault();
 
                 result.Add((TEnum)value, attribute != null ? attribute.GetName() : value.ToString());
             }
@@ -53,7 +54,7 @@ namespace Zek.Utils
             {
                 var field = value.GetType().GetField(value.ToString());
                 if (field == null) continue;
-                var attribute = (DisplayAttribute)field.GetCustomAttributes(displayAttributeType, false).FirstOrDefault();
+                var attribute = (DisplayAttribute?)field.GetCustomAttributes(displayAttributeType, false).FirstOrDefault();
 
                 result.Add(new KeyPair<TEnum, string>((TEnum)value, attribute != null ? attribute.GetName() : value.ToString()));
             }

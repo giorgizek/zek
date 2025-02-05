@@ -7,10 +7,11 @@ namespace Zek.Utils
     /// </summary>
     /// <typeparam name="TId"></typeparam>
     public class IdHash<TId>
+        where TId : notnull
     {
-        public TId Id { get; set; }
+        public TId Id { get; set; } = default!;
 
-        public string Hash { get; set; }
+        public string Hash { get; set; } = string.Empty;
 
         public IdHash()
         {
@@ -44,7 +45,7 @@ namespace Zek.Utils
             builder.Append(']');
             return builder.ToString();
         }
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return obj is IdHash<TId> pair && Equals(Id, pair.Id);
         }
