@@ -5,6 +5,8 @@ VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zek", "src\Zek\Zek.csproj", "{66FBA761-11A3-410A-A9FA-2384207EB0C5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zek.Test", "src\Zek.Test\Zek.Test.csproj", "{3E0011F3-1B2B-4949-9523-E1AFA97A6F46}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{66FBA761-11A3-410A-A9FA-2384207EB0C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66FBA761-11A3-410A-A9FA-2384207EB0C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66FBA761-11A3-410A-A9FA-2384207EB0C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E0011F3-1B2B-4949-9523-E1AFA97A6F46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E0011F3-1B2B-4949-9523-E1AFA97A6F46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E0011F3-1B2B-4949-9523-E1AFA97A6F46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E0011F3-1B2B-4949-9523-E1AFA97A6F46}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

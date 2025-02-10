@@ -6,10 +6,20 @@ namespace Zek.Cryptography
     {
         public static byte[] EncryptToByteArray(string plainText, string key)
         {
+            if (string.IsNullOrEmpty(plainText))
+                throw new ArgumentNullException(nameof(plainText));
+
+            if (string.IsNullOrEmpty(key))
+                throw new ArgumentNullException(nameof(key));
+
             using var aesAlg = Aes.Create();
             aesAlg.Key = aesAlg.GetLegalKey(key);
 
-            var encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
+            // Create a random IV
+            aesAlg.GenerateIV();
+            var iv = aesAlg.IV;
+
+            var encryptor = aesAlg.CreateEncryptor(aesAlg.Key, iv);
             using var msEncrypt = new MemoryStream();
             using (var csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
             {
@@ -17,14 +27,13 @@ namespace Zek.Cryptography
                 swEncrypt.Write(plainText);
             }
 
-            var iv = aesAlg.IV;
 
-            var decryptedContent = msEncrypt.ToArray();
+            var encryptedContent = msEncrypt.ToArray();
 
-            var result = new byte[iv.Length + decryptedContent.Length];
+            var result = new byte[iv.Length + encryptedContent.Length];
 
             Buffer.BlockCopy(iv, 0, result, 0, iv.Length);
-            Buffer.BlockCopy(decryptedContent, 0, result, iv.Length, decryptedContent.Length);
+            Buffer.BlockCopy(encryptedContent, 0, result, iv.Length, encryptedContent.Length);
 
             return result;
         }
@@ -33,8 +42,11 @@ namespace Zek.Cryptography
 
         public static string Decrypt(byte[] cipherBytes, string key)
         {
-            if (cipherBytes.Length == 0)
+            if (cipherBytes is null || cipherBytes.Length == 0)
                 throw new ArgumentNullException(nameof(cipherBytes));
+
+            if (string.IsNullOrEmpty(key))
+                throw new ArgumentNullException(nameof(key));
 
             using var aesAlg = Aes.Create();
             var iv = new byte[aesAlg.IV.Length];
