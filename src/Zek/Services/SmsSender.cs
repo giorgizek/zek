@@ -27,7 +27,7 @@ namespace Zek.Services
         //    return $"{url}?src={merchantId}&dst={ParseMobile(number)}&txt={message}";
         //}
 
-        public async Task<IApiResponse> SendAsync(string number, string message) => await SendAsync(_options.Url, number, message, _options.MerchantId);
+        public async Task<IApiResponse> SendAsync(string number, string message) => await SendAsync(_options.Url, number, message, _options.MerchantId).ConfigureAwait(false);
 
         public async Task<IApiResponse<string>> SendAsync(string? url, string number, string message, string? merchantId)
         {
@@ -56,8 +56,8 @@ namespace Zek.Services
                 new KeyValuePair<string, string>("txt", message)
             ]);
 
-            var response = await httpClient.PostAsync(url, content);
-            result.Value = await response.Content.ReadAsStringAsync();
+            var response = await httpClient.PostAsync(url, content).ConfigureAwait(false);
+            result.Value = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             result.Success = "y".Equals(result.Value, StringComparison.CurrentCultureIgnoreCase);
             return result;

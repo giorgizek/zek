@@ -369,7 +369,7 @@ namespace Zek.Services
             if (language.Length > 32)
                 throw new ArgumentException("Language parameter max length is 32", nameof(language));
 
-            var response = await PostAsync($"command=v&amount={amount:F0}&currency={currency:F0}&client_ip_addr={clientIp}&desc={description}&language={language}&msg_type=SMS");
+            var response = await PostAsync($"command=v&amount={amount:F0}&currency={currency:F0}&client_ip_addr={clientIp}&desc={description}&language={language}&msg_type=SMS").ConfigureAwait(false);
             var result = Deserialize(response);
 
             return new TransactionResponse
@@ -447,7 +447,7 @@ namespace Zek.Services
             if (language.Length > 32)
                 throw new ArgumentException("Language parameter max length is 32", nameof(language));
 
-            var response = await PostAsync($"command=a&amount={amount:F0}&currency={currency:F0}&client_ip_addr={clientIp}&desc={description}&language={language}&msg_type=DMS");
+            var response = await PostAsync($"command=a&amount={amount:F0}&currency={currency:F0}&client_ip_addr={clientIp}&desc={description}&language={language}&msg_type=DMS").ConfigureAwait(false);
             var result = Deserialize(response);
             return new TransactionResponse
             {
@@ -561,7 +561,7 @@ namespace Zek.Services
                 sb.Append($"&desc={description}");
             sb.Append($"&language={language}&msg_type=DMS");
 
-            var response = await PostAsync(sb.ToString());
+            var response = await PostAsync(sb.ToString()).ConfigureAwait(false);
             var result = Deserialize(response);
 
             return new ExecuteDmsTransactionResponse
@@ -605,7 +605,7 @@ namespace Zek.Services
                 sb.Append($"&client_ip_addr={clientIp}");
 
 
-            var response = await PostAsync(sb.ToString());
+            var response = await PostAsync(sb.ToString()).ConfigureAwait(false);
             var result = Deserialize(response);
 
             return new GetTransactionResultResponse
@@ -643,7 +643,7 @@ namespace Zek.Services
             if (string.IsNullOrEmpty(transactionId))
                 throw new ArgumentException("TransactionId parameter is required", nameof(transactionId));
 
-            var response = await PostAsync($"command=r&trans_id={WebUtility.UrlEncode(transactionId)}&amount={amount:F0}");
+            var response = await PostAsync($"command=r&trans_id={WebUtility.UrlEncode(transactionId)}&amount={amount:F0}").ConfigureAwait(false);
             var result = Deserialize(response);
 
             return new ReverseResponse
@@ -675,7 +675,7 @@ namespace Zek.Services
             if (amount != null)
                 sb.Append($"&amount={amount:F0}");
 
-            var response = await PostAsync(sb.ToString());
+            var response = await PostAsync(sb.ToString()).ConfigureAwait(false);
             var result = Deserialize(response);
 
             return new RefundResponse
@@ -707,7 +707,7 @@ namespace Zek.Services
             if (amount != null)
                 sb.Append($"&amount={amount:F0}");
 
-            var response = await PostAsync(sb.ToString());
+            var response = await PostAsync(sb.ToString()).ConfigureAwait(false);
             var result = Deserialize(response);
 
             return new Credit
@@ -730,7 +730,7 @@ namespace Zek.Services
         /// <returns></returns>
         public async Task<CloseDay> CloseDayAsync()
         {
-            var response = await PostAsync("command=b");
+            var response = await PostAsync("command=b").ConfigureAwait(false);
             var result = Deserialize(response);
 
             return new CloseDay
@@ -766,7 +766,7 @@ namespace Zek.Services
         /// <returns></returns>
         public async Task<RegisterRegularPayment> RegisterRegularPaymentAsync(int amount, ISO4217.ISO4217 currency, string clientIp, string description, string language, string regularPaymentId, DateTime expiry, bool overwriteExistingRecurring = false, bool dms = false)
         {
-            return await RegisterRegularPaymentAsync(amount, (int)currency, clientIp, description, language, regularPaymentId, expiry, overwriteExistingRecurring, dms);
+            return await RegisterRegularPaymentAsync(amount, (int)currency, clientIp, description, language, regularPaymentId, expiry, overwriteExistingRecurring, dms).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -821,7 +821,7 @@ namespace Zek.Services
             if (overwriteExistingRecurring)
                 sb.Append("&perspayee_overwrite=1");
 
-            var response = await PostAsync(sb.ToString());
+            var response = await PostAsync(sb.ToString()).ConfigureAwait(false);
             var result = Deserialize(response);
 
             return new RegisterRegularPayment
@@ -834,7 +834,7 @@ namespace Zek.Services
 
         public async Task<ExecuteTransactionResponse> ExecuteRegularPaymentAsync(int amount, ISO4217.ISO4217 currency, string clientIp, string description, string language, string regularPaymentId)
         {
-            return await ExecuteRegularPaymentAsync(amount, (int)currency, clientIp, description, language, regularPaymentId);
+            return await ExecuteRegularPaymentAsync(amount, (int)currency, clientIp, description, language, regularPaymentId).ConfigureAwait(false);
         }
         public async Task<ExecuteTransactionResponse> ExecuteRegularPaymentAsync(int amount, int currency, string clientIp, string description, string language, string regularPaymentId)
         {
@@ -855,7 +855,7 @@ namespace Zek.Services
             if (language.Length > 32)
                 throw new ArgumentException("Language parameter max length is 32", nameof(language));
 
-            var response = await PostAsync($"command=e&amount={amount:F0}&currency={currency:F0}&client_ip_addr={clientIp}&desc={description}&language={language}&biller_client_id={WebUtility.UrlEncode(regularPaymentId)}");
+            var response = await PostAsync($"command=e&amount={amount:F0}&currency={currency:F0}&client_ip_addr={clientIp}&desc={description}&language={language}&biller_client_id={WebUtility.UrlEncode(regularPaymentId)}").ConfigureAwait(false);
             var result = Deserialize(response);
 
             return new ExecuteRegularPaymentResponse

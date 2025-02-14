@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Zek.Extensions;
 
 namespace Zek.PagedList
 {
@@ -49,12 +50,12 @@ namespace Zek.PagedList
 
             if (superset != null)
             {
-                totalCount = await superset.CountAsync(cancellationToken);
+                totalCount = await superset.CountAsync(cancellationToken).ConfigureAwait(false);
 
                 subset.AddRange(
                     (pageNumber == 1)
-                        ? await superset.Skip(0).Take(pageSize).ToListAsync(cancellationToken)
-                        : await superset.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync(cancellationToken)
+                        ? await superset.Skip(0).Take(pageSize).ToListAsync(cancellationToken).ConfigureAwait(false)
+                        : await superset.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync(cancellationToken).ConfigureAwait(false)
                 );
             }
 
@@ -110,12 +111,12 @@ namespace Zek.PagedList
 
             if ((superset != null))
             {
-                totalCount = await superset.CountAsync(cancellationToken);
+                totalCount = await superset.CountAsync(cancellationToken).ConfigureAwait(false);
                 if (totalCount > 0)
                 {
                     subset.AddRange(pageNumber == 1
-                        ? await superset.Skip(0).Take(pageSize).ToListAsync(cancellationToken)
-                        : await superset.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync(cancellationToken)
+                        ? await superset.Skip(0).Take(pageSize).ToListAsync(cancellationToken).ConfigureAwait(false)
+                        : await superset.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync(cancellationToken).ConfigureAwait(false)
                     );
                 }
             }

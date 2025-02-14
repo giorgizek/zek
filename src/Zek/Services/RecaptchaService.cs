@@ -35,13 +35,13 @@ namespace Zek.Services
                 new KeyValuePair<string, string>("response", token)
             ]);
 
-            var response = await client.PostAsync(_options.VerifyingUrl, content);
+            var response = await client.PostAsync(_options.VerifyingUrl, content).ConfigureAwait(false);
             //var json = await response.Content.ReadAsStringAsync();
             var result = await response.Content.ReadFromJsonAsync<ReCaptchaVerifyResponseDto>(new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true,
                 DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull
-            });
+            }).ConfigureAwait(false);
 
             return result;
         }

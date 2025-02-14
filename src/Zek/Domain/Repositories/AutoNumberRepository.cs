@@ -39,7 +39,7 @@ namespace Zek.Domain.Repositories
 
         public async Task<int> GetNextNumberAsync(string name, int startNumber = 0)
         {
-            var autoNumber = await Where(a => a.Name == name).FirstOrDefaultAsync();
+            var autoNumber = await Where(a => a.Name == name).FirstOrDefaultAsync().ConfigureAwait(false);
             if (autoNumber == null)//if not exist for this name
             {
                 autoNumber = new AutoNumber { Name = name, Number = startNumber + 1 };
@@ -53,7 +53,7 @@ namespace Zek.Domain.Repositories
                     autoNumber.Number++;
             }
 
-            await Context.SaveChangesAsync();
+            await Context.SaveChangesAsync().ConfigureAwait(false);
             return autoNumber.Number;
         }
     }

@@ -10,6 +10,6 @@ namespace Zek.Extensions.Collections
         /// <typeparam name="T">The type of the query.</typeparam>
         /// <param name="query">The base query to run.</param>
         /// <returns>The result.</returns>
-        public static async Task<HashSet<T>> ToHashSetAsync<T>(this IQueryable<T> query) => new HashSet<T>(await query.ToArrayAsync());
+        public static async Task<HashSet<T>> ToHashSetAsync<T>(this IQueryable<T> query) => [.. await query.ToArrayAsync().ConfigureAwait(false)];
     }
 }

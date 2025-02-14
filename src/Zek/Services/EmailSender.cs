@@ -68,7 +68,7 @@ namespace Zek.Services
             //    message.Dispose();
             //};
 
-            await client.SendMailAsync(message, cancellationToken);
+            await client.SendMailAsync(message, cancellationToken).ConfigureAwait(false);
         }
         public static MailMessage ToMailMessage(Email model)
         {
