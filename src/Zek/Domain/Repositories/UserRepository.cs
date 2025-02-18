@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Threading;
-using Zek.Domain.Entities;
+using Zek.Domain.Entities.Identity;
 using Zek.Extensions;
 using Zek.Persistence;
 

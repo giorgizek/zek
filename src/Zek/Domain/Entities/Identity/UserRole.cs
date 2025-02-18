@@ -1,4 +1,4 @@
-﻿namespace Zek.Domain.Entities
+﻿namespace Zek.Domain.Entities.Identity
 {
     public class UserRole : UserRole<int>
     {

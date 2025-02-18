@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Zek.Domain.Entities;
+using Zek.Domain.Entities.Identity;
 
 namespace Zek.Persistence.Configurations
 {

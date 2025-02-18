@@ -1,4 +1,4 @@
-﻿namespace Zek.Domain.Entities
+﻿namespace Zek.Domain.Entities.Identity
 {
     /// <summary>
     /// Represents a role in the identity system
