@@ -11,7 +11,7 @@ namespace Zek.Web
         /// <param name="value">The content value to format in the entity body.</param>
         /// <returns>The created <see cref="OkObjectResult"/> or <see cref="NotFoundResult"/> for the response.</returns>
         [NonAction]
-        public virtual IActionResult Auto(object value)
+        public virtual IActionResult Auto(object? value)
         {
             return value != null
                 ? new OkObjectResult(value)
