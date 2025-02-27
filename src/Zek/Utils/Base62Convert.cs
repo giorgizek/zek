@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Numerics;
+using System.Text;
 
 namespace Zek.Utils
 {
@@ -19,6 +20,26 @@ namespace Zek.Utils
             return result.ToString();
         }
 
+        public static string Encode(Guid guid)
+        {
+            var bytes = guid.ToByteArray();
+            var result = new StringBuilder();
+            ulong value = 0;
+
+            foreach (byte b in bytes)
+            {
+                value = (value << 8) | b;
+            }
+
+            while (value > 0)
+            {
+                result.Insert(0, DefaultCharacterSet[(int)(value % 62)]);
+                value /= 62;
+            }
+
+            return result.ToString();
+        }
+
         public static long Decode(string value)
         {
             long result = 0;
@@ -28,5 +49,6 @@ namespace Zek.Utils
             }
             return result;
         }
+
     }
 }
