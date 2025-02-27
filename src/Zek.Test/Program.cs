@@ -1,16 +1,18 @@
 ﻿using System.Text;
-using Zek.Cryptography;
+using Zek.Utils;
 
 Console.OutputEncoding = Encoding.UTF8;
 
-var key = "33DCE30260A646AB90331DCBB0241F25";
-for (int i = 0; i < 1000; i++)
-{
-    var cyper = AesHelper.Encrypt("გიორგი ზექალაშვილი", key);
-    
-    var text = AesHelper.Decrypt(cyper, key);
+long x = 1234561123432137567;
 
-    Console.WriteLine(cyper + text);
-}
+var code = Base62Convert.Encode(x);
+
+var decoded = Base62Convert.Decode(code);
+
+
+Console.WriteLine(x);
+Console.WriteLine(code);
+Console.WriteLine(decoded);
+
 
 Console.ReadKey();
