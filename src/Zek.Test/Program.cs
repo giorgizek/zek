@@ -15,18 +15,12 @@ Console.OutputEncoding = Encoding.UTF8;
 //Console.WriteLine(decoded);
 
 
-var hashset = new HashSet<string>();
-
-for (int i = 0; i < 10000000; i++)
+for (int i = 0; i < 100; i++)
 {
     var guid = Guid.NewGuid();
-    var code1 = Base62Convert.Encode(guid);
-    if (!hashset.Add(code1))
-    {
-        Console.WriteLine($"{code1} = duplicated");
-    }
-
-    Console.WriteLine(hashset.Count);
+    var code1 = UrlEncoder.Encode(Base62Convert.Encode(guid));
+    var encoded = UrlEncoder.Encode(Convert.ToBase64String(guid.ToByteArray()));
+    Console.WriteLine(code1 + " = " + encoded);
 }
 
 
