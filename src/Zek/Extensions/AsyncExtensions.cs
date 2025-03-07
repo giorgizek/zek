@@ -17,27 +17,5 @@
         {
             return task.GetAwaiter().GetResult();
         }
-
-
-        /// <summary>
-        /// Use this for API
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="task"></param>
-        /// <returns></returns>
-        public static async Task<T> WithNoContext<T>(this Task<T> task)
-        {
-            return await task.ConfigureAwait(false);
-        }
-
-        /// <summary>
-        /// use this for API
-        /// </summary>
-        /// <param name="task"></param>
-        /// <returns></returns>
-        public static async Task WithNoContext(this Task task)
-        {
-            await task.ConfigureAwait(false);
-        }
     }
 }
