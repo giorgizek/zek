@@ -18,6 +18,6 @@ namespace Zek.Services.Abstractions
         Task<TItem?> GetByIdAsync(TId id, CancellationToken cancellationToken = default);
         Task<TSaveResponse> SaveAsync(TItem model, CancellationToken cancellationToken = default);
         Task<TDeleteResponse> DeleteAsync(TId id, CancellationToken cancellationToken = default);
-        Task<bool> IsExistsAsync(TId id, CancellationToken cancellationToken = default);
+        //Task<bool> IsExistsAsync(TId id, CancellationToken cancellationToken = default);
     }
 }
