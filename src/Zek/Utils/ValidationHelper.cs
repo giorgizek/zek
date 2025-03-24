@@ -227,8 +227,10 @@ namespace Zek.Utils
 
         //private const string _urlPattern = @"^(http|https)://([\w-]+(\.[\w-]+)+)(:\d+)?(/[\w- ./?%&=]*)?$";
 
-        public static bool IsValidUrl(string url)
+        public static bool IsValidUrl(string? url)
         {
+            if (string.IsNullOrEmpty(url))
+                return false;
             // Use Regex.IsMatch to validate the URL
             //return Regex.IsMatch(url, _urlPattern, RegexOptions.IgnoreCase);
             return Uri.TryCreate(url, UriKind.Absolute, out var uriResult)
