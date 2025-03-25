@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Security.Cryptography;
+using System.Text;
 using Zek.Utils;
 
 Console.OutputEncoding = Encoding.UTF8;
@@ -15,7 +16,22 @@ Console.OutputEncoding = Encoding.UTF8;
 //Console.WriteLine(decoded);
 
 
-for (int i = 0; i < 100; i++)
+using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
+{
+    // Generate 32 random bytes
+    byte[] randomBytes = new byte[32];
+    rng.GetBytes(randomBytes);
+
+
+    // Convert the bytes to a hexadecimal string
+    string hexString = BitConverter.ToString(randomBytes).Replace("-", "").ToLower();
+
+    // Output the result
+    Console.WriteLine(hexString);
+
+}
+
+    for (int i = 0; i < 10; i++)
 {
     var guid = Guid.NewGuid();
     var code1 = UrlEncoder.Encode(Base62Convert.Encode(guid));
