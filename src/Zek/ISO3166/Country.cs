@@ -13,7 +13,7 @@ namespace Zek.ISO3166
         /// </summary>
         /// <param name="alpha2"></param>
         /// <returns></returns>
-        public static ISO3166Country? FromAlpha2(string alpha2)
+        public static ISO3166Country? FromAlpha2(string? alpha2)
         {
             if (string.IsNullOrEmpty(alpha2))
                 return null;
@@ -26,7 +26,7 @@ namespace Zek.ISO3166
         /// </summary>
         /// <param name="alpha3"></param>
         /// <returns></returns>
-        public static ISO3166Country? FromAlpha3(string alpha3)
+        public static ISO3166Country? FromAlpha3(string? alpha3)
         {
             if (string.IsNullOrEmpty(alpha3))
                 return null;

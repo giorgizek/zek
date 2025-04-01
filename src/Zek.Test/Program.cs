@@ -31,7 +31,7 @@ using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
 
 }
 
-    for (int i = 0; i < 10; i++)
+for (int i = 0; i < 10; i++)
 {
     var guid = Guid.NewGuid();
     var code1 = UrlEncoder.Encode(Base62Convert.Encode(guid));
