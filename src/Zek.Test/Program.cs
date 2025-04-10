@@ -16,6 +16,18 @@ Console.OutputEncoding = Encoding.UTF8;
 //Console.WriteLine(decoded);
 
 
+var a1 = new DateTime(2025, 1, 10);
+var a2 = new DateTime(2025, 1, 20);
+
+var b1 = new DateTime(2025, 1, 20);
+var b2 = new DateTime(2025, 1, 30);
+
+Console.WriteLine(OverlapHelper.Overlaps(a1, a2, b1, b2));
+
+
+
+return;
+
 using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
 {
     // Generate 32 random bytes

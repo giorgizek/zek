@@ -9,14 +9,14 @@ namespace Zek.Utils
     /// </summary>
     public static class UrlEncoder
     {
-        public static string Encode(string code)
+        public static string? Encode(string? code)
         {
             return string.IsNullOrEmpty(code)
                 ? code
                 : WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
         }
 
-        public static string Decode(string code)
+        public static string? Decode(string? code)
         {
             if (string.IsNullOrEmpty(code))
                 return code;

@@ -22,7 +22,7 @@
             {
                 foreach (var busySlot in busySlots)
                 {
-                    var relation = DateTimeHelper.GetRelation(busySlot.Start, busySlot.End, ranges[i].Start, ranges[i].End);
+                    var relation = OverlapHelper.GetRelation(busySlot.Start, busySlot.End, ranges[i].Start, ranges[i].End);
 
                     var @break = false;
                     switch (relation)
@@ -129,7 +129,7 @@
             foreach (var slot in allSlots)
             {
                 //if not overlap
-                if (!busySlots.Any(x => DateTimeHelper.Overlaps(slot.Start, slot.End, x.Start, x.End)))
+                if (!busySlots.Any(x => OverlapHelper.Overlaps(slot.Start, slot.End, x.Start, x.End)))
                 {
                     yield return slot;
                 }
