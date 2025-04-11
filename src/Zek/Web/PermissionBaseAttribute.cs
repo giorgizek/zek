@@ -45,7 +45,7 @@ namespace Zek.Web
         public int? Action { get; set; }
 
 
-        public void OnAuthorization(AuthorizationFilterContext context)
+        public virtual void OnAuthorization(AuthorizationFilterContext context)
         {
             var user = context.HttpContext.User;
             //this validation need if user not authenticated or [AllowAnonymous] the base Authorize filter will response unauthorized;

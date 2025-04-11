@@ -1,4 +1,4 @@
-﻿namespace Zek.Config
+﻿namespace Zek.Options
 {
     public class SiteOptions
     {
