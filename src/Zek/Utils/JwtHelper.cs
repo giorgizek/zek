@@ -8,7 +8,7 @@ namespace Zek.Utils
 {
     public static class JwtHelper
     {
-        public static string Create(string userId, string? userName, DateTime? expires, IEnumerable<string> roles, TokenOptions options)
+        public static string Create(string userId, string? userName, DateTime? expires, IEnumerable<string>? roles, TokenOptions options)
             => Create(
                  options.ValidIssuer,
                  options.ValidAudience,
@@ -16,7 +16,7 @@ namespace Zek.Utils
                  expires,
                  options.IssuerSigningKey);
 
-        public static string Create(string userId, string? userName, DateTime? expires, IEnumerable<string> roles, IEnumerable<KeyPair<string, string>> claimCollection, TokenOptions options)
+        public static string Create(string userId, string? userName, DateTime? expires, IEnumerable<string>? roles, IEnumerable<KeyPair<string, string>> claimCollection, TokenOptions options)
             => Create(
                 options.ValidIssuer,
                 options.ValidAudience,

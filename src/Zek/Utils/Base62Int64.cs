@@ -61,13 +61,13 @@
 
         public static string Encode(long value)
         {
-            var encoded = Base62Convert.Encode(value);//WebEncoders.Base64UrlEncode(BitConverter.GetBytes(value));
+            var encoded = UrlShortener.Encode(value);//WebEncoders.Base64UrlEncode(BitConverter.GetBytes(value));
             return encoded;
         }
 
         public static long Decode(string value)
         {
-            return Base62Convert.Decode(value);// BitConverter.ToInt64(WebEncoders.Base64UrlDecode(value));
+            return UrlShortener.Decode(value);// BitConverter.ToInt64(WebEncoders.Base64UrlDecode(value));
         }
 
         public static bool TryDecode(string? input, out long result)
