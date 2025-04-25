@@ -10,32 +10,13 @@ internal class Program
     {
         Console.OutputEncoding = Encoding.UTF8;
 
+        string input = "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"; // Example input
 
-        var random = RandomHelper.GetRandom().Next(100000, int.MaxValue);
-        Console.WriteLine(random);
-        Console.WriteLine();
+        var z = EnumHelper.ParseEnumArray<EndUserTransactionType>(input);
 
-        var encoded = ShortInt64.Encode(random);
-        var decoded = ShortInt64.Decode(encoded);
-
-        Console.WriteLine(encoded);
-        Console.WriteLine(decoded);
-        Console.WriteLine();
-
-
-
-        var encoded2 = UrlShortener.Encode(random);
-        var decoded2 = UrlShortener.Decode(encoded2);
-
-        Console.WriteLine(encoded2);
-        Console.WriteLine(decoded2);
-
-
-
-        var decoded3 = UrlShortener.Decode(encoded);
-        Console.WriteLine(decoded3);
 
         //BenchmarkRunner.Run<BenchmarkExecutor>();
+        //BenchmarkRunner.Run<EnumParserBenchmark>();
 
 
 

@@ -88,17 +88,6 @@ namespace Zek.Extensions
         }
 
 
-        public static int ToInt32(this Enum value)
-        {
-            return Convert.ToInt32(value);
-        }
-        public static int? ToNullableInt32(this Enum value)
-        {
-            if (value == null) return null;
-
-            return Convert.ToInt32(value);
-        }
-
         //public static long ToInt64(this Enum value)
         //{
         //    return Convert.ToInt64(value);

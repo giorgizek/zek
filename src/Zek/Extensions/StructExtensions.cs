@@ -12,7 +12,7 @@
             if (value == null)
                 return null;
 
-            return Convert.ToInt32(value) == Convert.ToInt32(defaultValue) ?(T?)null : (T)(object)value;
+            return Convert.ToInt32(value) == Convert.ToInt32(defaultValue) ? null : (T)(object)value;
         }
 
 
