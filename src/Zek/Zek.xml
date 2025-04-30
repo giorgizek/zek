@@ -54,18 +54,6 @@
             Refresh Token Expiration: Refresh tokens should have a longer lifespan, such as 1 week, 1 month, or more.
             </summary>
         </member>
-        <member name="T:Zek.Cryptography.Crc32">
-            <summary>
-            Implements a 32-bit CRC hash algorithm compatible with Zip etc.
-            </summary>
-            <remarks>
-            Crc32 should only be used for backward compatibility with older file formats
-            and algorithms. It is not secure enough for new applications.
-            If you need to call multiple times for the same data either use the HashAlgorithm
-            interface or remember that the result of one Compute call needs to be ~ (XOR) before
-            being passed in as the seed for the next Compute call.
-            </remarks>
-        </member>
         <member name="M:Zek.Data.DbHelper.DataReaderMapToList``1(System.Data.IDataReader)">
             <summary>
             Converts Datareader rows into List of T
