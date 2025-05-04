@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection.Emit;
-using JetBrains.Annotations;
-using Zek.Domain.Enums;
 using Zek.Utils;
 
 namespace Zek.Extensions
@@ -79,7 +76,7 @@ namespace Zek.Extensions
         {
             var result = new List<string>();
             // Iterate through all possible values of the enum and check if each is set
-            foreach (Enum value in Enum.GetValues(typeof(T)))
+            foreach (Enum value in Enum.GetValues<T>())
             {
                 if (flags.HasFlag(value))
                 {
@@ -91,17 +88,6 @@ namespace Zek.Extensions
             return [.. result];
         }
 
-
-        public static int ToInt32(this Enum value)
-        {
-            return Convert.ToInt32(value);
-        }
-        public static int? ToNullableInt32([CanBeNull] this Enum value)
-        {
-            if (value == null) return null;
-
-            return Convert.ToInt32(value);
-        }
 
         //public static long ToInt64(this Enum value)
         //{

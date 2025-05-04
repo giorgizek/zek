@@ -7,7 +7,7 @@ namespace Zek.Utils
     {
         public class En
         {
-            private static readonly string[] MonthsAbbr = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec" };
+            public static readonly string[] MonthsAbbr = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec" };
             public static string DateToStrAbbr(DateTime date, bool uppercase = false)
             {
                 var builder = new StringBuilder($"{date.Day} {MonthsAbbr[date.Month - 1]} {date.Year}");
@@ -28,7 +28,7 @@ namespace Zek.Utils
             }
 
 
-            private static readonly string[] Months = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+            public static readonly string[] Months = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
             private static readonly string[] Tens = { "ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety" };
             private static readonly string[] Units = { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen" };
 
