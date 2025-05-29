@@ -15,8 +15,8 @@ namespace Zek.Test
         {
             for (var i = 0; i < Count; i++)
             {
-                var encoded = ShortInt64.Encode(i);
-                var decoded = ShortInt64.Decode(encoded);
+                //var encoded = ShortInt64.Encode(i);
+                //var decoded = ShortInt64.Decode(encoded);
             }
 
         }
