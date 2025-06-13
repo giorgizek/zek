@@ -1,7 +1,12 @@
 ﻿namespace Zek.Options
 {
-    public class ConfigBase
+    public class ConfigBase : ConfigBase<TokenOptions>
     {
-        public static TokenOptions TokenOptions { get; set; } = new TokenOptions();
+
+    }
+    public class ConfigBase<T>
+        where T : TokenOptions, new()
+    {
+        public static T TokenOptions { get; set; } = new T();
     }
 }
