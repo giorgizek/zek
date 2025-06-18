@@ -4,6 +4,7 @@ using System.Reflection;
 using Zek.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Zek.Utils;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Zek.Extensions.Security.Claims
 {
@@ -98,18 +99,6 @@ namespace Zek.Extensions.Security.Claims
 
             if (!long.TryParse(exp, out var secondsSinceUnixEpoch)) return null;
             return EpochTime.DateTime(secondsSinceUnixEpoch);
-        }
-
-        public static DateTime? GetUtcDateTime(this ClaimsPrincipal principal, string claimType)
-        {
-            ArgumentNullException.ThrowIfNull(principal);
-
-            var claim = principal.FindFirstValue(claimType);
-            if (long.TryParse(claim, out var expUnixTimestamp))
-            {
-                return DateTimeOffset.FromUnixTimeSeconds(expUnixTimestamp).UtcDateTime;
-            }
-            return null;
         }
 
         public static bool IsAuthorized<TController>(this ClaimsPrincipal user)
