@@ -36,54 +36,66 @@ namespace Zek.Extensions
 
         public static long ToJavaScriptMilliseconds(this DateTime date) => (long)date.ToUniversalTime().Subtract(EpochTime.UnixEpoch).TotalMilliseconds;
 
-        public static DateTime GetStartOfSecond(this DateTime date) => new(date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second);
+        public static DateTime GetStartOfSecond(this DateTime date) =>
+            new(date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second, date.Kind);
 
-        public static DateTime GetEndOfSecond(this DateTime date) => new(date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second, 999);
+        public static DateTime GetEndOfSecond(this DateTime date) =>
+            new(date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second, 999, date.Kind);
 
-        public static DateTime GetStartOfMinute(this DateTime date) => new(date.Year, date.Month, date.Day, date.Hour, date.Minute, 0);
+        public static DateTime GetStartOfMinute(this DateTime date) =>
+            new(date.Year, date.Month, date.Day, date.Hour, date.Minute, 0, date.Kind);
 
-        public static DateTime GetEndOfMinute(this DateTime date) => new(date.Year, date.Month, date.Day, date.Hour, date.Minute, 59, 999);
+        public static DateTime GetEndOfMinute(this DateTime date) =>
+            new(date.Year, date.Month, date.Day, date.Hour, date.Minute, 59, 999, date.Kind);
 
-        public static DateTime GetStartOfHour(this DateTime date) => new(date.Year, date.Month, date.Day, date.Hour, 0, 0);
+        public static DateTime GetStartOfHour(this DateTime date) =>
+            new(date.Year, date.Month, date.Day, date.Hour, 0, 0, date.Kind);
 
-        public static DateTime GetEndOfHour(this DateTime date) => new(date.Year, date.Month, date.Day, date.Hour, 59, 59, 999);
+        public static DateTime GetEndOfHour(this DateTime date) =>
+            new(date.Year, date.Month, date.Day, date.Hour, 59, 59, 999, date.Kind);
 
-        public static DateTime GetStartOfDay(this DateTime date) => new(date.Year, date.Month, date.Day, 0, 0, 0, 0);
+        public static DateTime GetStartOfDay(this DateTime date) =>
+            new(date.Year, date.Month, date.Day, 0, 0, 0, 0, date.Kind);
 
-        public static DateTime GetEndOfDay(this DateTime date) => new(date.Year, date.Month, date.Day, 23, 59, 59, 999);
+        public static DateTime GetEndOfDay(this DateTime date) =>
+            new(date.Year, date.Month, date.Day, 23, 59, 59, 999, date.Kind);
 
-        public static DateTime GetStartOfMonth(this DateTime date) => new(date.Year, date.Month, 1, 0, 0, 0, 0);
+        public static DateTime GetStartOfMonth(this DateTime date) =>
+            new(date.Year, date.Month, 1, 0, 0, 0, 0, date.Kind);
 
-        public static DateTime GetEndOfMonth(this DateTime date) => new(date.Year, date.Month, DateTime.DaysInMonth(date.Year, date.Month), 23, 59, 59, 999);
+        public static DateTime GetEndOfMonth(this DateTime date) =>
+            new(date.Year, date.Month, DateTime.DaysInMonth(date.Year, date.Month), 23, 59, 59, 999, date.Kind);
 
-        public static DateTime GetStartOfYear(this DateTime date) => new(date.Year, 1, 1, 0, 0, 0, 0);
+        public static DateTime GetStartOfYear(this DateTime date) =>
+            new(date.Year, 1, 1, 0, 0, 0, 0, date.Kind);
 
-        public static DateTime GetEndOfYear(this DateTime date) => new(date.Year, 12, 31, 23, 59, 59, 999);
+        public static DateTime GetEndOfYear(this DateTime date) =>
+            new(date.Year, 12, 31, 23, 59, 59, 999, date.Kind);
 
 
-        public static DateTime? GetStartOfSecond(this DateTime? date) => date != null ? (DateTime?)GetStartOfSecond(date.Value) : null;
+        public static DateTime? GetStartOfSecond(this DateTime? date) => date != null ? date.Value.GetStartOfSecond() : null;
 
-        public static DateTime? GetEndOfSecond(this DateTime? date) => date != null ? (DateTime?)GetEndOfSecond(date.Value) : null;
+        public static DateTime? GetEndOfSecond(this DateTime? date) => date != null ? date.Value.GetEndOfSecond() : null;
 
-        public static DateTime? GetStartOfMinute(this DateTime? date) => date != null ? (DateTime?)GetStartOfMinute(date.Value) : null;
+        public static DateTime? GetStartOfMinute(this DateTime? date) => date != null ? date.Value.GetStartOfMinute() : null;
 
-        public static DateTime? GetEndOfMinute(this DateTime? date) => date != null ? (DateTime?)GetEndOfMinute(date.Value) : null;
+        public static DateTime? GetEndOfMinute(this DateTime? date) => date != null ? date.Value.GetEndOfMinute() : null;
 
-        public static DateTime? GetStartOfHour(this DateTime? date) => date != null ? (DateTime?)GetStartOfHour(date.Value) : null;
+        public static DateTime? GetStartOfHour(this DateTime? date) => date != null ? date.Value.GetStartOfHour() : null;
 
-        public static DateTime? GetEndOfHour(this DateTime? date) => date != null ? (DateTime?)GetEndOfHour(date.Value) : null;
+        public static DateTime? GetEndOfHour(this DateTime? date) => date != null ? date.Value.GetEndOfHour() : null;
 
-        public static DateTime? GetStartOfDay(this DateTime? date) => date != null ? (DateTime?)GetStartOfDay(date.Value) : null;
+        public static DateTime? GetStartOfDay(this DateTime? date) => date != null ? date.Value.GetStartOfDay() : null;
 
-        public static DateTime? GetEndOfDay(this DateTime? date) => date != null ? (DateTime?)GetEndOfDay(date.Value) : null;
+        public static DateTime? GetEndOfDay(this DateTime? date) => date != null ? date.Value.GetEndOfDay() : null;
 
-        public static DateTime? GetStartOfMonth(this DateTime? date) => date != null ? (DateTime?)GetStartOfMonth(date.Value) : null;
+        public static DateTime? GetStartOfMonth(this DateTime? date) => date != null ? date.Value.GetStartOfMonth() : null;
 
-        public static DateTime? GetEndOfMonth(this DateTime? date) => date != null ? (DateTime?)GetEndOfMonth(date.Value) : null;
+        public static DateTime? GetEndOfMonth(this DateTime? date) => date != null ? date.Value.GetEndOfMonth() : null;
 
-        public static DateTime? GetStartOfYear(this DateTime? date) => date != null ? (DateTime?)GetStartOfYear(date.Value) : null;
+        public static DateTime? GetStartOfYear(this DateTime? date) => date != null ? date.Value.GetStartOfYear() : null;
 
-        public static DateTime? GetEndOfYear(this DateTime? date) => date != null ? (DateTime?)GetEndOfYear(date.Value) : null;
+        public static DateTime? GetEndOfYear(this DateTime? date) => date != null ? date.Value.GetEndOfYear() : null;
 
 
         /// <summary>
