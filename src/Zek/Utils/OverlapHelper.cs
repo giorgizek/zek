@@ -257,5 +257,95 @@
 
         #endregion
 
+
+
+
+
+        #region Decimal
+
+        public static bool HasInside(decimal start, decimal end, decimal date)
+        {
+            return date >= start && date <= end;
+        }
+
+        public static bool HasInside(decimal start1, decimal end1, decimal start2, decimal end2)
+        {
+            return HasInside(start1, end1, start2) && HasInside(start1, end1, end2);
+        }
+
+        public static bool Intersects(decimal start1, decimal end1, decimal start2, decimal end2)
+        {
+            return
+                HasInside(start1, end1, start2) ||
+                HasInside(start1, end1, end2) ||
+                (start2 < start1 && end2 > end1);
+        }
+
+        public static bool Overlaps(decimal start1, decimal end1, decimal start2, decimal end2)
+        {
+            var relation = GetRelation(start1, end1, start2, end2);
+            return
+                relation != PeriodRelation.After &&
+                relation != PeriodRelation.StartTouching &&
+                relation != PeriodRelation.EndTouching &&
+                relation != PeriodRelation.Before;
+        }
+
+        public static PeriodRelation GetRelation(decimal start1, decimal end1, decimal start2, decimal end2)
+        {
+            if (end2 < start1)
+            {
+                return PeriodRelation.After;
+            }
+            if (start2 > end1)
+            {
+                return PeriodRelation.Before;
+            }
+            if (start2 == start1 && end2 == end1)
+            {
+                return PeriodRelation.ExactMatch;
+            }
+            if (end2 == start1)
+            {
+                return PeriodRelation.StartTouching;
+            }
+            if (start2 == end1)
+            {
+                return PeriodRelation.EndTouching;
+            }
+            if (HasInside(start1, end1, start2, end2))
+            {
+                if (start2 == start1)
+                {
+                    return PeriodRelation.EnclosingStartTouching;
+                }
+                return end2 == end1 ? PeriodRelation.EnclosingEndTouching : PeriodRelation.Enclosing;
+            }
+
+            var periodContainsMyStart = HasInside(start2, end2, start1);
+            var periodContainsMyEnd = HasInside(start2, end2, end1);
+
+            if (periodContainsMyStart && periodContainsMyEnd)
+            {
+                if (start2 == start1)
+                {
+                    return PeriodRelation.InsideStartTouching;
+                }
+                return end2 == end1 ? PeriodRelation.InsideEndTouching : PeriodRelation.Inside;
+            }
+
+            if (periodContainsMyStart)
+            {
+                return PeriodRelation.StartInside;
+            }
+            if (periodContainsMyEnd)
+            {
+                return PeriodRelation.EndInside;
+            }
+
+            throw new InvalidOperationException($"Invalid period relation of '{start1}-{end1}' and '{start2}-{end2}'");
+        }
+
+        #endregion
     }
 }
