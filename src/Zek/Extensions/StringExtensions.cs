@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using System.Text;
+using Microsoft.AspNetCore.Mvc;
 using Zek.Utils;
 
 namespace Zek.Extensions
@@ -81,6 +82,12 @@ namespace Zek.Extensions
         private static bool IsGeorgianLetter(this char c)
         {
             return (c >= 'ა' && c <= 'ჰ');
+        }
+        public static bool IsAsciiOrDigit(this char c)
+        {
+            return ((c >= 'a' && c <= 'z') ||
+                        (c >= 'A' && c <= 'Z') ||
+                        (c >= '0' && c <= '9'));
         }
 
         /// <summary>
