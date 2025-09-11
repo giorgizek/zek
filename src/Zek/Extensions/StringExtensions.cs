@@ -115,6 +115,24 @@ namespace Zek.Extensions
             return result.ToString();
         }
 
+        public static string? ToAsciiAlphanumeric(this string? str)
+        {
+            if (string.IsNullOrEmpty(str))
+                return str;
+
+            var result = new StringBuilder(str.Length);
+            foreach (var c in str)
+            {
+                if ((c >= 'a' && c <= 'z') ||
+                    (c >= 'A' && c <= 'Z') ||
+                    (c >= '0' && c <= '9'))
+                {
+                    result.Append(c);
+                }
+            }
+            return result.ToString();
+        }
+
         public static string ToAlphanumeric(this string str)
         {
             if (string.IsNullOrEmpty(str))
