@@ -80,6 +80,13 @@ namespace Zek.Extensions
             return (c >= 'ა' && c <= 'ჰ');
         }
 
+        public static bool IsAsciiOrDigit(this char c)
+        {
+            return ((c >= 'a' && c <= 'z') ||
+                        (c >= 'A' && c <= 'Z') ||
+                        (c >= '0' && c <= '9'));
+        }
+
         /// <summary>
         /// Checks if string is null and return string.Empty otherwise returns string
         /// </summary>
