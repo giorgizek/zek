@@ -73,10 +73,11 @@ namespace Zek.Extensions
             return str.ToLower();
         }
 
-        /*private static bool IsEnglishLetter(this char c)
-        {
-            return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z');
-        }*/
+        //public static bool IsEnglishLetter(this char c)
+        //{
+        //    return (c >= 'a' && c <= 'z') ||
+        //        (c >= 'A' && c <= 'Z');
+        //}
         private static bool IsGeorgianLetter(this char c)
         {
             return (c >= 'ა' && c <= 'ჰ');
@@ -117,6 +118,29 @@ namespace Zek.Extensions
             return result.ToString();
         }
 
+        public static string? ToAsciiAlphanumeric(this string? str)
+        {
+            if (string.IsNullOrEmpty(str))
+                return str;
+
+            var result = new StringBuilder(str.Length);
+            foreach (var c in str)
+            {
+                if ((c >= 'a' && c <= 'z') ||
+                    (c >= 'A' && c <= 'Z') ||
+                    (c >= '0' && c <= '9'))
+                {
+                    result.Append(c);
+                }
+            }
+            return result.ToString();
+        }
+
+        /// <summary>
+        /// Returns a string containing only alphanumeric characters included unicodes (letters and digits).
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
         public static string? ToAlphanumeric(this string? str)
         {
             if (string.IsNullOrEmpty(str))

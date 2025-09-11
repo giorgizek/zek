@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using System.Text;
-
-namespace Zek.Extensions.Collections
+﻿namespace Zek.Extensions.Collections
 {
     public static class EnumerableExtensions
     {
