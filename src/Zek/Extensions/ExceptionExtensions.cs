@@ -4,70 +4,66 @@ namespace Zek.Extensions
 {
     public static class ExceptionExtensions
     {
-        public static string ToExceptionString(this Exception ex, string? title = null, string? customerExplanation = null, DateTime? date = null, bool throwException = false)
+        public static string ToExceptionString(this Exception? ex, string? title = null, string? customerExplanation = null, DateTime? date = null, bool throwException = false)
         {
-            try
+
+            if (ex is null)
             {
-                if (date == null)
-                    date = DateTime.Now;
-
-                var sb = new StringBuilder();
-
-                if (!string.IsNullOrEmpty(customerExplanation))
-                    sb.AppendLine("[Customer Explanation]")
-                        .AppendLine(customerExplanation)
-                        .AppendLine();
-
-
-                sb.AppendLine("[General Info]")
-                    .AppendLine("Date:       \t" + date.Value.ToString("yyyy-MM-dd HH:mm:ss.fff"))
-                    .AppendLine();
-
-                sb.AppendLine("[Exception Info]");
-                if (!string.IsNullOrEmpty(title))
-                    sb.AppendLine("Title:      \t" + title);
-
-                AppendExceptionString(ex, sb, string.Empty);
-
-                return sb.ToString();
+                return string.Empty;
             }
-            catch
-            {
-                if (throwException)
-                    throw;
+            var sb = new StringBuilder();
+            var timestamp = date ?? DateTime.UtcNow;
 
-                return null;
-            }
-        }
-
-        private static void AppendExceptionString(Exception ex, StringBuilder sb, string indent = "")
-        {
-            if (indent == null)
-                indent = string.Empty;
-            else if (indent.Length > 0)
+            // 1. Add optional user context
+            if (!string.IsNullOrWhiteSpace(customerExplanation))
             {
-                sb.AppendLine(indent + "[Inner Exception]");
-                sb.AppendLine(indent + "Type: " + ex.GetType().FullName);
-                sb.AppendLine(indent + "Message: " + ex.Message);
-                sb.AppendLine(indent + "Source: " + ex.Source);
-                sb.AppendLine(indent + "TargetSite: " + ex.TargetSite);
-                sb.AppendLine(indent + "StackTrace: " + ex.StackTrace);
+                sb.AppendLine("[Customer Explanation]")
+                  .AppendLine(customerExplanation)
+                  .AppendLine();
             }
 
-            if (indent.Length == 0)
+            // 2. Add general information
+            sb.AppendLine("[General Info]")
+              .AppendLine($"Date (UTC): \t{timestamp:yyyy-MM-dd HH:mm:ss.fff}")
+              .AppendLine();
+
+            // 3. Add exception details iteratively
+            sb.AppendLine("[Exception Info]");
+            if (!string.IsNullOrWhiteSpace(title))
             {
-                sb.AppendLine(indent + "Type:       \t" + ex.GetType().FullName);
-                sb.AppendLine(indent + "Message:    \t" + ex.Message);
-                sb.AppendLine(indent + "Source:     \t" + ex.Source);
-                sb.AppendLine(indent + "TargetSite: \t" + ex.TargetSite);
-                sb.AppendLine(indent + "StackTrace: \t" + ex.StackTrace);
+                sb.AppendLine($"Title: \t\t{title}");
             }
 
-            if (ex.InnerException != null)
+            var currentException = ex;
+            var indentLevel = 0;
+            const string indent = "  ";
+
+            while (currentException != null)
             {
-                sb.AppendLine();
-                AppendExceptionString(ex.InnerException, sb, indent + "  ");
+                var currentIndent = new string(' ', indentLevel * indent.Length);
+
+                if (indentLevel > 0)
+                {
+                    sb.AppendLine()
+                      .AppendLine($"{currentIndent}[Inner Exception]");
+                }
+
+                sb.AppendLine($"{currentIndent}Type: \t\t{currentException.GetType().FullName}");
+                sb.AppendLine($"{currentIndent}Message: \t{currentException.Message}");
+                sb.AppendLine($"{currentIndent}Source: \t{currentException.Source}");
+                sb.AppendLine($"{currentIndent}TargetSite: \t{currentException.TargetSite}");
+
+                if (!string.IsNullOrWhiteSpace(currentException.StackTrace))
+                {
+                    sb.AppendLine($"{currentIndent}StackTrace:")
+                      .AppendLine(currentException.StackTrace.Trim());
+                }
+
+                currentException = currentException.InnerException;
+                indentLevel++;
             }
+
+            return sb.ToString();
         }
     }
 }
