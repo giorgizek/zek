@@ -17,7 +17,7 @@ internal class Program
         {
             { "Authorization" , "888t2WVWTceRHzOQM3olzl93mkZixNBz" }
 };
-        HttpClientUtility.PostAsJsonAsync(url, null, null, false).GetAwaiter().GetResult();
+        HttpClientUtility.PostAsync(url, null, null, false).GetAwaiter().GetResult();
 
 
         string input = "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"; // Example input
