@@ -24,7 +24,7 @@
             return a.TrimEnd(separator) + separator + b.TrimStart(separator);
         }
 
-        public static bool IsValidUrl(string url)
+        public static bool IsValidUrl(string? url)
         {
             // TryCreate attempts to create a Uri object from the string.
             // UriKind.Absolute ensures it's a fully qualified URL (not just a path).
