@@ -73,14 +73,14 @@ namespace Zek.Services
             if (context is null) return null;
 
             // 1. Priority: Cloudflare Header (True Client IP)
-            string? cfIp = context.Request.Headers["CF-Connecting-IP"].FirstOrDefault();
+            var cfIp = context.Request.Headers["CF-Connecting-IP"].FirstOrDefault();
             if (!string.IsNullOrEmpty(cfIp))
             {
                 return cfIp;
             }
 
             // 2. Secondary: X-Forwarded-For (Standard Proxy Chain)
-            string? forwardedHeader = context.Request.Headers["X-Forwarded-For"].FirstOrDefault();
+            var forwardedHeader = context.Request.Headers["X-Forwarded-For"].FirstOrDefault();
             if (!string.IsNullOrEmpty(forwardedHeader))
             {
                 // The header can be "client, proxy1, proxy2". We want the first one.
