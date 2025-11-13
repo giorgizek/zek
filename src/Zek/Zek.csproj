@@ -10,7 +10,7 @@
 		<Company>Zek</Company>
 		<RepositoryUrl>https://github.com/giorgizek/zek</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<VersionPrefix>9.0.39</VersionPrefix>
+		<VersionPrefix>9.0.40</VersionPrefix>
 		<PackageId>Zek.Utils</PackageId>
 		<Copyright>2023</Copyright>
 		<PackageReleaseNotes>Use this library to help you</PackageReleaseNotes>
