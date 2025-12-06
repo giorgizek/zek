@@ -124,11 +124,11 @@ namespace Zek.Utils
         //}
 
 
-        public static string Join(string separator, params object[] values)
+        public static string Join(string separator, params object?[] values)
         {
             var sb = new StringBuilder();
             foreach (var value in values)
-                if (value != null)
+                if (value is not null)
                     sb.Append(value + separator);
 
             if (sb.Length >= separator.Length)
