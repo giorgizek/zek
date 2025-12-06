@@ -10,7 +10,7 @@
 		<Company>Zek</Company>
 		<RepositoryUrl>https://github.com/giorgizek/zek</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<VersionPrefix>9.0.41</VersionPrefix>
+		<VersionPrefix>9.0.42</VersionPrefix>
 		<PackageId>Zek.Utils</PackageId>
 		<Copyright>2023</Copyright>
 		<PackageReleaseNotes>Use this library to help you</PackageReleaseNotes>
@@ -46,7 +46,7 @@
 	  <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="9.0.11" />
 	  <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="9.0.11" />
 	  <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
-	  <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.14.0" />
+	  <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.15.0" />
 	</ItemGroup>
 
 </Project>
