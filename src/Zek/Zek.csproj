@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net9.0</TargetFramework>
+		<TargetFramework>net10.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<ImplicitUsings>enable</ImplicitUsings>
@@ -10,7 +10,7 @@
 		<Company>Zek</Company>
 		<RepositoryUrl>https://github.com/giorgizek/zek</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<VersionPrefix>9.0.43</VersionPrefix>
+		<VersionPrefix>10.0.1</VersionPrefix>
 		<PackageId>Zek.Utils</PackageId>
 		<Copyright>2023</Copyright>
 		<PackageReleaseNotes>Use this library to help you</PackageReleaseNotes>
@@ -24,7 +24,6 @@
 	  <None Remove="_Excluded\**" />
 	</ItemGroup>
 
-
 	<ItemGroup>
 		<None Include="..\..\LICENSE.txt">
 			<Pack>True</Pack>
@@ -37,16 +36,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="9.0.11" />
-	  <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.3.0" />
-	  <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.3.0" />
-	  <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="9.0.11" />
-	  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.11" />
-	  <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.11" />
-	  <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="9.0.11" />
-	  <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="9.0.11" />
-	  <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
-	  <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.15.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Authorization" Version="10.0.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.3.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.3.0" />
+		<PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="10.0.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="10.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="10.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Identity.Core" Version="10.0.1" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.15.0" />
 	</ItemGroup>
 
 </Project>
