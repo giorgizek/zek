@@ -68,6 +68,12 @@ namespace Zek.Web
             // will correctly URL-encode and format the string.
             uriBuilder.Query = existingParams.ToQueryString();
 
+            if ((uriBuilder.Scheme == Uri.UriSchemeHttp && uriBuilder.Port == 80) ||
+                (uriBuilder.Scheme == Uri.UriSchemeHttps && uriBuilder.Port == 443))
+            {
+                uriBuilder.Port = -1; // Removes port from final URL
+            }
+
             // 6. Return the fully reconstructed URL.
             // UriBuilder.ToString() correctly handles all parts (scheme, host, path, query).
             return uriBuilder.ToString();
