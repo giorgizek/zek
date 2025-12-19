@@ -84,9 +84,9 @@ namespace Zek.Extensions
         }
         public static bool IsAsciiOrDigit(this char c)
         {
-            return ((c >= 'a' && c <= 'z') ||
-                        (c >= 'A' && c <= 'Z') ||
-                        (c >= '0' && c <= '9'));
+            return (c >= 'a' && c <= 'z') ||
+                   (c >= 'A' && c <= 'Z') ||
+                   (c >= '0' && c <= '9');
         }
 
         /// <summary>
@@ -111,6 +111,7 @@ namespace Zek.Extensions
         /// <returns>Input string with only numeric values, empty string if str is null/empty</returns>
         public static string? ToDigitOnly(this string? str)
         {
+
             if (string.IsNullOrEmpty(str))
                 return str;
 
@@ -132,9 +133,7 @@ namespace Zek.Extensions
             var result = new StringBuilder(str.Length);
             foreach (var c in str)
             {
-                if ((c >= 'a' && c <= 'z') ||
-                    (c >= 'A' && c <= 'Z') ||
-                    (c >= '0' && c <= '9'))
+                if (c.IsAsciiOrDigit())
                 {
                     result.Append(c);
                 }
