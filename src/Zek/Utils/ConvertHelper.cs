@@ -20,7 +20,6 @@ namespace Zek.Utils
 
             return Convert.ChangeType(value, type, CultureInfo.InvariantCulture);
         }
-
     }
 }
 

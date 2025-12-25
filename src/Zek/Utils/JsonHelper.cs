@@ -12,7 +12,6 @@ namespace Zek.Utils
                 settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
             return JsonConvert.SerializeObject(value, Formatting.None, settings);
-
         }
     }
 }
