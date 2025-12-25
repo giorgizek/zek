@@ -49,7 +49,7 @@ namespace Zek.Utils
             byte[] dataToHash;
             if (!string.IsNullOrEmpty(salt))
             {
-                byte[] saltBytes = Encoding.UTF8.GetBytes(salt);
+                var saltBytes = Encoding.UTF8.GetBytes(salt);
 
                 // Combine payload + salt
                 dataToHash = new byte[payloadBytes.Length + saltBytes.Length];
