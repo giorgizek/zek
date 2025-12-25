@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography;
-using System.Text;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Zek.Cryptography;
 // ReSharper disable InconsistentNaming
 
