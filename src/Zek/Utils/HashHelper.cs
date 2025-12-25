@@ -2,6 +2,7 @@
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Zek.Extensions;
 
 namespace Zek.Utils
 {
@@ -33,22 +34,37 @@ namespace Zek.Utils
         /// <param name="dto">The object to hash.</param>
         /// <param name="secretKey">The secret key shared between sender and receiver.</param>
         /// <returns>The hash as a Base64 string.</returns>
-        public static string ComputeHash<T>(T dto)
+        public static string ComputeHash<T>(T dto, string? salt = null)
         {
-            // FIX 1: Prevent running with an empty key
             if (!_isInitialized)
-                throw new InvalidOperationException("HashHelper is not initialized. Call HashHelper.Init(key) at app startup.");
+                throw new InvalidOperationException("HashHelper is not initialized. Call Init() first.");
+
             if (dto == null) throw new ArgumentNullException(nameof(dto));
 
-            // 1. Serialize the DTO to a canonical JSON string
+            // 1. Serialize DTO
             var jsonString = JsonSerializer.Serialize(dto, _jsonOptions);
             var payloadBytes = Encoding.UTF8.GetBytes(jsonString);
 
-            // 2. Compute HMAC
-            using var hmac = new HMACSHA256(_keyBytes);
-            var hashBytes = hmac.ComputeHash(payloadBytes);
+            // 2. Add Salt (if present)
+            byte[] dataToHash;
+            if (!string.IsNullOrEmpty(salt))
+            {
+                byte[] saltBytes = Encoding.UTF8.GetBytes(salt);
 
-            // 3. Return as Base64 (Standard for web transport)
+                // Combine payload + salt
+                dataToHash = new byte[payloadBytes.Length + saltBytes.Length];
+                Buffer.BlockCopy(payloadBytes, 0, dataToHash, 0, payloadBytes.Length);
+                Buffer.BlockCopy(saltBytes, 0, dataToHash, payloadBytes.Length, saltBytes.Length);
+            }
+            else
+            {
+                dataToHash = payloadBytes;
+            }
+
+            // 3. Compute HMAC
+            using var hmac = new HMACSHA256(_keyBytes);
+            var hashBytes = hmac.ComputeHash(dataToHash);
+
             return Convert.ToBase64String(hashBytes);
         }
 
@@ -56,7 +72,7 @@ namespace Zek.Utils
         /// <summary>
         /// Verifies if a DTO matches a specific hash using the secret key.
         /// </summary>
-        public static bool Verify<T>(T dto , string incomingHash)
+        public static bool Verify<T>(T dto , string incomingHash, string? salt = null)
         {
             if (string.IsNullOrEmpty(incomingHash)) return false;
 
@@ -65,7 +81,7 @@ namespace Zek.Utils
                 throw new InvalidOperationException("HashHelper is not initialized. Call HashHelper.Init(key) at app startup.");
 
             // Re-compute the hash for the current DTO state
-            var computedHash = ComputeHash(dto);
+            var computedHash = ComputeHash(dto, salt);
 
             // Compare the two hashes securely
             return SecureEquals(computedHash, incomingHash);
