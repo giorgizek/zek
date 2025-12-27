@@ -10,7 +10,7 @@ namespace Zek.Utils
     {
         private static byte[] _keyBytes = [];
         private static bool _isInitialized = false; // Flag to track initialization
-        public static void Init(string secretKey)
+        public static void Init(string? secretKey)
         {
             if (string.IsNullOrEmpty(secretKey)) throw new ArgumentNullException(nameof(secretKey));
             _keyBytes = Encoding.UTF8.GetBytes(secretKey);
@@ -72,9 +72,9 @@ namespace Zek.Utils
         /// <summary>
         /// Verifies if a DTO matches a specific hash using the secret key.
         /// </summary>
-        public static bool Verify<T>(T dto , string incomingHash, string? salt = null)
+        public static bool Verify<T>(T dto , string? hash, string? salt = null)
         {
-            if (string.IsNullOrEmpty(incomingHash)) return false;
+            if (string.IsNullOrEmpty(hash)) return false;
 
             // FIX 1 (Continued): Ensure Init is called before computing the comparison hash
             if (!_isInitialized)
@@ -84,7 +84,7 @@ namespace Zek.Utils
             var computedHash = ComputeHash(dto, salt);
 
             // Compare the two hashes securely
-            return SecureEquals(computedHash, incomingHash);
+            return SecureEquals(computedHash, hash);
         }
 
         /// <summary>
