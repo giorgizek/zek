@@ -13,13 +13,12 @@ internal class Program
         var r = RandomHelper.GetRandom().Next(123456, 99999999);
 
         var u1 = UrlShortener.Encode(r);
-        var u3 = Base62Encoder.Encode(r.ToString());
+        var id = UrlShortener.Decode("48aUGpDio1S");
         Console.WriteLine(u1);
-        Console.WriteLine(u3);
+        Console.WriteLine(id);
 
 
 
-        UrlShortener.Decode(u1);
 
         //BenchmarkRunner.Run<BenchmarkExecutor>();
         Console.ReadKey();
