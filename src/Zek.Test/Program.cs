@@ -1,8 +1,8 @@
 ﻿using BenchmarkDotNet.Running;
+using System.Numerics;
 using System.Text;
 using Zek.Test;
 using Zek.Utils;
-using Zek.Web;
 
 internal class Program
 {
@@ -10,46 +10,62 @@ internal class Program
     {
         Console.OutputEncoding = Encoding.UTF8;
 
+        var r = RandomHelper.GetRandom().Next(123456, 99999999);
 
-        const string key = "SuperSecretKey_DoNotShare_12345";
-
-
-        HashHelper.Init(key);
-
-        var originalOrder = new OrderDto
-        {
-            OrderId = 101,
-            Product = "Gaming Laptop",
-            Price = 1500.00m
-        };
-
-      
-
-        BenchmarkRunner.Run<BenchmarkExecutor>();
-        //BenchmarkRunner.Run<EnumParserBenchmark>();
+        var u1 = UrlShortener.Encode(r);
+        var u3 = Base62Encoder.Encode(r.ToString());
+        Console.WriteLine(u1);
+        Console.WriteLine(u3);
 
 
 
+        UrlShortener.Decode(u1);
 
-
-
-        //var a1 = new DateTime(2025, 1, 10);
-        //var a2 = new DateTime(2025, 1, 20);
-
-        //var b1 = new DateTime(2025, 1, 20);
-        //var b2 = new DateTime(2025, 1, 30);
-
-        //Console.WriteLine(OverlapHelper.Overlaps(a1, a2, b1, b2));
-
-
+        //BenchmarkRunner.Run<BenchmarkExecutor>();
         Console.ReadKey();
     }
 }
 
-// 2. THE DTO
-public class OrderDto
+
+
+public static class Base62Encoder
 {
-    public int OrderId { get; set; }
-    public string Product { get; set; }
-    public decimal Price { get; set; }
+    private const string Base62Chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+
+    public static string Encode(string input)
+    {
+        if (string.IsNullOrEmpty(input))
+            return string.Empty;
+
+        byte[] bytes = Encoding.UTF8.GetBytes(input);
+        BigInteger value = new BigInteger(bytes, isUnsigned: true, isBigEndian: true);
+        StringBuilder result = new StringBuilder();
+
+        while (value > 0)
+        {
+            value = BigInteger.DivRem(value, 62, out var remainder);
+            result.Insert(0, Base62Chars[(int)remainder]);
+        }
+
+        return result.ToString();
+    }
+
+    public static string Decode(string base62)
+    {
+        if (string.IsNullOrEmpty(base62))
+            return string.Empty;
+
+        BigInteger value = BigInteger.Zero;
+        foreach (char c in base62)
+        {
+            int index = Base62Chars.IndexOf(c);
+            if (index < 0)
+                throw new ArgumentException("Invalid Base62 character: " + c);
+
+            value = value * 62 + index;
+        }
+
+        byte[] bytes = value.ToByteArray(isUnsigned: true, isBigEndian: true);
+        return Encoding.UTF8.GetString(bytes);
+    }
 }
