@@ -3,63 +3,70 @@
     public static class UrlShortener
     {
         private const string Base62Chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        // Fast lookup for decoding (maps ASCII value to index)
+        private static readonly int[] LookupTable;
 
-        //public static string Encode(long value)
-        //{
-        //    if (value == 0) return "0";
-
-        //    var result = new StringBuilder();
-        //    while (value > 0)
-        //    {
-        //        result.Insert(0, Base62Chars[(int)(value % 62)]);
-        //        value /= 62;
-        //    }
-        //    return result.ToString();
-        //}
-
-        public static string Encode(long number)
+        static UrlShortener()
         {
-            if (number == 0) return "0";
-
-            var result = string.Empty;
-            while (number > 0)
+            // Initialize lookup table for O(1) decoding
+            LookupTable = new int[128];
+            Array.Fill(LookupTable, -1);
+            for (int i = 0; i < Base62Chars.Length; i++)
             {
-                result = Base62Chars[(int)(number % 62)] + result;
-                number /= 62;
+                LookupTable[Base62Chars[i]] = i;
             }
-            return result;
         }
 
 
-        public static long Decode(string code)
+        public static string Encode(long id)
         {
+            if (id < 0)
+                throw new ArgumentOutOfRangeException(nameof(id), "Number must be non-negative.");
+
+            if (id == 0) return "0";
+
+            // Stackalloc is fast and avoids heap allocation. 
+            // 13 chars is enough for long.MaxValue in Base62.
+            Span<char> buffer = stackalloc char[13];
+            int index = buffer.Length;
+
+            while (id > 0)
+            {
+                // Fill buffer backwards
+                buffer[--index] = Base62Chars[(int)(id % 62)];
+                id /= 62;
+            }
+
+            return new string(buffer[index..]);
+        }
+
+
+        public static long Decode(string token)
+        {
+            // 1. Fail fast on empty input
+            if (string.IsNullOrWhiteSpace(token))
+                throw new ArgumentException("Code cannot be null or empty.", nameof(token));
+
             long result = 0;
-            foreach (char c in code)
+            // 2. Use a Loop for performance
+            foreach (char c in token)
             {
-                result = result * 62 + Base62Chars.IndexOf(c);
+                // 3. Bounds check using the array length (Safe against Unicode)
+                if (c >= LookupTable.Length || LookupTable[c] == -1)
+                    throw new ArgumentException($"Invalid character: {c}");
+
+                // 4. Overflow protection (Critical)
+                try
+                {
+                    result = checked(result * 62 + LookupTable[c]);
+                }
+                catch (OverflowException)
+                {
+                    throw new FormatException("Input code is too long to be a valid ID.");
+                }
+
             }
             return result;
         }
-
-
-        //public static string Encode(Guid guid)
-        //{
-        //    var bytes = guid.ToByteArray();
-        //    var result = new StringBuilder();
-        //    ulong value = 0;
-
-        //    foreach (byte b in bytes)
-        //    {
-        //        value = (value << 8) | b;
-        //    }
-
-        //    while (value > 0)
-        //    {
-        //        result.Insert(0, Base62Chars[(int)(value % 62)]);
-        //        value /= 62;
-        //    }
-
-        //    return result.ToString();
-        //}
     }
 }
