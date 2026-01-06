@@ -120,6 +120,23 @@ namespace Zek.Web
             return response;
         }
 
+
+        /// <summary>
+        /// Send Http Put to request uri and get HttpResponseMessage
+        /// </summary>
+        public static Task<HttpResponseMessage> PutAsync(string requestUri, IDictionary<string, string?>? headers, object? content, bool camelCasePropertyNames, bool checkSuccessStatusCode = true, CancellationToken cancellationToken = default)
+                => PutAsync(new Uri(requestUri, UriKind.RelativeOrAbsolute), headers, content, camelCasePropertyNames, checkSuccessStatusCode, cancellationToken);
+
+        /// <summary>
+        /// Send Http Put to request uri and get HttpResponseMessage
+        /// </summary>
+        public static async Task<HttpResponseMessage> PutAsync(Uri requestUri, IDictionary<string, string?>? headers, object? content, bool camelCasePropertyNames, bool checkSuccessStatusCode = true, CancellationToken cancellationToken = default)
+        {
+            var message = CreateMessage(HttpMethod.Put, requestUri, headers, content, camelCasePropertyNames);
+            var response = await ExecuteActionkWithAutoRetry(() => _сlient.SendAsync(message, cancellationToken), checkSuccessStatusCode, cancellationToken).ConfigureAwait(false);
+            return response;
+        }
+
         /// <summary>
         /// Send Http Get to the request uri and get the TResult from response content
         /// </summary>
@@ -189,15 +206,12 @@ namespace Zek.Web
         }
 
 
-        public static Task<HttpResponseMessage> PutAsync(string requestUri, IDictionary<string, string?>? headers, object? content, bool checkSuccessStatusCode = true, CancellationToken cancellationToken = default)
-            => PutAsync(new Uri(requestUri, UriKind.RelativeOrAbsolute), headers, content, checkSuccessStatusCode, cancellationToken);
-        public static async Task<HttpResponseMessage> PutAsync(Uri requestUri, IDictionary<string, string?>? headers, object? content, bool checkSuccessStatusCode = true, CancellationToken cancellationToken = default)
+        public static async Task<TResult?> PutAsJsonAsync<TResult>(string requestUri, IDictionary<string, string?>? headers, object? content, bool camelCasePropertyNames = true, bool checkSuccessStatusCode = true, CancellationToken cancellationToken = default)
         {
-            var message = CreateMessage(HttpMethod.Put, requestUri, headers, content);
-            var response = await ExecuteActionkWithAutoRetry(() => _сlient.SendAsync(message, cancellationToken), checkSuccessStatusCode, cancellationToken).ConfigureAwait(false);
-            return response;
+            var response = await PutAsync(requestUri, headers, content, camelCasePropertyNames, checkSuccessStatusCode, cancellationToken).ConfigureAwait(false);
+            var responseContent = await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<TResult>(responseContent, _jsonSerializerSettings);
         }
-
 
 
         public static Task<TResult?> DeleteAsync<TResult>(string requestUri, IDictionary<string, string?>? headers, bool checkSuccessStatusCode = true, CancellationToken cancellationToken = default)
