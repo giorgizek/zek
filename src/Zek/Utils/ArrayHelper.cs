@@ -1,4 +1,6 @@
-﻿namespace Zek.Utils
+﻿using System.Text.Json.Serialization;
+
+namespace Zek.Utils
 {
     public static class ArrayHelper
     {
@@ -16,4 +18,7 @@
             return default!;
         }
     }
+
+
 }
+
