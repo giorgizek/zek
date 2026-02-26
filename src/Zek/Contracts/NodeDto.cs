@@ -1,10 +1,13 @@
 ﻿namespace Zek.Contracts
 {
-    public class NodeDto
+    public class NodeDto<TId>
     {
-        public int Id;
-        public string? Name;
-        public int? ParentId;
-        public bool? Checked;
+        public TId Id { get; set; } = default!;
+        public string? Name { get; set; }
+        public int? ParentId { get; set; }
+        public bool? Checked { get; set; }
+    }
+    public class NodeDto : NodeDto<int>
+    {
     }
 }
