@@ -60,7 +60,7 @@ namespace Zek.Linq
                 WhereOperator.LessThanOrEquals => source.LessThanOrEqual(selector, value1),
                 WhereOperator.Between => source.Between(selector, value1, value2),
                 WhereOperator.Contains => source.Contains(selector, value1),
-                WhereOperator.ContainsAny => source.ContainsAny(selector as Expression<Func<TSource, string>>, value1 as string),
+                WhereOperator.ContainsAll => source.ContainsAll(selector as Expression<Func<TSource, string>>, value1 as string),
                 WhereOperator.NotContains => source.NotContains(selector, value1),
                 WhereOperator.Begins => source.Begins(selector, value1),
                 WhereOperator.Ends => source.Ends(selector, value1),

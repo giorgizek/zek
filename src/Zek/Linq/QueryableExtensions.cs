@@ -136,7 +136,7 @@ namespace Zek.Linq
             var lambda = Expression.Lambda<Func<TSource, bool>>(containsBound, selector.Parameters);
             return source.Where(lambda);
         }
-        public static IQueryable<TSource> ContainsAny<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, string>> selector, string value)
+        public static IQueryable<TSource> ContainsAll<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, string>> selector, string value)
         {
             if (string.IsNullOrEmpty(value))
                 return source;
