@@ -30,7 +30,7 @@
         In = 262144,//todo
         NotIn = 524288,//todo
 
-        ContainsAny = 1048576,
+        ContainsAll = 1048576,
 
         ForText = Equals | NotEquals | GreaterThan | GreaterThanOrEquals | LessThan | LessThanOrEquals | Between | NotBetween | Like | NotLike | Contains | NotContains | Begins | NotBegins | Ends | NotEnds | In | NotIn,
         ForDate = Equals | NotEquals | GreaterThan | GreaterThanOrEquals | LessThan | LessThanOrEquals | Between | NotBetween,
