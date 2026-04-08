@@ -2,7 +2,6 @@
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Zek.Extensions;
 
 namespace Zek.Utils
 {
@@ -39,11 +38,11 @@ namespace Zek.Utils
             if (!_isInitialized)
                 throw new InvalidOperationException("HashHelper is not initialized. Call Init() first.");
 
-            if (dto == null) throw new ArgumentNullException(nameof(dto));
+            ArgumentNullException.ThrowIfNull(dto);
+
 
             // 1. Serialize DTO
-            var jsonString = JsonSerializer.Serialize(dto, _jsonOptions);
-            var payloadBytes = Encoding.UTF8.GetBytes(jsonString);
+            var payloadBytes = JsonSerializer.SerializeToUtf8Bytes(dto, _jsonOptions);
 
             // 2. Add Salt (if present)
             byte[] dataToHash;
