@@ -2,19 +2,16 @@
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Zek.Extensions;
 
 namespace Zek.Utils
 {
     public static class HashHelper
     {
         private static byte[] _keyBytes = [];
-        private static bool _isInitialized = false; // Flag to track initialization
         public static void Init(string? secretKey)
         {
-            if (string.IsNullOrEmpty(secretKey)) throw new ArgumentNullException(nameof(secretKey));
+            ArgumentNullException.ThrowIfNull(secretKey);
             _keyBytes = Encoding.UTF8.GetBytes(secretKey);
-            _isInitialized = true;
         }
 
         private static readonly JsonSerializerOptions _jsonOptions = new()
@@ -25,6 +22,10 @@ namespace Zek.Utils
             DictionaryKeyPolicy = JsonNamingPolicy.CamelCase,
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
         };
+        private static string ComputeHash(byte[] dataToHash)
+        {
+            return Convert.ToBase64String(HMACSHA256.HashData(_keyBytes, dataToHash));
+        }
 
 
         /// <summary>
@@ -32,18 +33,15 @@ namespace Zek.Utils
         /// </summary>
         /// <typeparam name="T">The type of the DTO.</typeparam>
         /// <param name="dto">The object to hash.</param>
-        /// <param name="secretKey">The secret key shared between sender and receiver.</param>
+        /// <param name="salt">An optional salt to add to the hash.</param>
         /// <returns>The hash as a Base64 string.</returns>
         public static string ComputeHash<T>(T dto, string? salt = null)
         {
-            if (!_isInitialized)
-                throw new InvalidOperationException("HashHelper is not initialized. Call Init() first.");
+            ArgumentNullException.ThrowIfNull(dto);
 
-            if (dto == null) throw new ArgumentNullException(nameof(dto));
 
             // 1. Serialize DTO
-            var jsonString = JsonSerializer.Serialize(dto, _jsonOptions);
-            var payloadBytes = Encoding.UTF8.GetBytes(jsonString);
+            var payloadBytes = JsonSerializer.SerializeToUtf8Bytes(dto, _jsonOptions);
 
             // 2. Add Salt (if present)
             byte[] dataToHash;
@@ -61,11 +59,7 @@ namespace Zek.Utils
                 dataToHash = payloadBytes;
             }
 
-            // 3. Compute HMAC
-            using var hmac = new HMACSHA256(_keyBytes);
-            var hashBytes = hmac.ComputeHash(dataToHash);
-
-            return Convert.ToBase64String(hashBytes);
+            return ComputeHash(dataToHash);
         }
 
 
@@ -75,10 +69,6 @@ namespace Zek.Utils
         public static bool Verify<T>(T dto , string? hash, string? salt = null)
         {
             if (string.IsNullOrEmpty(hash)) return false;
-
-            // FIX 1 (Continued): Ensure Init is called before computing the comparison hash
-            if (!_isInitialized)
-                throw new InvalidOperationException("HashHelper is not initialized. Call HashHelper.Init(key) at app startup.");
 
             // Re-compute the hash for the current DTO state
             var computedHash = ComputeHash(dto, salt);
@@ -110,6 +100,23 @@ namespace Zek.Utils
                 // FIX 2: Handle invalid Base64 strings gracefully without crashing
                 return false;
             }
+        }
+
+   
+        public static string Hash(params object?[] values)
+        {
+            var joined = string.Join("_", values);
+            var messageBytes = Encoding.UTF8.GetBytes(joined);
+
+            return ComputeHash(Encoding.UTF8.GetBytes(string.Join("_", values)));
+        }
+
+        public static bool VerifyHash(string? hash, params object?[] values)
+        {
+            if (string.IsNullOrEmpty(hash)) return false;
+
+            // Compare the two hashes securely
+            return SecureEquals(Hash(values), hash);
         }
     }
 }
