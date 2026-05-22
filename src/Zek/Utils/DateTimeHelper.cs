@@ -3,6 +3,7 @@
     public static class DateTimeHelper
     {
         public const string UniversalDateFormat = "yyyy-MM-dd";
+        public const string UniversalTimeFormat = "HH:mm:ss";
         public const string UniversalDateTimeFormat = "yyyy-MM-dd HH:mm:ss";
         public const string Rfc3339Format = "yyyy-MM-dd'T'HH:mm:ss.fffK";
 
