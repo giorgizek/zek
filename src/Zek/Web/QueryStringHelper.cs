@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Reflection;
 using System.Web;
+using Zek.Utils;
 
 namespace Zek.Web
 {
@@ -85,6 +86,12 @@ namespace Zek.Web
                     if (value is DateTimeOffset dto)
                         return dto.ToString("O", CultureInfo.InvariantCulture);
 
+                    if (value is DateOnly dateOnly)
+                        return dateOnly.ToString(DateTimeHelper.UniversalDateFormat, CultureInfo.InvariantCulture);
+
+                    if (value is TimeOnly timeOnly)
+                        return timeOnly.ToString(DateTimeHelper.UniversalTimeFormat, CultureInfo.InvariantCulture);
+
                     if (value is TimeSpan ts)
                         return ts.ToString("c", CultureInfo.InvariantCulture);
 
@@ -94,6 +101,8 @@ namespace Zek.Web
                     // fallback
                     return value.ToString();
             }
+
+
         }
 
 
