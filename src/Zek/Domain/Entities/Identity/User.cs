@@ -1,14 +1,29 @@
 ﻿namespace Zek.Domain.Entities.Identity
 {
+    /// <summary>
+    /// Represents a user with an integer primary key.
+    /// </summary>
     public class User : User<int>
     {
     }
 
+    /// <summary>
+    /// Represents a user.
+    /// </summary>
+    /// <typeparam name="TKey">The type of the primary key.</typeparam>
     public class User<TKey> where TKey : IEquatable<TKey>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="User{TKey}"/> class.
+        /// </summary>
         public User()
         {
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="User{TKey}"/> class with a user name.
+        /// </summary>
+        /// <param name="userName">The user name.</param>
         public User(string userName) : this()
         {
             UserName = userName;
@@ -108,10 +123,24 @@
         /// </summary>
         public override string ToString() => UserName ?? string.Empty;
 
+        /// <summary>
+        /// Gets or sets the ID of the user who created this record.
+        /// </summary>
         public int? CreatorId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the date and time when this record was created.
+        /// </summary>
         public DateTime CreateDate { get; set; }
 
+        /// <summary>
+        /// Gets or sets the ID of the user who last modified this record.
+        /// </summary>
         public int? ModifierId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the date and time when this record was last modified.
+        /// </summary>
         public DateTime? ModifiedDate { get; set; }
     }
 }
