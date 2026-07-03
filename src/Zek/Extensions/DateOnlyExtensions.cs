@@ -16,28 +16,6 @@ namespace Zek.Extensions
         public static string ToUniversalDateString(this DateOnly date) => date.ToString(DateTimeHelper.UniversalDateFormat);
 
         /// <summary>
-        /// Converts the specified nullable date to an RFC 3339 formatted string.
-        /// </summary>
-        /// <param name="date">The date to format.</param>
-        /// <returns>
-        /// An RFC 3339 formatted string if <paramref name="date"/> has a value; otherwise, <see langword="null" />.
-        /// </returns>
-        public static string? ToRfc3339String(this DateOnly? date)
-        {
-            return date?.ToRfc3339String();
-        }
-
-        /// <summary>
-        /// Converts the specified date to an RFC 3339 formatted string using midnight as the time component.
-        /// </summary>
-        /// <param name="date">The date to format.</param>
-        /// <returns>An RFC 3339 formatted date-time string.</returns>
-        public static string ToRfc3339String(this DateOnly date)
-        {
-            return date.ToDateTime(TimeOnly.MinValue).ToUniversalTime().ToString(DateTimeHelper.Rfc3339Format, DateTimeFormatInfo.InvariantInfo);
-        }
-
-        /// <summary>
         /// Returns the first day of the month for the specified date.
         /// </summary>
         /// <param name="date">The source date.</param>
