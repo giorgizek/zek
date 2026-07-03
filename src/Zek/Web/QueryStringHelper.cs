@@ -60,7 +60,10 @@ namespace Zek.Web
                     return value.ToString();
 
                 case TypeCode.DateTime:
-                    return ((DateTime)value).ToString("O", CultureInfo.InvariantCulture);
+                    var dt = (DateTime)value;
+                    // If it has no timezone info, treat it as UTC. Otherwise, safely convert it to UTC.
+                    return (dt.Kind == DateTimeKind.Unspecified ? DateTime.SpecifyKind(dt, DateTimeKind.Utc) : dt.ToUniversalTime())
+                        .ToString(DateTimeHelper.Rfc3339Format, CultureInfo.InvariantCulture);
 
                 case TypeCode.Byte:
                 case TypeCode.SByte:
