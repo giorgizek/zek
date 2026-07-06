@@ -9,7 +9,7 @@ namespace Zek.Web
         public static readonly int RETRY_DELAY = 500;
 
         private static readonly InsecureHttpClientHandler? _handler;
-        private static readonly HttpClient _сlient;
+        private static readonly HttpClient _client;
         private static readonly JsonSerializerSettings? _jsonSerializerSettings;
 
         /// <summary>
@@ -17,10 +17,10 @@ namespace Zek.Web
         /// </summary>
         static HttpClientUtility()
         {
-            if (_сlient == null)
+            if (_client == null)
             {
                 _handler = new InsecureHttpClientHandler();
-                _сlient = new HttpClient(_handler);
+                _client = new HttpClient(_handler);
             }
 
             _jsonSerializerSettings ??= new JsonSerializerSettings
@@ -90,7 +90,7 @@ namespace Zek.Web
         public static async Task<HttpResponseMessage> GetAsync(Uri requestUri, IDictionary<string, string?>? headers = null, bool checkSuccessStatusCode = true, CancellationToken cancellationToken = default)
         {
             var message = CreateMessage(HttpMethod.Get, requestUri, headers);
-            var response = await ExecuteActionkWithAutoRetry(() => _сlient.SendAsync(message, cancellationToken), checkSuccessStatusCode, cancellationToken).ConfigureAwait(false);
+            var response = await ExecuteActionkWithAutoRetry(() => _client.SendAsync(message, cancellationToken), checkSuccessStatusCode, cancellationToken).ConfigureAwait(false);
             return response;
         }
 
@@ -100,7 +100,7 @@ namespace Zek.Web
         public static async Task<HttpResponseMessage> PostAsync(Uri requestUri, IDictionary<string, string?>? headers, byte[]? content, bool checkSuccessStatusCode = true, CancellationToken cancellationToken = default)
         {
             var message = CreateMessage(HttpMethod.Post, requestUri, headers, content);
-            var response = await ExecuteActionkWithAutoRetry(() => _сlient.SendAsync(message, cancellationToken), checkSuccessStatusCode, cancellationToken).ConfigureAwait(false);
+            var response = await ExecuteActionkWithAutoRetry(() => _client.SendAsync(message, cancellationToken), checkSuccessStatusCode, cancellationToken).ConfigureAwait(false);
             return response;
         }
 
@@ -116,7 +116,7 @@ namespace Zek.Web
         public static async Task<HttpResponseMessage> PostAsync(Uri requestUri, IDictionary<string, string?>? headers, object? content, bool camelCasePropertyNames, bool checkSuccessStatusCode = true, CancellationToken cancellationToken = default)
         {
             var message = CreateMessage(HttpMethod.Post, requestUri, headers, content, camelCasePropertyNames);
-            var response = await ExecuteActionkWithAutoRetry(() => _сlient.SendAsync(message, cancellationToken), checkSuccessStatusCode, cancellationToken).ConfigureAwait(false);
+            var response = await ExecuteActionkWithAutoRetry(() => _client.SendAsync(message, cancellationToken), checkSuccessStatusCode, cancellationToken).ConfigureAwait(false);
             return response;
         }
 
@@ -133,7 +133,7 @@ namespace Zek.Web
         public static async Task<HttpResponseMessage> PutAsync(Uri requestUri, IDictionary<string, string?>? headers, object? content, bool camelCasePropertyNames, bool checkSuccessStatusCode = true, CancellationToken cancellationToken = default)
         {
             var message = CreateMessage(HttpMethod.Put, requestUri, headers, content, camelCasePropertyNames);
-            var response = await ExecuteActionkWithAutoRetry(() => _сlient.SendAsync(message, cancellationToken), checkSuccessStatusCode, cancellationToken).ConfigureAwait(false);
+            var response = await ExecuteActionkWithAutoRetry(() => _client.SendAsync(message, cancellationToken), checkSuccessStatusCode, cancellationToken).ConfigureAwait(false);
             return response;
         }
 
@@ -196,8 +196,8 @@ namespace Zek.Web
             var responseContent = await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
             return JsonConvert.DeserializeObject<TResult>(responseContent, _jsonSerializerSettings);
         }
-      
-        
+
+
         public static async Task<string?> PostAsStringAsync(string requestUri, IDictionary<string, string?>? headers, object? content, bool camelCasePropertyNames = true, bool checkSuccessStatusCode = true, CancellationToken cancellationToken = default)
         {
             var response = await PostAsync(requestUri, headers, content, camelCasePropertyNames, checkSuccessStatusCode, cancellationToken).ConfigureAwait(false);
@@ -234,7 +234,7 @@ namespace Zek.Web
         public static async Task<HttpResponseMessage> DeleteAsync(Uri requestUri, IDictionary<string, string?>? headers, bool checkSuccessStatusCode = true, CancellationToken cancellationToken = default)
         {
             var message = CreateMessage(HttpMethod.Delete, requestUri, headers);
-            var response = await ExecuteActionkWithAutoRetry(() => _сlient.SendAsync(message, cancellationToken), checkSuccessStatusCode, cancellationToken).ConfigureAwait(false);
+            var response = await ExecuteActionkWithAutoRetry(() => _client.SendAsync(message, cancellationToken), checkSuccessStatusCode, cancellationToken).ConfigureAwait(false);
             return response;
         }
     }
