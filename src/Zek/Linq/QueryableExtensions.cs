@@ -233,12 +233,6 @@ namespace Zek.Linq
             return source.Where(lambda1.Or(lambda2).Or(lambda3));
         }
 
-        [Obsolete("User Intersects method instead")]
-        public static IQueryable<TSource> Overlap<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> lowSelector, Expression<Func<TSource, TKey>> highSelector, TKey low, TKey high) where TKey : IComparable<TKey>
-        {
-            return Overlaps(source, lowSelector, highSelector, low, high);
-        }
-
         public static IQueryable<TSource> In<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> selector, IEnumerable<TKey>? value)
         {
             var prop = (PropertyInfo)((MemberExpression)selector.Body).Member;
