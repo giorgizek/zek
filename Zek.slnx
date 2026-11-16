@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="src/Zek.Test/Zek.Test.csproj" Id="4d3f16c2-6980-4864-8089-da2bb8582cad" />
+  <Project Path="src/Zek/Zek.csproj" />
+</Solution>
