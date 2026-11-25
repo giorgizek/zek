@@ -6,7 +6,7 @@ namespace Zek.Options
     {
         public int ExpireMinutes { get; set; } = 3;
         public int CharLength { get; set; } = 4;
-        public string Chars { get; set; } = PasswordHelper.Numbers;
+        public string Chars { get; set; } = PasswordHelper.Digits;
         public int MaxFailedAccessAttempts { get; set; } = 3;
     }
 }

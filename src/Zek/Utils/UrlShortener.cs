@@ -2,7 +2,7 @@
 {
     public static class UrlShortener
     {
-        private const string Base62Chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        public const string Base62Chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         // Fast lookup for decoding (maps ASCII value to index)
         private static readonly int[] LookupTable;
 
