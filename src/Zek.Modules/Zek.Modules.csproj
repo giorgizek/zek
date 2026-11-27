@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net11.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Title>Zek modules, db models, services</Title>
+		<Authors>Giorgi Zekalashvili</Authors>
+		<Company>Zek</Company>
+		<RepositoryUrl>https://github.com/giorgizek/zek</RepositoryUrl>
+		<PackageId>Zek.Modules</PackageId>
+		<Copyright>2023</Copyright>
+		<PackageReleaseNotes>Use this library to help you</PackageReleaseNotes>
+		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Include="..\..\LICENSE.txt" Link="LICENSE.txt">
+	    <PackagePath>\</PackagePath>
+	    <Pack>True</Pack>
+	  </None>
+	  <None Include="..\..\README.md" Link="README.md">
+	    <PackagePath>\</PackagePath>
+	    <Pack>True</Pack>
+	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Zek\Zek.csproj" />
+	</ItemGroup>
+
+</Project>
