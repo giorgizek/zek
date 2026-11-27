@@ -61,6 +61,12 @@
         /// <value>True if the email address has been confirmed, otherwise false.</value>
         public virtual bool EmailConfirmed { get; set; }
 
+
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
+        public string? FullName { get; set; }
+
+
         /// <summary>
         /// Gets or sets a salted and hashed representation of the password for this user.
         /// </summary>
