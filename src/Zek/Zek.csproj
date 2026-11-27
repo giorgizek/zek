@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<VersionPrefix>11.1.0</VersionPrefix>
 		<TargetFramework>net11.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
@@ -10,7 +11,6 @@
 		<Company>Zek</Company>
 		<RepositoryUrl>https://github.com/giorgizek/zek</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<VersionPrefix>11.1.0</VersionPrefix>
 		<PackageId>Zek.Utils</PackageId>
 		<Copyright>2023</Copyright>
 		<PackageReleaseNotes>Use this library to help you</PackageReleaseNotes>

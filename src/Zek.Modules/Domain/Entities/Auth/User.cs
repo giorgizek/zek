@@ -61,9 +61,18 @@
         /// <value>True if the email address has been confirmed, otherwise false.</value>
         public virtual bool EmailConfirmed { get; set; }
 
-
+        /// <summary>
+        /// Gets or sets the user's first name.
+        /// </summary>
         public string? FirstName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the user's last name.
+        /// </summary>
         public string? LastName { get; set; }
+        /// <summary>
+        /// Gets or sets the user's full name.
+        /// </summary>
         public string? FullName { get; set; }
 
 

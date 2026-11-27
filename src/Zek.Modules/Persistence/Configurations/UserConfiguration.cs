@@ -23,6 +23,11 @@ namespace Zek.Persistence.Configurations
             builder.Property(u => u.NormalizedUserName).HasMaxLength(256);
             builder.Property(u => u.Email).HasMaxLength(256);
             builder.Property(u => u.NormalizedEmail).HasMaxLength(256);
+
+            builder.Property(u => u.FirstName).HasMaxLength(255);
+            builder.Property(u => u.LastName).HasMaxLength(255);
+            builder.Property(u => u.FullName).HasMaxLength(500);
+
             builder.Property(u => u.ConcurrencyStamp).HasMaxLength(50).IsConcurrencyToken();
             builder.Property(u => u.SecurityStamp).HasMaxLength(50).IsConcurrencyToken();
             builder.Property(u => u.PhoneNumber).HasMaxLength(50);
